@@ -1,1 +1,4 @@
 WebRoot/WEB-INF/classes/*
+.settings/*
+.myeclipse/*
+META-INF/*
