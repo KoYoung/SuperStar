@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="TheLast"
+  id="myeclipse.1503275642137"
+  context-root="/TheLast"
+  j2ee-spec="5.0"
+  archive="TheLast.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
