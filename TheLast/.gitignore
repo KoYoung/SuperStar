@@ -1,4 +1,0 @@
-*.jar
-WebRoot/WEB-INF/classes/*
-\.settings/*
-\.myeclipse/*
