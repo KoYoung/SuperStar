@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	<!-- 配置别名 为了方便配置操作文件 -->
+	<!-- 配置拦截器 -->
+	<plugins>
+		<plugin interceptor="com.util.PageHelper">
+			<property name="intername" value="internamevalue" />
+		</plugin>
+	</plugins>
+	<!-- 数据源配置，可以配置多个。default设置默认环境 -->
+	<!-- <environments default="development"> <environment id="development"> -->
+	<!-- 事务管理模式：JDBC：dataSource管理事务；MANAGER：依靠容器管理 -->
+	<!-- <transactionManager type="JDBC" /> -->
+	<!--配置数据库连接信息 POOLED：JDBC连接池的实现；UNPOOLED：每次都简单的打开关闭；JNDI：外部配置 -->
+	<!-- <dataSource type="POOLED"> <property name="driver" value="oracle.jdbc.driver.OracleDriver" 
+		/> <property name="url" value="jdbc:oracle:thin:@localhost:1521:orclA" /> 
+		<property name="username" value="scott" /> <property name="password" value="tiger" 
+		/> </dataSource> </environment> </environments> -->
+	<!-- <mappers> <mapper resource="com/aaa/dao/DeptMapper.xml"/> <mapper resource="com/aaa/dao/EmpMapper.xml"/> 
+		</mappers> -->
+</configuration>

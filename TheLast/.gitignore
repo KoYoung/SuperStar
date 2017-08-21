@@ -1,0 +1,13 @@
+WebRoot/WEB-INF/classes/*
+\.settings/*
+\.myeclipse/*
+*.jar
+*.MF
+\.project
+\.mymetadata
+\.classpath
+*.js
+*.css
+*.png
+*.jpg
+*.gif
