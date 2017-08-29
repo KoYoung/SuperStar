@@ -43,7 +43,6 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-
 		<!-- 3.Servlet web -->
 		<dependency>
 			<groupId>taglibs</groupId>
