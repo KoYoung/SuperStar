@@ -8,14 +8,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     	<title>Basic Form - jQuery EasyUI Demo</title>
-		<link rel="stylesheet" href="/badLoan/easyui/themes/default/easyui.css" type="text/css"></link>
-		<link rel="stylesheet" href="/badLoan/easyui/themes/icon.css" type="text/css"></link>
-		<link href="/badLoan/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-		<script src="/badLoan/js/jquery-3.2.1.min.js"></script>
-		<script src="/badLoan/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/badLoan/easyui/jquery.form.js"></script>
-		<script type="text/javascript" src="/badLoan/easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="/badLoan/easyui/easyui-lang-zh_CN.js"></script>
+		<link rel="stylesheet" href="../easyui/themes/default/easyui.css" type="text/css"></link>
+		<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+		<script src="../js/jquery-3.2.1.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../easyui/jquery.form.js"></script>
+		<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
   </head>
   <body>
   

@@ -2,18 +2,11 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%-- <jsp:include page="head.jsp"></jsp:include> --%>
+<jsp:include page="head.jsp"></jsp:include> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../easyui/themes/default/easyui.css" type="text/css"></link>
-		<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-		<link href="../bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-		<script src="../js/jquery-3.2.1.min.js"></script>
-		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../easyui/jquery.form.js"></script>
-		<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
+
 <script src="../js/distpicker.data.js"></script>
 <script src="../js/distpicker.js"></script>
 <script src="../js/main.js"></script>
