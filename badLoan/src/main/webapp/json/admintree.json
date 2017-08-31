@@ -1,0 +1,22 @@
+[{    
+    "text":"系统维护",    
+    "state":"closed",
+    "animate":"true",
+	"iconCls":"icon-save",   
+    "children":[{    
+        "text":"学生信息",
+        "attributes":{
+        	"url":"/evaluation/findstu.jsp"
+        }   
+    },{    
+        "text":"教师信息",
+        "attributes":{
+        	"url":"/evaluation/findteas.jsp"
+        }   
+    },{    
+        "text":"评教信息",
+        "attributes":{
+        	"url":"/evaluation/findquestion.jsp"
+        }   
+    }]    
+}]  
