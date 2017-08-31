@@ -5,10 +5,6 @@ import java.util.List;
 import com.entity.BorRower;
 
 public interface BorRowerService {
-	/**
-	 * 查询所有的个人用户
-	 * 马利肖
-	 * @return
-	 */
-	List<BorRower> findBorRower();
+	public List<BorRower> findBorRowers();
+	public int updataBorrowers(BorRower bor);
 }

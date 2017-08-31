@@ -5,20 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dao.BorRowerDao;
+import com.dao.BorrowerDao;
 import com.entity.BorRower;
 @Service
 public class BorRowerServiceImp implements BorRowerService{
 	@Autowired
-	private BorRowerDao BorRowerDao;
-	/**
-	 * 查询所有的个人用户
-	 * 马利肖
-	 * @return
-	 */
+	private BorrowerDao BorrowerDao;
+	
+	
 	@Override
-	public List<BorRower> findBorRower() {
-		return BorRowerDao.findBorRower();
+	public List<BorRower> findBorRowers() {
+		// TODO Auto-generated method stub
+		return BorrowerDao.findBorrowers();
+	}
+
+	@Override
+	public int updataBorrowers(BorRower bor) {
+		// TODO Auto-generated method stub
+		return BorrowerDao.updataBorrowers(bor);
 	}
 
 }

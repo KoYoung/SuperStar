@@ -24,7 +24,7 @@ public class BorRowerController {
 	@RequestMapping("/findBorRower")
 	@ResponseBody
 	public List<BorRower> findBorRower() {
-		List<BorRower> bList = borService.findBorRower();
+		List<BorRower> bList = borService.findBorRowers();
 		return bList;
 	}
 }
