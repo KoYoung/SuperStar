@@ -35,6 +35,7 @@ public class LoanManageRecordController {
 	@RequestMapping("/addlmr")
 	@ResponseBody
 	public String addLoanManageRecord(LoanManageRecord lmr){
+		System.out.println(lmr);
 		int flag = lmrService.addLoanManageRecord(lmr);
 		if(flag!=1)
 			return "add defeat";
