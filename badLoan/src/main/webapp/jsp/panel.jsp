@@ -30,7 +30,7 @@
 </body>
 <script>
 		$("#tt").tree({
-			url:'tree.json',   
+			url:'tree_data.json',   
 			animate:true,//定义节点在展开或折叠的时候是否显示动画效果.
 			lines:true,//定义是否显示树控件上的虚线。
 			onClick:function(node){

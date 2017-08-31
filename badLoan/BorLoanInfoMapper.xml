@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.BorLoanInfoDao">	
+	<!-- 查询所有银行信息-->
+	<select id="addBorLoanInfo" resultType="com.entity.BorLoanInfo" >
+		select * from borloaninfo
+	</select>
+	<insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo">
+		insert into borloaninfo values(#{bor_id},#{bankinfo_id},#{contract_id},#{emp_id},#{loan_type},#{loan_number},#{loan_account},#{loan_date},#{loan_repayment_date},#{loan_rate})
+	</insert>
+</mapper>
