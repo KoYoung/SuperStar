@@ -1,14 +1,15 @@
 [{    
-    "id":1,    
-    "text":"权限管理",    
+    "id":1,
+    "text":"权限管理",
+    "state":"closed",
     "children":[{
-    	"id":101,    
-        "text":"用户管理",    
+    	"id":101,
+        "text":"用户管理",
         "checked":true,
         "attributes":{    
             "url":"subjectManager.jsp"
         }
-    },{   
+    },{
     	"id":102, 
         "text":"角色管理",    
         "attributes":{    
@@ -17,23 +18,23 @@
     },{   
     	"id":103, 
         "text":"权限管理",    
-        "attributes":{    
+        "attributes":{
             "url":"studentManager.jsp"
         }
     }]    
 },{
    	"id":2,
-    "text":"系统管理",    
-    "state":"closed",    
-    "children":[{  
-    	"id":201,   
+    "text":"系统管理",
+    "state":"closed",
+    "children":[{
+    	"id":201,
         "text":"人员管理",
-        "attributes":{    
+        "attributes":{
             "url":"studentManager.jsp"
         }
     },{    
     	"id":202, 
-        "text":"银行信息评教",
+        "text":"银行信息管理",
         "attributes":{    
             "url":"studentManager.jsp"
         }
@@ -69,7 +70,7 @@
     	"id":402, 
         "text":"业务移交记录",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addBadLoans.jsp"
         }
     }]    
 },{
@@ -106,7 +107,7 @@
     "text":"查询管理",    
     "state":"closed",    
     "children":[{  
-    	"id":,   
+    	"id":601,   
         "text":"客户查询",
         "attributes":{    
             "url":"studentManager.jsp"
