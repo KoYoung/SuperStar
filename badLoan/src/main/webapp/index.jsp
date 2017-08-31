@@ -6,12 +6,12 @@
 <script src="easyUI/jquery.min.js"></script>
 <script src="easyUI/jquery.easyui.min.js"></script>
 <script src="easyUI/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" href="themes/bootstrap/easyui.css"
+<link rel="stylesheet" href="easyUI/themes/bootstrap/easyui.css"
 	type="text/css"></link>
-<link rel="stylesheet" href="css/icon.css" type="text/css"></link>
+<link rel="stylesheet" href="easyUI/themes/icon.css" type="text/css"></link>
 </head>
 <body>
-	<div id="cc" class="easyui-layout" style="width: 100%; height: 100%;">
+	<div class="easyui-layout" style="width: 100%; height: 100%;">
 		<div data-options="region:'north',title:'',split:true"
 			style="height: 100px; text-align: center; font-size: 30px; line-height: 90px;">
 			<span>银行不良贷款系统</span>
@@ -33,7 +33,7 @@
 <script>
 	$(function() {
 		$('#myTree').tree({
-			url : '',
+			url : 'json/tree_data.json',
 			animate : true,
 			lines : true,
 			onClick : function(node) {
