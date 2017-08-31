@@ -30,7 +30,7 @@
     	"id":201,
         "text":"人员管理",
         "attributes":{
-            "url":"studentManager.jsp"
+            "url":"emp.jsp"
         }
     },{    
     	"id":202, 
@@ -81,7 +81,7 @@
     	"id":501,   
         "text":"催收管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"lmrManager.jsp"
         }
     },{    
     	"id":502, 
