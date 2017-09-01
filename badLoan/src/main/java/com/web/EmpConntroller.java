@@ -31,11 +31,25 @@ public class EmpConntroller {
 			// TODO: handle exception
 		}
 	}
-	private int addEmp(){
-		return 0;
+	@RequestMapping("/addEmp")
+	private void addEmp(Emp emp,HttpServletResponse resp){
+		System.out.println(emp);
+		int flag = es.addEmp(emp);
+		try {
+			if(flag>0){
+				resp.getWriter().print("success");
+			}
+			else{
+				resp.getWriter().print("error");
+			}
+			resp.getWriter().flush();
+			resp.getWriter().close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
-	private int modify(){
-		return 0;
+	private void modify(){
+		
 		
 	}
 }
