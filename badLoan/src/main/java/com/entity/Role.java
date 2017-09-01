@@ -1,15 +1,11 @@
 package com.entity;
-
+/**
+ * @author DaYaFeng
+ * 角色实体类
+ * role
+ *
+ */
 public class Role {
-	
-	
-	
-	/**
-	 * @author DaYaFeng
-	 * 角色实体类
-	 * role
-	 *
-	 */
 	private int roleId;
 	private String roleName;
 	private String roleComment;

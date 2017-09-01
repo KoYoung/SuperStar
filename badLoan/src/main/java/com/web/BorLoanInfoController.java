@@ -2,7 +2,6 @@ package com.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dao.BorLoanInfoDao;
 import com.entity.BorLoanInfo;
 import com.service.BorLoanInfoService;
 
@@ -21,8 +19,8 @@ public class BorLoanInfoController {
 	@Autowired
 	private BorLoanInfoService borService;
 	/**
-	 * Ìí¼Ó¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/addBorLoanInfo")
@@ -52,13 +50,12 @@ public class BorLoanInfoController {
 			response.getWriter().flush();
 			response.getWriter().close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 	}
 	/**
-	 * ²éÑ¯¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/findBorLoanInfo")

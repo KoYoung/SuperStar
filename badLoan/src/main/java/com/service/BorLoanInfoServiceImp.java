@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.dao.BorLoanInfoDao;
 import com.entity.BorLoanInfo;
+
 @Service
 public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Autowired
 	private BorLoanInfoDao BorLoanInfoDao;
+
 	@Override
 	public int addBorLoanInfo(BorLoanInfo BorLoanInfo) {
 		return BorLoanInfoDao.addBorLoanInfo(BorLoanInfo);

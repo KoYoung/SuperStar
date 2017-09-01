@@ -5,7 +5,7 @@ import java.util.List;
 import com.entity.User;
 
 /**
- * @author 蒙奇·D·路飞
+ * @author why
  * 用户Dao接口
  * UserDao
  *

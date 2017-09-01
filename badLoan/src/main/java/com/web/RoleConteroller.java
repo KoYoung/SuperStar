@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.entity.Role;
 import com.service.RoleService;
 
 /**
- * @author DaYaFeng 角色Service实现类 RoleServiceImp
+ * @author 
+ * DaYaFeng 
+ * 角色
+ * Service实现类 
+ * RoleServiceImp
  *
  */
 @Controller

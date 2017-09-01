@@ -14,8 +14,8 @@ public class BankInfoServiceImp implements BankInfoService{
 	@Autowired
 	private BankInfoDao bDao;
 	 /**
-	  * ²éÑ¯ËùÓĞÒøĞĞĞÅÏ¢
-	  * ÂíÀûĞ¤
+	  * æŸ¥è¯¢æ‰€æœ‰é“¶è¡Œä¿¡æ¯
+	  * é©¬åˆ©è‚–
 	  * @return
 	  */
 	public List<BankInfo> findBankInfo(){

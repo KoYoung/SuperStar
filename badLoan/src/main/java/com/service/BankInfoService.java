@@ -6,9 +6,9 @@ import com.entity.BankInfo;
 
 public interface BankInfoService {
 	/**
-	 * ²éÑ¯ËùÓĞÒøĞĞĞÅÏ¢
-	 * ÂíÀûĞ¤
-	 * @return
+	 * æŸ¥è¯¢æ‰€æœ‰é“¶è¡Œä¿¡æ¯
+	 * é©¬åˆ©è‚–
+	 * @return é“¶è¡Œä¿¡æ¯é›†åˆ
 	 */
 	List<BankInfo> findBankInfo();
 }

@@ -20,6 +20,6 @@ public  interface RoleService {
 	/**
 	 * 添加角色
 	 * 
-	 * */
+	 */
 	public int addRole(Role re);
 }

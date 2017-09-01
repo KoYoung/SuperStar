@@ -9,14 +9,13 @@ import com.dao.LoanTypeDao;
 import com.entity.LoanType;
 
 @Service
-public class LoanTypeServiceImp implements LoanTypeService{
+public class LoanTypeServiceImp implements LoanTypeService {
 	@Autowired
 	private LoanTypeDao loanDao;
 
 	@Override
 	public List<LoanType> findLoanType() {
-		
 		return loanDao.findLoanType();
 	}
-	
+
 }

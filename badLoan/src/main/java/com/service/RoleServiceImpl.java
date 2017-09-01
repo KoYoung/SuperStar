@@ -9,40 +9,29 @@ import com.dao.RoleDao;
 
 import com.entity.Role;
 
-
-
 /**
- * @author DaYaFeng
- * 角色Service实现类
- * RoleServiceImp
+ * @author DaYaFeng 角色Service实现类 RoleServiceImp
  *
  */
 @Service
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
-	
+
 	private RoleDao RD;
 
 	/**
 	 * 查询角色
-	 * */
+	 */
 	public List<Role> findRole() {
-		// TODO Auto-generated method stub
 		return RD.findRole();
 	}
 
-
 	/**
 	 * 添加角色
-	 * */
+	 */
 	public int addRole(Role re) {
-		// TODO Auto-generated method stub
 		return RD.addRole(re);
 	}
-
-	
-
-	
 
 }

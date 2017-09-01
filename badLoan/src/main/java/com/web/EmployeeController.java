@@ -15,8 +15,8 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService eService;
 	/**
-	 * ²éÑ¯ÒøĞĞËùÓĞÔ±¹¤
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢é“¶è¡Œæ‰€æœ‰å‘˜å·¥
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/findAllEmployee")

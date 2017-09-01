@@ -9,7 +9,7 @@ import com.dao.UserDao;
 import com.entity.User;
 
 /**
- * @author 蒙奇·D·路飞
+ * @author why
  * 用户Service实现类
  * UserServiceImp
  *

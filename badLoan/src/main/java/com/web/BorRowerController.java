@@ -20,7 +20,7 @@ public class BorRowerController {
 
 	@RequestMapping("/findborr")
 	@ResponseBody
-	public List findBor() {
+	public List<BorRower> findBor() {
 		List<BorRower> borRowerList = borRowerService.findBorRowers();
 		System.out.println("------------------------");
 		System.out.println(borRowerList);

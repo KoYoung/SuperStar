@@ -5,16 +5,18 @@ import java.util.List;
 import com.entity.Emp;
 
 public interface EmpService {
-	/*
-	 * 查询员工
+	/**
+	 * 鏌ヨ鍛樺伐
 	 */
 	List<Emp> findEmp();
-	/*
-	 * 新增员工
+
+	/**
+	 * 鏂板鍛樺伐
 	 */
 	int addEmp(Emp emp);
-	/*
-	 * 修改员工
+
+	/**
+	 * 淇敼鍛樺伐
 	 */
 	int modifyEmp(Emp emp);
 }

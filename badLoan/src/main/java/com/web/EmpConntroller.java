@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.entity.Dept;
 import com.entity.Emp;
 import com.service.EmpService;
 
@@ -28,7 +27,6 @@ public class EmpConntroller {
 			resp.getWriter().flush();
 			resp.getWriter().close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 	@RequestMapping("/addEmp")
@@ -45,11 +43,6 @@ public class EmpConntroller {
 			resp.getWriter().flush();
 			resp.getWriter().close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
-	}
-	private void modify(){
-		
-		
 	}
 }

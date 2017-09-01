@@ -16,8 +16,8 @@ public class LoanTypeController {
 	@Autowired
 	private LoanTypeService loanService;
 	/**
-	 * ²éÑ¯´û¿îÖÖÀà
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢è´·æ¬¾ç§ç±»
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/findLoanType")
@@ -25,6 +25,5 @@ public class LoanTypeController {
 	public List<LoanType> findLoanType(){
 		List<LoanType> loanList = loanService.findLoanType();
 		return loanList;
-		
 	}
 }

@@ -12,6 +12,7 @@ import com.entity.Employee;
 public class EmployeeServiceImp implements EmployeeService{
 	@Autowired
 	private EmployeeDao eDao;
+	
 	/**
 	 * 查询银行所有员工
 	 * 马利肖
