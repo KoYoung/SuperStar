@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.LoanManageRecordDao">
+	<select id="findLoanManageRecord" resultType="com.entity.LoanManageRecord">
+		select lmr_id,emp_id,lmr_date,lmr_name,lmr_comment from loanmanagerecord
+	</select>
+	<insert id="addLoanManageRecord" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord (lmr_id,emp_id,lmr_date,lmr_name,lmr_comment) values(#{lmrId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},#{lmrName,jdbcType=VARCHAR},#{lmrComment,jdbcType=VARCHAR})
+	</insert>
+</mapper>
