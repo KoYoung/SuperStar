@@ -13,6 +13,44 @@
 </head>
 <body>
 	<table id="dg"></table>
+	<div id="empDialog" style="padding:5px;display:none;">
+		<form id="empForm" method="post">
+			<table>
+				<tr>
+					<th>员工编号</th>
+					<td><input type="text" name="empId" class="easyui-validatebox" data-options="validType:'minLength[4]'"  required="required"></input></td>
+					<th>员工姓名</th>
+					<td><input type="text" name="empName"></td>
+				</tr>
+				<tr>
+					<th>员工性别</th>
+					<td><input type="text" name="empGender"></td>
+					<th>电话</th>
+					<td><input type="text" name="empTelphone"></td>
+				</tr>
+				<tr>
+					<th>身份证号</th>
+					<td width="160px">
+					<input type="text" name="empCardnumber">
+				</td>
+					<th>地址</th>
+					<td><input type="text" name="empAddress"></td>
+				</tr>
+				<tr>
+					<th>学历</th>
+					<td><input type="text" name="empEducation"></td>
+					<th>部门</th>
+					<td><input type="text"  name="empDepartment"></td>
+				</tr>
+				<tr>
+					<th>邮箱</th>
+					<td><input type="text" name="empEmail"></td>
+					<th>民族</th>
+					<td><input type="text" name="empNation"></td>
+				</tr>
+			</table>
+		</form>
+	</div>  
 </body>
 <script>
 	var datagrid;
@@ -20,7 +58,7 @@
 		url : '/badLoan/Emp/findEmp',
 		rownumbers : true, //显示行号
 		pagination : true, //显示分页
-		pageSize : 5, //默认显示多少行
+		pageSize : 10, //默认显示多少行
 		pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 		sortName : 'empId',//默认员工编号
 		sortOrder : 'asc',//默认升序
@@ -89,25 +127,15 @@
 			buttons : [ {
 				text : '添加',
 				handler : function() {
-					var f = $("#empForm");
-					f.form('submit', {
-						url : 'EmpServlet?chenjian=addEmp',
-						success : function(data) {
-							var json = $.parseJSON(data);//如果使用的是easyui自带ajax，则需要将返回数据转换成json对象
-							if (json.success) {
+					var f = $("#empForm").serialize();
+						$.ajax({
+							url : '/badLoan/Emp/addEmp',
+							data:f,
+							success:function(data){
 								datagrid.datagrid("reload");
 								p.dialog("close");
 							}
-							$.messager.show({
-								msg : json.msg,
-								timeout : 3000,
-								title : "提示"
-							}
-
-							);
-						}
-
-					})
+						});
 				}
 
 			} ],

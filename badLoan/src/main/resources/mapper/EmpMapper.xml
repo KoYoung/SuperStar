@@ -7,8 +7,8 @@
 	<select id="findEmp" resultType="com.entity.Emp">
 		select * from employee
 	</select>
-	<insert id="addEmp" parameterType="com.entity.Emp">
-		
+	<insert id="addEmp" useGeneratedKeys="false" parameterType="com.entity.Emp">
+		insert into employee values (#{empId},#{empName},#{empGender},#{empTelphone},#{empCardnumber},#{empAddress},#{empEducation},#{empDepartment},#{empEmail},#{empNation})
 	</insert>
 	<update id="modifyEmp" parameterType="com.entity.Emp">
 	
