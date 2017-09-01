@@ -11,5 +11,8 @@
 <link rel="stylesheet" href="easyUI/themes/icon.css" type="text/css"></link>
 </head>
 <body>
+	<%
+		response.sendRedirect("jsp/login.jsp");
+	%>
 </body>
 </html>
