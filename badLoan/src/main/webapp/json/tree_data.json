@@ -13,7 +13,7 @@
     	"id":102, 
         "text":"角色管理",    
         "attributes":{    
-            "url":"teacherManager.jsp"
+            "url":"role.jsp"
         }
     },{   
     	"id":103, 

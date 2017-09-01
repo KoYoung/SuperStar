@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
 	type="text/css"></link>
-
 </head>
 <body>
 	<h1 style="text-align: center; margin-top: 130px;">银&nbsp;&nbsp;行&nbsp;&nbsp;不&nbsp;&nbsp;良&nbsp;&nbsp;贷&nbsp;&nbsp;款&nbsp;&nbsp;信&nbsp;&nbsp;息&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;系&nbsp;&nbsp;统</h1>
