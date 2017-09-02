@@ -7,7 +7,7 @@
         "text":"用户管理",
         "checked":true,
         "attributes":{    
-            "url":"subjectManager.jsp"
+            "url":"users.jsp"
         }
     },{
     	"id":102, 
