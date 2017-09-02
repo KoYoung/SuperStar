@@ -6,8 +6,8 @@ import com.entity.LoanType;
 
 public interface LoanTypeDao {
 	/**
-	 * ²éÑ¯´û¿îÖÖÀà
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢è´·æ¬¾ç§ç±»
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	List<LoanType> findLoanType();

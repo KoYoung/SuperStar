@@ -1,80 +1,200 @@
 package com.entity;
+
 /**
- * ∏ˆ»À”√ªß¥˚øÓ–≈œ¢ µÃÂ¿‡
- * @author ¬Ì¿˚–§
+ * ‰∏™‰∫∫Áî®Êà∑Ë¥∑Ê¨æ‰ø°ÊÅØÂÆû‰ΩìÁ±ª
+ * 
+ * @author È©¨Âà©ËÇñ 
  * 2017-8-31
  */
 public class BorLoanInfo {
-	private Integer borId;
-	private Integer bankinfoId;
-	private Integer contractId;
-	private Integer empId;
-	private Integer loanType;
+	private String borId;
+	private String borName;
+	private String bankinfoId;
+	private String bankinfoName;
+	private String contractId;
+	private String empId;
+	private String empName;
+	private String loanType;
+	private String loanTypeName;
 	private String loanNumber;
 	private String loanAccount;
 	private String loanDate;
 	private String loanRepaymentDate;
 	private Double loanRate;
-	public Integer getBorId() {
+	private String pledgeGenre;
+	private String pledgeType;
+	private String pledgeName;
+	private String pledgeValue;
+	private String pledgeOwner;
+	private String guaName;
+	private String lmrName;
+	
+	
+	public String getPledgeType() {
+		return pledgeType;
+	}
+
+	public void setPledgeType(String pledgeType) {
+		this.pledgeType = pledgeType;
+	}
+
+	public String getPledgeName() {
+		return pledgeName;
+	}
+
+	public void setPledgeName(String pledgeName) {
+		this.pledgeName = pledgeName;
+	}
+
+	public String getPledgeValue() {
+		return pledgeValue;
+	}
+
+	public void setPledgeValue(String pledgeValue) {
+		this.pledgeValue = pledgeValue;
+	}
+
+	public String getPledgeOwner() {
+		return pledgeOwner;
+	}
+
+	public void setPledgeOwner(String pledgeOwner) {
+		this.pledgeOwner = pledgeOwner;
+	}
+
+	public String getBorName() {
+		return borName;
+	}
+
+	public void setBorName(String borName) {
+		this.borName = borName;
+	}
+
+	public String getBankinfoName() {
+		return bankinfoName;
+	}
+
+	public void setBankinfoName(String bankinfoName) {
+		this.bankinfoName = bankinfoName;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getLoanTypeName() {
+		return loanTypeName;
+	}
+
+	public void setLoanTypeName(String loanTypeName) {
+		this.loanTypeName = loanTypeName;
+	}
+
+	public String getPledgeGenre() {
+		return pledgeGenre;
+	}
+
+	public void setPledgeGenre(String pledgeGenre) {
+		this.pledgeGenre = pledgeGenre;
+	}
+
+	public String getGuaName() {
+		return guaName;
+	}
+
+	public void setGuaName(String guaName) {
+		this.guaName = guaName;
+	}
+
+	public String getLmrName() {
+		return lmrName;
+	}
+
+	public void setLmrName(String lmrName) {
+		this.lmrName = lmrName;
+	}
+
+	public String getBorId() {
 		return borId;
 	}
-	public void setBorId(Integer borId) {
+
+	public void setBorId(String borId) {
 		this.borId = borId;
 	}
-	public Integer getBankinfoId() {
+
+	public String getBankinfoId() {
 		return bankinfoId;
 	}
-	public void setBankinfoId(Integer bankinfoId) {
+
+	public void setBankinfoId(String bankinfoId) {
 		this.bankinfoId = bankinfoId;
 	}
-	public Integer getContractId() {
+
+	public String getContractId() {
 		return contractId;
 	}
-	public void setContractId(Integer contractId) {
+
+	public void setContractId(String contractId) {
 		this.contractId = contractId;
 	}
-	public Integer getEmpId() {
+
+	public String getEmpId() {
 		return empId;
 	}
-	public void setEmpId(Integer empId) {
+
+	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
-	public Integer getLoanType() {
+
+	public String getLoanType() {
 		return loanType;
 	}
-	public void setLoanType(Integer loanType) {
+
+	public void setLoanType(String loanType) {
 		this.loanType = loanType;
 	}
+
 	public String getLoanNumber() {
 		return loanNumber;
 	}
+
 	public void setLoanNumber(String loanNumber) {
 		this.loanNumber = loanNumber;
 	}
+
 	public String getLoanAccount() {
 		return loanAccount;
 	}
+
 	public void setLoanAccount(String loanAccount) {
 		this.loanAccount = loanAccount;
 	}
+
 	public String getLoanDate() {
 		return loanDate;
 	}
+
 	public void setLoanDate(String loanDate) {
 		this.loanDate = loanDate;
 	}
+
 	public String getLoanRepaymentDate() {
 		return loanRepaymentDate;
 	}
+
 	public void setLoanRepaymentDate(String loanRepaymentDate) {
 		this.loanRepaymentDate = loanRepaymentDate;
 	}
+
 	public Double getLoanRate() {
 		return loanRate;
 	}
+
 	public void setLoanRate(Double loanRate) {
 		this.loanRate = loanRate;
 	}
-	
-	
 }

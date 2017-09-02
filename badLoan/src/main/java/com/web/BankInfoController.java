@@ -17,8 +17,8 @@ public class BankInfoController {
 	private BankInfoService bService;
 	
 	/**
-	 * ²éÑ¯ËùÓĞÒøĞĞĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢æ‰€æœ‰é“¶è¡Œä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/findBankInfo")

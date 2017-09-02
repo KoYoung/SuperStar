@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.GuarantorDao">
+	<!-- 添加抵（质）押物品信息 -->
+	<insert id="addGuarantor" useGeneratedKeys="false" parameterType="com.entity.Guarantor">
+		insert into guarantor values(gua_sequence.nextval,#{guaName,jdbcType=VARCHAR},
+		#{guaGender,jdbcType=VARCHAR},#{guaPhone,jdbcType=VARCHAR},#{guaBirthday,jdbcType=VARCHAR},
+		#{guaCardType,jdbcType=VARCHAR},#{guaCardNumber,jdbcType=VARCHAR},
+		#{guaRegister,jdbcType=VARCHAR},#{guaAddress,jdbcType=VARCHAR},
+		#{guaUnit,jdbcType=VARCHAR},#{guaPosition,jdbcType=VARCHAR},
+		#{guaMarry,jdbcType=VARCHAR},#{guaNation,jdbcType=VARCHAR},
+		#{guaEducation,jdbcType=VARCHAR},#{guaIncome,jdbcType=VARCHAR})
+	</insert>
+</mapper>

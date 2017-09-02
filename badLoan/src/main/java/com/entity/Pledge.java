@@ -1,8 +1,9 @@
 package com.entity;
+
 /**
- * µÖ£¨ÖÊ£©ÑºÎïÆ·ĞÅÏ¢±íÊµÌåÀà
- * @author ÂíÀûĞ¤
- * 2017-8-31
+ * æŠµï¼ˆè´¨ï¼‰æŠ¼ç‰©å“ä¿¡æ¯è¡¨å®ä½“ç±»
+ * 
+ * @author é©¬åˆ©è‚– 2017-8-31
  */
 public class Pledge {
 	private String pledgeId;
@@ -14,60 +15,86 @@ public class Pledge {
 	private String pledgeStartdate;
 	private String pledgeEnddate;
 	private String pledgePhoto;
+
 	public String getPledgeId() {
 		return pledgeId;
 	}
+
 	public void setPledgeId(String pledgeId) {
 		this.pledgeId = pledgeId;
 	}
+
 	public String getPledgeGenre() {
 		return pledgeGenre;
 	}
+
 	public void setPledgeGenre(String pledgeGenre) {
 		this.pledgeGenre = pledgeGenre;
 	}
+
 	public String getPledgeType() {
 		return pledgeType;
 	}
+
 	public void setPledgeType(String pledgeType) {
 		this.pledgeType = pledgeType;
 	}
+
 	public String getPledgeName() {
 		return pledgeName;
 	}
+
 	public void setPledgeName(String pledgeName) {
 		this.pledgeName = pledgeName;
 	}
+
 	public String getPledgeValue() {
 		return pledgeValue;
 	}
+
 	public void setPledgeValue(String pledgeValue) {
 		this.pledgeValue = pledgeValue;
 	}
+
 	public String getPledgeOwner() {
 		return pledgeOwner;
 	}
+
 	public void setPledgeOwner(String pledgeOwner) {
 		this.pledgeOwner = pledgeOwner;
 	}
+
 	public String getPledgeStartdate() {
 		return pledgeStartdate;
 	}
+
 	public void setPledgeStartdate(String pledgeStartdate) {
 		this.pledgeStartdate = pledgeStartdate;
 	}
+
 	public String getPledgeEnddate() {
 		return pledgeEnddate;
 	}
+
 	public void setPledgeEnddate(String pledgeEnddate) {
 		this.pledgeEnddate = pledgeEnddate;
 	}
+
 	public String getPledgePhoto() {
 		return pledgePhoto;
 	}
+
 	public void setPledgePhoto(String pledgePhoto) {
 		this.pledgePhoto = pledgePhoto;
 	}
+
+	@Override
+	public String toString() {
+		return "Pledge [pledgeId=" + pledgeId + ", pledgeGenre=" + pledgeGenre + ", pledgeType=" + pledgeType
+				+ ", pledgeName=" + pledgeName + ", pledgeValue=" + pledgeValue + ", pledgeOwner=" + pledgeOwner
+				+ ", pledgeStartdate=" + pledgeStartdate + ", pledgeEnddate=" + pledgeEnddate + ", pledgePhoto="
+				+ pledgePhoto + "]";
+	}
 	
-	
+
 }

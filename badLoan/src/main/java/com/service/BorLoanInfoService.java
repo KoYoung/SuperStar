@@ -2,21 +2,27 @@ package com.service;
 
 import java.util.List;
 
-import com.dao.BorLoanInfoDao;
 import com.entity.BorLoanInfo;
-
-
+import com.entity.Borgua;
+import com.entity.CustomerGoods;
+import com.entity.Guarantor;
+import com.entity.LoanManageRecord;
+import com.entity.Loanmanage;
+import com.entity.Pledge;
 
 public interface BorLoanInfoService {
 	/**
-	 * Ìí¼Ó¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
-	int addBorLoanInfo(BorLoanInfo BorLoanInfo);
+	int addBorLoanInfo(BorLoanInfo BorLoanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
+			,LoanManageRecord lmr,Loanmanage lonm);
+	
+
 	/**
-	 * ²éÑ¯¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	List<BorLoanInfo> findBorLoanInfo();

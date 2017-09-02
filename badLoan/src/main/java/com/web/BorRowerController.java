@@ -26,7 +26,11 @@ public class BorRowerController {
 		System.out.println(borRowerList);
 		return borRowerList;
 	}
-
+	/**
+	 * 添加个人用户基本信息
+	 * @param bor
+	 * @param response
+	 */
 	@RequestMapping("/addbor")
 	public void addbor(BorRower bor, HttpServletResponse response) {
 		int flag = borRowerService.addBorrowers(bor);

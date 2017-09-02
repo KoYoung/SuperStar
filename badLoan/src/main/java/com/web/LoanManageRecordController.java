@@ -38,8 +38,8 @@ public class LoanManageRecordController {
 		System.out.println(lmr);
 		int flag = lmrService.addLoanManageRecord(lmr);
 		if(flag!=1)
-			return "add defeat";
+			return "添加一条贷款处理记录success";
 		else
-			return "add success";
+			return "添加一条贷款处理记录error";
 	}
 }

@@ -1,23 +1,19 @@
 package com.dao;
 
 import java.util.List;
-
 import com.entity.BorLoanInfo;
-
-
-
-
 
 public interface BorLoanInfoDao {
 	/**
-	 * Ìí¼Ó¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯ é©¬åˆ©è‚–
+	 * 
 	 * @return
 	 */
 	public int addBorLoanInfo(BorLoanInfo borLoanInfo);
+
 	/**
-	 * ²éÑ¯¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯ é©¬åˆ©è‚–
+	 * 
 	 * @return
 	 */
 	public List<BorLoanInfo> findBorLoanInfo();

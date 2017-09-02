@@ -6,7 +6,7 @@
 	<select id="findLoanManageRecord" resultType="com.entity.LoanManageRecord">
 		select lmr_id,emp_id,lmr_date,lmr_name,lmr_comment from loanmanagerecord
 	</select>
-	<insert id="addLoanManageRecord" parameterType="com.entity.LoanManageRecord">
-		insert into loanmanagerecord (lmr_id,emp_id,lmr_date,lmr_name,lmr_comment) values(#{lmrId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},#{lmrName,jdbcType=VARCHAR},#{lmrComment,jdbcType=VARCHAR})
+	<insert id="addLoanManageRecord" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord values(lmr_sequence.nextval,borloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
 	</insert>
 </mapper>

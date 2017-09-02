@@ -2,16 +2,26 @@ package com.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dao.BorLoanInfoDao;
+import com.alibaba.fastjson.JSON;
+import com.dao.GuarantorDao;
+import com.dao.LoanManageRecordDao;
+import com.dao.LoanmanageDao;
+import com.dao.PledgeDao;
 import com.entity.BorLoanInfo;
+import com.entity.Borgua;
+import com.entity.CustomerGoods;
+import com.entity.Guarantor;
+import com.entity.LoanManageRecord;
+import com.entity.Loanmanage;
+import com.entity.Pledge;
 import com.service.BorLoanInfoService;
 
 @Controller
@@ -20,45 +30,36 @@ import com.service.BorLoanInfoService;
 public class BorLoanInfoController {
 	@Autowired
 	private BorLoanInfoService borService;
+	
 	/**
-	 * Ìí¼Ó¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/addBorLoanInfo")
-	public void addBorLoanInfo(BorLoanInfo BorLoanInfo,HttpServletResponse response){
-		/*BorLoanInfo borLoan = new BorLoanInfo();
-		borLoan.setBorId(BorLoanInfo.getBorId());
-		borLoan.setBankinfoId(BorLoanInfo.getBankinfoId());
-		borLoan.setContractId(BorLoanInfo.getContractId());
-		borLoan.setEmpId(BorLoanInfo.getEmpId());
-		borLoan.setLoanType(BorLoanInfo.getLoanType());
-		borLoan.setLoanNumber(BorLoanInfo.getLoanNumber());
-		borLoan.setLoanAccount(BorLoanInfo.getLoanAccount());
-		borLoan.setLoanDate(BorLoanInfo.getLoanDate());
-		System.out.print("borLoan.setLoanDate(BorLoanInfo.getLoanDate())");
-		borLoan.setLoanRepaymentDate(BorLoanInfo.getLoanRepaymentDate());
-		borLoan.setLoanRate(BorLoanInfo.getLoanRate());*/
+	@ResponseBody
+	public String addBorLoanInfo(@RequestBody String str){
+		BorLoanInfo borLoanInfo=JSON.parseObject(str,BorLoanInfo.class);
+		Pledge pledge = JSON.parseObject(str, Pledge.class);
+		CustomerGoods customerGoods = JSON.parseObject(str, CustomerGoods.class);
+		Guarantor guarantor = JSON.parseObject(str, Guarantor.class);
+		Borgua borgua = JSON.parseObject(str, Borgua.class);
+		LoanManageRecord lmr = JSON.parseObject(str, LoanManageRecord.class);
+		Loanmanage loanmanage = JSON.parseObject(str, Loanmanage.class);
+		/*int bor = borService.addBorLoanInfo(BorLoanInfo, pledge,customergoods, guarantor,borgua, lmr, lonm);*/
+		int bor=borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
+		if(bor>0){
 		
-		int bor = borService.addBorLoanInfo(BorLoanInfo);
-		System.out.println("--------22----------2");
-		try {
-			if(bor>0){
-				response.getWriter().print("success");
-			}
-			else{
-				response.getWriter().print("error");
-			}
-			response.getWriter().flush();
-			response.getWriter().close();
-		} catch (Exception e) {
-			// TODO: handle exception
+			return "æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯success";
+		}else{
+				return "æ·»åŠ ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯error";
 		}
 		
+			
 	}
 	/**
-	 * ²éÑ¯¸öÈËÓÃ»§´û¿îĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢ä¸ªäººç”¨æˆ·è´·æ¬¾ä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	@RequestMapping("/findBorLoanInfo")

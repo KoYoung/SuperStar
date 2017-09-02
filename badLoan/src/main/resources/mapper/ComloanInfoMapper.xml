@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ComloanInfoDao">
+	<!-- 查询企业贷款信息 -->
+	<select id="findComloanInfo" resultType="com.entity.ComloanInfo">
+		select
+		cp.com_name,bi.bankinfo_name,ci.contract_id,
+		e.emp_name,lt.loantype_name,ci.loan_number,ci.loan_account,
+		ci.loan_date,ci.loan_repayment_date,ci.loan_rate,
+		p.pledge_genre,p.pledge_type,p.pledge_name,p.pledge_value,p.pledge_owner,gua.gua_name,lg.lmr_name
+		from company cp,bankinfo bi,employee e,loantype lt,
+		comloaninfo
+		ci,customergoods cg,pledge p,guarantor
+		gua,borgua bg,loanmanagerecord
+		lg
+		where cp.com_id=cp.com_id and bi.bankinfo_id=ci.bankinfo_id
+		and e.emp_id=ci.emp_id and lt.loantype_id = ci.loan_type
+		and cg.bor_id=ci.com_id and cg.goods_id=p.pledge_id
+		and bg.bor_id=ci.com_id and bg.gua_id=gua.gua_id
+		and lg.loaninfo_id=ci.comloaninfo_id
+	</select>
+	<!-- 添加企业贷款信息-->
+	<insert id="addComloanInfo" useGeneratedKeys="false"
+		parameterType="com.entity.ComloanInfo">
+		insert into comloaninfo
+		values(comloaninfo_sequence.nextval,#{comId,jdbcType=VARCHAR},#{bankinfoId,jdbcType=VARCHAR},
+		#{contractId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},
+		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
+		#{loanAccount,jdbcType=VARCHAR},#{loanDate,jdbcType=VARCHAR},
+		#{loanRepaymentDate,jdbcType=VARCHAR},#{loanRate,jdbcType=VARCHAR})
+	</insert>
+</mapper>

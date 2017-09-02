@@ -6,8 +6,8 @@ import com.entity.BankInfo;
 
 public interface BankInfoDao {
 	/**
-	 * ²éÑ¯ËùÓĞÒøĞĞĞÅÏ¢
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢æ‰€æœ‰é“¶è¡Œä¿¡æ¯
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
 	List<BankInfo> findBankInfo();
