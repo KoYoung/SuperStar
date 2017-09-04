@@ -7,7 +7,7 @@
         "text":"用户管理",
         "checked":true,
         "attributes":{    
-            "url":"users.jsp"
+            "url":"subjectManager.jsp"
         }
     },{
     	"id":102, 
@@ -36,7 +36,7 @@
     	"id":202, 
         "text":"银行信息管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"bankinfo.jsp"
         }
     }]    
 },{
@@ -79,24 +79,30 @@
     "state":"closed",    
     "children":[{  
     	"id":501,   
-        "text":"催收管理",
+        "text":"个人贷款",
+        "attributes":{    
+            "url":"lmrManager.jsp"
+        }
+    },{  
+    	"id":502,   
+        "text":"企业贷款",
         "attributes":{    
             "url":"lmrManager.jsp"
         }
     },{    
-    	"id":502, 
+    	"id":503, 
         "text":"诉讼记录",
         "attributes":{    
             "url":"studentManager.jsp"
         }
     },{    
-    	"id":503, 
+    	"id":504, 
         "text":"清收记录",
         "attributes":{    
             "url":"studentManager.jsp"
         }
     },{    
-    	"id":504, 
+    	"id":505, 
         "text":"贷款清收",
         "attributes":{    
             "url":"studentManager.jsp"

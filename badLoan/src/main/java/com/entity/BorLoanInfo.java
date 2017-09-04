@@ -3,8 +3,7 @@ package com.entity;
 /**
  * 个人用户贷款信息实体类
  * 
- * @author 马利肖 
- * 2017-8-31
+ * @author 马利肖 2017-8-31
  */
 public class BorLoanInfo {
 	private Integer borId;

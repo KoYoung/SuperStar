@@ -2,13 +2,61 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.BorLoanInfoDao">	
-	<!-- 查询个人用户贷款信息-->
-	<select id="findBorLoanInfo" resultType="com.entity.BorLoanInfo" >
-		select * from borloaninfo
+<mapper namespace="com.dao.BorLoanInfoDao">
+	<!-- 查询个人用户贷款信息 -->
+	<select id="findBorLoanInfo" resultType="com.entity.BorLoanInfo">
+		select * from
+		borloaninfo
 	</select>
 	<!-- 添加个人用户贷款信息 -->
 	<insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo">
-		insert into borloaninfo values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate})
+		insert into
+		borloaninfo
+		values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate})
 	</insert>
+
+	<!-- 查询个人用户贷款信息详情 -->
+	<select id="findBorLoanDetail" resultMap="borLoanDetail">
+		select
+		bli.borloaninfo_id,bli.bor_id ,bli.bankinfo_id
+		,bli.contract_id,bli.emp_id ,bli.loan_type ,bli.loan_number
+		,bli.loan_account,bli.loan_date ,bli.loan_repayment_date,
+		bli.loan_rate ,bli.loaninfo_type ,
+		bor.bor_name,lt.loantype_name,lt.typesOfLoant from
+		borLoanInfo bli,borrower bor, loantype lt, bankinfo bi , , where bli.bor_id =
+		bor.bor_id and
+		bli.loan_type = lt.loantype_id
+	</select>
+	<resultMap type="java.util.HashMap" id="borLoanDetail">
+		<id property="borloaninfoId" column="borloaninfo_id" />
+		<result property="borId" column="bor_id" />
+		<result property="bankinfoId" column="bankinfo_id" />
+		<result property="contractId" column="contract_id" />
+		<result property="empId" column="emp_id" />
+		<result property="loanType" column="loan_type" />
+		<result property="loanNumber" column="loan_number" />
+		<result property="loanAccount" column="loan_account" />
+		<result property="loanDate" column="loan_date" />
+		<result property="loanRepayment_date" column="loan_repayment_date" />
+		<result property="loanRate" column="loan_rate" />
+		<result property="loaninfoType" column="loaninfo_type" />
+		<result property="borName" column="bor_name" />
+		<result property="loantypeName" column="loantype_name" />
+		<result property="typesOfLoant" column="typesOfLoant" />
+		<result property="bankinfoName" column="bankinfo_name" />
+		<result property="bankinfoTelephone" column="bankinfo_telephone" />
+		<result property="bankinfoAddress" column="bankinfo_address" />
+		<!-- <result property="borGender" column="bor_gender" /> <result property="borBirthday" 
+			column="bor_birthday" /> <result property="borNation" column="bor_nation" 
+			/> <result property="borMarry" column="bor_marry" /> <result property="borCardtype" 
+			column="bor_cardtype" /> <result property="borCardnumber" column="bor_cardnumber" 
+			/> <result property="borCegister" column="bor_register" /> <result property="borAddress" 
+			column="bor_address" /> <result property="borUnit" column="bor_unit" /> <result 
+			property="borUnitAddress" column="bor_unit_address" /> <result property="borUnitPhone" 
+			column="bor_unit_phone" /> <result property="borPosition" column="bor_position" 
+			/> <result property="borIncome" column="bor_income" /> <result property="borPhone" 
+			column="bor_phone" /> <result property="borPostcode" column="bor_postcode" 
+			/> <result property="borEducation" column="bor_education" /> <result property="borCredit" 
+			column="bor_credit" /> <result property="borPhoto" column="bor_photo" /> -->
+	</resultMap>
 </mapper>

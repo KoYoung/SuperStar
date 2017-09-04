@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.GuarantorDao">
+	<select id="findGuarantor" resultType="com.entity.Guarantor">
+		select
+		gua_id,gua_name,gua_gender,gua_phone,gua_birthday,gua_cardtype,gua_cardnumber,gua_register,gua_address,gua_unit,gua_position,gua_marry,gua_nation,gua_education,gua_income
+		from guarantor
+	</select>
+	<insert id="addGuarantor" useGeneratedKeys="false" parameterType="com.entity.Guarantor">
+		insert into guarantor
+		(gua_id,gua_name,gua_gender,gua_phone,gua_birthday,gua_cardtype,gua_cardnumber,gua_register,gua_address,gua_unit,gua_position,gua_marry,gua_nation,gua_education,gua_income)
+		values(#{guaId},#{guaName},#{guaGender},#{guaPhone},#{guaBirthday},#{guaCardType},#{guaCardNumber},#{guaRegister},#{guaAddress},#{guaUnit},#{guaPosition},#{guaMarry},#{guaNation},#{guaEducation},#{guaIncome})
+	</insert>
+</mapper>
