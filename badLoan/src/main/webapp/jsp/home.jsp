@@ -25,17 +25,25 @@
 		style="height: 120px;">
 		<h1 align="center">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h1>
 		<div style="width: 250px; margin-left: 80%; padding-top: 10px;">
-			欢迎,！<br> 现在的时间是:<span id="date"></span>
+			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp;
+			<a href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>
 		</div>
 	</div>
-	<div
-		data-options="region:'west',title:'系统菜单',split:true,collapsible:false"
-		style="width: 150px;">
+	<div data-options="region:'west',title:'系统菜单',collapsible:false" style="width:140px;">
 		<ul id="homeTree"></ul>
 	</div>
 	<div data-options="region:'center',title:''" style="background: #eee;">
 		<div id="tabsInfo" class="easyui-tabs" data-options="fit:true">
-			<div title="第一个选项卡"></div>
+			<div title="主页">
+				<div id="container1" style="width:611px;height:234px;float:left;"></div>
+				<script src="../js/Basic column.js" type="text/javascript"></script>
+				<div id="container2" style="width:611px;height:234px;float:left;"></div>
+				<script src="../js/Pie chart.js" type="text/javascript"></script>
+				<div id="container3" style="width:611px;height:234px;float:left;"></div>
+				<script src="../js/Scatter plot.js" type="text/javascript"></script>
+				<div id="container4" style="width:611px;height:234px;float:left;"></div>
+				<script src="../js/With data labels.js" type="text/javascript"></script>
+			</div>
 		</div>
 	</div>
 	<div data-options="region:'south',title:'',split:true"

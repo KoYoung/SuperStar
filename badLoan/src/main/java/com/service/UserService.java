@@ -14,5 +14,11 @@ public interface UserService {
 	/**
 	 * 登录验证，查询用户名和密码
 	 */
-	public List<User> findUserNameAndPassWord();
+	public List<User> findUserNameAndPassWord(User user);
+	
+	/**
+	 * 登录验证，查询用户名
+	 */
+	public List<String> findUserName(String username);
+	
 }
