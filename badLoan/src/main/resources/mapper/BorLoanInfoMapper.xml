@@ -18,45 +18,94 @@
 	<!-- 查询个人用户贷款信息详情 -->
 	<select id="findBorLoanDetail" resultMap="borLoanDetail">
 		select
-		bli.borloaninfo_id,bli.bor_id ,bli.bankinfo_id
-		,bli.contract_id,bli.emp_id ,bli.loan_type ,bli.loan_number
-		,bli.loan_account,bli.loan_date ,bli.loan_repayment_date,
-		bli.loan_rate ,bli.loaninfo_type ,
-		bor.bor_name,lt.loantype_name,lt.typesOfLoant from
-		borLoanInfo bli,borrower bor, loantype lt, bankinfo bi , , where bli.bor_id =
-		bor.bor_id and
-		bli.loan_type = lt.loantype_id
+		bli.borloaninfo_id, bli.bor_id,ee.emp_name,
+		bli.emp_id ,
+		bli.loan_number
+		,bli.loan_account ,to_char(bli.loan_date,'yyyy-MM-dd')
+		loanDate
+		,to_char(bli.loan_repayment_date,'yyyy-MM-dd')
+		loanRepaymentDate,
+		bli.loan_rate
+		,bli.loaninfo_type ,
+		bor.bor_name
+		,lt.loantype_name
+		,ls.loanstate_name
+		from
+		employee ee,
+		borLoanInfo bli,
+		borrower
+		bor,loantype
+		lt,loanmanage lm,loanstate ls
+		where bli.bor_id =
+		bor.bor_id
+		and
+		bli.loan_type = lt.loantype_id and
+		lm.loaninfo_id =
+		bli.borloaninfo_id
+		and lm.loanstate_id =
+		ls.loanstate_id and ee.emp_id =
+		bli.emp_id
 	</select>
 	<resultMap type="java.util.HashMap" id="borLoanDetail">
 		<id property="borloaninfoId" column="borloaninfo_id" />
 		<result property="borId" column="bor_id" />
-		<result property="bankinfoId" column="bankinfo_id" />
-		<result property="contractId" column="contract_id" />
 		<result property="empId" column="emp_id" />
-		<result property="loanType" column="loan_type" />
 		<result property="loanNumber" column="loan_number" />
 		<result property="loanAccount" column="loan_account" />
 		<result property="loanDate" column="loan_date" />
-		<result property="loanRepayment_date" column="loan_repayment_date" />
+		<result property="loanRepaymentDate" column="loan_repayment_date" />
 		<result property="loanRate" column="loan_rate" />
 		<result property="loaninfoType" column="loaninfo_type" />
 		<result property="borName" column="bor_name" />
 		<result property="loantypeName" column="loantype_name" />
-		<result property="typesOfLoant" column="typesOfLoant" />
-		<result property="bankinfoName" column="bankinfo_name" />
-		<result property="bankinfoTelephone" column="bankinfo_telephone" />
-		<result property="bankinfoAddress" column="bankinfo_address" />
-		<!-- <result property="borGender" column="bor_gender" /> <result property="borBirthday" 
-			column="bor_birthday" /> <result property="borNation" column="bor_nation" 
-			/> <result property="borMarry" column="bor_marry" /> <result property="borCardtype" 
-			column="bor_cardtype" /> <result property="borCardnumber" column="bor_cardnumber" 
-			/> <result property="borCegister" column="bor_register" /> <result property="borAddress" 
-			column="bor_address" /> <result property="borUnit" column="bor_unit" /> <result 
-			property="borUnitAddress" column="bor_unit_address" /> <result property="borUnitPhone" 
-			column="bor_unit_phone" /> <result property="borPosition" column="bor_position" 
-			/> <result property="borIncome" column="bor_income" /> <result property="borPhone" 
-			column="bor_phone" /> <result property="borPostcode" column="bor_postcode" 
-			/> <result property="borEducation" column="bor_education" /> <result property="borCredit" 
-			column="bor_credit" /> <result property="borPhoto" column="bor_photo" /> -->
+		<result property="loanstateName" column=" LOANSTATE_NAME" />
 	</resultMap>
+
+	<select id="findBorLoanDetailsById" parameterType="int"
+		resultType="java.util.HashMap">
+		select bli.borloaninfo_id, bli.bor_id, bli.emp_id ,
+		bli.loan_number ,bli.loan_account ,
+		bli.loan_date
+		,to_char(bli.loan_date,'yyyy-MM-dd') as loanDate
+		,to_char(bli.loan_repayment_date,'yyyy-MM-dd') as loanRepaymentDate
+		,
+		bli.loaninfo_type ,
+		lt.loantype_name
+		,ls.loanstate_name,bi.bankinfo_name,bi.bankinfo_telephone,bi.bankinfo_address
+		from borLoanInfo bli,loantype lt,loanmanage lm,
+		loanstate ls,bankInfo
+		bi where bli.loan_type = lt.loantype_id and bli.bankinfo_id =
+		bi.bankinfo_id
+		and lm.loaninfo_id = bli.borloaninfo_id and
+		lm.loanstate_id =
+		ls.loanstate_id and bli.borloaninfo_id=
+		#{borloaninfoId}
+	</select>
+	<!-- select bli.borloaninfo_id, bli.bor_id, bli.emp_id , bli.loan_number 
+		,bli.loan_account , bli.loan_date ,bli.loan_repayment_date, bli.loan_rate 
+		, bli.borloaninfo_type , lt.loantype_name ,ls.loanstate_name,bi.bankinfo_name,bi.bankinfo_telephone,bi.bankinfo_address 
+		from borLoanInfo bli,loantype lt,loanmanage lm, loanstate ls,bankInfo bi 
+		where bli.loan_type = lt.loantype_id and bli.bank_id = bi.bankinfo_id and 
+		lm.loaninfo_id = bli.borloaninfo_id and lm.loanstate_id = ls.loanstate_id 
+		and bli.borloaninfo_id= -->
+	<select id="findCusDetailsById" parameterType="int"
+		resultType="java.util.HashMap">
+		select
+		bor_id,bor_name,bor_gender,bor_birthday,bor_nation,bor_marry,bor_cardtype,bor_cardnumber,bor_register,bor_address,bor_unit,bor_unit_address,bor_unit_phone,bor_position,bor_income,bor_phone,bor_postcode,bor_education,bor_credit,bor_photo
+		from borrower where bor_id = #{borId}
+	</select>
+	<select id="findEmpDetailsById" parameterType="String"
+		resultType="java.util.HashMap">
+		select
+		emp_id,emp_name,emp_gender,emp_cardnumber,emp_address,emp_education,emp_department,emp_email,emp_nation,emp_flag
+		from employee where emp_id=#{empId}
+	</select>
+	<select id="findGuaDetailsById" parameterType="int"
+		resultType="java.util.HashMap">
+		select
+		gua.gua_id,gua.gua_name,gua.gua_gender,gua.gua_phone,gua.gua_birthday,gua.gua_cardtype,gua.gua_cardnumber,gua.gua_register,gua.gua_address,gua.gua_unit,gua.gua_position,gua.gua_marry,gua.gua_nation,gua.gua_education,gua.gua_income
+		from borloaninfo bli,guarantor gua,borgua bg where bli.borloaninfo_id
+		= #{borloaninfoId} and bli.borloaninfo_id = bg.loaninfo_id and
+		gua.gua_id = bg.gua_id
+	</select>
 </mapper>

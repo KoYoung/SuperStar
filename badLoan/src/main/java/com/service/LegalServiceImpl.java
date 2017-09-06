@@ -26,7 +26,7 @@ public class LegalServiceImpl implements LegalService {
 	 */
 	@Override
 	public List<Legal> findLegal() {
-		return legalDao.findLegal();
+		return legalDao.findLegalDao();
 	}
 
 	/**

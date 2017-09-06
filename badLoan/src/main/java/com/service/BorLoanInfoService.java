@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.BorLoanInfo;
 
@@ -17,4 +18,18 @@ public interface BorLoanInfoService {
 	 * @return
 	 */
 	List<BorLoanInfo> findBorLoanInfo();
+	
+	/**
+	 * 查询个人用户贷款详情
+	 * 
+	 * @return
+	 */
+	List<Map<String, String>> findBorLoanDetail();
+	
+	/**
+	 * 查询个人用户所有贷款详情
+	 * 
+	 * @return
+	 */
+	List<Map<String, String>> findDetailsById(int borloaninfoId);
 }

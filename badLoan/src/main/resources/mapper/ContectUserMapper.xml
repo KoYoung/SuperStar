@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ContectUserDao">
+	<insert id="addContectUser"  parameterType="com.entity.ContectUser">
+		insert into contectUser values(borrower_seq.currval,contect_seq.currval)
+	</insert>
+</mapper>

@@ -7,7 +7,7 @@
         "text":"用户管理",
         "checked":true,
         "attributes":{    
-            "url":"subjectManager.jsp"
+            "url":"users.jsp"
         }
     },{
     	"id":102, 
@@ -47,13 +47,13 @@
     	"id":301,   
         "text":"个人客户",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addpersonal.jsp"
         }
     },{    
     	"id":302, 
         "text":"企业客户",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addCompany.jsp"
         }
     }]    
 },{

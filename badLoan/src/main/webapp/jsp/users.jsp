@@ -41,35 +41,30 @@
 				</tr>
 				<tr>
 					<th height="25">添加员工id</th>
-					<td>
-					     <input id="proemp"/>  
-					</td>
+					<td><input id="proemp" /></td>
 				</tr>
 				<tr>
 					<th height="25">添加角色</th>
-					<td>
-						<input id="prorole"/>
-						 
-					</td>
+					<td><input id="prorole" /></td>
 				</tr>
 			</table>
-			<ul id="tt"></ul> 
+			<ul id="tt"></ul>
 		</form>
 	</div>
 </body>
 <script>
-	$('#prorole').combotree({    
-	    url: '/badLoan/usersController/queryRole2',    
-	    valueField:'roleId',
-	    textField:'text'
-	}); 
-	$('#proemp').combobox({    
-	    url:'/badLoan/usersController/queryRole1',    
-	    valueField:'empId',
-	    textField:'empName',
-	    panelHeight:'auto'
-	}); 
-	 
+	$('#prorole').combotree({
+		url : '/badLoan/usersController/queryRole2',
+		valueField : 'roleId',
+		textField : 'text'
+	});
+	$('#proemp').combobox({
+		url : '/badLoan/usersController/queryRole1',
+		valueField : 'empId',
+		textField : 'empName',
+		panelHeight : 'auto'
+	});
+
 	$("#addBtn").click(function() {
 		$('#handlerDialog').dialog("open");
 	});
@@ -125,62 +120,73 @@
 	});
 	//-----------------------------
 	$(function() {
-		$('#proDataGrid').datagrid({
-			url : '/badLoan/usersController/queryUsers',
-			// data:data,
-			fitColumns : true,//自动适应网格宽度
-			striped : true,//显示斑马线
-			idField : "userId",//设置productid为主键
-			fit : true,//
-			rownumbers : true,
-			singleSelect : false,
-			pagination : true,
-			pageSize : 5,
-			pageList : [ 5, 10, 20 ],
-			toolbar : "#toolbar",
-			
-			columns : [ [ {
-				field : 'userId',
-				title : '用户编号',
-				width : 200
-			} ,{
-				field : 'userName',
-				title : '用户昵称',
-				width : 200,
-			}, {
-				field : 'userUsername',
-				title : '用户账号',
-				width : 200,
-			},{
-				field : 'userPassword',
-				title : '用户密码',
-				width : 200,
-			},{
-				field : 'empId',
-				title : '角色id',
-				width : 200,
-			}, {
-				field:'operate',
-				title:'操作',
-				align:'center',
-				width:$(this).width()*0.1,  
-			    formatter:function(value, row, index){  
-			        var str = '<a href="#" name="opera" class="easyui-linkbutton" ></a><a href="#" name="opera2" class="easyui-linkbutton" ></a>';  
-			        return str;  
-			        }
-			} ] ],
-			onLoadSuccess:function(data){    
-	       		$("a[name='opera']").linkbutton({
-	       			text:'禁用',
-	       			plain:true,
-	       			iconCls:'icon-cancel'
-	       			
-	       		});
-	       		$("a[name='opera2']").linkbutton({text:'启用',plain:true,iconCls:'icon-ok'});
-			},  
-		});
+		$('#proDataGrid')
+				.datagrid(
+						{
+							url : '/badLoan/usersController/queryUsers',
+							// data:data,
+							fitColumns : true,//自动适应网格宽度
+							striped : true,//显示斑马线
+							idField : "userId",//设置productid为主键
+							fit : true,//
+							rownumbers : true,
+							singleSelect : false,
+							pagination : true,
+							pageSize : 5,
+							pageList : [ 5, 10, 20 ],
+							toolbar : "#toolbar",
 
-		});
-	
+							columns : [ [
+									{
+										field : 'userId',
+										title : '用户编号',
+										width : 200
+									},
+									{
+										field : 'userName',
+										title : '用户昵称',
+										width : 200,
+									},
+									{
+										field : 'userUsername',
+										title : '用户账号',
+										width : 200,
+									},
+									{
+										field : 'userPassword',
+										title : '用户密码',
+										width : 200,
+									},
+									{
+										field : 'empId',
+										title : '角色id',
+										width : 200,
+									},
+									{
+										field : 'operate',
+										title : '操作',
+										align : 'center',
+										width : $(this).width() * 0.1,
+										formatter : function(value, row, index) {
+											var str = '<a href="#" name="opera" class="easyui-linkbutton" ></a><a href="#" name="opera2" class="easyui-linkbutton" ></a>';
+											return str;
+										}
+									} ] ],
+							onLoadSuccess : function(data) {
+								$("a[name='opera']").linkbutton({
+									text : '禁用',
+									plain : true,
+									iconCls : 'icon-cancel'
+
+								});
+								$("a[name='opera2']").linkbutton({
+									text : '启用',
+									plain : true,
+									iconCls : 'icon-ok'
+								});
+							},
+						});
+
+	});
 </script>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.dao.UserDao;
 import com.entity.User;
 
@@ -34,6 +35,15 @@ public class UserServiceImp implements UserService{
 		List<String> list = ud.findUserName(username);
 		return list;
 	}
-
+	@Override
+	public List<User> findUser() {
+		// TODO Auto-generated method stub
+		return ud.findUser();
+	}
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return ud.addUser(user);
+	}
 	
 }

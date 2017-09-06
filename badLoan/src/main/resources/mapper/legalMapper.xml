@@ -9,9 +9,12 @@
 		legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info
 		from legal
 	</select>
-	<insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
+	<!-- <insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
 		insert into legal
 		(legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info)
 		values(#{legalId,jdbcType=VARCHAR},#{legalName,jdbcType=VARCHAR},#{legalCardtype,jdbcType=VARCHAR},#{legalCardnumber,jdbcType=VARCHAR},#{legalNation,jdbcType=VARCHAR},#{legalGender,jdbcType=VARCHAR},#{legalMarry,jdbcType=VARCHAR},#{legalAddress,jdbcType=VARCHAR},#{legalPhone,jdbcType=VARCHAR},#{legalInfo,jdbcType=VARCHAR})
+	</insert> -->
+	<insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
+		insert into legal values(legal_seq.nextval,#{legalName},#{legalCardtype},#{legalCardnumber},#{legalNation},#{legalGender},#{legalMarry},#{legalAddress},#{legalPhone},#{legalInfo})
 	</insert>
 </mapper>

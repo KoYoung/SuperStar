@@ -35,13 +35,13 @@
 	<div data-options="region:'center',title:''" style="background: #eee;">
 		<div id="tabsInfo" class="easyui-tabs" data-options="fit:true">
 			<div title="主页">
-				<div id="container1" style="width:611px;height:234px;float:left;"></div>
+				<div id="container1" style="width:45%;height:234px;float:left;"></div>
 				<script src="../js/Basic column.js" type="text/javascript"></script>
-				<div id="container2" style="width:611px;height:234px;float:left;"></div>
+				<div id="container2" style="width:45%;height:234px;float:left;"></div>
 				<script src="../js/Pie chart.js" type="text/javascript"></script>
-				<div id="container3" style="width:611px;height:234px;float:left;"></div>
+				<div id="container3" style="width:45%;height:234px;float:left;"></div>
 				<script src="../js/Scatter plot.js" type="text/javascript"></script>
-				<div id="container4" style="width:611px;height:234px;float:left;"></div>
+				<div id="container4" style="width:45%;height:234px;float:left;"></div>
 				<script src="../js/With data labels.js" type="text/javascript"></script>
 			</div>
 		</div>
