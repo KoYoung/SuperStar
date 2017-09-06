@@ -17,7 +17,7 @@ public class EmployeeServiceImp implements EmployeeService{
 	 * 马利肖
 	 * @return
 	 */
-	public List<Employee> findAllEmployee(){
-		return eDao.findAllEmployee();
+	public List<Employee> findAllEmployee(String empBankinfo){
+		return eDao.findAllEmployee(empBankinfo);
 	}
 }

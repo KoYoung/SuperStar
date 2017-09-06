@@ -10,5 +10,5 @@ public interface EmployeeService {
 	 * 马利肖
 	 * @return
 	 */
-	List<Employee> findAllEmployee();
+	List<Employee> findAllEmployee(String empBankinfo);
 }

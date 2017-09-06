@@ -47,4 +47,9 @@
 		<!-- 给出需要扫描Dao接口包 -->
 		<property name="basePackage" value="com.dao" />
 	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1048576" />
+	</bean>
+	
 </beans>

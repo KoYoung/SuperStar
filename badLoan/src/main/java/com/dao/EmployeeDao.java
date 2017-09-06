@@ -6,9 +6,9 @@ import com.entity.Employee;
 
 public interface EmployeeDao {
 	/**
-	 * ²éÑ¯ÒøĞĞËùÓĞÔ±¹¤
-	 * ÂíÀûĞ¤
+	 * æŸ¥è¯¢é“¶è¡Œæ‰€æœ‰å‘˜å·¥
+	 * é©¬åˆ©è‚–
 	 * @return
 	 */
-	List<Employee> findAllEmployee();
+	List<Employee> findAllEmployee(String empBankinfo);
 }

@@ -42,17 +42,20 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	 * 添加个人用户贷款信息
 	 */
 	@Transactional
-	public int addBorLoanInfo(BorLoanInfo BorLoanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
+	public int addBorLoanInfo(BorLoanInfo borLoanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
 			,LoanManageRecord lmr,Loanmanage lonm) {
-		String borId = BorLoanInfo.getBorId();
-		customerGoods.setBorId(borId);
-		borgua.setBorId(borId);
-		String empId = BorLoanInfo.getEmpId();
+		System.out.println("银行id----"+borLoanInfo.getBankinfoId());
+		String pledgeGenre = borLoanInfo.getLoanType();
+		System.out.println("担保人："+" "+pledgeGenre);
+		pledge.setPledgeGenre(pledgeGenre);
+		String empId = borLoanInfo.getEmpId();
 		lmr.setEmpId(empId);
-		SimpleDateFormat sd =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
+		SimpleDateFormat sd =new SimpleDateFormat("yyyy-MM-dd");
 		lmr.setLmrDate(sd.format(new Date()));
-		BorLoanInfoDao.addBorLoanInfo(BorLoanInfo);
+		int loaninfoType = borLoanInfo.getLoaninfoType();
+		lonm.setLoaninfoType(loaninfoType);
+		try {
+		BorLoanInfoDao.addBorLoanInfo(borLoanInfo);
 		PledgeDao.addPledge(pledge);
 		customerGoodsDao.addCustomerGoods(customerGoods);
 		GuarantorDao.addGuarantor(guarantor);
@@ -64,8 +67,6 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 			System.out.println("---------------------------------------"+e.getMessage());
 			return 0;
 		}
-		System.out.println(BorLoanInfo.getBorId()+" "+BorLoanInfo.getLoanType()+" "+BorLoanInfo.getBankinfoId()+"/n");
-		System.out.println(customerGoods.getBorId()+" "+customerGoods.getCusComment());
 		return 1;
 	}
 	/**
@@ -75,5 +76,23 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public List<BorLoanInfo> findBorLoanInfo() {
 		return BorLoanInfoDao.findBorLoanInfo();
 	}
+	/**
+	 * 根据贷款类型，贷款编号查询贷款信息
+	 */
+	@Override
+	public List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId) {
+		
+		return BorLoanInfoDao.findBorLoanInfo2(borloaninfoId);
+	}
+	/**
+	 * 根据贷款编号修改业务移交相关信息
+	 * @return 
+	 */
+	/*@Override
+	public void modifyBorLoanInfo(String empId,String borloaninfoId) {
+		BorLoanInfoDao.modifyBorLoanInfo(empId,borloaninfoId);
+		
+		
+	}*/
 
 }

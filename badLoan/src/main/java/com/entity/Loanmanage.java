@@ -5,15 +5,16 @@ package com.entity;
  *
  */
 public class Loanmanage {
-	private Integer loanType;
+	private Integer loaninfoType;
 	private String loanInfoId;
 	private String loanStateId;
 	
-	public Integer getLoanType() {
-		return loanType;
+	
+	public Integer getLoaninfoType() {
+		return loaninfoType;
 	}
-	public void setLoanType(Integer loanType) {
-		this.loanType = loanType;
+	public void setLoaninfoType(Integer loaninfoType) {
+		this.loaninfoType = loaninfoType;
 	}
 	public String getLoanInfoId() {
 		return loanInfoId;

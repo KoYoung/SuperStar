@@ -18,5 +18,15 @@ public class LoanTypeServiceImp implements LoanTypeService{
 		
 		return loanDao.findLoanType();
 	}
+	/**
+	 * 查询企业贷款种类
+	 * 马利肖
+	 * @return
+	 */
+	@Override
+	public List<LoanType> findComLoanType() {
+		
+		return loanDao.findComLoanType();
+	}
 	
 }

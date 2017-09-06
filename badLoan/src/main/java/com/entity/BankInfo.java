@@ -14,6 +14,9 @@ public class BankInfo {
 	private String bankInfoTelePhone;
 	private String bankinfoAddress;
 
+	
+
+	
 	public String getBankInfoId() {
 		return bankInfoId;
 	}

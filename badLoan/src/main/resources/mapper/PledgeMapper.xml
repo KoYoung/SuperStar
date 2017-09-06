@@ -5,6 +5,6 @@
 <mapper namespace="com.dao.PledgeDao">
 	<!-- 添加抵（质）押物品信息 -->
 	<insert id="addPledge" useGeneratedKeys="false" parameterType="com.entity.Pledge">
-		insert into pledge values(pledge_sequence.nextval,#{pledgeGenre,jdbcType=VARCHAR},#{pledgeType,jdbcType=VARCHAR},#{pledgeName,jdbcType=VARCHAR},#{pledgeValue,jdbcType=VARCHAR},#{pledgeOwner,jdbcType=VARCHAR},#{pledgeStartdate,jdbcType=VARCHAR},#{pledgeEnddate,jdbcType=VARCHAR},#{pledgePhoto,jdbcType=VARCHAR})
+		insert into pledge values(pledge_sequence.nextval,#{pledgeGenre,jdbcType=VARCHAR},#{pledgeType,jdbcType=VARCHAR},#{pledgeName,jdbcType=VARCHAR},#{pledgeValue,jdbcType=VARCHAR},#{pledgeOwner,jdbcType=VARCHAR},null,null,#{pledgePhoto,jdbcType=VARCHAR})
 	</insert>
 </mapper>

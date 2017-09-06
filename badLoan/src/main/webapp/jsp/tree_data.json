@@ -69,13 +69,13 @@
     	"id":402, 
         "text":"企业贷款信息管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addComloanInfo.jsp"
         }
     },{      
     	"id":403, 
         "text":"业务移交记录",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"transferService.jsp"
         }
     }]    
 },{

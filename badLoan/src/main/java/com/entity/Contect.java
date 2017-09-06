@@ -1,8 +1,9 @@
 package com.entity;
+
 /**
- * ½ô¼±ÁªÏµÈËĞÅÏ¢ÊµÌåÀà
- * @author ÂíÀûĞ¤
- * 2017-8-31
+ * ç´§æ€¥è”ç³»äººä¿¡æ¯å®ä½“ç±»
+ * 
+ * @author é©¬åˆ©è‚– 2017-8-31
  */
 public class Contect {
 	private String contectId;

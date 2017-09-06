@@ -7,6 +7,8 @@ package com.entity;
  * 2017-8-31
  */
 public class BorLoanInfo {
+	private Integer loaninfoType;
+	private String borloaninfoId;
 	private String borId;
 	private String borName;
 	private String bankinfoId;
@@ -30,6 +32,22 @@ public class BorLoanInfo {
 	private String lmrName;
 	
 	
+	public String getBorloaninfoId() {
+		return borloaninfoId;
+	}
+
+	public void setBorloaninfoId(String borloaninfoId) {
+		this.borloaninfoId = borloaninfoId;
+	}
+
+	public Integer getLoaninfoType() {
+		return loaninfoType;
+	}
+
+	public void setLoaninfoType(Integer loaninfoType) {
+		this.loaninfoType = loaninfoType;
+	}
+
 	public String getPledgeType() {
 		return pledgeType;
 	}
@@ -197,4 +215,16 @@ public class BorLoanInfo {
 	public void setLoanRate(Double loanRate) {
 		this.loanRate = loanRate;
 	}
+
+	@Override
+	public String toString() {
+		return "BorLoanInfo [loaninfoType=" + loaninfoType + ", borId=" + borId + ", borName=" + borName
+				+ ", bankinfoId=" + bankinfoId + ", bankinfoName=" + bankinfoName + ", contractId=" + contractId
+				+ ", empId=" + empId + ", empName=" + empName + ", loanType=" + loanType + ", loanTypeName="
+				+ loanTypeName + ", loanNumber=" + loanNumber + ", loanAccount=" + loanAccount + ", loanDate="
+				+ loanDate + ", loanRepaymentDate=" + loanRepaymentDate + ", loanRate=" + loanRate + ", pledgeGenre="
+				+ pledgeGenre + ", pledgeType=" + pledgeType + ", pledgeName=" + pledgeName + ", pledgeValue="
+				+ pledgeValue + ", pledgeOwner=" + pledgeOwner + ", guaName=" + guaName + ", lmrName=" + lmrName + "]";
+	}
+	
 }

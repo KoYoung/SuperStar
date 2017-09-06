@@ -6,16 +6,17 @@ package com.entity;
  */
 public class CustomerGoods {
 	
-	private String borId;
+	private String loaninfoId;
 	private String goodId;
 	private String cusComment;
 	
 	
-	public String getBorId() {
-		return borId;
+	
+	public String getLoaninfoId() {
+		return loaninfoId;
 	}
-	public void setBorId(String borId) {
-		this.borId = borId;
+	public void setLoaninfoId(String loaninfoId) {
+		this.loaninfoId = loaninfoId;
 	}
 	public String getGoodId() {
 		return goodId;

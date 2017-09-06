@@ -10,10 +10,11 @@
 
 	<div
 		data-options="region:'north',title:'欢迎<%=request.getSession().getAttribute("studentName")%>登录',split:false,collapsible:false"
-		style="height:100px;"></div>
+		style="height:100px;">
+	</div>
 	<div
 		data-options="region:'south',title:'south',split:false,collapsible:false"
-		style="height:30px;line-height:30px;" align="center"></div>
+		style="height:0px;line-height:0px;" align="center"></div>
 	<div data-options="region:'west',title:'West',split:true"
 		style="width:200px;background-color: #339999;color:#FFFFFF">
 		<ul id="tt">

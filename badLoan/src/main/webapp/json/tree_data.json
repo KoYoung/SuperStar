@@ -1,7 +1,6 @@
 [{    
     "id":1,
     "text":"权限管理",
-    "state":"closed",
     "children":[{
     	"id":101,
         "text":"用户管理",
@@ -13,7 +12,7 @@
     	"id":102, 
         "text":"角色管理",    
         "attributes":{    
-            "url":"role.jsp"
+            "url":"teacherManager.jsp"
         }
     },{   
     	"id":103, 
@@ -30,11 +29,11 @@
     	"id":201,
         "text":"人员管理",
         "attributes":{
-            "url":"emp.jsp"
+            "url":"studentManager.jsp"
         }
     },{    
     	"id":202, 
-        "text":"银行信息管理",
+        "text":"银行信息评教",
         "attributes":{    
             "url":"studentManager.jsp"
         }
@@ -59,18 +58,24 @@
 },{
    	"id":4,
     "text":"贷款信息管理",    
-    "state":"closed",    
+    "state":"open",    
     "children":[{  
     	"id":401,   
-        "text":"添加贷款",
+        "text":"个人贷款信息管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"borloaninfo.jsp"
         }
     },{    
     	"id":402, 
+        "text":"企业贷款信息管理",
+        "attributes":{    
+            "url":"addComloanInfo.jsp"
+        }
+    },{      
+    	"id":403, 
         "text":"业务移交记录",
         "attributes":{    
-            "url":"addBadLoans.jsp"
+            "url":"transferService.jsp"
         }
     }]    
 },{
@@ -81,7 +86,7 @@
     	"id":501,   
         "text":"催收管理",
         "attributes":{    
-            "url":"lmrManager.jsp"
+            "url":"studentManager.jsp"
         }
     },{    
     	"id":502, 

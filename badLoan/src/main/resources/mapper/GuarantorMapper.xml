@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.GuarantorDao">
-	<!-- 添加抵（质）押物品信息 -->
+	<!-- 添加添加担保人信息信息 -->
 	<insert id="addGuarantor" useGeneratedKeys="false" parameterType="com.entity.Guarantor">
 		insert into guarantor values(gua_sequence.nextval,#{guaName,jdbcType=VARCHAR},
 		#{guaGender,jdbcType=VARCHAR},#{guaPhone,jdbcType=VARCHAR},#{guaBirthday,jdbcType=VARCHAR},
@@ -13,4 +13,13 @@
 		#{guaMarry,jdbcType=VARCHAR},#{guaNation,jdbcType=VARCHAR},
 		#{guaEducation,jdbcType=VARCHAR},#{guaIncome,jdbcType=VARCHAR})
 	</insert>
+	<!-- 手机号唯一性校验 -->
+	<!-- <select id="findguaPhone" useCache="false" parameterType="com.entity.Guarantor">
+		select guaPhone from guarantor where guarantor=#{guarantor}
+	</select>
+	证件号唯一性校验
+	<select id="findguaPhone" useCache="false" parameterType="com.entity.Guarantor">
+		select guaCardNumber from guarantor where guaCardNumber=#{guaCardNumber}
+	</select>
+ -->
 </mapper>

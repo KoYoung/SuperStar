@@ -10,15 +10,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<title>Basic Form - jQuery EasyUI Demo</title>
 		<link rel="stylesheet" href="../easyui/themes/default/easyui.css" type="text/css"></link>
 		<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-		<link href="../bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+		<!-- <link href="../bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"> -->
 		<script src="../js/jquery-3.2.1.min.js"></script>
-		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<!-- <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
 		<script type="text/javascript" src="../easyui/jquery.form.js"></script>
 		<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 		<script src="../js/distpicker.data.js"></script>
 		<script src="../js/distpicker.js"></script>
 		<script src="../js/main.js"></script>
+		<script src="../js/upload.js"></script>
   </head>
   <body>
   

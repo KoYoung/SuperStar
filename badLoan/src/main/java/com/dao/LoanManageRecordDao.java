@@ -14,9 +14,15 @@ public interface LoanManageRecordDao {
 	 */
 	List<LoanManageRecord> findLoanManageRecord();
 	/**
-	 * 添加一条贷款处理记录
+	 * 添加个人贷款处理记录
 	 * @param lmr
 	 * @return 成功返回1
 	 */
 	int addLoanManageRecord(LoanManageRecord lmr);
+	/**
+	 * 添加企业贷款处理记录
+	 * @param lmr
+	 * @return 成功返回1
+	 */
+	/*int addLoanManageRecordCom(LoanManageRecord lmr);*/
 }

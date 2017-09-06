@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Employee;
@@ -22,9 +24,10 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/findAllEmployee")
 	@ResponseBody
-	public List<Employee> findAllEmployee(){
-		System.out.println("111-------------------");
-		List<Employee> eList = eService.findAllEmployee();
+	public List<Employee> findAllEmployee(@RequestParam String bankInfoId){
+		
+		List<Employee> eList = eService.findAllEmployee(bankInfoId);
+		
 		return eList;
 	}
 }

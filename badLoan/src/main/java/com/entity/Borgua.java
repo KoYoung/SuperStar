@@ -4,14 +4,16 @@ public class Borgua {
 	/**
 	 * 担保人关系表实体类
 	 */
-	private String borId;
+	private String loaninfoId;
 	private String guaId;
 	private String borguaComment;
-	public String getBorId() {
-		return borId;
+	
+	
+	public String getLoaninfoId() {
+		return loaninfoId;
 	}
-	public void setBorId(String borId) {
-		this.borId = borId;
+	public void setLoaninfoId(String loaninfoId) {
+		this.loaninfoId = loaninfoId;
 	}
 	public String getGuaId() {
 		return guaId;

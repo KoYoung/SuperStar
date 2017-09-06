@@ -6,7 +6,12 @@
 	<select id="findLoanManageRecord" resultType="com.entity.LoanManageRecord">
 		select lmr_id,emp_id,lmr_date,lmr_name,lmr_comment from loanmanagerecord
 	</select>
+	<!-- 添加个人贷款处理记录 -->
 	<insert id="addLoanManageRecord" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord">
 		insert into loanmanagerecord values(lmr_sequence.nextval,borloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
 	</insert>
+	<!-- 添加企业贷款处理记录 -->
+	<!-- <insert id="addLoanManageRecordCom" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord values(lmr_sequence.nextval,comloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
+	</insert> -->
 </mapper>

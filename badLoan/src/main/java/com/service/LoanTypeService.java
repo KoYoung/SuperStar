@@ -11,4 +11,10 @@ public interface LoanTypeService {
 	 * @return
 	 */
 	List<LoanType> findLoanType();
+	/**
+	 * 查询企业贷款种类
+	 * 马利肖
+	 * @return
+	 */
+	List<LoanType> findComLoanType();
 }

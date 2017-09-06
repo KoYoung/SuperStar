@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReplaceDao">
+	<!-- 业务移交信息记录 -->
+	<insert id="addReplace" useGeneratedKeys="false" parameterType="com.entity.Replace">
+		insert into replace values(replace_sequence.nextval,#{oldEmpId,jdbcType=VARCHAR},#{newEmpId,jdbcType=VARCHAR},#{loaninfoId,jdbcType=VARCHAR},#{replaceComment,jdbcType=VARCHAR},to_date(#{replaceDate,jdbcType=VARCHAR},'yyyy-MM-dd'),#{loaninfoType})
+	</insert>
+	<!--  查询所有的业务移交记录 -->
+	<select id="findReplace" useCache="false" resultType="com.entity.Replace">
+		select replace.loaninfo_id loaninfoId,
+    replace.replace_date replaceDate,
+    replace.loaninfo_type loaninfoType,
+		borrower.bor_name borName,
+		e1.emp_name oldEmpName,
+		e2.emp_name newEmpName,
+		replace.replace_date replaceDate,
+		replace.replace_comment replaceComment 
+		from 
+		replace,employee e1,employee e2,borloaninfo,borrower
+		where 
+		replace.loaninfo_id=borloaninfo.borloaninfo_id and 
+		borloaninfo.bor_id=borrower.bor_id and 
+		replace.old_emp_id=e1.emp_id and
+		replace.new_emp_id=e2.emp_id 
+	</select>
+</mapper>
