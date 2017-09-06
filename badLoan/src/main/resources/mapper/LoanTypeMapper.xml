@@ -5,7 +5,10 @@
 <mapper namespace="com.dao.LoanTypeDao">	
 	<!-- 查询贷款种类 -->
 	<select id="findLoanType" resultType="com.entity.LoanType" >
-		select * from loantype
+		select * from loantype where typesofloant=0
 	</select>
-	
+	<!-- 查询企业贷款种类 -->
+	<select id="findComLoanType" resultType="com.entity.LoanType" >
+		select * from loantype where typesofloant=1
+	</select>
 </mapper>

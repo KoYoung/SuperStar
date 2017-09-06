@@ -26,4 +26,15 @@ public class LoanTypeController {
 		List<LoanType> loanList = loanService.findLoanType();
 		return loanList;
 	}
+	/**
+	 * 查询企业贷款种类
+	 * 马利肖
+	 * @return
+	 */
+	@RequestMapping("/findComLoanType")
+	@ResponseBody
+	public List<LoanType> findComLoanType(){
+		List<LoanType> loanCList = loanService.findComLoanType();
+		return loanCList;
+	}
 }

@@ -7,7 +7,7 @@
         "text":"用户管理",
         "checked":true,
         "attributes":{    
-            "url":"users.jsp"
+            "url":"user.jsp"
         }
     },{
     	"id":102, 
@@ -58,19 +58,25 @@
     }]    
 },{
    	"id":4,
+   	"state":"closed",
     "text":"贷款信息管理",    
-    "state":"closed",    
     "children":[{  
     	"id":401,   
-        "text":"添加贷款",
+        "text":"个人贷款信息管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"borloaninfo.jsp"
         }
     },{    
     	"id":402, 
+        "text":"企业贷款信息管理",
+        "attributes":{    
+            "url":"addComloanInfo.jsp"
+        }
+    },{      
+    	"id":403, 
         "text":"业务移交记录",
         "attributes":{    
-            "url":"addBadLoans.jsp"
+            "url":"transferService.jsp"
         }
     }]    
 },{

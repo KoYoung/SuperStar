@@ -7,12 +7,12 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 /**张少华
  * 文件上传
  * @author Administrator
  *
  */
+//文件上传
 public class FileUpload {
 	public static String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException { 
 			

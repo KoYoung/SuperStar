@@ -2,16 +2,23 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.dao.GuarantorDao">
-	<select id="findGuarantor" resultType="com.entity.Guarantor">
-		select
-		gua_id,gua_name,gua_gender,gua_phone,gua_birthday,gua_cardtype,gua_cardnumber,gua_register,gua_address,gua_unit,gua_position,gua_marry,gua_nation,gua_education,gua_income
-		from guarantor
-	</select>
-	<insert id="addGuarantor" useGeneratedKeys="false" parameterType="com.entity.Guarantor">
+	<!-- 添加添加担保人信息信息 -->
+	<insert id="addGuarantor" useGeneratedKeys="false"
+		parameterType="com.entity.Guarantor">
 		insert into guarantor
-		(gua_id,gua_name,gua_gender,gua_phone,gua_birthday,gua_cardtype,gua_cardnumber,gua_register,gua_address,gua_unit,gua_position,gua_marry,gua_nation,gua_education,gua_income)
-		values(#{guaId},#{guaName},#{guaGender},#{guaPhone},#{guaBirthday},#{guaCardType},#{guaCardNumber},#{guaRegister},#{guaAddress},#{guaUnit},#{guaPosition},#{guaMarry},#{guaNation},#{guaEducation},#{guaIncome})
+		values(gua_sequence.nextval,#{guaName,jdbcType=VARCHAR},
+		#{guaGender,jdbcType=VARCHAR},#{guaPhone,jdbcType=VARCHAR},#{guaBirthday,jdbcType=VARCHAR},
+		#{guaCardType,jdbcType=VARCHAR},#{guaCardNumber,jdbcType=VARCHAR},
+		#{guaRegister,jdbcType=VARCHAR},#{guaAddress,jdbcType=VARCHAR},
+		#{guaUnit,jdbcType=VARCHAR},#{guaPosition,jdbcType=VARCHAR},
+		#{guaMarry,jdbcType=VARCHAR},#{guaNation,jdbcType=VARCHAR},
+		#{guaEducation,jdbcType=VARCHAR},#{guaIncome,jdbcType=VARCHAR})
 	</insert>
+	<!-- 手机号唯一性校验 -->
+	<!-- <select id="findguaPhone" useCache="false" parameterType="com.entity.Guarantor"> 
+		select guaPhone from guarantor where guarantor=#{guarantor} </select> 证件号唯一性校验 
+		<select id="findguaPhone" useCache="false" parameterType="com.entity.Guarantor"> 
+		select guaCardNumber from guarantor where guaCardNumber=#{guaCardNumber} 
+		</select> -->
 </mapper>

@@ -5,15 +5,29 @@
 <mapper namespace="com.dao.BorLoanInfoDao">
 	<!-- 查询个人用户贷款信息 -->
 	<select id="findBorLoanInfo" resultType="com.entity.BorLoanInfo">
-		select * from
+		select
+		bor.bor_name,bori.borloaninfo_id,bi.bankinfo_name,bori.contract_id,
+		e.emp_name,lt.loantype_name,bori.loan_number,bori.loan_account,
+		bori.loan_date,bori.loan_repayment_date,bori.loan_rate,
+		lg.lmr_name
+		from borrower bor,bankinfo bi,employee e,loantype lt,
 		borloaninfo
+		bori,loanmanagerecord lg
+		where bor.bor_id=bori.bor_id and
+		bi.bankinfo_id=bori.bankinfo_id
+		and bori.emp_id=e.emp_id and
+		bori.loan_type=lt.loantype_id
+		and lg.loaninfo_id=bori.borloaninfo_id
+		and lg.emp_id=bori.emp_id
+		and bori.loaninfo_type=0
 	</select>
+	<!-- select * from borloaninfo </select> -->
 	<!-- 添加个人用户贷款信息 -->
-	<insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo">
+	<!-- <insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo">
 		insert into
 		borloaninfo
 		values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate})
-	</insert>
+	</insert> -->
 
 	<!-- 查询个人用户贷款信息详情 -->
 	<select id="findBorLoanDetail" resultMap="borLoanDetail">
@@ -108,4 +122,37 @@
 		= #{borloaninfoId} and bli.borloaninfo_id = bg.loaninfo_id and
 		gua.gua_id = bg.gua_id
 	</select>
+
+	<!-- 添加个人用户贷款信息 -->
+	<insert id="addBorLoanInfo" useGeneratedKeys="false"
+		parameterType="com.entity.BorLoanInfo">
+		insert into borloaninfo
+		values(#{loaninfoType},borloaninfo_sequence.nextval,#{borId,jdbcType=VARCHAR},#{bankinfoId,jdbcType=VARCHAR},
+		#{contractId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},
+		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
+		#{loanAccount,jdbcType=VARCHAR},to_date(#{loanDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
+		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
+		#{loanRate,jdbcType=VARCHAR})
+	</insert>
+	<!-- 根据贷款类型，贷款编号查询贷款信息 -->
+	<select id="findBorLoanInfo2" resultType="com.entity.BorLoanInfo">
+		select e.emp_id,
+		bw.bor_name,bk.bankinfo_name,e.emp_name
+		from borloaninfo bi,borrower
+		bw,bankinfo bk,employee e
+		where bi.bor_id=bw.bor_id
+		and
+		bi.bankinfo_id=bk.bankinfo_id
+		and bi.emp_id=e.emp_id
+		and
+		bi.loaninfo_type=0
+		and bi.borloaninfo_id=#{borloaninfoId}
+	</select>
+	<!-- 根据贷款编号修改业务移交相关信息 -->
+	<update id="modifyBorLoanInfo" parameterType="com.entity.BorLoanInfo">
+		update borloaninfo
+		set emp_id=#{0}
+		where borloaninfo_id=#{1} and loaninfo_type=0
+	</update>
+
 </mapper>

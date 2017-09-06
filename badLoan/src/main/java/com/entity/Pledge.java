@@ -3,8 +3,7 @@ package com.entity;
 /**
  * 抵（质）押物品信息表实体类
  * 
- * @author 马利肖 
- * 	2017-8-31
+ * @author 马利肖 2017-8-31
  */
 public class Pledge {
 	private String pledgeId;
@@ -88,4 +87,13 @@ public class Pledge {
 	public void setPledgePhoto(String pledgePhoto) {
 		this.pledgePhoto = pledgePhoto;
 	}
+
+	@Override
+	public String toString() {
+		return "Pledge [pledgeId=" + pledgeId + ", pledgeGenre=" + pledgeGenre + ", pledgeType=" + pledgeType
+				+ ", pledgeName=" + pledgeName + ", pledgeValue=" + pledgeValue + ", pledgeOwner=" + pledgeOwner
+				+ ", pledgeStartdate=" + pledgeStartdate + ", pledgeEnddate=" + pledgeEnddate + ", pledgePhoto="
+				+ pledgePhoto + "]";
+	}
+
 }

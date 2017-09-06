@@ -10,7 +10,9 @@ import java.util.List;
 import com.entity.Company;
 
 public interface CompanyDao {
-	public int addCompany(Company company);//添加
-	public List<Company>findCompany();//查询
-	public List<Company> findCompanmohu(String  string);//模糊查询公司
+	public int addCompany(Company company);// 添加
+
+	public List<Company> findCompany();// 查询
+
+	public List<Company> findCompanmohu(String string);// 模糊查询公司
 }

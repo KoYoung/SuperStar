@@ -15,21 +15,28 @@ import com.entity.ConpanyLegal;
 import com.entity.ContectUser;
 import com.entity.Guarantor;
 import com.entity.Legal;
+
 /**
- * 张少华
- * 企业基础信息
+ * 张少华 企业基础信息
+ * 
  * @author Administrator
  *
  */
 @Service
-public class CompanyServiceImpl implements CompanyService{
-	
+public class CompanyServiceImpl implements CompanyService {
+
 	@Autowired
 	private CompanyDao CompanyDao;
 	@Autowired
 	private ConpanyLegalDao conpanyLegalDao;
 	@Autowired
 	private LegalDao legalDao;
+
+	@Override
+	public int addCompany(Company company) {
+		// TODO Auto-generated method stub
+		return CompanyDao.addCompany(company);
+	}
 
 	@Override
 	public List<Company> findCompany() {
@@ -44,15 +51,13 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 	@Override
-	public int addCompany(Company company, Legal legal,ConpanyLegal conpanyLegal) {
+	public int addCompany(Company company, Legal legal, ConpanyLegal conpanyLegal) {
 		// TODO Auto-generated method stub
 		CompanyDao.addCompany(company);
 		legalDao.addLegal(legal);
 		conpanyLegalDao.addConpanyLegal(conpanyLegal);
 		return 0;
-	}
 
-	
-	
+	}
 
 }

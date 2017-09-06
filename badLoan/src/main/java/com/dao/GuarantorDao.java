@@ -19,10 +19,21 @@ public interface GuarantorDao {
 	List<Guarantor> findGuarantor();
 
 	/**
-	 * 添加担保人
+	 * 添加担保人信息
 	 * 
-	 * @param guarantor担保人实体
-	 * @return 添加成功返回1
+	 * @author Administrator 马利肖
 	 */
 	int addGuarantor(Guarantor guarantor);
+	/**
+	 * 手机号唯一性校验
+	 * 
+	 * @author Administrator 马利肖
+	 */
+	/* List<Guarantor> findguaPhone(String guaPhone); */
+	/**
+	 * 证件号唯一性校验
+	 * 
+	 * @author Administrator 马利肖
+	 */
+	/* List<Guarantor> findguaCardNumber(String guaCardNumber); */
 }

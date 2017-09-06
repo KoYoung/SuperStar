@@ -9,9 +9,18 @@ package com.entity;
 public class LoanManageRecord {
 	private String lmrId;
 	private String empId;
+	private String loaninfoId;
 	private String lmrDate;
 	private String lmrName;
 	private String lmrComment;
+
+	public String getLoaninfoId() {
+		return loaninfoId;
+	}
+
+	public void setLoaninfoId(String loaninfoId) {
+		this.loaninfoId = loaninfoId;
+	}
 
 	public String getLmrId() {
 		return lmrId;

@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.fastjson.JSON;
 import com.entity.Company;
 import com.entity.ConpanyLegal;
 import com.entity.Legal;
@@ -23,9 +21,10 @@ import com.service.CompanyService;
 import com.util.FileUpload;
 import com.util.Paging;
 import com.util.PagingResult;
+
 /**
- * 张少华
- * 客户
+ * 张少华 客户
+ * 
  * @author Administrator
  *
  */
@@ -34,68 +33,86 @@ import com.util.PagingResult;
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
+
 	@ResponseBody
 	@RequestMapping("/findcompany")
-	public PagingResult findCompany(HttpServletRequest request,HttpServletResponse response){
-		int page=Integer.parseInt(request.getParameter("page"));
-		int rows=Integer.parseInt(request.getParameter("rows"));
-		List<Company> list=companyService.findCompany();
-		Paging<Company>paging=new Paging<Company>();
-		List<Company> list1=paging.paging(list, rows, page);
-		PagingResult<Company> pResult=new PagingResult<Company>();
+	public PagingResult findCompany(HttpServletRequest request, HttpServletResponse response) {
+		int page = Integer.parseInt(request.getParameter("page"));
+		int rows = Integer.parseInt(request.getParameter("rows"));
+		List<Company> list = companyService.findCompany();
+		Paging<Company> paging = new Paging<Company>();
+		List<Company> list1 = paging.paging(list, rows, page);
+		PagingResult<Company> pResult = new PagingResult<Company>();
 		pResult.setTotal(list.size());
 		pResult.setRows(list1);
 		return pResult;
 	}
+
 	@RequestMapping("/mohu")
 	@ResponseBody
-	public PagingResult findcompanymohu(@RequestParam(value="va")String va,HttpServletRequest request){
+	public PagingResult findcompanymohu(@RequestParam(value = "va") String va, HttpServletRequest request) {
 		System.out.println(va);
 		try {
-			va = new String(va.getBytes("iso-8859-1"),"UTF-8");
+			va = new String(va.getBytes("iso-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int page=Integer.parseInt(request.getParameter("page"));
-		int rows=Integer.parseInt(request.getParameter("rows")); 
-		List<Company>list=companyService.findCompanmohu(va);
-		Paging<Company>paging=new Paging<Company>();
-		List<Company>list1=paging.paging(list, rows, page);
-		PagingResult<Company > prResult=new PagingResult<Company>();
+		int page = Integer.parseInt(request.getParameter("page"));
+		int rows = Integer.parseInt(request.getParameter("rows"));
+		List<Company> list = companyService.findCompanmohu(va);
+		Paging<Company> paging = new Paging<Company>();
+		List<Company> list1 = paging.paging(list, rows, page);
+		PagingResult<Company> prResult = new PagingResult<Company>();
 		prResult.setTotal(list.size());
 		prResult.setRows(list1);
 		return prResult;
 	}
-	
-	
+
 	@RequestMapping("/addcompany")
 	@ResponseBody
-	public String addCompany(Company company, Legal legal,ConpanyLegal conpanyLegal,MultipartFile legalphone,HttpServletRequest request) throws IOException{
-		String filePash= FileUpload.uploadFile(legalphone, request);
+	public String addCompany(Company company, Legal legal, ConpanyLegal conpanyLegal, MultipartFile legalphone,
+			HttpServletRequest request) throws IOException {
+		String filePash = FileUpload.uploadFile(legalphone, request);
 		company.setConPhoto(filePash);
-		int flag= companyService.addCompany(company, legal,conpanyLegal);
-		if (flag>0) {
+		int flag = companyService.addCompany(company, legal, conpanyLegal);
+		if (flag > 0) {
 			return "success";
-		}else{
+		} else {
 			return "error";
 		}
 	}
-	
-	
-	
-	/*@RequestMapping("/addcompany")
-	@ResponseBody
-	public String  addCompany(@RequestBody String str ){
-		Company company=JSON.parseObject(str, Company.class);
-		Legal legal=JSON.parseObject(str, Legal.class);
-		ConpanyLegal conpanyLegal=JSON.parseObject(str, ConpanyLegal.class);
-		int flag=companyService.addCompany(company,legal,conpanyLegal);
-		System.out.println("ss"+flag);
-		if(flag>0){
-			return "success";
-		}else {
-			return "Error";
-		}
-	}*/
+
+	/*
+	 * @RequestMapping("/addcompany")
+	 * 
+	 * @ResponseBody public String addCompany(@RequestBody String str ){ Company
+	 * company=JSON.parseObject(str, Company.class); Legal
+	 * legal=JSON.parseObject(str, Legal.class); ConpanyLegal
+	 * conpanyLegal=JSON.parseObject(str, ConpanyLegal.class); int
+	 * flag=companyService.addCompany(company,legal,conpanyLegal);
+	 * System.out.println("ss"+flag); if(flag>0){ return "success"; }else {
+	 * return "Error"; } }
+	 */
+	/*
+	 * @Controller
+	 * 
+	 * @RequestMapping("/company") public class CompanyController {
+	 * 
+	 * @Autowired private CompanyService companyService;
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping("/findcompany") public List findCompany(){
+	 * List<Company>lCompanies=companyService.findCompany();
+	 * System.out.println("--------------------"); return lCompanies; }
+	 * 
+	 * @RequestMapping("/addcompany") public void addCompany(Company
+	 * company,HttpServletResponse response){ int
+	 * flag=companyService.addCompany(company); try { if (flag>0) {
+	 * response.getWriter().write("success"); }else{
+	 * response.getWriter().write("error"); } response.getWriter().flush();
+	 * response.getWriter().close(); } catch (Exception e) { // TODO: handle
+	 * exception e.printStackTrace(); } }
+	 */
 }

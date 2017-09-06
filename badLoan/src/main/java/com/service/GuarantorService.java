@@ -25,4 +25,5 @@ public interface GuarantorService {
 	 * @return 添加成功返回1
 	 */
 	int addGuarantor(Guarantor guarantor);
+
 }

@@ -16,6 +16,24 @@ public class Employee {
 	private String empDepartment;
 	private String empEmail;
 	private String empNation;
+	private String empBankinfo;
+	private String empFlag;
+
+	public String getEmpBankinfo() {
+		return empBankinfo;
+	}
+
+	public void setEmpBankinfo(String empBankinfo) {
+		this.empBankinfo = empBankinfo;
+	}
+
+	public String getEmpFlag() {
+		return empFlag;
+	}
+
+	public void setEmpFlag(String empFlag) {
+		this.empFlag = empFlag;
+	}
 
 	public String getEmpId() {
 		return empId;

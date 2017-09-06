@@ -1,10 +1,9 @@
 package com.entity;
 
 /**
- * 担保人实体类
+ * 担保人表实体类
  * 
- * @author yang
- *
+ * @author Administrator 马利肖
  */
 public class Guarantor {
 	private String guaId;
@@ -21,7 +20,7 @@ public class Guarantor {
 	private String guaMarry;
 	private String guaNation;
 	private String guaEducation;
-	private Double guaIncome;
+	private String guaIncome;
 
 	public String getGuaId() {
 		return guaId;
@@ -135,11 +134,11 @@ public class Guarantor {
 		this.guaEducation = guaEducation;
 	}
 
-	public Double getGuaIncome() {
+	public String getGuaIncome() {
 		return guaIncome;
 	}
 
-	public void setGuaIncome(Double guaIncome) {
+	public void setGuaIncome(String guaIncome) {
 		this.guaIncome = guaIncome;
 	}
 

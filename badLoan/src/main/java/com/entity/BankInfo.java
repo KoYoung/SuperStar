@@ -3,8 +3,7 @@ package com.entity;
 /**
  * 银行信息实体类
  * 
- * @author 马利肖 
- * 2017-8-31
+ * @author 马利肖 2017-8-31
  */
 public class BankInfo {
 

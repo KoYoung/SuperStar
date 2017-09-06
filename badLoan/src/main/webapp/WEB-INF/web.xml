@@ -32,36 +32,36 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>seckill-dispatcher</servlet-name>
-		<!-- 默认匹配所有的请求-->
+		<!-- 默认匹配所有的请求 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- 默认不过滤下列格式的文件 -->
-	<servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.jpg</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.png</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.gif</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.json</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.css</url-pattern>  
-    </servlet-mapping>
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.js</url-pattern>  
-    </servlet-mapping>
-    <!-- 设置欢迎页 -->
-    <welcome-file-list>
-    	<welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.gif</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.json</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<!-- 设置欢迎页 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

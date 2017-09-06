@@ -1,9 +1,7 @@
 package com.entity;
 
 /**
- * @author why
- *  用户实体类 
- *  User
+ * @author why 用户实体类 User
  */
 public class User {
 	private String userName;

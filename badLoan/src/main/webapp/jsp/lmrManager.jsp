@@ -162,7 +162,6 @@
 						modal : true
 					});
 					$("#detailDialog").dialog("open");
-
 				}
 			}, {
 				iconCls : 'icon-edit',

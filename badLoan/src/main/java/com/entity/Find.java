@@ -1,75 +1,73 @@
 package com.entity;
 
 /**
- * @author 蒙奇·D·路飞
- * 查询实体类
- * BigFind
+ * @author 蒙奇·D·路飞 查询实体类 BigFind
  *
  */
 public class Find {
-	//银行信息表(bankinfo)
-	private String bankinfoName;		//银行名称
-	
-	//!!!个人客户贷款信息表(borloaninfo)
-	private String borloaninfoId;		//贷款编号（个人）
-	private String borId;				//客户编号（个人）
-	private String bankinfoId;			//银行编号
-	private String empId;				//员工编号
-	private String loanType;			//贷款类型
-	private String loanNumber;			//贷款金额
-	private String loanDate;			//贷款日期
-	private String loanRepaymentdate;	//还款日期
-	
-	//个人客户基本信息表(borrower)
-	private String borName;				//客户姓名（个人）
-	
-	//企业客户贷款信息表(comloaninfo)
-	private String comloaninfoId;		//贷款编号（企业）
-	private String comId;				//客户编号（企业）
-	
-	//企业客户基本信息表(company)
-	private String comName;				//客户姓名（企业）
-	private String comLegalId;			//法人代表编号
-	
-	//员工表(employee)
-	private String empName;				//员工姓名
-	
-	//担保人表(guarantor)
-	private String guaName;				//担保人姓名
-	private String guaPhone;			//担保人联系方式
-	private String guaCardtype;			//担保人证件类型
-	private String guaCardnumber;		//担保人证件号码
-	private String guaUnit;				//担保人工作单位
-	private String guaPosition;			//担保人职位
-	private String guaEducation;		//担保人学历
-	private String guaIncome;			//担保人收入
-	
-	//!!!担保人关系表（多对多）(borgua)
-	private String loaninfoId;			//贷款编号
-	private String guaId;				//担保人编号
-	
-	//法人代表信息表(legal)
-	private String legalId;				//法人代表编号
-	private String legalName;			//法人代表姓名
-	
-	//!!!贷款处理状态关系表（单对单）(loanmanage)
-	private String loanstateId;			//贷款状态编号
-	
-	//贷款状态表(loanstate)
-	private String loanstateName;		//贷款状态名称
-	
-	//贷款类型表(loantype)
-	private String loantypeName;		//贷款类型名称
-	
-	//抵押物品信息表(pledge)
-	private String pledgeId;			//抵押物品编号
-	private String pledgeGenre;			//抵押或质押
-	private String pledgeName;			//抵押物品名称
-	private String pledgeValue;			//抵押物品价值
-	private String pledgePhoto;			//抵押物品照片
-	
-	//!!!客户抵押物关系表(多对多)(customergoods)
-	private String goodsId;				//抵押物品编号
+	// 银行信息表(bankinfo)
+	private String bankinfoName; // 银行名称
+
+	// !!!个人客户贷款信息表(borloaninfo)
+	private String borloaninfoId; // 贷款编号（个人）
+	private String borId; // 客户编号（个人）
+	private String bankinfoId; // 银行编号
+	private String empId; // 员工编号
+	private String loanType; // 贷款类型
+	private String loanNumber; // 贷款金额
+	private String loanDate; // 贷款日期
+	private String loanRepaymentdate; // 还款日期
+
+	// 个人客户基本信息表(borrower)
+	private String borName; // 客户姓名（个人）
+
+	// 企业客户贷款信息表(comloaninfo)
+	private String comloaninfoId; // 贷款编号（企业）
+	private String comId; // 客户编号（企业）
+
+	// 企业客户基本信息表(company)
+	private String comName; // 客户姓名（企业）
+	private String comLegalId; // 法人代表编号
+
+	// 员工表(employee)
+	private String empName; // 员工姓名
+
+	// 担保人表(guarantor)
+	private String guaName; // 担保人姓名
+	private String guaPhone; // 担保人联系方式
+	private String guaCardtype; // 担保人证件类型
+	private String guaCardnumber; // 担保人证件号码
+	private String guaUnit; // 担保人工作单位
+	private String guaPosition; // 担保人职位
+	private String guaEducation; // 担保人学历
+	private String guaIncome; // 担保人收入
+
+	// !!!担保人关系表（多对多）(borgua)
+	private String loaninfoId; // 贷款编号
+	private String guaId; // 担保人编号
+
+	// 法人代表信息表(legal)
+	private String legalId; // 法人代表编号
+	private String legalName; // 法人代表姓名
+
+	// !!!贷款处理状态关系表（单对单）(loanmanage)
+	private String loanstateId; // 贷款状态编号
+
+	// 贷款状态表(loanstate)
+	private String loanstateName; // 贷款状态名称
+
+	// 贷款类型表(loantype)
+	private String loantypeName; // 贷款类型名称
+
+	// 抵押物品信息表(pledge)
+	private String pledgeId; // 抵押物品编号
+	private String pledgeGenre; // 抵押或质押
+	private String pledgeName; // 抵押物品名称
+	private String pledgeValue; // 抵押物品价值
+	private String pledgePhoto; // 抵押物品照片
+
+	// !!!客户抵押物关系表(多对多)(customergoods)
+	private String goodsId; // 抵押物品编号
 
 	public String getBankinfoName() {
 		return bankinfoName;
@@ -294,6 +292,7 @@ public class Find {
 	public void setGoodsId(String goodsId) {
 		this.goodsId = goodsId;
 	}
+
 	public String getGuaPhone() {
 		return guaPhone;
 	}
@@ -349,7 +348,7 @@ public class Find {
 	public void setGuaIncome(String guaIncome) {
 		this.guaIncome = guaIncome;
 	}
-	
+
 	public String getLoanNumber() {
 		return loanNumber;
 	}
@@ -357,5 +356,5 @@ public class Find {
 	public void setLoanNumber(String loanNumber) {
 		this.loanNumber = loanNumber;
 	}
-	
+
 }
