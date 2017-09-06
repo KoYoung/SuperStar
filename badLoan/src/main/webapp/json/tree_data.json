@@ -19,7 +19,7 @@
     	"id":103, 
         "text":"权限管理",    
         "attributes":{
-            "url":"studentManager.jsp"
+            "url":"right.jsp"
         }
     }]    
 },{
@@ -114,9 +114,15 @@
     "state":"closed",    
     "children":[{  
     	"id":601,   
-        "text":"客户查询",
+        "text":"客户(个人)查询",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"findBorLoan.jsp"
+        }
+    },{    
+    	"id":602, 
+        "text":"客户(企业)查询",
+        "attributes":{    
+            "url":"findComLoan.jsp"
         }
     }]    
 }]

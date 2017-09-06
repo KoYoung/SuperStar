@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.dao.FindDao">
+    	<select id="findBorLoan" resultType="com.entity.Find">
+    		select b2.bor_name,l1.loantype_name,b3.bankinfo_name,b1.loan_number,
+    		e.emp_name,b1.loan_date,b1.loan_repayment_date,l2.loanstate_name 
+    		from borloaninfo b1,borrower b2,bankinfo b3,loantype l1,loanstate l2,
+			loanmanage l3,employee e where b1.borloaninfo_id=b2.borrower_id and 
+			b1.bankinfo_id=b3.bankinfo_id and b1.loaninfo_type=l1.loantype_id 
+			and b1.borloaninfo_id=l3.loaninfo_id and 
+			l3.loanstate_id=l2.loanstate_id and b1.emp_id=e.emp_id
+    	</select>
+    	<select id="findComLoan" resultType="com.entity.Find">
+    		select c2.com_name,ll.legal_name,l2.loantype_name,bb.bankinfo_name,
+    		c1.loan_number,ee.emp_name,c1.loan_date,c1.loan_repayment_date,l3.loanstate_name 
+			from comloaninfo c1,company c2,legal ll,employee ee,bankinfo bb,
+			loanmanage l1,loantype l2,loanstate l3 where c1.com_id=c2.com_id 
+			and c2.com_legal_id=ll.legal_id and c1.bankinfo_id=bb.bankinfo_id 
+			and c1.emp_id=ee.emp_id and c1.loan_type=l2.loantype_id and 
+			c1.comloaninfo_id=l3.loanstate_id
+    	</select>
+    
+    	<select id="findBorGuarantor" resultType="com.entity.Find">
+    		select br.bor_name,gr.gua_name,gr.gua_phone,gr.gua_cardtype,
+    		gr.gua_cardnumber,gr.gua_unit,gr.gua_position,gr.gua_education,
+    		gr.gua_income from borgua ba,guarantor gr,borrower br 
+    		where ba.loaninfo_id=br.borrower_id and ba.gua_id=gr.gua_id
+    	</select>
+    	<select id="findComGuarantor" resultType="com.entity.Find">
+    		select co.com_name,l.legal_name,g.gua_name,g.gua_phone,
+    		g.gua_cardtype,g.gua_cardnumber,g.gua_unit,g.gua_position,
+    		g.gua_education,g.gua_income from borgua b,guarantor g,
+    		comloaninfo c,company co,legal l where b.gua_id=g.gua_id 
+    		and b.loaninfo_id=c.comloaninfo_id and c.com_id=co.com_id 
+    		and co.com_legal_id=l.legal_id
+    	</select>
+    	
+    	<select id="findBorPledge" resultType="com.entity.Find">
+    		select bo.bor_name,pl.pledge_genre,pl.pledge_name,
+    		pl.pledge_value,pl.pledge_photo from customergoods cu,
+    		pledge pl,borrower bo where cu.loaninfo_id=bo.borrower_id 
+    		and cu.goods_id=pl.pledge_id
+    	</select>
+    	<select id="findComPledge" resultType="com.entity.Find">
+    		select cy.com_name,ll.legal_name,pe.pledge_genre,pe.pledge_name,
+    		pe.pledge_value,pe.pledge_photo from customergoods cs,pledge pe,
+    		comloaninfo com,company cy,legal ll where cs.goods_id=pe.pledge_id 
+    		and cs.loaninfo_id=com.comloaninfo_id and com.com_id=cy.com_id 
+    		and cy.com_legal_id=ll.legal_id
+    	</select>
+    </mapper>
