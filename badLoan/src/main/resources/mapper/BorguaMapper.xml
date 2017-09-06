@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.BorguaDao">
+	<!-- 添加个人用户与担保人关系信息 -->
+	<insert id="addBorgua" parameterType="com.entity.Borgua">
+		insert into borgua values(borloaninfo_sequence.currval,gua_sequence.currval,null)
+	</insert>
+	<!-- 加企业用户与担保人关系信息-->
+	<!-- <insert id="addBorguaCom" parameterType="com.entity.Borgua">
+		insert into borgua values(comloaninfo_sequence.currval,gua_sequence.currval,null)
+	</insert> -->
+</mapper>

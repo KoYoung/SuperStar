@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ComloanInfoDao">
+	<!-- 查询企业贷款信息 -->
+	<select id="findComloanInfo" resultType="com.entity.ComloanInfo">
+		select
+		ci.comloaninfo_id,cp.com_name,bi.bankinfo_name,ci.contract_id,
+		e.emp_name,lt.loantype_name,ci.loan_number,ci.loan_account,
+		ci.loan_date,ci.loan_repayment_date,ci.loan_rate,
+		<!-- p.pledge_genre,p.pledge_type,p.pledge_name,p.pledge_value,p.pledge_owner,gua.gua_name, -->
+		lg.lmr_name
+		from comloaninfo ci,company cp,bankinfo bi,
+		employee
+		e,loantype lt,
+		<!-- customergoods cg,pledge p,guarantor
+		gua,borgua bg, -->
+		loanmanagerecord lg
+		where ci.com_id=cp.com_id and
+		ci.bankinfo_id=bi.bankinfo_id
+		and ci.emp_id=e.emp_id and
+		ci.loan_type=lt.loantype_id
+		<!-- and cg.loaninfo_id=ci.comloaninfo_id and
+		cg.goods_id=p.pledge_id
+		and bg.loaninfo_id=ci.comloaninfo_id and
+		bg.gua_id=gua.gua_id -->
+		and lg.loaninfo_id=ci.comloaninfo_id 
+		and ci.loaninfo_type=1
+	</select>
+	<!-- 添加企业贷款信息 -->
+	<insert id="addComloanInfo" useGeneratedKeys="false"
+		parameterType="com.entity.ComloanInfo">
+		insert into comloaninfo
+		values(#{loaninfoType},borloaninfo_sequence.nextval,#{comId,jdbcType=VARCHAR},#{bankinfoId,jdbcType=VARCHAR},
+		#{contractId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},
+		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
+		#{loanAccount,jdbcType=VARCHAR},to_date(#{loanDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
+		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
+		#{loanRate,jdbcType=VARCHAR})
+	</insert>
+	<!-- 根据贷款编号查询贷款详情 -->
+	<select id="findComloanInfo2" resultType="com.entity.BorLoanInfo">
+		select e.emp_id,
+		cp.com_id,cp.com_name borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
+		from comloaninfo ci,company cp,bankinfo bk,employee e
+		where ci.com_id=cp.com_id
+		and ci.bankinfo_id=bk.bankinfo_id
+		and ci.emp_id=e.emp_id
+		and loaninfo_type=1 and comloaninfo_id=#{comloaninfoId}
+	</select>
+	 <!-- 根据贷款编号修改企业业务移交相关信息 -->
+	 <update id="modifyComloanInfo" parameterType="com.entity.ComloanInfo">
+		update comloaninfo set emp_id=#{0} 
+		where comloaninfo_id=#{1} and loaninfo_type=1
+	</update>
+	
+	
+</mapper>

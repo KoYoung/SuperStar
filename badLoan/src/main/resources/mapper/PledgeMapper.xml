@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PledgeDao">
+	<!-- 添加抵（质）押物品信息 -->
+	<insert id="addPledge" useGeneratedKeys="false" parameterType="com.entity.Pledge">
+		insert into pledge values(pledge_sequence.nextval,#{pledgeGenre,jdbcType=VARCHAR},#{pledgeType,jdbcType=VARCHAR},#{pledgeName,jdbcType=VARCHAR},#{pledgeValue,jdbcType=VARCHAR},#{pledgeOwner,jdbcType=VARCHAR},null,null,#{pledgePhoto,jdbcType=VARCHAR})
+	</insert>
+</mapper>
