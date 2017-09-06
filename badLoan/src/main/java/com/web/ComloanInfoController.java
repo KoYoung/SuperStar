@@ -20,6 +20,8 @@ import com.entity.Loanmanage;
 import com.entity.Pledge;
 import com.service.ComloanInfoService;
 import com.util.FileUpload;
+import com.util.Paging;
+import com.util.PagingResult;
 
 @Controller
 @RequestMapping("/ComloanInfo")
@@ -50,8 +52,13 @@ public class ComloanInfoController {
 	 */
 	@RequestMapping("/findComloanInfo")
 	@ResponseBody
-	public List<ComloanInfo> findComloanInfo() {
+	public PagingResult<ComloanInfo> findComloanInfo(Integer page,Integer rows) {
 		List<ComloanInfo> comList = comloanInfoService.findComloanInfo();
-		return comList;
+		Paging<ComloanInfo> paging=new Paging<ComloanInfo>();
+		List<ComloanInfo> list=paging.paging(comList, rows ,page);
+		PagingResult<ComloanInfo> pr=new PagingResult<ComloanInfo>();
+		pr.setRows(list);
+		pr.setTotal(comList.size());
+		return pr;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.BorguaDao;
 import com.dao.ComloanInfoDao;
@@ -42,6 +43,7 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	 * 添加企业贷款信息
 	 */
 	@Override
+	@Transactional
 	public int addComloanInfo(ComloanInfo comloanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
 			,LoanManageRecord lmr,Loanmanage lonm) {
 		System.out.println(comloanInfo.toString());

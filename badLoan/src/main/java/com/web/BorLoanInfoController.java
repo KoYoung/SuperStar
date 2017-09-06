@@ -20,6 +20,7 @@ import com.dao.LoanmanageDao;
 import com.dao.PledgeDao;
 import com.entity.BorLoanInfo;
 import com.entity.Borgua;
+import com.entity.ComloanInfo;
 import com.entity.CustomerGoods;
 import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
@@ -29,6 +30,8 @@ import com.service.BorLoanInfoService;
 import com.service.ComloanInfoService;
 import com.service.ReplaceService;
 import com.util.FileUpload;
+import com.util.Paging;
+import com.util.PagingResult;
 
 
 @Controller
@@ -71,9 +74,14 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/findBorLoanInfo")
 	@ResponseBody
-	public List<BorLoanInfo> findBorLoanInfo(){
-		List<BorLoanInfo> boList = borService.findBorLoanInfo();
-		return boList;
+	public PagingResult<BorLoanInfo> findBorLoanInfo(Integer page,Integer rows){
+		List<BorLoanInfo> comList = borService.findBorLoanInfo();
+		Paging<BorLoanInfo> paging=new Paging<BorLoanInfo>();
+		List<BorLoanInfo> borList=paging.paging(comList, rows ,page);
+		PagingResult<BorLoanInfo> pr=new PagingResult<BorLoanInfo>();
+		pr.setRows(borList);
+		pr.setTotal(comList.size());
+		return pr;
 	}
 	/**
 	 * 根据贷款类型，贷款编号查询贷款信息
