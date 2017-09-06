@@ -36,6 +36,12 @@ tr td {
 	width:150px;
 	
 }
+#comName{
+	width:200px;
+	height:25px;
+	border:1px solid #95B8E7;
+	border-radius:5px;
+}
 .img-container{
             width: 293px;
             height: 150px;
@@ -71,8 +77,12 @@ tr td {
 									<td><input type="hidden" value="1" id="loaninfoType" name="loaninfoType"/></td>
 								</tr>
 								<tr>
-									<td>企业用户:</td>
-									<td><input id="comId" name="comId" /></td>
+									<td>企业用户编号:</td>
+									<td><input id="comId" name="comId"/></td>
+								</tr>
+								<tr>
+									<td>企业用户名称:</td>
+									<td><input id="comName"/></td>
 								</tr>
 								<tr>
 									<td>贷款银行:</td>
@@ -304,7 +314,7 @@ tr td {
 				.dialog(
 						{
 							title : '不良贷款信息录入',
-							width : '88%',
+							width : '90%',
 							closed : true,
 							cache : false,
 							modal : true,
@@ -387,7 +397,7 @@ tr td {
 		$('#comId').combobox({
 			url : '/badLoan/company/findcompany',
 			valueField : 'comId',
-			textField : 'comName',
+			textField : 'comId',
 			width : 200,
 			panelHeight : "auto",
 			editable : false,
@@ -396,8 +406,12 @@ tr td {
 				var data = $("#comId").combobox('getData');
 				if (data.length > 0) {
 					$("#comId").combobox('setValue', data[0].comId);
+					$("#comName").val(data[0].comName);	
 				}
 			},
+			onSelect : function(rec){
+				$("#comName").val(rec.comName);
+			}
 		});
 		
 		//查询企业贷款类型
@@ -473,6 +487,7 @@ tr td {
 		$(function(){
 			$(".datebox :text").attr("readonly","readonly");
 		})
+		
 		//日期验证（截止日期不能大于开始日期）
 	    $("#loanDate").datebox({  
 	        onSelect : function(beginDate){  

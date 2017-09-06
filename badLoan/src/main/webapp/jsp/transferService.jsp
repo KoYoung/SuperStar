@@ -206,6 +206,10 @@ tr td {
 				field : 'replaceDate',
 				title : '移交时间',
 				width : 200
+			},{
+				field : 'replaceComment',
+				title : '移交说明',
+				width : 200
 			}, {
 				field : 'loaninfoType',
 				title : '贷款种类',

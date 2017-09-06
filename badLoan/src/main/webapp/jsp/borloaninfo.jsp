@@ -36,6 +36,12 @@ tr td {
 	width:150px;
 	
 }
+#borName{
+	width:200px;
+	height:25px;
+	border:1px solid #95B8E7;
+	border-radius:5px;
+}
 .img-container{
             width: 293px;
             height: 150px;
@@ -71,8 +77,12 @@ tr td {
 									<td><input type="hidden" value="0" id="loaninfoType" name="loaninfoType"/></td>
 								</tr>
 								<tr>
-									<td>个人姓名:</td>
+									<td>个人用户编号:</td>
 									<td><input id="borId" name="borId" /></td>
+								</tr>
+								<tr>
+									<td>个人用户姓名:</td>
+									<td><input id="borName"/></td>
 								</tr>
 								<tr>
 									<td>贷款银行:</td>
@@ -125,16 +135,15 @@ tr td {
 									</select>  	
 									</td>
 								</tr>
+							</table>
+						</td>
+						<td>
+							<table cellpadding="5" id="tab2">
 								<tr>
 									<td>抵(质)押物品名称:</td>
 									<td><input class="easyui-textbox" id="pledgeName" name="pledgeName"
 										data-options="required:true"></input></td>
 								</tr>
-								
-							</table>
-						</td>
-						<td>
-							<table cellpadding="5" id="tab2">
 								<tr>
 									<td>抵（质）押物品价值:</td>
 									<td><input type="text" id="pledgeValue" name="pledgeValue">万元</input></td>
@@ -384,7 +393,7 @@ $('#dd')
 		$('#borId').combobox({
 			url : '/badLoan/borrower/findborr',
 			valueField : 'borId',
-			textField : 'borName',
+			textField : 'borId',
 			width : 200,
 			panelHeight : "auto",
 			editable : false,
@@ -393,8 +402,12 @@ $('#dd')
 				var data = $("#borId").combobox('getData');
 				if (data.length > 0) {
 					$("#borId").combobox('setValue', data[0].borId);
+					$("#borName").val(data[0].borName);	
 				}
 			},
+			onSelect : function(rec){
+				$("#borName").val(rec.borName);
+			}
 		});
 		
 		//查询所有个人贷款种类

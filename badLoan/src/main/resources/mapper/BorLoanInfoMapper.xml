@@ -18,7 +18,6 @@
 		and bori.emp_id=e.emp_id and
 		bori.loan_type=lt.loantype_id
 		and lg.loaninfo_id=bori.borloaninfo_id
-		and lg.emp_id=bori.emp_id
 		and bori.loaninfo_type=0
 	</select>
 	<!-- 添加个人用户贷款信息 -->
