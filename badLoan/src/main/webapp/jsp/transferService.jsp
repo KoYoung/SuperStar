@@ -83,7 +83,11 @@ tr td {
 															return isValid; // 返回false终止表单提交
 												},
 												success : function(data) {
-													alert("添加成功");
+													alert(data);
+													window.location.href = "/badLoan/jsp/transferService.jsp";
+												},
+												error : function(data) {
+													alert(data);
 													window.location.href = "/badLoan/jsp/transferService.jsp";
 												}
 											}); 
@@ -187,7 +191,7 @@ tr td {
 				title : '贷款编号',
 				width : 100
 			},  {
-				field : 'borName',
+				field : 'comName',
 				title : '贷款人',
 				width : 100
 			},{

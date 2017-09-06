@@ -320,7 +320,11 @@ $('#dd')
 													return isValid; // 返回false终止表单提交
 										},
 										success : function(data) {
-											alert("添加成功");
+											alert(data);
+											window.location.href = "/badLoan/jsp/borloaninfo.jsp";
+										},
+										error : function(data) {
+											alert(data);
 											window.location.href = "/badLoan/jsp/borloaninfo.jsp";
 										}
 									}); 

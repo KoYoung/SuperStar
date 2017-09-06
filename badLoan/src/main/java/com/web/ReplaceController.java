@@ -25,7 +25,7 @@ public class ReplaceController {
 	@ResponseBody
 	public String addReplace(Replace replace){
 		int flag=replaceService.addReplace(replace);
-		if(flag==0){
+		if(flag>0){
 			return "add success";
 		}else{
 			return "add error";

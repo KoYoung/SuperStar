@@ -9,19 +9,23 @@
 	</insert>
 	<!--  查询所有的业务移交记录 -->
 	<select id="findReplace" useCache="false" resultType="com.entity.Replace">
+				
 		select replace.loaninfo_id loaninfoId,
-    replace.replace_date replaceDate,
-    replace.loaninfo_type loaninfoType,
-		borrower.bor_name borName,
+    replace.loaninfo_type loaninfoType, 
+		company.com_name comName,
 		e1.emp_name oldEmpName,
 		e2.emp_name newEmpName,
 		replace.replace_date replaceDate,
-		replace.replace_comment replaceComment 
+		replace.replace_comment replaceComment
 		from 
-		replace,employee e1,employee e2,borloaninfo,borrower
+		replace,
+		employee e1,
+		employee e2,
+		comloaninfo,
+		company
 		where 
-		replace.loaninfo_id=borloaninfo.borloaninfo_id and 
-		borloaninfo.bor_id=borrower.bor_id and 
+		replace.loaninfo_id=comloaninfo.comloaninfo_id and 
+		comloaninfo.com_id=company.com_id and 
 		replace.old_emp_id=e1.emp_id and
 		replace.new_emp_id=e2.emp_id 
 	</select>

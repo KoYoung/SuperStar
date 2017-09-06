@@ -8,16 +8,17 @@ public class Replace {
 	private String replaceComment;
 	private String replaceDate;
 	private Integer loaninfoType;
-	private String borName;
+	private String comName;
 	private String oldEmpName;
 	private String newEmpName;
 	
 	
-	public String getBorName() {
-		return borName;
+	
+	public String getComName() {
+		return comName;
 	}
-	public void setBorName(String borName) {
-		this.borName = borName;
+	public void setComName(String comName) {
+		this.comName = comName;
 	}
 	public String getOldEmpName() {
 		return oldEmpName;

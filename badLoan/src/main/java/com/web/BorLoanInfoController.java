@@ -60,9 +60,9 @@ public class BorLoanInfoController {
 		int bor=borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
 		if(bor>0){
 		
-			return "添加个人用户贷款信息success";
+			return "add success";
 		}else{
-				return "添加个人用户贷款信息error";
+				return "add error";
 		}
 		
 			
