@@ -23,11 +23,9 @@
 	</select>
 	<!-- select * from borloaninfo </select> -->
 	<!-- 添加个人用户贷款信息 -->
-	<!-- <insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo">
-		insert into
-		borloaninfo
-		values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate})
-	</insert> -->
+	<!-- <insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo"> 
+		insert into borloaninfo values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate}) 
+		</insert> -->
 
 	<!-- 查询个人用户贷款信息详情 -->
 	<select id="findBorLoanDetail" resultMap="borLoanDetail">
@@ -153,6 +151,21 @@
 		update borloaninfo
 		set emp_id=#{0}
 		where borloaninfo_id=#{1} and loaninfo_type=0
+	</update>
+
+	<!-- 添加一条债款管理记录 -->
+	<insert id="addLoanManageRecordMap" parameterType="java.util.HashMap">
+		insert into
+		loanmanagerecord
+		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name) values
+		(lmr_sequence.nextval,#{borloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),0)
+	</insert>
+	<!-- 修改贷款状态 -->
+	<update id="modifyLoanStateMap" parameterType="java.util.HashMap">
+		update loanmanage
+		set loanstate_id = #{loanState,jdbcType=VARCHAR} where
+		loaninfo_id =
+		#{borloaninfoId,jdbcType=VARCHAR}
 	</update>
 
 </mapper>

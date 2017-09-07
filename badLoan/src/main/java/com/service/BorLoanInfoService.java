@@ -46,4 +46,10 @@ public interface BorLoanInfoService {
 	 */
 	List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId);
 
+	/**
+	 * 更新债款状态
+	 * 
+	 * @param datamap
+	 */
+	void updateLoanState(Map<String, String> datamap);
 }

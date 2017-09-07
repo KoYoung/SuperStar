@@ -37,9 +37,7 @@
 			</tr>
 		</table>
 	</div>
-	<div id="detailDialog">
-		<table id="detailGrid"></table>
-	</div>
+	<div id="detailDialog"></div>
 	<div id="updateLoanDirlog">
 		<table>
 			<tr>
@@ -49,6 +47,10 @@
 			<tr>
 				<td><span>贷款人：</span></td>
 				<td><span id="borName"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款类型：</span></td>
+				<td><span id="borTypeName"></span></td>
 			</tr>
 			<tr>
 				<td><span>贷款金额：</span></td>
@@ -171,6 +173,7 @@
 					alert(row.empId);
 					$('#updateLoanDirlog').dialog("open");
 					$("#borLoanId").html(row.borloaninfoId);
+					$("#borTypeName").html(row.loantypeName);
 					$("#borName").html(row.borName);
 					$("#loanNumber").html(row.loanNumber);
 					$("#loanState").combobox('setValues', row.LOANSTATE_NAME);
@@ -225,6 +228,25 @@
 				iconCls : 'icon-edit',
 				text : '保存',
 				handler : function() {
+					var data = {
+						borloaninfoId : $("#borLoanId").html(),
+						empId : $("#empId_update").html(),
+						loanState : $("#loanState").val()
+					};
+					alert(data.loanType + " " + data.loanState);
+					$.ajax({
+						url : '/badLoan/BorLoanInfo/updateLoanState',
+						type : 'post',
+						data : JSON.stringify(data),
+						contentType : 'application/json;charset=UTF-8',
+						success : function(data) {
+							alert("heiheihei");
+							alert(data);
+						},
+						error : function() {
+							alert("error");
+						}
+					});
 					$('#updateLoanDirlog').dialog("close");
 				}
 			}, {

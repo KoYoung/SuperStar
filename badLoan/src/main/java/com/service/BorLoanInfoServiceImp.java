@@ -135,4 +135,10 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 
 		return BorLoanInfoDao.findBorLoanInfo2(borloaninfoId);
 	}
+
+	@Transactional
+	public void updateLoanState(Map<String, String> datamap) {
+		borLoanInfoDao.addLoanManageRecordMap(datamap);
+		borLoanInfoDao.modifyLoanStateMap(datamap);
+	}
 }

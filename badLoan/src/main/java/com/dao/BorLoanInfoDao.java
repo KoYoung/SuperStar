@@ -65,5 +65,19 @@ public interface BorLoanInfoDao {
 	 * 
 	 * @return
 	 */
-	public void modifyBorLoanInfo(String empId, String borloaninfoId);
+	void modifyBorLoanInfo(String empId, String borloaninfoId);
+
+	/**
+	 * 添加一条债款管理记录
+	 * 
+	 * @param datamap
+	 */
+	void addLoanManageRecordMap(Map<String, String> datamap);
+
+	/**
+	 * 修改贷款状态
+	 * 
+	 * @param datamap
+	 */
+	void modifyLoanStateMap(Map<String, String> datamap);
 }

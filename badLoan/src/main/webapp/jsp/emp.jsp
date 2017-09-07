@@ -58,7 +58,7 @@
 		url : '/badLoan/Emp/findEmp',
 		rownumbers : true, //显示行号
 		pagination : true, //显示分页
-		pageSize : 10, //默认显示多少行
+		pageSize : 5, //默认显示多少行
 		pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 		sortName : 'empId',//默认员工编号
 		sortOrder : 'asc',//默认升序

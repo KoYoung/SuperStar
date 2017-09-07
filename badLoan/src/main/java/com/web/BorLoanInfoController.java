@@ -97,9 +97,9 @@ public class BorLoanInfoController {
 		int borloaninfoId = Integer.parseInt(data);
 		List<Map<String, String>> borDetails = borService.findDetailsById(borloaninfoId);
 		System.out.println(borDetails);
-		String str = JSON.toJSONString(borDetails);
-		System.out.println(str);
-		return str;
+		String borDetailsStr = JSON.toJSONString(borDetails);
+		System.out.println(borDetailsStr);
+		return borDetailsStr;
 	}
 
 	/**
@@ -121,5 +121,13 @@ public class BorLoanInfoController {
 			return borList.get(0);
 		}
 		return null;
+	}
+
+	@RequestMapping("/updateLoanState")
+	@ResponseBody
+	public String updateLoanState(@RequestBody String data) {
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		borService.updateLoanState(datamap);
+		return "success";
 	}
 }
