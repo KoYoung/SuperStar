@@ -1,6 +1,8 @@
 package com.web;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +31,6 @@ import com.entity.Loanmanage;
 import com.entity.Pledge;
 import com.service.BorLoanInfoService;
 import com.service.ComloanInfoService;
-import com.service.ReplaceService;
 import com.util.FileUpload;
 import com.util.Paging;
 import com.util.PagingResult;
@@ -50,23 +52,29 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/addBorLoanInfo")
 	@ResponseBody
-	public String addBorLoanInfo(MultipartFile borPhoto,HttpServletRequest request,BorLoanInfo borLoanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua,LoanManageRecord lmr,Loanmanage loanmanage) throws IOException{
-		System.out.println("****************************");
-		String filepath = FileUpload.uploadFile(borPhoto, request);
-		pledge.setPledgePhoto(filepath);
+    //requestParam要写才知道是前台的那个数组
+    public String filesUpload(
+            HttpServletRequest request,BorLoanInfo borLoanInfo,Pledge pledge,CustomerGoods customerGoods,
+            Guarantor guarantor,Borgua borgua,LoanManageRecord lmr,
+            Loanmanage loanmanage,@RequestParam("borPhoto") MultipartFile[] borPhotos) {
+			List files = FileUpload.uploadFile1(borPhotos, request); 
+			System.out.println("-----------------------");
+			String phonePath="";
+            for (int i = 0; i < files.size(); i++) {
+            	phonePath =phonePath+files.get(i).toString()+",";
+            }
+            //保存图片
+            pledge.setPledgePhoto(phonePath);
 		System.out.println("zhaopi=a==n====="+pledge.getPledgePhoto());
-	
-		/*int bor = borService.addBorLoanInfo(BorLoanInfo, pledge,customergoods, guarantor,borgua, lmr, lonm);*/
-		int bor=borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
-		if(bor>0){
-		
+		int flag = borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
+		if(flag>0){
 			return "add success";
 		}else{
-				return "add error";
+			return "add false";
 		}
-		
-			
-	}
+        
+    }
+	
 	/**
 	 * 查询个人用户贷款信息
 	 * 马利肖
@@ -104,9 +112,20 @@ public class BorLoanInfoController {
 		return null;
 	}
 	/**
-	 * 根据贷款编号修改业务移交相关信息(贷款经手人)
-	 * @return 
+	 * 合同编号唯一性验证
 	 */
+	@RequestMapping("/findcontractId")
+	@ResponseBody
+	public boolean findcontractId(String contractId){
+		List<BorLoanInfo> cuList = borService.findcontractId(contractId);
+		if(cuList.size()>0){
+			return false;
+		}else{
+			return true;
+		}
+		
+		
+	}
 	
 	
 }

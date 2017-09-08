@@ -30,5 +30,8 @@ public interface BorLoanInfoService {
 	 * 根据贷款类型，贷款编号查询贷款信息
 	 */
 	List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId);
-
+	/**
+	 * 合同编号唯一性验证
+	 */
+	List<BorLoanInfo> findcontractId(String contractId);
 }

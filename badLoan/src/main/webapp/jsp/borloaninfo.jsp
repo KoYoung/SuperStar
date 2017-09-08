@@ -62,7 +62,7 @@ tr td {
 <body>
 	<div>
 		<a class="easyui-linkbutton" data-options="iconCls:'icon-add'"
-			onclick="submitForm()" id="addBtn">添加</a>
+			 id="addBtn">添加</a>
 	</div>
 	<table id="dg"></table>
 	<div id="dd">
@@ -90,7 +90,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>合同编号:</td>
-									<td><input type="text" id="contractId" name="contractId"/></td>
+									<td><input type="text" id="contractId" data-options="validType:'contractId'" name="contractId"/></td>
 								</tr>
 								<tr>
 									<td>经手人:</td>
@@ -135,10 +135,6 @@ tr td {
 									</select>  	
 									</td>
 								</tr>
-							</table>
-						</td>
-						<td>
-							<table cellpadding="5" id="tab2">
 								<tr>
 									<td>抵(质)押物品名称:</td>
 									<td><input class="easyui-textbox" id="pledgeName" name="pledgeName"
@@ -148,6 +144,15 @@ tr td {
 									<td>抵（质）押物品价值:</td>
 									<td><input type="text" id="pledgeValue" name="pledgeValue">万元</input></td>
 								</tr>
+								<tr>
+									<td>抵（质）押物所属人:</td>
+									<td><input class="easyui-textbox" id="pledgeOwner" name="pledgeOwner"
+										data-options="required:true"></input></td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table cellpadding="5" id="tab2">
 								<!-- <tr>
 									<td>抵（质）押物品起始日期:</td>
 									<td><input class="easyui-datebox"
@@ -160,6 +165,13 @@ tr td {
 										data-options="required:true,validType:'pledgeEnddate'" 
 										id="pledgeEnddate" name="pledgeEnddate" style="width:200px"/></td>
 								</tr> -->
+								<tr>
+									<td>抵（质）押物品照片:</td>
+									<td>
+							            <div class="img-container">
+							         	</div>
+							            <input class="img-btn" type="file" id="drivingLicence" name="borPhoto"/>
+								</tr>
 								<tr>
 									<td>抵（质）押物品照片:</td>
 									<td>
@@ -190,13 +202,20 @@ tr td {
 								</tr>
 								<tr>
 									<td>担保人证件类型:</td>
-									<td><input class="easyui-textbox" id="guaCardType" name="guaCardType"
-										data-options="required:true"></input></td>
+									<td><select id="guaCardType" name="guaCardType" class="easyui-combobox">   
+										    <option value="身份证" selected="selected">身份证</option>   
+										    <option value="工作证">工作证</option> 
+										    <option value="护照">护照</option>   
+										    <option value="军官证">军官证</option>   
+										    <option value="士兵证">士兵证</option>
+										    <option value="户口本">户口本</option>     
+										</select>  	
+									</td>
 								</tr>
 								<tr>
 									<td>担保人证件号码:</td>
 									<td><input class="easyui-textbox" id="guaCardNumber" name="guaCardNumber"
-										data-options="required:true"></input></td>
+										data-options="required:true,validType:'guaCardNumber'"></input></td>
 								</tr>
 							</table>
 						</td>
@@ -285,7 +304,8 @@ tr td {
 								</tr>
 								<tr>
 									<td>担保人学历:</td>
-									<td><select id="guaEducation" name="guaEducation" class="easyui-combobox">   
+									<td><select id="guaEducation" name="guaEducation" class="easyui-combobox">
+										<option value="高中及以下">高中及以下</option>   
 									    <option value="大专">大专</option>   
 									    <option value="本科" selected="selected">本科</option>   
 									    <option value="研究生">研究生</option>   
@@ -439,6 +459,12 @@ $('#dd')
 			required : true,
 			width : 200,
 		});
+		$("#guaCardType").combobox({
+			panelHeight : "auto",
+			editable : false,
+			required : true,
+			width : 200,
+		});
 		//利率（数值输入框）
 		$('#loanRate').numberbox({    
 		    min:0,    
@@ -510,7 +536,7 @@ $('#dd')
 			
 			mobile: {
 		          validator: function (value, param) {
-		            return /^(?:13\d|15\d|18\d)-?\d{5}(\d{3}|\*{3})$/.test(value);
+		            return /^1[3-8]+\d{9}$/.test(value);
 		          },
 		          message: '手机号码格式不正确'
 		        },
@@ -554,66 +580,48 @@ $('#dd')
 		       },  
 		       message:"日期必须小于等于当前日期"  
 		 	},
-		 	/* pledgeStartdate: {  
-		          validator: function(value,param){  
-		               if(value)  
-		               {  
-		                   if(value.length > 10)  
-		                   {  
-		                       value = value.substring(0,10);  
-		                   }  
-		                   var ed_arr = value.split('-');  
-		                   var selectedDate = new Date(ed_arr[0],ed_arr[1]-1,ed_arr[2]);  
-		                   var currentDate = new Date();  
-		                   if((currentDate.getTime() - selectedDate.getTime()) >= 0)  
-		                   {  
-		                       return true;  
-		                   }  
-		               }  
-		           return false;  
-		       },  
-		       message:"日期必须小于等于当前日期"  
-			},
-			pledgeEnddate: {  
-		          validator: function(value,param){  
-		               if(value)  
-		               {  
-		                   if(value.length > 10)  
-		                   {  
-		                       value = value.substring(0,10);  
-		                   }  
-		                   var ed_arr = value.split('-');  
-		                   var selectedDate = new Date(ed_arr[0],ed_arr[1]-1,ed_arr[2]);  
-		                   var currentDate = new Date();  
-		                   if((currentDate.getTime() - selectedDate.getTime()) >= 0)  
-		                   {  
-		                       return true;  
-		                   }  
-		               }  
-		           return false;  
-		       },  
-		       message:"日期必须小于等于当前日期"  
-		 	}, */
 		 	guaBirthday: {  
 		          validator: function(value,param){  
-		               if(value)  
-		               {  
-		                   if(value.length > 10)  
-		                   {  
-		                       value = value.substring(0,10);  
-		                   }  
-		                   var ed_arr = value.split('-');  
-		                   var selectedDate = new Date(ed_arr[0],ed_arr[1]-1,ed_arr[2]);  
-		                   var currentDate = new Date();  
-		                   if((currentDate.getTime() - selectedDate.getTime()) >= 30)  
+		                   var time=$.fn.datebox.defaults.parser(value).getTime();
+		                   var currentTime = new Date().getTime()-25*365*24*3600*1000;  
+		                   if(time < currentTime)  
 		                   {  
 		                       return true;  
 		                   }  
-		               }  
 		           return false;  
 		       },  
-		       message:"担保人必须年满30岁"  
+		       message:"担保人必须年满25岁"  
 		 	},
+		 	contractId:{
+		 	 	validator: function(value){ 
+            		var data = {"contractId":value};
+            		var url = '/badLoan/BorLoanInfo/findcontractId';
+            		var st =false;
+            		 $.ajax({  
+                         type: "POST", 
+                         url:url,  
+                         dataType:"json",  
+                         data:data,  
+                         async:false,  
+                         success: function(data){
+                         	if(data==false){
+                         		$.fn.validatebox.defaults.rules.contractId.message ="合同编号已存在";
+                         		st = false;
+                         	}else{
+                         		st=true;
+                         	}
+                         }  
+                     });  
+                    return st; 
+            		
+            	}
+		 	 }, 
+		 	guaCardNumber:{
+		 		validator: function (value, param) {
+		 			  return /^[a-zA-Z0-9]+$/.test(value);
+		 			 },
+		 			message : "只能包括英文字母、数字"
+		   },
 		});
 		/* //先禁止验证，失焦时提示验证
 		$('.validatebox-text').bind('blur', function(){
@@ -621,6 +629,7 @@ $('#dd')
 		});
 	
 	 	$(this).form('enableValidation').form('validate');//启用校验 */
+	 	
 		$('#dg').datagrid({
 			url : '/badLoan/BorLoanInfo/findBorLoanInfo',
 			striped : true, //斑马线 
@@ -630,6 +639,10 @@ $('#dd')
 			pageNumber:1,
 			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列
+			onLoadSuccess:function(data){    
+	            $("a[name='opera']").linkbutton({text:'下订单',plain:true,iconCls:'icon-add'}); 
+	            
+	   	 	},
 			columns : [ [ {
 				field : 'borloaninfoId',
 				title : '贷款编号',
@@ -685,8 +698,13 @@ $('#dd')
 				        return "处理中";
 				    }
 				}
-			}]]
+			},    {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,  
+		        formatter:function(value, row, index){  
+		            var str = '<a href="#" name="opera" class="easyui-linkbutton" >同意</a>';  
+		            return str;  
+		    }}  ]]
 		});
+	    
 	</script>
 </body>
 </html>

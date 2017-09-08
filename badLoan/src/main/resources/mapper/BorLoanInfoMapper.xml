@@ -48,7 +48,10 @@
 		set emp_id=#{0}
 		where borloaninfo_id=#{1} and loaninfo_type=0
 	</update>
-
+	<!-- 合同编号唯一性验证 -->
+	<select id="findcontractId" resultType="com.entity.BorLoanInfo">
+		select contract_id from borloaninfo where contract_id=#{contractId}
+	</select>
 
 
 

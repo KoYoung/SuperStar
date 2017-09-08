@@ -27,4 +27,8 @@ public interface BorLoanInfoDao {
 	 * @return 
 	 */
 	public void modifyBorLoanInfo(String empId,String borloaninfoId);
+	/**
+	 * 合同编号唯一性验证
+	 */
+	List<BorLoanInfo> findcontractId(String contractId);
 }

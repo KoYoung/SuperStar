@@ -23,4 +23,8 @@ public interface ComloanInfoDao {
 	 * @return 
 	 */
 	public void modifyComloanInfo(String empId,String comloaninfoId);
+	/**
+	 * 合同编号唯一性验证
+	 */
+	List<ComloanInfo> findContractIdCom(String contractId);
 }

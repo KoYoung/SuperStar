@@ -85,14 +85,13 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		return BorLoanInfoDao.findBorLoanInfo2(borloaninfoId);
 	}
 	/**
-	 * 根据贷款编号修改业务移交相关信息
-	 * @return 
+	 * 合同编号唯一性验证
 	 */
-	/*@Override
-	public void modifyBorLoanInfo(String empId,String borloaninfoId) {
-		BorLoanInfoDao.modifyBorLoanInfo(empId,borloaninfoId);
+	@Override
+	public List<BorLoanInfo> findcontractId(String contractId) {
 		
-		
-	}*/
+		return BorLoanInfoDao.findcontractId(contractId);
+	}
+	
 
 }
