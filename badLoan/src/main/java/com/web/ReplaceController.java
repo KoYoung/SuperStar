@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Replace;
 import com.service.ReplaceService;
+import com.util.Paging;
+import com.util.PagingResult;
 
 @Controller
 @RequestMapping("/replace")
@@ -23,7 +25,7 @@ public class ReplaceController {
 	@ResponseBody
 	public String addReplace(Replace replace){
 		int flag=replaceService.addReplace(replace);
-		if(flag==0){
+		if(flag>0){
 			return "add success";
 		}else{
 			return "add error";
@@ -34,9 +36,14 @@ public class ReplaceController {
 	 */
 	@RequestMapping("/findReplace")
 	@ResponseBody
-	public List<Replace> findReplace(){
+	public PagingResult<Replace> findReplace(Integer page,Integer rows){
 		List<Replace> reList= replaceService.findReplace();
-		return reList;
+		Paging<Replace> paging = new Paging<Replace>();
+		List<Replace> pList = paging.paging(reList, rows, page);
+		PagingResult<Replace> pr = new PagingResult<Replace>();
+		pr.setRows(pList);
+		pr.setTotal(reList.size());
+		return pr;
 		
 	}
 }

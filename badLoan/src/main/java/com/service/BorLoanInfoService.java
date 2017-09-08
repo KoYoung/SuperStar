@@ -52,4 +52,18 @@ public interface BorLoanInfoService {
 	 * @param datamap
 	 */
 	void updateLoanState(Map<String, String> datamap);
+
+	/**
+	 * 个人贷款模糊查询
+	 * 
+	 * @param datamap
+	 * @return 
+	 */
+	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
+	
+	/**
+	 * test
+	 * @return
+	 */
+	List<Map<String, String>> findTestDemo();
 }

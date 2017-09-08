@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
-<!-- js文件 -->
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
@@ -14,32 +14,52 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
 	type="text/css"></link>
+<link rel="stylesheet" href="../js/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+	<style type="text/css">
+		#biaoti{
+		color:blank
+	}
+	#haha{
+		  margin-left :150px;
+	}
+	</style>
 </head>
-<body>
-	<h1 style="text-align: center; margin-top: 130px;">银&nbsp;&nbsp;行&nbsp;&nbsp;不&nbsp;&nbsp;良&nbsp;&nbsp;贷&nbsp;&nbsp;款&nbsp;&nbsp;信&nbsp;&nbsp;息&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;系&nbsp;&nbsp;统</h1>
-	<div id="big"
-		style="margin-left: 480px; margin-top: 70px; width: 400px;">
-		<form id="MyForm">
-			<div class="input-group input-group-lg"
-				style="width: 300px; margin-top: 30px; float: left;">
-				<span class="input-group-addon" id="sizing-addon1"> <span
-					class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				</span> <input type="text" class="form-control" placeholder="用户名"
-					aria-describedby="sizing-addon1" name="userName" id="userName">
-			</div>
+<body >
+	<div class="cotn_principal">
+	<h1 style="text-align: center; margin-top: 50px;"id="biaoti">银&nbsp;&nbsp;行&nbsp;&nbsp;不&nbsp;&nbsp;良&nbsp;&nbsp;贷&nbsp;&nbsp;款&nbsp;&nbsp;信&nbsp;&nbsp;息&nbsp;&nbsp;管&nbsp;&nbsp;理&nbsp;&nbsp;系&nbsp;&nbsp;统</h1>
+  <div class="cont_centrar" id="haha">
+    <div class="cont_login" >
+      <div class="cont_info_log_sign_up" >
+        <div class="col_md_login">
+          <div class="cont_ba_opcitiy">
+            <h2>LOGIN</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur.</p>
+            <button class="btn_login" onClick="cambiar_login()">LOGIN</button>
+          </div>
+        </div>  
+      </div>
+      <div class="cont_forms" >
+        <div class="cont_img_back_"> <img src="../js/po.jpg" alt="" /> </div>
+        <div class="cont_form_login"> <a href="#" onClick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
+          <h2>LOGIN</h2>
+          <input type="text" placeholder="Email"  name="userName" id="userName"/>
+          <input type="password" placeholder="Password"  name="passWord" id="passWord"/>
+          <button type="button"class="btn_login" id="btn"">LOGIN</button>
+        </div>
+        <div class="cont_form_sign_up">
+          
+          <input type="text" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-			<div class="input-group input-group-lg"
-				style="width: 300px; margin-top: 30px; float: left;">
-				<span class="input-group-addon" id="sizing-addon1"> <span
-					class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-				</span> <input type="text" class="form-control" placeholder="密码"
-					aria-describedby="sizing-addon1" name="passWord" id="passWord">
-			</div>
-		</form>
-
-		<button type="button" class="btn btn-primary" id="btn"
-			style="margin-top: 80px; margin-left: 120px;">登录</button>
-	</div>
+<script src="../js/index.js"></script>
 </body>
 <script type="text/javascript">
 	$("#btn").click(function() {

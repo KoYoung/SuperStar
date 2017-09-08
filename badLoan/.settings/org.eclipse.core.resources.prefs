@@ -1,4 +1,10 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+=======
+encoding//src/main/java/com/dao/PledgeDao.java=UTF-8
+encoding//src/main/java/com/entity/BorRower.java=UTF-8
+encoding//src/main/java/com/service/BorLoanInfoService.java=UTF-8
+>>>>>>> branch 'master' of https://github.com/KoYoung/superStar.git
 encoding//src/main/java/com/service/EmployeeService.java=UTF-8
 encoding//src/main/java/com/service/EmployeeServiceImp.java=UTF-8
 encoding//src/main/webapp/jsp/emp.jsp=UTF-8

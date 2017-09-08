@@ -8,49 +8,9 @@ public class Replace {
 	private String replaceComment;
 	private String replaceDate;
 	private Integer loaninfoType;
-	private String borName;
+	private String comName;
 	private String oldEmpName;
 	private String newEmpName;
-
-	public String getBorName() {
-		return borName;
-	}
-
-	public void setBorName(String borName) {
-		this.borName = borName;
-	}
-
-	public String getOldEmpName() {
-		return oldEmpName;
-	}
-
-	public void setOldEmpName(String oldEmpName) {
-		this.oldEmpName = oldEmpName;
-	}
-
-	public String getNewEmpName() {
-		return newEmpName;
-	}
-
-	public void setNewEmpName(String newEmpName) {
-		this.newEmpName = newEmpName;
-	}
-
-	public String getReplaceDate() {
-		return replaceDate;
-	}
-
-	public void setReplaceDate(String replaceDate) {
-		this.replaceDate = replaceDate;
-	}
-
-	public Integer getLoaninfoType() {
-		return loaninfoType;
-	}
-
-	public void setLoaninfoType(Integer loaninfoType) {
-		this.loaninfoType = loaninfoType;
-	}
 
 	public String getRepId() {
 		return repId;
@@ -90,6 +50,46 @@ public class Replace {
 
 	public void setReplaceComment(String replaceComment) {
 		this.replaceComment = replaceComment;
+	}
+
+	public String getReplaceDate() {
+		return replaceDate;
+	}
+
+	public void setReplaceDate(String replaceDate) {
+		this.replaceDate = replaceDate;
+	}
+
+	public Integer getLoaninfoType() {
+		return loaninfoType;
+	}
+
+	public void setLoaninfoType(Integer loaninfoType) {
+		this.loaninfoType = loaninfoType;
+	}
+
+	public String getComName() {
+		return comName;
+	}
+
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
+
+	public String getOldEmpName() {
+		return oldEmpName;
+	}
+
+	public void setOldEmpName(String oldEmpName) {
+		this.oldEmpName = oldEmpName;
+	}
+
+	public String getNewEmpName() {
+		return newEmpName;
+	}
+
+	public void setNewEmpName(String newEmpName) {
+		this.newEmpName = newEmpName;
 	}
 
 	@Override

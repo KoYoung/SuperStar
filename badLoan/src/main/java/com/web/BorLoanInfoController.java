@@ -1,6 +1,7 @@
 package com.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSON;
 import com.entity.BorLoanInfo;
 import com.entity.Borgua;
+import com.entity.ComloanInfo;
 import com.entity.CustomerGoods;
 import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
@@ -25,6 +27,9 @@ import com.entity.Pledge;
 import com.service.BorLoanInfoService;
 import com.service.ComloanInfoService;
 import com.util.FileUpload;
+import com.util.Paging;
+import com.util.PagingResult;
+import com.util.UrlUtil;
 
 @Controller
 @RequestMapping("/BorLoanInfo")
@@ -60,7 +65,6 @@ public class BorLoanInfoController {
 		} else {
 			return "添加个人用户贷款信息error";
 		}
-
 	}
 
 	/**
@@ -70,9 +74,14 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/findBorLoanInfo")
 	@ResponseBody
-	public List<BorLoanInfo> findBorLoanInfo() {
-		List<BorLoanInfo> boList = borService.findBorLoanInfo();
-		return boList;
+	public PagingResult<BorLoanInfo> findBorLoanInfo(Integer page, Integer rows) {
+		List<BorLoanInfo> comList = borService.findBorLoanInfo();
+		Paging<BorLoanInfo> paging = new Paging<BorLoanInfo>();
+		List<BorLoanInfo> borList = paging.paging(comList, rows, page);
+		PagingResult<BorLoanInfo> pr = new PagingResult<BorLoanInfo>();
+		pr.setRows(borList);
+		pr.setTotal(comList.size());
+		return pr;
 	}
 
 	/**
@@ -129,5 +138,23 @@ public class BorLoanInfoController {
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
 		borService.updateLoanState(datamap);
 		return "success";
+	}
+
+	@RequestMapping(value = "/findBorSearch")
+	@ResponseBody
+	public List<Map<String, String>> findBorSearch(@RequestBody String data) {
+		data = UrlUtil.getURLDecoderString(data);
+		// 将获取到的表单序列化数据拼装成JSON字符串，并转为MAP
+		data = "{" + data.replace("&", "\",").replace("=", ":\"") + "\"}";
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		System.out.println(datamap);
+		List<Map<String, String>> findBorSearch = borService.findBorSearch(datamap);
+		System.out.println(findBorSearch);
+		return findBorSearch;
+	}
+	@RequestMapping(value = "/findTestDemo")
+	@ResponseBody
+	public List<Map<String, String>> findTestDemo() {
+		return borService.findTestDemo();
 	}
 }

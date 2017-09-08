@@ -5,7 +5,7 @@
     
 <mapper namespace="com.dao.UserDao">
 	<select id="findUserNameAndPassWord" resultType="com.entity.User" parameterType="com.entity.User">
-		select * from users where user_username=#{userName,jdbcType=VARCHAR} and user_password=#{passWord}
+		select * from users where user_username=#{userName,jdbcType=VARCHAR} and user_password=#{passWord,jdbcType=VARCHAR}
 	</select>
 	
 	<select id="findUserName" parameterType="String" resultType="String">

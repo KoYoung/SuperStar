@@ -80,4 +80,12 @@ public interface BorLoanInfoDao {
 	 * @param datamap
 	 */
 	void modifyLoanStateMap(Map<String, String> datamap);
+
+	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
+	
+	/**
+	 * test
+	 * @return
+	 */
+	List<Map<String, String>> findTestDemo();
 }

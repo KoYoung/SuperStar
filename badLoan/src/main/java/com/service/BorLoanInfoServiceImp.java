@@ -141,4 +141,18 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		borLoanInfoDao.addLoanManageRecordMap(datamap);
 		borLoanInfoDao.modifyLoanStateMap(datamap);
 	}
+
+	@Override
+	public List<Map<String, String>> findBorSearch(Map<String, String> datamap) {
+		return borLoanInfoDao.findBorSearch(datamap);
+	}
+
+	/**
+	 * test
+	 * 
+	 * @return
+	 */
+	public List<Map<String, String>> findTestDemo() {
+		return borLoanInfoDao.findTestDemo();
+	}
 }

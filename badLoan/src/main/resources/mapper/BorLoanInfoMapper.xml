@@ -18,7 +18,6 @@
 		and bori.emp_id=e.emp_id and
 		bori.loan_type=lt.loantype_id
 		and lg.loaninfo_id=bori.borloaninfo_id
-		and lg.emp_id=bori.emp_id
 		and bori.loaninfo_type=0
 	</select>
 	<!-- select * from borloaninfo </select> -->
@@ -31,32 +30,28 @@
 	<select id="findBorLoanDetail" resultMap="borLoanDetail">
 		select
 		bli.borloaninfo_id, bli.bor_id,ee.emp_name,
-		bli.emp_id ,
-		bli.loan_number
-		,bli.loan_account ,to_char(bli.loan_date,'yyyy-MM-dd')
-		loanDate
-		,to_char(bli.loan_repayment_date,'yyyy-MM-dd')
-		loanRepaymentDate,
-		bli.loan_rate
-		,bli.loaninfo_type ,
-		bor.bor_name
+		bli.emp_id
+		,bk.bankinfo_name, bli.loan_number
+		,bli.loan_account,to_char(bli.loan_date,'yyyy-MM-dd') loanDate
+		,to_char(bli.loan_repayment_date,'yyyy-MM-dd') loanRepaymentDate,
+		bli.loan_rate ,bli.loaninfo_type ,bor.bor_name
 		,lt.loantype_name
 		,ls.loanstate_name
 		from
-		employee ee,
-		borLoanInfo bli,
-		borrower
-		bor,loantype
-		lt,loanmanage lm,loanstate ls
-		where bli.bor_id =
-		bor.bor_id
-		and
-		bli.loan_type = lt.loantype_id and
-		lm.loaninfo_id =
+		employee ee, borLoanInfo bli,borrower
+		bor,loantype lt
+		,loanmanage lm,loanstate ls,bankinfo bk
+		where
+		bli.bor_id
+		= bor.bor_id
+		and bli.loan_type = lt.loantype_id
+		and lm.loaninfo_id =
 		bli.borloaninfo_id
 		and lm.loanstate_id =
-		ls.loanstate_id and ee.emp_id =
+		ls.loanstate_id
+		and ee.emp_id =
 		bli.emp_id
+		and bli.bankinfo_id = bk.bankinfo_id
 	</select>
 	<resultMap type="java.util.HashMap" id="borLoanDetail">
 		<id property="borloaninfoId" column="borloaninfo_id" />
@@ -76,17 +71,15 @@
 	<select id="findBorLoanDetailsById" parameterType="int"
 		resultType="java.util.HashMap">
 		select bli.borloaninfo_id, bli.bor_id, bli.emp_id ,
-		bli.loan_number ,bli.loan_account ,
-		bli.loan_date
+		bli.loan_number ,bli.loan_account ,bli.loan_date
 		,to_char(bli.loan_date,'yyyy-MM-dd') as loanDate
 		,to_char(bli.loan_repayment_date,'yyyy-MM-dd') as loanRepaymentDate
-		,
-		bli.loaninfo_type ,
-		lt.loantype_name
-		,ls.loanstate_name,bi.bankinfo_name,bi.bankinfo_telephone,bi.bankinfo_address
-		from borLoanInfo bli,loantype lt,loanmanage lm,
-		loanstate ls,bankInfo
-		bi where bli.loan_type = lt.loantype_id and bli.bankinfo_id =
+		,bli.loaninfo_type ,lt.loantype_name,ls.loanstate_name
+		,bi.bankinfo_name,bi.bankinfo_telephone,bi.bankinfo_address
+		from
+		borLoanInfo bli,loantype lt,loanmanage lm,
+		loanstate ls,bankInfo bi
+		where bli.loan_type = lt.loantype_id and bli.bankinfo_id =
 		bi.bankinfo_id
 		and lm.loaninfo_id = bli.borloaninfo_id and
 		lm.loanstate_id =
@@ -167,5 +160,88 @@
 		loaninfo_id =
 		#{borloaninfoId,jdbcType=VARCHAR}
 	</update>
+	<select id="findBorSearch" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select
+		bli.borloaninfo_id,
+		bli.bor_id,ee.emp_name,
+		bli.emp_id ,
+		bli.loan_number
+		,bli.loan_account
+		,to_char(bli.loan_date,'yyyy-MM-dd')
+		loanDate
+		,to_char(bli.loan_repayment_date,'yyyy-MM-dd')
+		loanRepaymentDate,
+		bli.loan_rate
+		,bli.loaninfo_type ,
+		bor.bor_name
+		,lt.loantype_name
+		,ls.loanstate_name
+		from
+		employee ee,
+		borLoanInfo bli,
+		borrower
+		bor,loantype
+		lt,loanmanage lm,loanstate ls,bankinfo bk
+		<where>
+			bli.bor_id = bor.bor_id
+			and bli.loan_type = lt.loantype_id
+			and
+			lm.loaninfo_id = bli.borloaninfo_id
+			and lm.loanstate_id =
+			ls.loanstate_id
+			and ee.emp_id = bli.emp_id
+			and bli.bankinfo_id =
+			bk.bankinfo_id
+			<if test="borName!=null and borName!=''">
+				and bor.bor_name like '%' || '${borName}' ||'%'
+			</if>
+			<if test="empName!=null and empName!=''">
+				and ee.employee like '%' || '${empName}' ||'%'
+			</if>
+			<if test="contractId!=null and contractId!=''">
+				and bli.contract_id like '%' || '${contractId}' || '%'
+			</if>
+			<if test="!(loanStateId.length()>5)">
+				and lm.loanstate_id = #{loanStateId,jdbcType=VARCHAR}
+			</if>
+			<if test="!(bankId.length()>5)">
+				and bli.bankinfo_id = #{bankId,jdbcType=VARCHAR}
+			</if>
+			<choose>
+				<when test="dateFrom!=null and dateFrom!=''">
+					and bli.loan_repayment_date between
+					to_date('${dateFrom}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and bli.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dateTo!=null and dateTo!=''">
+					and to_date('${dateTo}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and to_date('2100-12-31','yyyy/MM/dd')
+				</otherwise>
+			</choose>
+		</where>
+	</select>
 
+	<select id="findTestDemo" resultMap="demoMap">
+		
+	</select>
+	<resultMap type="java.util.HashMap" id="demoMap">
+		<id property="com_id" column="com_id" />
+		<collection property="repaymentinfos">
+			<id property="repay_id" column="repay_id" />
+			<result property="loaninfo_id" column="loaninfo_id" />
+			<result property="emp_id" column="emp_id" />
+			<result property="repay_date" column="repay_date" />
+			<result property="repay_type" column="repay_type" />
+			<result property="repay_comment" column="repay_comment" />
+			<result property="repay_number" column="repay_number" />
+		</collection>
+	</resultMap>
 </mapper>

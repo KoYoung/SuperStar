@@ -10,8 +10,39 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
 	type="text/css"></link>
+<style>
+.canNotSee {
+	color: white
+}
+</style>
 </head>
 <body>
+	<form method="post" id="searchForm">
+		<table style="width: 1200px;">
+			<tr class="tot">
+				<td>&nbsp;&nbsp;&nbsp;合同号&nbsp;&nbsp;<input name="contractId"
+					type="text" class="easyui-textbox"
+					data-options=" prompt:'输入合同号模糊查询'"></td>
+				<td>客户姓名&nbsp;&nbsp;<input name="borName" type="text"
+					class="easyui-textbox" data-options=" prompt:'输入客户姓名查询'"></td>
+				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
+					name="loanStateId"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;银行&nbsp;&nbsp;<input type="text"
+					id="bankSearch" name="bankId"></td>
+			</tr>
+			<tr class="tot">
+				<td colSpan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还款日期&nbsp;&nbsp;<input
+					type="text" class="easyui-datebox" name="dateFrom">&nbsp;&nbsp;~&nbsp;&nbsp;<input
+					type="text" class="easyui-datebox" name="dateTo">
+				</td>
+				<td>&nbsp;&nbsp;&nbsp;负责人&nbsp;&nbsp;<input type="text"
+					class="easyui-textbox" data-options=" prompt:'输入负责人查询'"
+					name="empName"></td>
+				<td><a class="easyui-linkbutton"
+					data-options="iconCls:'icon-search'" onclick="searchFormSubmit()">查询</a></td>
+			</tr>
+		</table>
+	</form>
 	<table id="lmrDataGrid"></table>
 	<div id="addlmrDirlog">
 		<table>
@@ -70,6 +101,35 @@
 </body>
 </html>
 <script>
+	function searchFormSubmit() {
+		var data = $("#searchForm").serialize();
+		data = decodeURIComponent(data, true);
+		$.ajax({
+			url : '/badLoan/BorLoanInfo/findBorSearch',
+			type : 'POST',
+			data : data,
+			success : function() {
+				alert("success");
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}
+	$("#loanStateSearch").combobox({
+		url : '/badLoan/loanStateController/findLoanState',
+		valueField : 'LOANSTATEID',
+		textField : 'LOANSTATENAME',
+		panelHeight : 'height',
+		value : '----选择状态----'
+	});
+	$("#bankSearch").combobox({
+		url : '/badLoan/BankInfo/findBankInfo',
+		valueField : 'bankInfoId',
+		textField : 'bankInfoName',
+		panelHeight : 'auto',
+		value : '----选择银行----'
+	});
 	$("#loanState").combobox({
 		url : '/badLoan/loanStateController/findLoanState',
 		valueField : 'LOANSTATEID',
@@ -140,6 +200,10 @@
 			}, {
 				field : 'LOANSTATE_NAME',
 				title : '状态',
+				width : 100
+			}, {
+				field : 'BANKINFO_NAME',
+				title : '银行',
 				width : 100
 			} ] ],
 			toolbar : [ {
@@ -240,7 +304,6 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							alert("heiheihei");
 							alert(data);
 						},
 						error : function() {

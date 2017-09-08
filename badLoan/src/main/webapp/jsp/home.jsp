@@ -22,8 +22,8 @@
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
-		style="height: 120px;">
-		<h1 align="center">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h1>
+		style="height: 105px;">
+		<h3 align="center">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h3>
 		<div style="width: 250px; margin-left: 80%; padding-top: 10px;">
 			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp; <a
 				href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>

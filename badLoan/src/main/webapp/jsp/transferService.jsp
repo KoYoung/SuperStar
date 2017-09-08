@@ -83,7 +83,11 @@ tr td {
 															return isValid; // 返回false终止表单提交
 												},
 												success : function(data) {
-													alert("添加成功");
+													alert(data);
+													window.location.href = "/badLoan/jsp/transferService.jsp";
+												},
+												error : function(data) {
+													alert(data);
 													window.location.href = "/badLoan/jsp/transferService.jsp";
 												}
 											}); 
@@ -178,13 +182,16 @@ tr td {
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 			pagination : true, //底部分页
+			pageSize:5,
+			pageNumber:1,
+			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列
 			columns : [ [ {
 				field : 'loaninfoId',
 				title : '贷款编号',
 				width : 100
 			},  {
-				field : 'borName',
+				field : 'comName',
 				title : '贷款人',
 				width : 100
 			},{
@@ -198,6 +205,10 @@ tr td {
 			}, {
 				field : 'replaceDate',
 				title : '移交时间',
+				width : 200
+			},{
+				field : 'replaceComment',
+				title : '移交说明',
 				width : 200
 			}, {
 				field : 'loaninfoType',
