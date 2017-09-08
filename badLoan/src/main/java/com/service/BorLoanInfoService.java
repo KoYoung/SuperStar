@@ -57,13 +57,19 @@ public interface BorLoanInfoService {
 	 * 个人贷款模糊查询
 	 * 
 	 * @param datamap
-	 * @return 
+	 * @return
 	 */
 	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
-	
+
 	/**
 	 * test
+	 * 
 	 * @return
 	 */
 	List<Map<String, String>> findTestDemo();
+
+	/**
+	 * 合同编号唯一性验证
+	 */
+	List<BorLoanInfo> findcontractId(String contractId);
 }

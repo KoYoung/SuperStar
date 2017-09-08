@@ -155,4 +155,14 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public List<Map<String, String>> findTestDemo() {
 		return borLoanInfoDao.findTestDemo();
 	}
+
+	/**
+	 * 合同编号唯一性验证
+	 */
+	@Override
+	public List<BorLoanInfo> findcontractId(String contractId) {
+
+		return BorLoanInfoDao.findcontractId(contractId);
+	}
+
 }

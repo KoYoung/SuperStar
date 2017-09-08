@@ -26,8 +26,7 @@ public interface ComloanInfoService {
 	 */
 	List<BorLoanInfo> findComloanInfo2(String comloaninfoId);
 	/**
-	 * 根据贷款编号修改企业业务移交相关信息
-	 * @return 
+	 * 合同编号唯一性验证
 	 */
-	//public void modifyComloanInfo(String empId,String comloaninfoId);
+	List<ComloanInfo> findContractIdCom(String contractId);
 }

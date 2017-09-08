@@ -54,6 +54,8 @@
 		update comloaninfo set emp_id=#{0} 
 		where comloaninfo_id=#{1} and loaninfo_type=1
 	</update>
-	
-	
+	<!-- 合同编号唯一性验证 -->
+	<select id="findContractIdCom" resultType="com.entity.ComloanInfo">
+		select contract_id from comloaninfo where contract_id=#{contractId}
+	</select>
 </mapper>

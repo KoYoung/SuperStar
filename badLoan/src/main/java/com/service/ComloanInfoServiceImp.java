@@ -92,10 +92,11 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 
 		return ComloanInfoDao.findComloanInfo2(comloaninfoId);
 	}
+
 	/**
 	 * 根据贷款编号修改企业业务移交相关信息
 	 * 
-	 * @return
+	 * @return 合同编号唯一性验证
 	 */
 	/*
 	 * @Override public void modifyComloanInfo(String empId,String
@@ -103,5 +104,10 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	 * 
 	 * }
 	 */
+	@Override
+	public List<ComloanInfo> findContractIdCom(String contractId) {
+
+		return ComloanInfoDao.findContractIdCom(contractId);
+	}
 
 }

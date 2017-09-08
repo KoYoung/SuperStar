@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,10 +35,17 @@ public class ComloanInfoController {
 	 */
 	@RequestMapping("/addComloanInfo")
 	@ResponseBody
-	public String addComloanInfo(MultipartFile borPhoto,HttpServletRequest request,ComloanInfo comloanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
+	public String addComloanInfo(@RequestParam("borPhoto") MultipartFile[] borPhotos,HttpServletRequest request,ComloanInfo comloanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
 			,LoanManageRecord lmr,Loanmanage lonm) throws IOException{
-		String filepath = FileUpload.uploadFile(borPhoto, request);
-		pledge.setPledgePhoto(filepath);
+		List files = FileUpload.uploadFile1(borPhotos, request); 
+		System.out.println("-----------------------");
+				String phonePath="";
+            for (int i = 0; i < files.size(); i++) {
+            	
+            	phonePath =phonePath+files.get(i).toString()+",";
+                // 保存文件
+            }
+        pledge.setPledgePhoto(phonePath);
 		System.out.println("zhaopi=a==n====="+pledge.getPledgePhoto());
 		int flag = comloanInfoService.addComloanInfo(comloanInfo, pledge, customerGoods, guarantor, borgua, lmr, lonm);
 		if(flag>0){
@@ -60,5 +68,22 @@ public class ComloanInfoController {
 		pr.setRows(list);
 		pr.setTotal(comList.size());
 		return pr;
+	}
+	/**
+	 * 合同编号唯一性验证
+	 */
+	@RequestMapping("/findContractIdCom")
+	@ResponseBody
+	public boolean findContractIdCom(String contractId){
+		System.out.println("comList--"+contractId);
+		List<ComloanInfo> comList = comloanInfoService.findContractIdCom(contractId);
+		System.out.println("*******comList.size()********"+comList.size());
+		if(comList.size()>0){
+			return false;
+		}else{
+			return true;
+		}
+		
+		
 	}
 }

@@ -1,7 +1,9 @@
 package com.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSON;
 import com.entity.BorLoanInfo;
 import com.entity.Borgua;
-import com.entity.ComloanInfo;
 import com.entity.CustomerGoods;
 import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
@@ -64,6 +65,28 @@ public class BorLoanInfoController {
 			return "添加个人用户贷款信息success";
 		} else {
 			return "添加个人用户贷款信息error";
+		}
+
+	}
+
+	// requestParam要写才知道是前台的那个数组
+	public String filesUpload(HttpServletRequest request, BorLoanInfo borLoanInfo, Pledge pledge,
+			CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua, LoanManageRecord lmr,
+			Loanmanage loanmanage, @RequestParam("borPhoto") MultipartFile[] borPhotos) {
+		List files = FileUpload.uploadFile1(borPhotos, request);
+		System.out.println("-----------------------");
+		String phonePath = "";
+		for (int i = 0; i < files.size(); i++) {
+			phonePath = phonePath + files.get(i).toString() + ",";
+		}
+		// 保存图片
+		pledge.setPledgePhoto(phonePath);
+		System.out.println("zhaopi=a==n=====" + pledge.getPledgePhoto());
+		int flag = borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
+		if (flag > 0) {
+			return "add success";
+		} else {
+			return "add false";
 		}
 	}
 
@@ -152,9 +175,26 @@ public class BorLoanInfoController {
 		System.out.println(findBorSearch);
 		return findBorSearch;
 	}
+
 	@RequestMapping(value = "/findTestDemo")
 	@ResponseBody
 	public List<Map<String, String>> findTestDemo() {
 		return borService.findTestDemo();
 	}
+
+	/**
+	 * 合同编号唯一性验证
+	 */
+	@RequestMapping("/findcontractId")
+	@ResponseBody
+	public boolean findcontractId(String contractId) {
+		List<BorLoanInfo> cuList = borService.findcontractId(contractId);
+		if (cuList.size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
 }

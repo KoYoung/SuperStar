@@ -24,8 +24,9 @@ tr td {
 </style>
 <body>
 	<div>
-		<a class="easyui-linkbutton" data-options="iconCls:'icon-add'"
-			onclick="submitForm()" id="addBtn">业务移交</a>
+		<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" id="addBtn">业务移交</a>
+		<!-- <input class="easyui-textbox" id="pledgeName" name="pledgeName"/>
+		<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>   -->
 	</div>
 	<table id="dg"></table>
 	<div id="dd">
@@ -102,9 +103,9 @@ tr td {
 						});
 		$("#borloaninfoId").blur(
 			function() {
-				$("#borId").val("");
-				$("#empName").val("");
-				$("#bankinfoName").val("");
+				$("#borId").val();
+				$("#empName").val();
+				$("#bankinfoName").val();
 				var data={};
 				data["loaninfoType"] = $("#loaninfoType").val();
 				data["borloaninfoId"] = $("#borloaninfoId").val();
@@ -117,11 +118,8 @@ tr td {
 					data : JSON.stringify(data),
 					//dataType : "text",
 					success : function(data) {
-						/* alert(data.borName);
-						alert(data.empName);
-						alert(data.bankinfoName); */
 						$("#borId").val(data.borName);
-						$("#empName").val(data.empName+" "+data.empId);
+						$("#empName").val(data.empName+data.empId);
 						$("#bankinfoName").val(data.bankinfoName);
 					}
 				});
@@ -175,7 +173,7 @@ tr td {
 			panelHeight : "auto",
 			editable : false,
 			required : true,
-			width : 170,
+			width : 200,
 		});
 		$('#dg').datagrid({
 			url : '/badLoan/replace/findReplace',
