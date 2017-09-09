@@ -23,8 +23,9 @@ public class LoanManageRecordController {
 	 */
 	@RequestMapping("/findlmr")
 	@ResponseBody
-	public List<LoanManageRecord> findLoanManageRecord(){
-		return lmrService.findLoanManageRecord();
+	public List<LoanManageRecord> findLoanManageRecord(String loaninfoId){
+		System.out.println("贷款编号---》"+loaninfoId);
+		return lmrService.findLoanManageRecord(loaninfoId);
 	}
 	/**
 	 * 添加一条贷款处理记录

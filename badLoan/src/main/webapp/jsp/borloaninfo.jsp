@@ -698,11 +698,11 @@ $('#dd')
 				        return "处理中";
 				    }
 				}
-			},    {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,  
+			},    /* {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,  
 		        formatter:function(value, row, index){  
 		            var str = '<a href="#" name="opera" class="easyui-linkbutton" >同意</a>';  
 		            return str;  
-		    }}  ]]
+		    }}*/ ]]
 		});
 	    
 	</script>

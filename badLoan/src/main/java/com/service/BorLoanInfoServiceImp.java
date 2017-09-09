@@ -47,6 +47,8 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		System.out.println("银行id----"+borLoanInfo.getBankinfoId());
 		String pledgeGenre = borLoanInfo.getLoanType();
 		System.out.println("担保人："+" "+pledgeGenre);
+		int unrepayNumber = Integer.parseInt(borLoanInfo.getLoanNumber());
+		borLoanInfo.setUnrepayNumber(unrepayNumber);
 		pledge.setPledgeGenre(pledgeGenre);
 		String empId = borLoanInfo.getEmpId();
 		lmr.setEmpId(empId);

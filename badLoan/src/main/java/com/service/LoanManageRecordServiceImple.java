@@ -24,9 +24,9 @@ public class LoanManageRecordServiceImple implements LoanManageRecordService {
 	 * @return LMR集合
 	 */
 	@Override
-	public List<LoanManageRecord> findLoanManageRecord() {
+	public List<LoanManageRecord> findLoanManageRecord(String loaninfoId) {
 
-		return lmrDao.findLoanManageRecord();
+		return lmrDao.findLoanManageRecord(loaninfoId);
 	}
 
 	/**

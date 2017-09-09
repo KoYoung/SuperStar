@@ -30,8 +30,19 @@ public class BorLoanInfo {
 	private String pledgeOwner;
 	private String guaName;
 	private String lmrName;
+	private Integer unrepayNumber;
 	
 	
+	
+
+	public Integer getUnrepayNumber() {
+		return unrepayNumber;
+	}
+
+	public void setUnrepayNumber(Integer unrepayNumber) {
+		this.unrepayNumber = unrepayNumber;
+	}
+
 	public String getBorloaninfoId() {
 		return borloaninfoId;
 	}

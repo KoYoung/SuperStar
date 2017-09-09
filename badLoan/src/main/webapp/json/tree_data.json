@@ -58,7 +58,7 @@
 },{
    	"id":4,
     "text":"贷款信息管理",    
-    "state":"open",    
+    "state":"closed",    
     "children":[{  
     	"id":401,   
         "text":"个人贷款信息管理",
@@ -81,7 +81,7 @@
 },{
    	"id":5,
     "text":"不良贷款处理",    
-    "state":"closed",    
+    "state":"open",    
     "children":[{  
     	"id":501,   
         "text":"催收管理",
@@ -102,6 +102,12 @@
         }
     },{    
     	"id":504, 
+        "text":"核销审核",
+        "attributes":{    
+            "url":"writeOffManage.jsp"
+        }
+    },{    
+    	"id":505, 
         "text":"贷款清收",
         "attributes":{    
             "url":"studentManager.jsp"

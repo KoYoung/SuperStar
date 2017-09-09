@@ -9,10 +9,10 @@ import com.entity.LoanManageRecord;
  */
 public interface LoanManageRecordDao {
 	/**
-	 * 查询所有贷款处理记录
+	 * 根据贷款编号查询所有贷款处理记录
 	 * @return LMR集合
 	 */
-	List<LoanManageRecord> findLoanManageRecord();
+	List<LoanManageRecord> findLoanManageRecord(String loaninfoId);
 	/**
 	 * 添加个人贷款处理记录
 	 * @param lmr

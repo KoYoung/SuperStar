@@ -13,7 +13,7 @@ public interface LoanManageRecordService {
 	 * 
 	 * @return LMR集合
 	 */
-	List<LoanManageRecord> findLoanManageRecord();
+	List<LoanManageRecord> findLoanManageRecord(String loaninfoId);
 
 	/**
 	 * 添加一条贷款处理记录
