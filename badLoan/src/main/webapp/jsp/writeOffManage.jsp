@@ -42,10 +42,10 @@ td {
 <body>
 	<div id="toobar">
 		<a id="xiangBtn" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'">详情</a>
-		<a id="yesBtn" href="javascript:void(0)" class="easyui-linkbutton"
+		<!-- <a id="yesBtn" href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-ok'">同意核销</a> 
 		<a id="noBtn" href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-cancel'">驳回核销</a>
+			data-options="iconCls:'icon-cancel'">驳回核销</a> -->
 	</div>
 	<table id="dg"></table>
 	<div id="aa">
@@ -122,7 +122,8 @@ td {
 			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列
 			onLoadSuccess:function(data){    
-	            $("a[name='opera']").linkbutton({text:'下订单',plain:true,iconCls:'icon-add'}); 
+	            $("a[name='yes']").linkbutton({text:'同意核销',plain:true,iconCls:'icon-ok'});
+	            $("a[name='no']").linkbutton({text:'驳回核销',plain:true,iconCls:'icon-cancel'});
 	   	 	},
 			columns : [ [ {
 				field : 'loaninfoId',
@@ -151,7 +152,7 @@ td {
 			}, {
 				field : 'loanDate',
 				title : '贷款日期',
-				width : 150
+				width : 100
 			},{
 				field : 'loanRepaymentDate',
 				title : '还款日期',
@@ -169,13 +170,22 @@ td {
 				title : '贷款类型',
 				width : 100,
 				formatter:function(value){
-				    if(value=0){
+				    if(value==0){
 				        return "个人贷款";
 				    }else{
 				        return "企业贷款";
 				    }
 				}
-			}]]
+			},{field:'operate1',title:'操作',align:'center',width:$(this).width()*0.1,  
+		        formatter:function(value, row, index){  
+		            var str = '<a href="#" id="yesBtn" name="yes" class="easyui-linkbutton" >同意</a>';  
+		            return str;  
+		    }},{field:'operate2',title:'操作',align:'center',width:$(this).width()*0.1,  
+		        formatter:function(value, row, index){  
+		            var str = '<a href="#" id="noBtn" name="no" class="easyui-linkbutton" >驳回</a>';  
+		            return str;  
+		    }
+		    }]]
 		});
 	//点击详情按钮弹出模态框
 	$('#aa').dialog({    
@@ -275,13 +285,16 @@ td {
         } 
     });
 	//点击添加按钮弹出模态框
-	$("#yesBtn").click(function(){
-		$('#dd').dialog("open");
-	});
-		$('#dd').dialog({    
-		    title: '添加客户信息', 
-		    iconCls:'icon-add',
-		    closed: true
-		});
+	$('#yesBtn').dialog({    
+	    title: 'My Dialog',    
+	    width: 200,    
+	    height: 200,    
+	    closed: false,    
+	    cache: false,    
+	    modal: true ,
+	    
+	});    
+
+		
 </script>
 </html>

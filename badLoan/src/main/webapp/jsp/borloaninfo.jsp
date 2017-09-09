@@ -692,7 +692,7 @@ $('#dd')
 				title : '贷款状态',
 				width : 100,
 				formatter:function(value){
-				    if(value='0'){
+				    if(value=='0'){
 				        return "待处理";
 				    }else{
 				        return "处理中";
