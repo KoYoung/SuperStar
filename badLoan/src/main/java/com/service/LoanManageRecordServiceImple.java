@@ -39,4 +39,13 @@ public class LoanManageRecordServiceImple implements LoanManageRecordService {
 	public int addLoanManageRecord(LoanManageRecord lmr) {
 		return lmrDao.addLoanManageRecord(lmr);
 	}
+	/**
+	 * 当核销通过时，添加贷款处理记录
+	 */
+
+	@Override
+	public int addLoanMR(LoanManageRecord loanManageRecord) {
+		
+		return lmrDao.addLoanMR(loanManageRecord);
+	}
 }

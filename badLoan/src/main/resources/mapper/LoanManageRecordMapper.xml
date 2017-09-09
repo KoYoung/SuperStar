@@ -20,4 +20,8 @@
 	<!-- <insert id="addLoanManageRecordCom" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord"> 
 		insert into loanmanagerecord values(lmr_sequence.nextval,comloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null) 
 		</insert> -->
+	<!-- 当核销通过时，添加贷款处理记录 -->
+	<insert id="addLoanMR" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord values(lmr_sequence.nextval,#{loaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},9,#{lmrComment,jdbcType=VARCHAR})
+	</insert>	
 </mapper>

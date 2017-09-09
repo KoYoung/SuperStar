@@ -16,4 +16,8 @@ public interface WriteoffManageService {
 	 * 根据贷款编号查询这笔贷款的所有回收记录
 	 */
 	List<Repaymentinfo> findReayment(String loaninfoId);
+	/**
+	 * 添加核销信息
+	 */
+	int addWriteoffManage(WriteoffManage write);
 }

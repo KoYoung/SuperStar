@@ -31,6 +31,7 @@ public class WriteoffManage {
 	private String lmrName;
 	private Integer unrepayNumber;
 	private String loanstateName;
+	
 	private List<Repaymentinfo> repaymentinfo;
 	
 	

@@ -30,18 +30,20 @@
 		bi.loan_date,bi.loan_repayment_date,bi.unrepay_number,
 		e.emp_id
 		empId,e.emp_name,
-		bk.bankinfo_name,bk.bankinfo_id,lg.lmr_name,
-		lg.lmr_comment,lt.loantype_name,ls.loanstate_name
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
 		from employee
 		e,borloaninfo bi,loanstate ls,
 		borrower bw,loantype lt,bankinfo
-		bk,loanmanagerecord lg
+		bk,loanmanage lg
 		where bi.bor_id=bw.bor_id and bi.emp_id=e.emp_id
-		and bi.borloaninfo_id=lg.loaninfo_id
+		and
+		bi.borloaninfo_id=lg.loaninfo_id
 		and bi.loan_type=lt.loantype_id
-		and bi.bankinfo_id=bk.bankinfo_id
-		and lg.lmr_name=ls.loanstate_id
-		and lg.lmr_name=8
+		and
+		bi.bankinfo_id=bk.bankinfo_id
+		and lg.loanstate_id=ls.loanstate_id
+		and lg.loanstate_id=8
 		union
 		select
 		ci.loaninfo_type,ci.comloaninfo_id loaninfoId,
@@ -50,11 +52,11 @@
 		ci.loan_date,ci.loan_repayment_date,ci.unrepay_number,
 		e.emp_id
 		empId,e.emp_name,
-		bk.bankinfo_name,bk.bankinfo_id,lg.lmr_name,
-		lg.lmr_comment,lt.loantype_name,ls.loanstate_name
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
 		from comloaninfo
 		ci,company cp,employee e,
-		loanmanagerecord lg,loantype lt,bankinfo
+		loanmanage lg,loantype lt,bankinfo
 		bk,loanstate ls
 		where ci.com_id=cp.com_id and ci.emp_id=e.emp_id
 		and
@@ -62,12 +64,21 @@
 		and ci.loan_type=lt.loantype_id
 		and
 		ci.bankinfo_id=bk.bankinfo_id
-		and lg.lmr_name=ls.loanstate_id
-		and lg.lmr_name=8
+		and lg.loanstate_id=ls.loanstate_id
+		and lg.loanstate_id=8
+
 	</select>
 	<!-- 根据贷款编号查询这笔贷款的所有回收记录 -->
 	<select id="findReayment" resultType="com.entity.Repaymentinfo">
-		select re.*,e.emp_name from repaymentinfo re,employee e 
+		select re.*,e.emp_name from
+		repaymentinfo re,employee e
 		where re.emp_id=e.emp_id and loaninfo_id=#{loaninfoId}
 	</select>
+	<!-- 添加核销信息 -->
+	<insert id="addWriteoffManage" parameterType="com.entity.Repaymentinfo">
+		insert into
+		writeoffmanage values(writeoff_se.nextval,
+		#{loaninfoId,jdbcType=VARCHAR},#{borId,jdbcType=VARCHAR}
+		,#{empId,jdbcType=VARCHAR},#{witeoffMoney,jdbcType=NUMERIC},#{opinion,jdbcType=VARCHAR})
+	</insert>
 </mapper>

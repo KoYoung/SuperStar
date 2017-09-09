@@ -3,9 +3,12 @@ package com.web;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.dao.LoanManageRecordDao;
 import com.entity.Repaymentinfo;
 import com.entity.WriteoffManage;
 import com.service.WriteoffManageService;
@@ -46,6 +49,23 @@ public class WriteoffManageController {
 		List<Repaymentinfo> reList = writeService.findReayment(loaninfoId);
 		System.out.println("贷款编号---》"+loaninfoId);
 		return reList;
+	}
+	/**
+	 * 添加核销信息
+	 */
+	@RequestMapping("/addWriteoffManage")
+	@ResponseBody
+	public String addWriteoffManage(@RequestBody String data){
+		
+		//System.out.println("========================"+data);
+		WriteoffManage wm=JSON.parseObject(data,WriteoffManage.class);
+		int flag = writeService.addWriteoffManage(wm);
+		if(flag==1){
+			return "add success";
+		}else{
+			return "add error";
+		}
+	
 	}
 	
 }

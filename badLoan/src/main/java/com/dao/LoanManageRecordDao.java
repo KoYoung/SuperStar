@@ -24,5 +24,9 @@ public interface LoanManageRecordDao {
 	 * @param lmr
 	 * @return 成功返回1
 	 */
-	/*int addLoanManageRecordCom(LoanManageRecord lmr);*/
+	//int addLoanManageRecordCom(LoanManageRecord lmr);
+	/**
+	 * 当核销通过时，添加贷款处理记录
+	 */
+	int addLoanMR(LoanManageRecord loanManageRecord);
 }
