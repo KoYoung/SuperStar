@@ -33,17 +33,30 @@ public class Find {
 	
 	//员工表(employee)
 	private String empName;				//员工姓名
+	private String empGender;			//员工性别
+	private String empNation;			//员工民族
+	private String empTelphone;			//员工电话
+	private String empEmail;			//员工email
+	private String empCardnumber;		//员工身份证号
+	private String empAddress;			//员工住址
+	private String empEducation;		//员工学历
+	private String empDepartment;		//员工部门
+	private String empBankinfo;			//员工银行
 	
 	//担保人表(guarantor)
 	private String guaName;				//担保人姓名
+	private String guaGender;			//担保人性别
+	private String guaNation;			//担保人民族
 	private String guaPhone;			//担保人联系方式
 	private String guaCardtype;			//担保人证件类型
 	private String guaCardnumber;		//担保人证件号码
+	private String guaRegister;			//担保人户籍地址
+	private String guaAddress;			//担保人居住地址
 	private String guaUnit;				//担保人工作单位
 	private String guaPosition;			//担保人职位
 	private String guaEducation;		//担保人学历
 	private String guaIncome;			//担保人收入
-	
+
 	//!!!担保人关系表（多对多）(borgua)
 	private String loaninfoId;			//贷款编号
 	private String guaId;				//担保人编号
@@ -70,6 +83,37 @@ public class Find {
 	
 	//!!!客户抵押物关系表(多对多)(customergoods)
 	private String goodsId;				//抵押物品编号
+	
+	//客户紧急联系人关联表
+	private String contectId;
+	private String bcomId;
+	
+	//紧急联系人表
+	private String contectName;
+
+	public String getContectId() {
+		return contectId;
+	}
+
+	public void setContectId(String contectId) {
+		this.contectId = contectId;
+	}
+
+	public String getBcomId() {
+		return bcomId;
+	}
+
+	public void setBcomId(String bcomId) {
+		this.bcomId = bcomId;
+	}
+
+	public String getContectName() {
+		return contectName;
+	}
+
+	public void setContectName(String contectName) {
+		this.contectName = contectName;
+	}
 
 	public String getBankinfoName() {
 		return bankinfoName;
@@ -356,6 +400,110 @@ public class Find {
 
 	public void setLoanNumber(String loanNumber) {
 		this.loanNumber = loanNumber;
+	}
+	
+	public String getGuaGender() {
+		return guaGender;
+	}
+
+	public void setGuaGender(String guaGender) {
+		this.guaGender = guaGender;
+	}
+
+	public String getGuaRegister() {
+		return guaRegister;
+	}
+
+	public void setGuaRegister(String guaRegister) {
+		this.guaRegister = guaRegister;
+	}
+
+	public String getGuaAddress() {
+		return guaAddress;
+	}
+
+	public void setGuaAddress(String guaAddress) {
+		this.guaAddress = guaAddress;
+	}
+
+	public String getGuaNation() {
+		return guaNation;
+	}
+
+	public void setGuaNation(String guaNation) {
+		this.guaNation = guaNation;
+	}
+
+	public String getEmpGender() {
+		return empGender;
+	}
+
+	public void setEmpGender(String empGender) {
+		this.empGender = empGender;
+	}
+
+	public String getEmpNation() {
+		return empNation;
+	}
+
+	public void setEmpNation(String empNation) {
+		this.empNation = empNation;
+	}
+
+	public String getEmpTelphone() {
+		return empTelphone;
+	}
+
+	public void setEmpTelphone(String empTelphone) {
+		this.empTelphone = empTelphone;
+	}
+
+	public String getEmpEmail() {
+		return empEmail;
+	}
+
+	public void setEmpEmail(String empEmail) {
+		this.empEmail = empEmail;
+	}
+
+	public String getEmpCardnumber() {
+		return empCardnumber;
+	}
+
+	public void setEmpCardnumber(String empCardnumber) {
+		this.empCardnumber = empCardnumber;
+	}
+
+	public String getEmpAddress() {
+		return empAddress;
+	}
+
+	public void setEmpAddress(String empAddress) {
+		this.empAddress = empAddress;
+	}
+
+	public String getEmpEducation() {
+		return empEducation;
+	}
+
+	public void setEmpEducation(String empEducation) {
+		this.empEducation = empEducation;
+	}
+
+	public String getEmpDepartment() {
+		return empDepartment;
+	}
+
+	public void setEmpDepartment(String empDepartment) {
+		this.empDepartment = empDepartment;
+	}
+
+	public String getEmpBankinfo() {
+		return empBankinfo;
+	}
+
+	public void setEmpBankinfo(String empBankinfo) {
+		this.empBankinfo = empBankinfo;
 	}
 	
 }

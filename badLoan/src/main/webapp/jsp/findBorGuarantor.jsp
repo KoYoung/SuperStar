@@ -16,29 +16,44 @@
 	type="text/css"></link>
 </head>
 <body>
+	<input type="hidden" id="one" value="<%=request.getParameter("id") %>">
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-	$("#dg").datagrid({
-		url : "/badLoan/find/findBorGuarantor",
-		pagination:true,//开启分页功能
-		pageNumber:1,
-		pageSize:5,
-		pageList:[5,10,15,20,25,30],
-	    fitColumns:true,
-		striped:true,
-		loadMsg:"努力加载中......",
-		columns : [[
-			{field:'borName',title:'贷款人'},
-			{field:'guaName',title:'担保人'},
-			{field:'guaPhone',title:'联系电话'},
-			{field:'guaCardtype',title:'证件类型'},
-			{field:'guaCardnumber',title:'证件号码'},
-			{field:'guaUnit',title:'工作单位'},
-			{field:'guaPosition',title:'职位'},
-			{field:'guaEducation',title:'学历'},
-			{field:'guaIncome',title:'收入'}
-		]]
+	//document.getElementById("one").value = location.href;
+	$(function(){
+		var a = $("#one").val();
+		$.ajax({
+			url : "/badLoan/find/findBorGuarantor",
+			type : "post",
+			data : {borloaninfoId : a},
+			success : function(data){
+				$("#dg").datagrid({
+					url : data,
+					pagination:true,//开启分页功能
+					pageNumber:1,
+					pageSize:5,
+					pageList:[5,10,15,20,25,30],
+					singleSelect:true,
+					rownumbers:true,
+				    fitColumns:true,
+					striped:true,
+					loadMsg:"努力加载中......",
+					columns : [[
+						{field:'borloaninfoId',title:'编号',width:100},
+						{field:'borName',title:'贷款人',width:100},
+						{field:'guaName',title:'担保人',width:100},
+						{field:'guaPhone',title:'联系电话',width:100},
+						{field:'guaCardtype',title:'证件类型',width:100},
+						{field:'guaCardnumber',title:'证件号码',width:100},
+						{field:'guaUnit',title:'工作单位',width:100},
+						{field:'guaPosition',title:'职位',width:100},
+						{field:'guaEducation',title:'学历',width:100},
+						{field:'guaIncome',title:'收入',width:100}
+					]]
+				});
+			}		
+		});
 	});
 </script>
 </html>

@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- js文件 -->
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
@@ -23,9 +22,9 @@
 $(function(){
 	var a = $("#one").val();
 	$.ajax({
-		url : "/badLoan/find/findBorPledge",
+		url : "/badLoan/find/findGuarantorBor",
 		type : "post",
-		data : {borloaninfoId : a},
+		data : {guaId : a},
 		success : function(data){
 			$("#dg").datagrid({
 				url : data,
@@ -39,20 +38,19 @@ $(function(){
 				striped:true,
 				loadMsg:"努力加载中......",
 				columns : [[
-					{field:'borloaninfoId',title:'编号',width:100},
+					{field:'guaId',title:'编号',width:100},
+					{field:'guaName',title:'担保人',width:100},
 					{field:'borName',title:'贷款人',width:100},
-					{field:'pledgeGenre',title:'抵押或质押',width:100},
-					{field:'pledgeName',title:'抵押物品',width:100},
-					{field:'pledgeValue',title:'价值',width:100},
-					{field:'pledgePhoto',title:'照片',width:100}
+					{field:'bankinfoName',title:'银行',width:100},
+					{field:'loanNumber',title:'贷款金额',width:100},
+					{field:'contectName',title:'紧急联系人',width:100},
+					{field:'loanDate',title:'贷款日期',width:100},
+					{field:'loanRepaymentdate',title:'还款日期',width:100},
+					{field:'loanstateName',title:'贷款状态',width:100}
 				]]
 			});
-		}
+		}		
 	});
 });
-
-	
-	
-	
 </script>
 </html>
