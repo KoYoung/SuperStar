@@ -36,11 +36,11 @@
 					<td><input id="state" name="state"></td>
 				</tr>
 				<tr>
-					
-					
+
+
 				</tr>
 			</table>
-			</form>
+		</form>
 	</div>
 </body>
 <script>
@@ -120,7 +120,6 @@
 			title : '添加用户',
 			width : 800,
 			height : 300,
-
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -129,7 +128,7 @@
 						success : function(data) {
 							datagrid.datagrid("reload");
 							p.dialog("close");
-							
+
 						}
 					});
 				}

@@ -24,10 +24,9 @@ import com.service.BorRowerService;
 import com.util.FileUpload;
 import com.util.Paging;
 import com.util.PagingResult;
-
 /**
- * 张少华 个人
- * 
+ * 张少华
+ * 个人
  * @author Administrator
  *
  */
@@ -36,102 +35,94 @@ import com.util.PagingResult;
 public class BorRowerController {
 	@Autowired
 	private BorRowerService borRowerService;
-
 	@RequestMapping("/findborr")
 	@ResponseBody
-	public PagingResult findBor(HttpServletRequest request, HttpServletResponse response) {
-		int page = Integer.parseInt(request.getParameter("page"));
-		int rows = Integer.parseInt(request.getParameter("rows"));
-		List<BorRower> list = borRowerService.findBorRowers();
-		Paging<BorRower> paging = new Paging<BorRower>();
-		List<BorRower> list1 = paging.paging(list, rows, page);
-		PagingResult<BorRower> pResult = new PagingResult<BorRower>();
+	public PagingResult findBor(HttpServletRequest request,HttpServletResponse response) {
+		int page=Integer.parseInt(request.getParameter("page"));
+		int rows=Integer.parseInt(request.getParameter("rows"));
+		List<BorRower> list=borRowerService.findBorRowers();
+		Paging<BorRower>paging=new Paging<BorRower>();
+		List<BorRower> list1=paging.paging(list, rows, page);
+		PagingResult<BorRower>pResult=new PagingResult<BorRower>();
 		pResult.setTotal(list.size());
 		pResult.setRows(list1);
 		return pResult;
 	}
-
-	/**
-	 * 添加个人用户基本信息
-	 * 
-	 * @param bor
-	 * @param response
-	 */
+	
 	@RequestMapping("/findbormohu")
 	@ResponseBody
-	public PagingResult findbormohu(@RequestParam(value = "va") String va, HttpServletRequest request) {
-		int page = Integer.parseInt(request.getParameter("page"));
-		int rows = Integer.parseInt(request.getParameter("rows"));
-		// System.out.println(request.getParameter("#mohu"));
-		// String str = request.getParameter("va");
-
+	public PagingResult findbormohu(@RequestParam(value="va") String va, HttpServletRequest request){
+		int page=Integer.parseInt(request.getParameter("page"));
+		int rows=Integer.parseInt(request.getParameter("rows"));
+		//System.out.println(request.getParameter("#mohu"));
+		//String str = request.getParameter("va");
 		try {
-			va = new String(va.getBytes("iso-8859-1"), "UTF-8");
-			System.out.println("sssssssssssssssssssssss" + va);
+			va = new String(va.getBytes("iso-8859-1"),"UTF-8");
+			System.out.println("sssssssssssssssssssssss"+va);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<BorRower> list = borRowerService.findBorRowersMohu(va);
-		Paging<BorRower> paging = new Paging<BorRower>();
-		List<BorRower> list1 = paging.paging(list, rows, page);
-		PagingResult<BorRower> pResult = new PagingResult<BorRower>();
+		List<BorRower>list=borRowerService.findBorRowersMohu(va);
+		Paging<BorRower>paging=new Paging<BorRower>();
+		List<BorRower> list1=paging.paging(list, rows, page);
+		PagingResult<BorRower>pResult=new PagingResult<BorRower>();
 		pResult.setTotal(list.size());
 		pResult.setRows(list1);
 		return pResult;
-	}
-
-	/*
-	 * @RequestMapping("/addbor")
-	 * 
-	 * @ResponseBody public String addbor(@RequestBody String str) {
-	 * System.out.println("-----------1--------------str-------------"+str);
-	 * BorRower bor=JSON.parseObject(str,BorRower.class ); Contect
-	 * con=JSON.parseObject(str, Contect.class); ContectUser
-	 * contect=JSON.parseObject(str, ContectUser.class); int flag =
-	 * borRowerService.addBorrowers(bor,con,contect);
-	 * System.out.println("--------------2---------------------"+flag);
-	 * if(flag>0){ return "success"; }else{ return "eroor"; } }
-	 */
-
+	} 
+	
+	/*@RequestMapping("/addbor")
+	@ResponseBody
+	public String addbor(@RequestBody String str) {
+		System.out.println("-----------1--------------str-------------"+str);
+		BorRower bor=JSON.parseObject(str,BorRower.class );
+		Contect  con=JSON.parseObject(str, Contect.class);
+		ContectUser contect=JSON.parseObject(str, ContectUser.class);
+		int flag = borRowerService.addBorrowers(bor,con,contect);
+		System.out.println("--------------2---------------------"+flag);
+		if(flag>0){
+			return "success";
+		}else{
+			return "eroor";
+		}
+	}*/
+	
 	@RequestMapping("/addbor")
 	@ResponseBody
-	public String addbor(BorRower bor, Contect contect, ContectUser contectUser, MultipartFile borP,
-			HttpServletRequest request) throws IOException {
-		String filePash = FileUpload.uploadFile(borP, request);
+	public String  addbor(BorRower bor,Contect contect,ContectUser contectUser,MultipartFile borP,HttpServletRequest request) throws IOException{
+		String  filePash= FileUpload.uploadFile(borP, request);
 		bor.setBorPhoto(filePash);
-		System.out.println("=====bor===" + bor.getBorPhoto());
-		int flag = borRowerService.addBorrowers(bor, contect, contectUser);
-		if (flag > 0) {
+		System.out.println("=====bor==="+bor.getBorPhoto());
+		int flag=borRowerService.addBorrowers(bor, contect,contectUser);
+		if(flag>0){
 			return "success";
-		} else {
+		}else{
 			return "error";
 		}
 	}
-
-	/*
-	 * @RequestMapping(value="/addUplod",method = RequestMethod.POST)
-	 * 
-	 * @ResponseBody public String addUplod(MultipartFile
-	 * borPhoto,HttpServletRequest request) throws IOException{ String filePath
-	 * = FileUpload.uploadFile(borPhoto, request);
-	 * 
-	 * System.out.println("====filePath=========="+filePath); return filePath;
-	 * 
-	 * }
-	 */
+	
+	/*@RequestMapping(value="/addUplod",method = RequestMethod.POST)
+	@ResponseBody
+	public String addUplod(MultipartFile  borPhoto,HttpServletRequest request) throws IOException{
+		String filePath = FileUpload.uploadFile(borPhoto, request);
+								
+		System.out.println("====filePath=========="+filePath);
+		return filePath;
+		
+	}*/
 	@RequestMapping("/modify")
 	@ResponseBody
-	public String modifyBorRower(@RequestBody String string) {
-		BorRower bor = JSON.parseObject(string, BorRower.class);
-		ContectUser contectUser = JSON.parseObject(string, ContectUser.class);
-		Contect contect = JSON.parseObject(string, Contect.class);
-		int flag = borRowerService.modifyBorRower(bor, contectUser, contect);
-		if (flag > 0) {
+	public String  modifyBorRower(@RequestBody String  string){
+		BorRower bor=JSON.parseObject(string, BorRower.class);
+		ContectUser contectUser=JSON.parseObject(string, ContectUser.class);
+		Contect contect=JSON.parseObject(string, Contect.class);
+		int flag=borRowerService.modifyBorRower(bor,contectUser,contect);
+		if (flag>0) {
 			return "success";
-		} else {
+		}else{
 			return "error";
 		}
 	};
-
+	
 }

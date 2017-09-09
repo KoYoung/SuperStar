@@ -135,7 +135,6 @@
 							pageSize : 5,
 							pageList : [ 5, 10, 20 ],
 							toolbar : "#toolbar",
-
 							columns : [ [
 									{
 										field : 'userId',

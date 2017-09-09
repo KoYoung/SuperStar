@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
 	type="text/css"></link>
+<script src="easyui1.2.4/validator.js" type="text/javascript"></script>  
 <!--级联  -->	
 <!-- <script src="../bootstrap-3.3.7-distjs/jquery-3.2.1.min.js"></script> -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -37,17 +38,9 @@ td {
 	line-height: 20px;
 	`
 }
-table {
-	padding-left: 10px;
-	margin-left: 10px;
-	
-}
-#comp{
-	margin-top:100px;
-}
 .img-container{
-            width: 100px;
-            height: 50px;
+            width: 293px;
+            height: 150px;
             background:#F2F2F2;
             margin-bottom:35px;
             overflow: hidden;
@@ -61,15 +54,19 @@ table {
             width: 293px;
             height: 150px;
         }
+        #tablr,#xiangqing{
+			margin-left:20px
+		}
 </style>
 </head>
 <body>
 	<div id="toobar">
 		<a id="addcompany" href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add'">添加企业信息1</a>
-			<input
-			class="easyui-searchbox" id="mohu"
+		<input class="easyui-searchbox" id="mohu"
 			data-options="searcher:ad,prompt:'请输入客户名搜索'" style="width: 150px" />
+		<a id="searchpersonal" class="easyui-linkbutton" href="javascript:void(0)"
+		    data-options="iconCls:'icon-search'">查看</a>
 	</div>
 	<table id="company"></table>
 	<div id="comp">
@@ -78,16 +75,17 @@ table {
 			<form id="compfrom" enctype="multipart/form-data" method="post">
 				<table cellpadding="5" id="tab1">
 					<tr>
-						<td><input type="hidden" id="comId" name="comId"/></td>
+						<td>
+						<input type="hidden" id="comId" name="comId"/></td>
 					</tr>
 					<tr>
 						<th>公司名字</th><td><input type="text" id="comName" name="comName" onblur="checkNull('comName','公司名');"/></td>
 						<th>组织机构代码</th><td>
-						<input  type="text" id="comCode" onblur="checkcomCode('comCode');" name="comCode" /></td>
+						<input   class="easyui-numberbox" id="comCode"  name="comCode" /></td>
 					</tr>
 					<tr>
-						<th>工商登记执照号码</th><td><input type="text"  onblur="checkcomLicense('comCode');" id="comLicense" name="comLicense"/></td>
-						<th>公司类型</th><td><!-- <input type="text" id="comLicense" name="comLicense"/> -->
+						<th>工商登记执照号码</th><td><input class="easyui-numberbox"  data-options="invalidMessage:'有效长度15'"  id="comLicense" name="comLicense"/></td>
+						<th>公司类型</th><td>
 							<select id="comType" class="easyui-combobox"
 							name="comType" style="width: 200px;"
 							data-options="editable:false,panelHeight:'auto'">
@@ -125,7 +123,7 @@ table {
 						<th>隶属关系</th><td><input type="text" id="comParent" name="comParent"/></td>
 					</tr>
 					<tr>
-						<th>法定代表人</th><td><input type="text" id="comLegalId" name="comLegalId"/></td>
+						<th></th><td><input type="hidden" id="comLegalId" name="comLegalId"/></td>
 						<th>经济性质</th><td><input type="text" id="comProperty" name="comProperty"/></td>
 					</tr>
 					<tr>
@@ -221,65 +219,56 @@ table {
 			</form>
 		</div>
 	</div>
-	
+	<div id="search">
+		<table id="xiangqing">
+			<tr>
+				<th>企业名称</th><td><span id="comName0"></span></td>
+				<th>组织代码</th><td><span id="comCode0"></span></td>
+				<th>工商执照号</th><td><span id="comLicense0"></span></td>
+			</tr>
+			<tr>
+				<th>单位类型</th><td><span id="comType0"></span></td>
+				<th>单位地址</th><td><span id="comAddress0"></span></td>
+				<th>税务登记证号</th><td><span id="comCard0"></span></td>
+			</tr>
+			<tr>
+				<th>隶属关系</th><td><span id="comParent0"></span></td>
+				<th>法定代表人</th><td><span id="comLegalId0"></span></td>
+				<th>经济性质</th><td><span id="comProperty0"></span></td>
+			</tr>
+			<tr>
+				<th>邮政编码</th><td><span id="comPostcode0"></span></td>
+				<th>联系人</th><td><span id="comLinkman0"></span></td>
+				<th>注册资金</th><td><span id="comFund0"></span></td>
+			</tr>
+			<tr>
+				<th>联系电话</th><td><span id="comLinphone0"></span></td>
+				<th>企业信誉度</th><td><span id="comCredit0"></span></td>
+			</tr>
+			<tr>
+				<th>法人姓名</th><td><span id="legalName0"></span></td>
+				<th>法人证件类型</th><td><span id="legalCardtype0"></span></td>
+				<th>法人证件号码</th><td><span id="legalCardnumber0"></span></td>
+			</tr>
+			<tr>
+				<th>法人民族</th><td><span id="legalNation0"></span></td>
+				<th>法人性别</th><td><span id="legalGender0"></span></td>
+				<th>法人婚姻状况</th><td><span id="legalMarry0"></span></td>
+			</tr>
+			<tr>
+				<th>法人地址</th><td><span id="legalAddress0"></span></td>
+				<th>法人电话</th><td><span id="legalPhone0"></span></td>
+			</tr>
+			<tr>
+				<th>法人资料</th><td><span id="legalInfo0"></span></td>
+				<th>企业资料照片</th><td><span id="conPhoto0"></span></td>
+			</tr>
+			
+		</table>
+	</div>
 	<script type="text/javascript">
-	//图片上传预览
 	
-	 function previewImg(fileInput,imgDiv){
-       if(window.FileReader){//支持FileReader的时候
-           var reader=new FileReader();
-           reader.readAsDataURL(fileInput.files[0]);
-           reader.onload=function(evt){
-               imgDiv.innerHTML="\<img src="+evt.target.result+"\>";
-           }
-       }else{//兼容ie9-
-           imgDiv.innerHTML='<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + fileInput.value + '\)\';"></div>';
-       }
-   }
-   function selectImg(fileInputs,imgDivs){
-       var checkImg=new RegExp("(.jpg$)|(.png$)|(.bmp$)|(.jpeg$)","i");
-       var i=0;
-       for(;i<fileInputs.length&&i<imgDivs.length;i++){
-           (function(i){//立即执行函数；保存i
-               fileInputs[i].onchange=function(){
-                   if(checkImg.test(fileInputs[i].value)){
-                       previewImg(this,imgDivs[i]);
-                   }else{
-                       alert("只支持上传.jpg .png .bmp .jpeg;你的选择有误");
-                   }
-               };
-           })(i);
-       }
-
-   }
-   var fileInputs=document.getElementsByClassName("img-btn");//文件选择按钮
-   var imgDivs=document.getElementsByClassName("img-container");//图片容器
-   selectImg(fileInputs,imgDivs);
-	/* 工商登记执照号码onblur="checkcomLicense('comCode');" */
-	function checkcomLicense(str) {
-	 var Str=document.getElementById(str).value;
-	 RegularExp=/^[0-9]{15}$/
-	 if (RegularExp.test(Str)) {
-	  return true;
-	 }
-	 else {
-	  alert("工商登记执照号码格式不正确！应为15位长数字！");
-	  return false;
-	 }
-	}
 	
-	/* 组织机构码onblur="checkcomCode('comCode');"  */
-	function checkcomCode(str) {
-	 var Str=document.getElementById(str).value;
-	 RegularExp=/^[0-9]{9}$/
-	 if (RegularExp.test(Str)) {
-	  return true;
-	 }
-	 else {
-	  alert("工商登记执照号码格式不正确！应为15位长数字！");
-	  return false;
-	 }
-	}
 	//检查对象是否为空，obj-对象，vMc-提示信息
 	function checkNull(obj,vline){
 	    //判断输入框是否为空，为空时弹出提示框
@@ -349,8 +338,52 @@ table {
 	  return false;
 	 }
 	}
+	 
+	 $("#searchpersonal").click(function(){
+		 var row=$("#company").datagrid('getSelected');
+		 if(row!=null){
+			 $('#search').dialog({
+				 title: '个人客户详情',    
+	    		    width: '60%',    
+	    		    height: 'auto',
+	    		    closed: false,    
+	    		    cache: false,    
+	    		    modal: true   
+			 });
+			 	$("#comName0").html(row.comName);
+	            $("#comCode0").html(row.comCode); 
+	            $("#comType0").html(row.comType);
+	            $("#comLicense0").html(row.comLicense);
+	            $("#comAddress0").html(row.comAddress);
+	            $("#comCard0").html(row.comCard);
+	            $("#comParent0").html(row.comParent);
+	            $("#comLegalId0").html(row.comLegalId);
+	            $("#comProperty0").html(row.comProperty);
+	            $("#comPostcode0").html(row.comPostcode);
+	            $("#comLinkman0").html(row.comLinkman);
+	            $("#comLinphone0").html(row.comLinphone); 
+	            $("#comFund0").html(row.comFund);
+	            $("#comCredit0").html(row.comCredit); 
+	            $("#conPhoto0").html(row.conPhoto);
+	            $("#legalName0").html(row.legalName);
+	            $("#legalCardtype0").html(row.legalCardtype);
+	            $("#legalCardnumber0").html(row.legalCardnumber);
+	            $("#legalNation0").html(row.legalNation);
+	            $("#legalGender0").html(row.legalGender);
+	            $("#legalMarry0").html(row.legalMarry);
+	            $("#legalAddress0").html(row.legalAddress);
+	            $("#legalPhone0").html(row.legalPhone);
+	            $("#legalInfo0").html(row.legalInfo); 
+		 }
+	 });
 	
+	 $(function(){
+		 $('input[type=text]').validatebox();  
+	 })
+	 
 	$(function(){
+		
+		
 		$("#addcompany").click(function() {
 			$('#comp').dialog("open");
 		});
@@ -376,7 +409,7 @@ table {
 						},
 						success: function(){
 							$.messager.progress('close');	// 如果提交成功则隐藏进度条
-							window.location.href="/badLoan/jsp/addCompany.jsp"
+							window.location.href="/badLoan/jsp/1.jsp"
 						}
 					});
 				}
@@ -390,11 +423,13 @@ table {
 		$('#company').datagrid({    
 		    url:'/badLoan/company/findcompany', 
 		    method:'post',
+		    toolbar : "#toobar",
+		    singleSelect:true,
 		    pagination:true,//开启分页功能
+		    fit:true,
 			pageNumber:1,
 			pageSize:5,
 			pageList:[5,10,15,20,25,30],
-			sortName:'empno',//定义哪些列可以进行排序
 			sortOrder:'desc',//定义列的排序顺序,默认正序asc
 		    fitColumns:true,
 			striped:true,
@@ -449,8 +484,6 @@ table {
 				console.info( err );	
 			}
 		});
-		
-		
 		/* 民族  */
 		$("#legalNation").combobox({
 			url : '../json/nation.json',
@@ -463,6 +496,7 @@ table {
 		});
 		
 	});
+	/* 模糊  */
 	function ad(value){
 		alert(value);
 		$("#company").datagrid({
@@ -504,6 +538,38 @@ table {
 					    ]]    
 		});
 	}
+	//图片上传预览
+	
+	 function previewImg(fileInput,imgDiv){
+      if(window.FileReader){//支持FileReader的时候
+          var reader=new FileReader();
+          reader.readAsDataURL(fileInput.files[0]);
+          reader.onload=function(evt){
+              imgDiv.innerHTML="\<img src="+evt.target.result+"\>";
+          }
+      }else{//兼容ie9-
+          imgDiv.innerHTML='<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + fileInput.value + '\)\';"></div>';
+      }
+  }
+  function selectImg(fileInputs,imgDivs){
+      var checkImg=new RegExp("(.jpg$)|(.png$)|(.bmp$)|(.jpeg$)","i");
+      var i=0;
+      for(;i<fileInputs.length&&i<imgDivs.length;i++){
+          (function(i){//立即执行函数；保存i
+              fileInputs[i].onchange=function(){
+                  if(checkImg.test(fileInputs[i].value)){
+                      previewImg(this,imgDivs[i]);
+                  }else{
+                      alert("只支持上传.jpg .png .bmp .jpeg;你的选择有误");
+                  }
+              };
+          })(i);
+      }
+
+  }
+  var fileInputs=document.getElementsByClassName("img-btn");//文件选择按钮
+  var imgDivs=document.getElementsByClassName("img-container");//图片容器
+  selectImg(fileInputs,imgDivs);
 	</script>
 </body>
 </html>
