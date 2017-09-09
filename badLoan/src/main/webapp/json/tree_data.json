@@ -130,5 +130,17 @@
         "attributes":{    
             "url":"findComLoan.jsp"
         }
+    },{    
+    	"id":603, 
+        "text":"担保人查询",
+        "attributes":{    
+            "url":"findGuarantor.jsp"
+        }
+    },{    
+    	"id":604, 
+        "text":"经手人查询",
+        "attributes":{    
+            "url":"findEmp.jsp"
+        }
     }]    
 }]

@@ -16,26 +16,42 @@
 	type="text/css"></link>
 </head>
 <body>
+	<input type="hidden" id="one" value="<%=request.getParameter("id") %>">
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-	$("#dg").datagrid({
+$(function(){
+	var a = $("#one").val();
+	$.ajax({
 		url : "/badLoan/find/findComPledge",
-		pagination:true,//开启分页功能
-		pageNumber:1,
-		pageSize:5,
-		pageList:[5,10,15,20,25,30],
-	    fitColumns:true,
-		striped:true,
-		loadMsg:"努力加载中......",
-		columns : [[
-			{field:'comName',title:'贷款人'},
-			{field:'legalName',title:'法人代表'},
-			{field:'pledgeGenre',title:'抵押或质押'},
-			{field:'pledgeName',title:'抵押物品'},
-			{field:'pledgeValue',title:'价值'},
-			{field:'pledgePhoto',title:'照片'}
-		]]
+		type : "post",
+		data : {comloaninfoId : a},
+		success : function(data){
+			$("#dg").datagrid({
+				url : data,
+				pagination:true,//开启分页功能
+				pageNumber:1,
+				pageSize:5,
+				pageList:[5,10,15,20,25,30],
+				singleSelect:true,
+				rownumbers:true,
+			    fitColumns:true,
+				striped:true,
+				loadMsg:"努力加载中......",
+				columns : [[
+					{field:'comloaninfoId',title:'编号',width:100},
+					{field:'comName',title:'贷款企业',width:100},
+					{field:'legalName',title:'法人代表',width:100},
+					{field:'pledgeGenre',title:'抵押或质押',width:100},
+					{field:'pledgeName',title:'抵押物品',width:100},
+					{field:'pledgeValue',title:'价值',width:100},
+					{field:'pledgePhoto',title:'照片',width:100}
+				]]
+			});
+		}
 	});
+	
+});
+	
 </script>
 </html>
