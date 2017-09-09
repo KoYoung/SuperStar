@@ -33,7 +33,9 @@ td {
 	margin-left: 30px;
 	/* margin-top:-35px; */
 }
-
+#chuli,#huishou{
+	margin-top:20px;
+}
 
 </style>
 </head>
@@ -102,8 +104,9 @@ td {
 			</tr>
 		</table>
 		<div style="font-size:20px;font-family:新宋体;color:red">贷款处理记录</div>
-		<table  id="chuli"></table>
-							
+		<table id="chuli"></table>
+		<div style="font-size:20px;font-family:新宋体;color:red">贷款回收记录</div>
+		<table id="huishou"></table>					
 	</div>
 	
 </body>
@@ -113,13 +116,13 @@ td {
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 			pagination : true, //底部分页
+			singleSelect : true,
 			pageSize:10,
 			pageNumber:1,
 			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列
 			onLoadSuccess:function(data){    
 	            $("a[name='opera']").linkbutton({text:'下订单',plain:true,iconCls:'icon-add'}); 
-	            
 	   	 	},
 			columns : [ [ {
 				field : 'loaninfoId',
@@ -149,19 +152,27 @@ td {
 				field : 'loanDate',
 				title : '贷款日期',
 				width : 150
-			}, {
+			},{
 				field : 'loanRepaymentDate',
 				title : '还款日期',
 				width : 150
-			}, {
+			},{
+				field : 'loanRepaymentDate',
+				title : '还款日期',
+				width : 150
+			},{
 				field : 'loanstateName',
 				title : '贷款状态',
+				width : 100
+			},{
+				field : 'loaninfoType',
+				title : '贷款类型',
 				width : 100,
 				formatter:function(value){
-				    if(value='0'){
-				        return "待处理";
+				    if(value=0){
+				        return "个人贷款";
 				    }else{
-				        return "处理中";
+				        return "企业贷款";
 				    }
 				}
 			}]]
@@ -197,16 +208,12 @@ td {
             $("#lmrComment").html(row.lmrComment);
             $("#unrepayNumber").html(row.unrepayNumber);
             $('#chuli').datagrid({
-    		 	
     			url : '/badLoan/lmrController/findlmr?loaninfoId='+row.loaninfoId,
     			striped : true, //斑马线 
     			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
     			width : 582,
+    			resizeHandle : 'right',
     			rownumbers : true, //如果为true，则显示一个行号列
-    			
-    			onLoadSuccess:function(data){    
-    	            
-    	   	 	},
     			columns : [ [ {
     				field : 'loaninfoId',
     				title : '贷款编号',
@@ -227,27 +234,46 @@ td {
     				field : 'loanstateName',
     				title : '贷款状态',
     				width : 100,
-    				
-    			}]]
+    			}]],
     		});
-           
+            $("#huishou").datagrid({
+            	url : '/badLoan/WriteoffManage/findReayment?loaninfoId='+row.loaninfoId,
+    			striped : true, //斑马线 
+    			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+    			width : 682,
+    			resizeHandle : 'right',
+    			rownumbers : true, //如果为true，则显示一个行号列
+    			columns : [ [ {
+    				field : 'loaninfoId',
+    				title : '贷款编号',
+    				width : 100
+    			},{
+    				field : 'empName',
+    				title : '经手人',
+    				width : 100
+    			},{
+    				field : 'repayDate',
+    				title : '回收日期',
+    				width : 100
+    			},{
+    				field : 'repayType',
+    				title : '回收类型',
+    				width : 150
+    			},{
+    				field : 'repayComment',
+    				title : '回收说明',
+    				width : 100,
+    				
+    			},{
+    				field : 'repayNumber',
+    				title : '回收金额',
+    				width : 100,
+    			}]],	
+            });
         }  else {
            alert("请选中一行！");
         } 
     });
-	 
-	 /*  $("#borRegister0").html(row.borRegister);
-     $("#borUnit0").html(row.borUnit);
-     $("#borUnitPhone0").html(row.borUnitPhone);
-     $("#borPosition0").html(row.borPosition);
-     $("#borIncome0").html(row.borIncome);
-     $("#borEducation0").html(row.borEducation);
-     $("#borUnitAddress0").html(row.borUnitAddress);
-     $("#borCredit0").html(row.borCredit);
-     $("#contectName0").html(row.contectName);
-     $("#contectTelphone0").html(row.contectTelphone);
-     $("#cusconComment0").html(row.cusconComment);*/
-    
 	//点击添加按钮弹出模态框
 	$("#yesBtn").click(function(){
 		$('#dd').dialog("open");

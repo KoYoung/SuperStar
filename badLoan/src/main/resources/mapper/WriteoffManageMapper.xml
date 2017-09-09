@@ -65,5 +65,9 @@
 		and lg.lmr_name=ls.loanstate_id
 		and lg.lmr_name=8
 	</select>
-
+	<!-- 根据贷款编号查询这笔贷款的所有回收记录 -->
+	<select id="findReayment" resultType="com.entity.Repaymentinfo">
+		select re.*,e.emp_name from repaymentinfo re,employee e 
+		where re.emp_id=e.emp_id and loaninfo_id=#{loaninfoId}
+	</select>
 </mapper>

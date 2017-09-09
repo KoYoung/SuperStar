@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.entity.Repaymentinfo;
 import com.entity.WriteoffManage;
 import com.service.WriteoffManageService;
 import com.util.Paging;
@@ -34,8 +35,17 @@ public class WriteoffManageController {
 		pr.setRows(row);
 		pr.setTotal(weList.size());
 		return pr;
-		
-		
+	
+	}
+	/**
+	 * 根据贷款编号查询这笔贷款的所有回收记录
+	 */
+	@RequestMapping("/findReayment")
+	@ResponseBody
+	public List<Repaymentinfo> findReayment(String loaninfoId){
+		List<Repaymentinfo> reList = writeService.findReayment(loaninfoId);
+		System.out.println("贷款编号---》"+loaninfoId);
+		return reList;
 	}
 	
 }
