@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.BorLoanInfo;
 import com.entity.ComloanInfo;
@@ -27,4 +28,9 @@ public interface ComloanInfoDao {
 	 * 合同编号唯一性验证
 	 */
 	List<ComloanInfo> findContractIdCom(String contractId);
+	
+	/**
+	 * 查询企业贷款
+	 */
+	List<Map<String, String>> findComLoan(Map<String , String> datamap);
 }

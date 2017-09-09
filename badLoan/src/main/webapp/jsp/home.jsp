@@ -88,13 +88,7 @@
 						title : title,
 						content : "<iframe src=" + url
 								+ " width='99%' height='99%' frameborder=0>",
-						closable : true,
-						tools : [ {
-							iconCls : "icon-mini-refresh",
-							handler : function() {
-								alert("refresh");
-							}
-						} ]
+						closable : true
 					});
 		}
 	}

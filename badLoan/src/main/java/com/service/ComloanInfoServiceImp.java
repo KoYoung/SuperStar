@@ -3,6 +3,7 @@ package com.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,19 @@ import com.entity.Pledge;
 @Service
 public class ComloanInfoServiceImp implements ComloanInfoService {
 	@Autowired
-	private ComloanInfoDao ComloanInfoDao;
+	private ComloanInfoDao comloanInfoDao;
 	@Autowired
-	private PledgeDao PledgeDao;
+	private PledgeDao pledgeDao;
 	@Autowired
 	private CustomerGoodsDao customerGoodsDao;
 	@Autowired
-	private GuarantorDao GuarantorDao;
+	private GuarantorDao guarantorDao;
 	@Autowired
 	private BorguaDao borguaDao;
 	@Autowired
-	private LoanManageRecordDao LoanManageRecordDao;
+	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
-	private LoanmanageDao LoanmanageDao;
+	private LoanmanageDao loanmanageDao;
 
 	/**
 	 * 添加企业贷款信息
@@ -57,15 +58,15 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 		int loaninfoType = comloanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
 		try {
-			ComloanInfoDao.addComloanInfo(comloanInfo);
-			System.out.println(ComloanInfoDao.toString());
-			PledgeDao.addPledge(pledge);
-			System.out.println(PledgeDao.toString());
+			comloanInfoDao.addComloanInfo(comloanInfo);
+			System.out.println(comloanInfoDao.toString());
+			pledgeDao.addPledge(pledge);
+			System.out.println(pledgeDao.toString());
 			customerGoodsDao.addCustomerGoods(customerGoods);
-			GuarantorDao.addGuarantor(guarantor);
+			guarantorDao.addGuarantor(guarantor);
 			borguaDao.addBorgua(borgua);
-			LoanManageRecordDao.addLoanManageRecord(lmr);
-			LoanmanageDao.addLoanmanage(lonm);
+			loanManageRecordDao.addLoanManageRecord(lmr);
+			loanmanageDao.addLoanmanage(lonm);
 
 		} catch (Exception e) {
 			System.out.println("---------------------------------------" + e.getMessage());
@@ -80,7 +81,7 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	 */
 	@Override
 	public List<ComloanInfo> findComloanInfo() {
-		return ComloanInfoDao.findComloanInfo();
+		return comloanInfoDao.findComloanInfo();
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	@Override
 	public List<BorLoanInfo> findComloanInfo2(String comloaninfoId) {
 
-		return ComloanInfoDao.findComloanInfo2(comloaninfoId);
+		return comloanInfoDao.findComloanInfo2(comloaninfoId);
 	}
 
 	/**
@@ -107,7 +108,12 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	@Override
 	public List<ComloanInfo> findContractIdCom(String contractId) {
 
-		return ComloanInfoDao.findContractIdCom(contractId);
+		return comloanInfoDao.findContractIdCom(contractId);
+	}
+
+	@Override
+	public List<Map<String, String>> findComLoan(Map<String, String> datamap) {
+		return comloanInfoDao.findComLoan(datamap);
 	}
 
 }

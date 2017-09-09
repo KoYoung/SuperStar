@@ -10,11 +10,6 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
 	type="text/css"></link>
-<style>
-.canNotSee {
-	color: white
-}
-</style>
 </head>
 <body>
 	<form method="post" id="searchForm">
@@ -23,8 +18,8 @@
 				<td>&nbsp;&nbsp;&nbsp;合同号&nbsp;&nbsp;<input name="contractId"
 					type="text" class="easyui-textbox"
 					data-options=" prompt:'输入合同号模糊查询'"></td>
-				<td>客户姓名&nbsp;&nbsp;<input name="borName" type="text"
-					class="easyui-textbox" data-options=" prompt:'输入客户姓名查询'"></td>
+				<td>企业名称&nbsp;&nbsp;<input name="borName" type="text"
+					class="easyui-textbox" data-options=" prompt:'输入企业名称查询'"></td>
 				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
 					name="loanStateId"></td>
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;银行&nbsp;&nbsp;<input type="text"
@@ -108,8 +103,12 @@
 			url : '/badLoan/BorLoanInfo/findBorSearch',
 			type : 'POST',
 			data : data,
-			success : function() {
-				alert("success");
+			success : function(data) {
+				$('#lmrDataGrid').datagrid({
+					url : '',
+					data : data
+				});
+				$('#lmrDataGrid').datagrid("reload");
 			},
 			error : function() {
 				alert("error");
@@ -166,23 +165,23 @@
 			remoteSort : false,//不去服务器排序
 			fitColumns : true,
 			columns : [ [ {
-				field : 'borloaninfoId',
+				field : 'BORLOANINFO_ID',
 				title : '贷款编号',
 				width : 100
 			}, {
-				field : 'loantypeName',
+				field : 'LOANTYPE_NAME',
 				title : '贷款种类',
 				width : 100
 			}, {
-				field : 'borName',
+				field : 'BOR_NAME',
 				title : '贷款人姓名',
 				width : 100
 			}, {
-				field : 'loanNumber',
-				title : '贷款金额',
+				field : 'LOAN_NUMBER',
+				title : '贷款金额/(万元)',
 				width : 100
 			}, {
-				field : 'loanAccount',
+				field : 'LOAN_ACCOUNT',
 				title : '贷款账户',
 				width : 100
 			}, {

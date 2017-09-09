@@ -108,6 +108,20 @@ public class BorLoanInfoController {
 	}
 
 	/**
+	 * 合同编号唯一性验证
+	 */
+	@RequestMapping("/findcontractId")
+	@ResponseBody
+	public boolean findcontractId(String contractId) {
+		List<BorLoanInfo> cuList = borService.findcontractId(contractId);
+		if (cuList.size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
 	 * 查询个人用户贷款详情
 	 * 
 	 * @return
@@ -180,21 +194,6 @@ public class BorLoanInfoController {
 	@ResponseBody
 	public List<Map<String, String>> findTestDemo() {
 		return borService.findTestDemo();
-	}
-
-	/**
-	 * 合同编号唯一性验证
-	 */
-	@RequestMapping("/findcontractId")
-	@ResponseBody
-	public boolean findcontractId(String contractId) {
-		List<BorLoanInfo> cuList = borService.findcontractId(contractId);
-		if (cuList.size() > 0) {
-			return false;
-		} else {
-			return true;
-		}
-
 	}
 
 }

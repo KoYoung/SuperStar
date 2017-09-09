@@ -87,13 +87,13 @@
     	"id":501,   
         "text":"个人贷款",
         "attributes":{    
-            "url":"lmrManager.jsp"
+            "url":"borLoanManager.jsp"
         }
     },{  
     	"id":502,   
         "text":"企业贷款",
         "attributes":{    
-            "url":"lmrManager.jsp"
+            "url":"compLoanManager.jsp"
         }
     },{    
     	"id":503, 

@@ -62,14 +62,15 @@ public interface BorLoanInfoService {
 	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
 
 	/**
+	 * 合同编号唯一性验证
+	 */
+	List<BorLoanInfo> findcontractId(String contractId);
+
+	/**
 	 * test
 	 * 
 	 * @return
 	 */
 	List<Map<String, String>> findTestDemo();
 
-	/**
-	 * 合同编号唯一性验证
-	 */
-	List<BorLoanInfo> findcontractId(String contractId);
 }
