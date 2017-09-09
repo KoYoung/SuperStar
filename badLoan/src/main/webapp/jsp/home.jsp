@@ -30,14 +30,14 @@
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
 		style="height: 10%;">
-		<h3 align="center">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h3>
-		<div style="width: 250px; margin-left: 80%; padding-top: 10px;">
+		<h4 style="float: left;">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h4>
+		<div style="width: 250px; float: right;">
 			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp; <a
 				href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>
 		</div>
 	</div>
 	<div data-options="region:'west',title:'系统菜单',collapsible:false"
-		style="width: 140px;">
+		style="width: 13%;">
 		<ul id="homeTree"></ul>
 	</div>
 	<div data-options="region:'center',title:''" style="background: #eee;">
