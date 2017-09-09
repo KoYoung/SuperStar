@@ -7,18 +7,25 @@
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
-	type="text/css"></link>
-
 <script src="https://cdn.hcharts.cn/highcharts/5.0.10/highcharts.js"></script>
 <script
 	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/exporting.js"></script>
 <script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/data.js"></script>
 <script
 	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script>
+<style>
+.pict {
+	width: 45%;
+	height: 200px;
+	float: left;
+	margin: 5px;
+}
+</style>
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
@@ -36,19 +43,17 @@
 	<div data-options="region:'center',title:''" style="background: #eee;">
 		<div id="tabsInfo" class="easyui-tabs" data-options="fit:true">
 			<div title="主页">
-				<div id="container1" style="width: 45%; height: 234px; float: left;"></div>
+				<div id="container1" class="pict"></div>
 				<script src="../js/Basic column.js" type="text/javascript"></script>
-				<div id="container2" style="width: 45%; height: 234px; float: left;"></div>
+				<div id="container2" class="pict"></div>
 				<script src="../js/Pie chart.js" type="text/javascript"></script>
-				<div id="container3" style="width: 45%; height: 234px; float: left;"></div>
+				<div id="container3" class="pict"></div>
 				<script src="../js/Scatter plot.js" type="text/javascript"></script>
-				<div id="container4" style="width: 45%; height: 234px; float: left;"></div>
+				<div id="container4" class="pict"></div>
 				<script src="../js/With data labels.js" type="text/javascript"></script>
 			</div>
 		</div>
 	</div>
-	<div data-options="region:'south',title:'',split:true"
-		style="height: 40px; text-align: center; font-size: 15px; line-height: 30px;">No.3</div>
 </body>
 <script type="text/javascript">
 	function showData() {

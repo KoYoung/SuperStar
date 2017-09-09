@@ -5,7 +5,6 @@
 <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body class="easyui-layout">
-
 	<div
 		data-options="region:'north',title:'欢迎<%=request.getSession().getAttribute("studentName")%>登录',split:false,collapsible:false"
 		style="height: 100px;"></div>
@@ -15,9 +14,7 @@
 	<div data-options="region:'west',title:'West',split:true"
 		style="width: 200px; background-color: #339999; color: #FFFFFF">
 		<ul id="tt">
-
 		</ul>
-
 	</div>
 	<div data-options="region:'center',title:''"
 		style="padding: 5px; background: #eee;">

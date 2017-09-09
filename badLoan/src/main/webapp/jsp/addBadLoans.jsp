@@ -5,8 +5,12 @@
 <jsp:include page="head.jsp"></jsp:include>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
+<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+	type="text/css"></link>
 <script src="../js/distpicker.data.js"></script>
 <script src="../js/distpicker.js"></script>
 <script src="../js/main.js"></script>
@@ -34,7 +38,7 @@ tr td {
 			<table cellpadding="5" id="tab1">
 				<tr>
 					<td>个人姓名:</td>
-					<td><input id=borId name="borId"/></td>
+					<td><input id=borId name="borId" /></td>
 				</tr>
 				<tr>
 					<td>贷款银行:</td>
@@ -43,55 +47,55 @@ tr td {
 				<tr>
 					<td>合同编号:</td>
 					<td><input class="easyui-textbox" name="studentName"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>经手人:</td>
-					<td><input id="empId"/></td>
+					<td><input id="empId" /></td>
 				</tr>
 				<tr>
 					<td>贷款种类:</td>
-					<td><input id="loantypeId"/></td>
+					<td><input id="loantypeId" /></td>
 				</tr>
 				<tr>
 					<td>贷款金额:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>贷款账号:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>贷款日期:</td>
-					<td><input class="easyui-datebox" data-options="required:true"/></td>
+					<td><input class="easyui-datebox" data-options="required:true" /></td>
 				</tr>
 				<tr>
 					<td>还款日期:</td>
-					<td><input class="easyui-datebox" data-options="required:true"/></td>
+					<td><input class="easyui-datebox" data-options="required:true" /></td>
 				</tr>
 				<tr>
 					<td>贷款利率:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>用户紧急联系人:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>贷款利率:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>贷款利率:</td>
 					<td><input class="easyui-textbox" name="studentJg"
-									data-options="required:true"></input></td>
+						data-options="required:true"></input></td>
 				</tr>
-			</table> 
+			</table>
 		</form>
 		<div style="padding: 5px">
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-add'"
@@ -102,13 +106,12 @@ tr td {
 
 	</div>
 	<script>
-		
 		$('#tb').textbox({
-			prompt: '请输入详细地址'
+			prompt : '请输入详细地址'
 		});
-		
-		 /* function submitForm(){
-			$('#ff').form('submit');
+
+		/* function submitForm(){
+		$('#ff').form('submit');
 		}  */
 		function clearForm() {
 			$('#ff').form('clear');
@@ -132,13 +135,13 @@ tr td {
 			valueField : 'empId',
 			textField : 'empName',
 			panelHeight : "auto",
-			required:true,
+			required : true,
 			editable : false,
 			onLoadSuccess : function() {
 				var data = $("#empId").combobox('getData');
 				if (data.length > 0) {
 					$("#empId").combobox('setValue', data[0].empId);
-				
+
 				}
 			},
 		});
@@ -147,13 +150,13 @@ tr td {
 			valueField : 'bankInfoId',
 			textField : 'bankInfoName',
 			panelHeight : "auto",
-			required:true,
+			required : true,
 			editable : false,
 			onLoadSuccess : function() {
 				var data = $("#bankInfoId").combobox('getData');
 				if (data.length > 0) {
 					$("#bankInfoId").combobox('setValue', data[0].bankInfoId);
-				
+
 				}
 			},
 		});
@@ -167,7 +170,7 @@ tr td {
 				var data = $("#loantypeId").combobox('getData');
 				if (data.length > 0) {
 					$("#loantypeId").combobox('setValue', data[0].loantypeId);
-				
+
 				}
 			},
 		});
@@ -202,8 +205,7 @@ tr td {
 					window.location.href = "queryStudent.jsp";
 				}
 			});
-		}); 
-		
+		});
 	</script>
 </body>
 </html>

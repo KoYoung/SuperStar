@@ -8,12 +8,12 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
 	type="text/css"></link>
 </head>
 <body>
 	<form method="post" id="searchForm">
-		<table style="width: 1200px;">
+		<table style="width: 1000px;">
 			<tr class="tot">
 				<td>&nbsp;&nbsp;&nbsp;合同号&nbsp;&nbsp;<input name="contractId"
 					type="text" class="easyui-textbox"
@@ -233,15 +233,15 @@
 				text : '修改状态',
 				handler : function() {
 					var row = $('#lmrDataGrid').datagrid("getSelected");
-					alert(row.empId);
+					alert(row.EMP_ID);
 					$('#updateLoanDirlog').dialog("open");
-					$("#borLoanId").html(row.borloaninfoId);
-					$("#borTypeName").html(row.loantypeName);
-					$("#borName").html(row.borName);
-					$("#loanNumber").html(row.loanNumber);
+					$("#borLoanId").html(row.BORLOANINFO_ID);
+					$("#borTypeName").html(row.LOANTYPE_NAME);
+					$("#borName").html(row.BOR_NAME);
+					$("#loanNumber").html(row.LOAN_NUMBER);
 					$("#loanState").combobox('setValues', row.LOANSTATE_NAME);
 					$("#empName").html(row.EMP_NAME);
-					$("#empId_update").html(row.empId);
+					$("#empId_update").html(row.EMP_ID);
 				}
 			} ]
 		});

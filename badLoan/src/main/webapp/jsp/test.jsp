@@ -43,9 +43,7 @@
 				window.location.href = "/badLoan/jsp/borloaninfo.jsp";
 			}
 		});
-		
 	});
-		
 	</script>
 </body>
 </html>
