@@ -63,15 +63,22 @@
 		from comloaninfo where contract_id=#{contractId}
 	</select>
 
-	<select id="findComLoan" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		select * from comloaninfo cli,bankinfo bi,employee ee,loantype
+	<select id="findComLoan" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select
+		cli.loaninfo_type,cli.comloaninfo_id,cli.contract_id,cli.loan_type,cli.loan_number,cli.loan_account,to_char(cli.loan_date,'yyyy-MM-dd')
+		LOAN_DATE,to_char(cli.loan_repayment_date,'yyyy-MM-dd')
+		LOAN_REPAYMENT_DATE,cli.loan_rate,cli.unrepay_number,bi.*,cp.*,ee.*,lt.*,ls.*,lm.*
+		from comloaninfo cli,bankinfo bi,employee ee,loantype
 		lt,loanstate
 		ls,company cp,loanmanage lm
 		<where>
 			cli.bankinfo_id = bi.bankinfo_id and cli.com_id = cp.com_id and
 			cli.emp_id = ee.emp_id
-			and cli.loan_type = lt.loantype_id and ls.loanstate_id = lm.loanstate_id
-			and cli.comloaninfo_id = lm.loaninfo_id
+			and cli.loan_type = lt.loantype_id and
+			ls.loanstate_id = lm.loanstate_id
+			and cli.comloaninfo_id =
+			lm.loaninfo_id
 			<if test="comName!=null and comName!=''">
 				and cp.com_name like '%' || '${comName}' ||'%'
 			</if>

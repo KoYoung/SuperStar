@@ -205,19 +205,11 @@
 				title : '银行',
 				width : 100
 			} ] ],
-			toolbar : [ {
-				iconCls : 'icon-edit',
-				handler : function() {
-					alert('编辑按钮1');
-					$('#addlmrDirlog').dialog("open");
-				}
-			}, '-', {
+			toolbar : [ '-', {
 				text : '查看详情',
 				iconCls : 'icon-help',
 				handler : function() {
-					alert('查看详情');
 					var row = $('#lmrDataGrid').datagrid("getSelected");
-					alert(row.borloaninfoId);
 					$("#detailDialog").dialog({
 						title : '贷款详情',
 						width : 500,
@@ -228,12 +220,11 @@
 					});
 					$("#detailDialog").dialog("open");
 				}
-			}, {
+			}, '-', '-', {
 				iconCls : 'icon-edit',
 				text : '修改状态',
 				handler : function() {
 					var row = $('#lmrDataGrid').datagrid("getSelected");
-					alert(row.EMP_ID);
 					$('#updateLoanDirlog').dialog("open");
 					$("#borLoanId").html(row.BORLOANINFO_ID);
 					$("#borTypeName").html(row.LOANTYPE_NAME);
@@ -243,21 +234,8 @@
 					$("#empName").html(row.EMP_NAME);
 					$("#empId_update").html(row.EMP_ID);
 				}
-			} ]
+			}, '-', '-' ]
 		});
-		/* , {
-				field : 'loanDate',
-				title : '贷款日期',
-				width : 100
-			}, {
-				field : 'loanRepaymentDate',
-				title : '还款日期',
-				width : 100
-			}, {
-				field : 'loanRate',
-				title : '利率',
-				width : 100
-			} */
 		$('#addlmrDirlog').dialog({
 			title : '增加催收记录',
 			width : 500,
@@ -296,7 +274,6 @@
 						empId : $("#empId_update").html(),
 						loanState : $("#loanState").val()
 					};
-					alert(data.loanType + " " + data.loanState);
 					$.ajax({
 						url : '/badLoan/BorLoanInfo/updateLoanState',
 						type : 'post',

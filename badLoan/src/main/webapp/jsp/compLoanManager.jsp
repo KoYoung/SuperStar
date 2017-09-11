@@ -166,17 +166,10 @@
 				title : '银行',
 				width : 100
 			} ] ],
-			toolbar : [ {
-				iconCls : 'icon-edit',
-				handler : function() {
-					alert('编辑按钮1');
-					$('#addlmrDirlog').dialog("open");
-				}
-			}, '-', {
+			toolbar : [ '-', {
 				text : '查看详情',
 				iconCls : 'icon-help',
 				handler : function() {
-					alert('查看详情');
 					var row = $('#lmrDataGrid').datagrid("getSelected");
 					alert(row.borloaninfoId);
 					$("#detailDialog").dialog({
@@ -189,12 +182,11 @@
 					});
 					$("#detailDialog").dialog("open");
 				}
-			}, {
+			}, '-', '-', {
 				iconCls : 'icon-edit',
 				text : '修改状态',
 				handler : function() {
 					var row = $('#comDataGrid').datagrid("getSelected");
-					alert(row.empId);
 					$('#updateLoanDirlog').dialog("open");
 					$("#comLoanId").html(row.COMLOANINFO_ID);
 					$("#comTypeName").html(row.LOANTYPE_NAME);
@@ -204,7 +196,7 @@
 					$("#empName").html(row.EMP_NAME);
 					$("#empId_update").html(row.EMP_ID);
 				}
-			} ]
+			}, '-', '-' ]
 		});
 	});
 	$('#updateLoanDirlog').dialog({

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.entity.BorLoanInfo;
+import com.entity.BorRower;
 import com.entity.Borgua;
 import com.entity.CustomerGoods;
 import com.entity.Guarantor;
@@ -39,6 +40,7 @@ public class BorLoanInfoController {
 	private BorLoanInfoService borService;
 	@Autowired
 	private ComloanInfoService comService;
+
 
 	/**
 	 * 添加个人用户贷款信息 马利肖
@@ -128,10 +130,15 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/findBorLoanDetail")
 	@ResponseBody
-	public List<Map<String, String>> findBorLoanDetail() {
+	public PagingResult<Map<String, String>> findBorLoanDetail(@RequestParam Integer page, Integer rows) {
 		List<Map<String, String>> findBorLoanDetail = borService.findBorLoanDetail();
-		System.out.println(findBorLoanDetail);
-		return findBorLoanDetail;
+		Paging<Map<String, String>> pagingMap = new Paging<Map<String, String>>();
+		List<Map<String, String>> list1 = pagingMap.paging(findBorLoanDetail, rows, page);
+		PagingResult<Map<String, String>> pResult = new PagingResult<Map<String, String>>();
+		pResult.setTotal(findBorLoanDetail.size());
+		pResult.setRows(list1);
+		System.out.println(pResult);
+		return pResult;
 	}
 
 	/**
