@@ -166,18 +166,6 @@ tr td {
 						</td>
 						<td>
 							<table cellpadding="5" id="tab2">
-								<!-- <tr>
-									<td>抵（质）押物品起始日期:</td>
-									<td><input class="easyui-datebox"
-										data-options="required:true,validType:'pledgeStartdate'" 
-										id="pledgeStartdate" name="pledgeStartdate" style="width:200px"/></td>
-								</tr>
-								<tr>
-									<td>抵（质）押物品到期日:</td>
-									<td><input class="easyui-datebox"
-										data-options="required:true,validType:'pledgeEnddate'" 
-										id="pledgeEnddate" name="pledgeEnddate" style="width:200px"/></td>
-								</tr> -->
 								<tr>
 									<td>抵（质）押物品照片:</td>
 									<td>
@@ -287,7 +275,6 @@ tr td {
 											<br> <input class="easyui-textbox tb" name="guaAddress"
 												id="guaAddress" />
 										</div>
-
 									</td>
 								</tr>
 								<tr>
@@ -749,10 +736,10 @@ tr td {
 					}
 				}
 			}, /* {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,  
-				        formatter:function(value, row, index){  
-				            var str = '<a href="#" name="opera" class="easyui-linkbutton" >同意</a>';  
-				            return str;  
-				    }}*/] ]
+														        formatter:function(value, row, index){  
+														            var str = '<a href="#" name="opera" class="easyui-linkbutton" >同意</a>';  
+														            return str;  
+						}}*/] ]
 		});
 	</script>
 </body>

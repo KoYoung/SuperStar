@@ -109,9 +109,9 @@
         }
     },{    
     	"id":505, 
-        "text":"贷款清收",
+        "text":"核销审核",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"writeOffManage.jsp"
         }
     }]    
 },{

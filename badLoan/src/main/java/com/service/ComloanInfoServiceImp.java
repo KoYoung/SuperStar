@@ -50,6 +50,8 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
 		System.out.println(comloanInfo.toString());
 		String pledgeGenre = comloanInfo.getLoanType();
+		int unrepayNumber = Integer.parseInt(comloanInfo.getLoanNumber());
+		comloanInfo.setUnrepayNumber(unrepayNumber);
 		pledge.setPledgeGenre(pledgeGenre);
 		String empId = comloanInfo.getEmpId();
 		lmr.setEmpId(empId);

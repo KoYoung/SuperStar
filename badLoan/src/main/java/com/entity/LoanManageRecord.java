@@ -13,6 +13,24 @@ public class LoanManageRecord {
 	private String lmrDate;
 	private String lmrName;
 	private String lmrComment;
+	private String empName;
+	private String loanstateName;
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getLoanstateName() {
+		return loanstateName;
+	}
+
+	public void setLoanstateName(String loanstateName) {
+		this.loanstateName = loanstateName;
+	}
 
 	public String getLoaninfoId() {
 		return loaninfoId;

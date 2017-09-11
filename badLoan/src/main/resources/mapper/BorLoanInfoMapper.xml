@@ -112,7 +112,7 @@
 		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
 		#{loanAccount,jdbcType=VARCHAR},to_date(#{loanDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
 		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
-		#{loanRate,jdbcType=VARCHAR})
+		#{loanRate,jdbcType=VARCHAR},#{unrepayNumber})
 	</insert>
 	<!-- 根据贷款类型，贷款编号查询贷款信息 -->
 	<select id="findBorLoanInfo2" resultType="com.entity.BorLoanInfo">

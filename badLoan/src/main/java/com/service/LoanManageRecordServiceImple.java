@@ -24,9 +24,9 @@ public class LoanManageRecordServiceImple implements LoanManageRecordService {
 	 * @return LMR集合
 	 */
 	@Override
-	public List<LoanManageRecord> findLoanManageRecord() {
+	public List<LoanManageRecord> findLoanManageRecord(String loaninfoId) {
 
-		return lmrDao.findLoanManageRecord();
+		return lmrDao.findLoanManageRecord(loaninfoId);
 	}
 
 	/**
@@ -38,5 +38,15 @@ public class LoanManageRecordServiceImple implements LoanManageRecordService {
 	@Override
 	public int addLoanManageRecord(LoanManageRecord lmr) {
 		return lmrDao.addLoanManageRecord(lmr);
+	}
+
+	/**
+	 * 当核销通过时，添加贷款处理记录
+	 */
+
+	@Override
+	public int addLoanMR(LoanManageRecord loanManageRecord) {
+		
+		return lmrDao.addLoanMR(loanManageRecord);
 	}
 }
