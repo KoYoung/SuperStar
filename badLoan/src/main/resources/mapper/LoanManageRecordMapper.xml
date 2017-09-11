@@ -3,6 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.LoanManageRecordDao">
+	<!-- 查询所有贷款处理记录 -->
 	<select id="findLoanManageRecord" resultType="com.entity.LoanManageRecord">
 		select
 		lg.*,e.emp_name,ls.loanstate_name from loanmanagerecord lg,employee
@@ -22,6 +23,6 @@
 		</insert> -->
 	<!-- 当核销通过时，添加贷款处理记录 -->
 	<insert id="addLoanMR" parameterType="com.entity.LoanManageRecord">
-		insert into loanmanagerecord values(lmr_sequence.nextval,#{loaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},9,#{lmrComment,jdbcType=VARCHAR})
+		insert into loanmanagerecord values(lmr_sequence.nextval,#{loaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},8,#{lmrComment,jdbcType=VARCHAR})
 	</insert>	
 </mapper>

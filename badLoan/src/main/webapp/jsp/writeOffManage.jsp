@@ -69,7 +69,7 @@ td {
 	<div id="toobar">
 		<a id="xiangBtn" href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add'">详情</a>
-		<input class="easyui-textbox" type="text" Style="height:25px;width:180px"/>
+		<input class="easyui-textbox" id="select" type="text" Style="height:25px;width:180px"/>
 		<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a> 
 	</div>
 	<table id="dg"></table>
@@ -272,12 +272,13 @@ td {
 								} */ ] ],
 
 					});
+	
 	//点击详情按钮弹出模态框
 	$('#aa').dialog({
 		title : '贷款详情',
 		closed : true,
 		width : '50%',
-		height : 600,
+		height : 'auto',
 		top : '5%',
 		buttons : [ {
 			iconCls : 'icon-ok',
@@ -341,7 +342,6 @@ td {
 												striped : true, //斑马线 
 												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 												width : 582,
-												resizeHandle : 'right',
 												rownumbers : true, //如果为true，则显示一个行号列
 												columns : [ [ {
 													field : 'loaninfoId',
@@ -373,7 +373,7 @@ td {
 												striped : true, //斑马线 
 												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 												width : 622,
-												resizeHandle : 'right',
+												//resizeHandle : 'right',
 												rownumbers : true, //如果为true，则显示一个行号列
 												columns : [ [ {
 													field : 'loaninfoId',
@@ -386,19 +386,20 @@ td {
 												}, {
 													field : 'repayDate',
 													title : '回收日期',
-													width : 150
+													width : 100
 												}, {
 													field : 'repayType',
 													title : '回收类型',
+													align : 'center',
 													width : 100
 												}, {
 													field : 'repayComment',
 													title : '回收说明',
-													width : 100,
+													width : 150,
 
 												}, {
 													field : 'repayNumber',
-													title : '回收金额',
+													title : '回收金额(万元)',
 													width : 80,
 												} ] ],
 											});
@@ -427,5 +428,97 @@ td {
 							alert("请选中一行！");
 						}
 					});
+	//根据贷款编号和贷款人进行模糊查询
+	$("#btn").click(function(){
+		var value=$("#select").val();
+	$('#dg').datagrid(
+			{
+				
+				url : '/badLoan/WriteoffManage/findWriteM?loaninfoId='+value,
+				striped : true, //斑马线 
+				nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+				pagination : true, //底部分页
+				singleSelect : true,
+				pageSize : 10,
+				pageNumber : 1,
+				pageList : [ 5, 10, 15, 20 ],
+				rownumbers : true, //如果为true，则显示一个行号列
+				columns : [ [
+						{
+							field : 'loaninfoId',
+							title : '贷款编号',
+							width : 100
+						},
+						{
+							field : 'borId',
+							title : '贷款人编号',
+							width : 100,
+							hidden : true
+						},
+						{
+							field : 'borName',
+							title : '贷款人姓名',
+							width : 100
+						},
+						{
+							field : 'bankinfoName',
+							title : '贷款银行',
+							width : 100
+						},
+						{
+							field : 'empId',
+							title : '经手人编号',
+							width : 100,
+							hidden : true
+						},
+						{
+							field : 'empName',
+							title : '经手人',
+							width : 100
+						},
+						{
+							field : 'loantypeName',
+							title : '贷款种类',
+							width : 100
+						},
+						{
+							field : 'loanNumber',
+							title : '贷款金额(万元)',
+							width : 100
+						},
+						{
+							field : 'unrepayNumber',
+							title : '未还贷款金额(万元)',
+							width : 100
+						},
+						{
+							field : 'loanDate',
+							title : '贷款日期',
+							width : 150
+						},
+						{
+							field : 'loanRepaymentDate',
+							title : '还款日期',
+							width : 150
+						},
+						{
+							field : 'loanstateName',
+							title : '贷款状态',
+							width : 100
+						},
+						{
+							field : 'loaninfoType',
+							title : '贷款类型',
+							width : 100,
+							formatter : function(value) {
+								if (value == 0) {
+									return "个人贷款";
+								} else {
+									return "企业贷款";
+								}
+							}
+						}]],
+			})
+	});
 </script>
 </html>

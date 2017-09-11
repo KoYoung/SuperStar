@@ -119,7 +119,7 @@ tr td {
 					//dataType : "text",
 					success : function(data) {
 						$("#borId").val(data.borName);
-						$("#empName").val(data.empName+data.empId);
+						$("#empName").val(data.empName+" "+data.empId);
 						$("#bankinfoName").val(data.bankinfoName);
 					}
 				});

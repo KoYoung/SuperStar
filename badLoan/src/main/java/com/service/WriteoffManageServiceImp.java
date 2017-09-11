@@ -58,6 +58,14 @@ public class WriteoffManageServiceImp implements WriteoffManageService {
 		loanMDao.modifyloanstateId(loaninfoId);
 		return writeDao.addWriteoffManage(write);
 	}
+	/**
+	 * 根据贷款编号和贷款人姓名进行模糊查询
+	 */
+	@Override
+	public List<WriteoffManage> findWriteM(String loaninfoId) {
+		
+		return writeDao.findWriteM(loaninfoId);
+	}
 	
 
 }

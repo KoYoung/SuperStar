@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -47,7 +48,6 @@ public class WriteoffManageController {
 	@ResponseBody
 	public List<Repaymentinfo> findReayment(String loaninfoId){
 		List<Repaymentinfo> reList = writeService.findReayment(loaninfoId);
-		System.out.println("贷款编号---》"+loaninfoId);
 		return reList;
 	}
 	/**
@@ -65,7 +65,20 @@ public class WriteoffManageController {
 		}else{
 			return "add error";
 		}
-	
 	}
-	
+	/**
+	 * 根据贷款编号和贷款人姓名进行模糊查询
+	 */
+	@RequestMapping("/findWriteM")
+	@ResponseBody
+	public PagingResult<WriteoffManage> findWriteM(String loaninfoId,Integer rows,Integer page){
+		List<WriteoffManage> wrList = writeService.findWriteM(loaninfoId);
+		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
+		List<WriteoffManage> wrRows = paging.paging(wrList, rows, page);
+		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
+		pr.setRows(wrRows);
+		pr.setTotal(wrList.size());
+		return pr;
+		
+	}
 }

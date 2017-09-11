@@ -20,4 +20,8 @@ public interface WriteoffManageService {
 	 * 添加核销信息
 	 */
 	int addWriteoffManage(WriteoffManage write);
+	/**
+	 * 根据贷款编号和贷款人姓名进行模糊查询
+	 */
+	List<WriteoffManage> findWriteM(String loaninfoId);
 }

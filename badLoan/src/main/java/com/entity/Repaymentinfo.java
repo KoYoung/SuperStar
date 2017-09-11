@@ -8,10 +8,19 @@ public class Repaymentinfo {
 	private String repayId;
 	private String loaninfoId;
 	private String empId;
+	private String empName;
 	private String repayDate;
 	private String repayType;
 	private String repayComment;
 	private Integer repayNumber;
+	
+	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public String getRepayId() {
 		return repayId;
 	}

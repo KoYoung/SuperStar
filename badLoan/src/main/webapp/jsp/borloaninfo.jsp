@@ -13,7 +13,7 @@
 }
 
 tr td {
-	padding-bottom: 15px;
+	padding-bottom: 15px;s
 }
 
 #tab2 {
@@ -330,7 +330,7 @@ $('#dd')
 		.dialog(
 				{
 					title : '不良贷款信息录入',
-					width : '90%',
+					width : '80%',
 					closed : true,
 					cache : false,
 					modal : true,

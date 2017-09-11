@@ -27,6 +27,7 @@ public class ReplaceServiceImp implements ReplaceService{
 		int loaninfoType = replace.getLoaninfoType();
 		System.out.println("loaninfoType"+" "+loaninfoType);
 		String borloaninfoId=replace.getLoaninfoId();
+		System.out.println("borloaninfoId----"+" "+borloaninfoId);
 		String empId=replace.getNewEmpId();
 		System.out.println("newempId-----"+" "+empId);
 		String[] oldEmpName = replace.getOldEmpId().split(" ");
