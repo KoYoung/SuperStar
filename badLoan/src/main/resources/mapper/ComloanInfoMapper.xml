@@ -68,7 +68,7 @@
 		select
 		cli.loaninfo_type,cli.comloaninfo_id,cli.contract_id,cli.loan_type,cli.loan_number,cli.loan_account,to_char(cli.loan_date,'yyyy-MM-dd')
 		LOAN_DATE,to_char(cli.loan_repayment_date,'yyyy-MM-dd')
-		LOAN_REPAYMENT_DATE,cli.loan_rate,cli.unrepay_number,bi.*,cp.*,ee.*,lt.*,ls.*,lm.*
+		LOAN_REPAYMENT_DATE,cli.loan_rate,(cli.loan_number-cli.unrepay_number)unrepay_number,bi.*,cp.*,ee.*,lt.*,ls.*,lm.*
 		from comloaninfo cli,bankinfo bi,employee ee,loantype
 		lt,loanstate
 		ls,company cp,loanmanage lm
@@ -130,4 +130,9 @@
 		#{comloaninfoId,jdbcType=VARCHAR}
 	</update>
 
+	<update id="modifyUnrepayNumber" parameterType="java.util.HashMap">
+		update
+		comloaninfo set unrepay_number = #{unrepay_number,jdbcType=NUMERIC}
+		where comloaninfo_id = #{comloaninfo_id}
+	</update>
 </mapper>

@@ -124,4 +124,24 @@ public class ComloanInfoController {
 		comloanInfoService.modifyComState(datamap);
 		return "success";
 	}
+
+	@RequestMapping("/applyWriteOff")
+	@ResponseBody
+	public String applyWriteOff(@RequestBody String data) {
+		System.out.println(data);
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		System.out.println(datamap);
+		comloanInfoService.applyWriteOff(datamap);
+		return "success";
+	}
+
+	@RequestMapping("/updateUnrepayNumber")
+	@ResponseBody
+	public String updateUnrepayNumber(@RequestBody String data) {
+		System.out.println(data);
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		System.out.println(datamap);
+		comloanInfoService.updateUnrepayNumber(datamap);
+		return "success";
+	}
 }

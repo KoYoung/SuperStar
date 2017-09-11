@@ -41,7 +41,22 @@ public interface ComloanInfoService {
 
 	/**
 	 * 修改企业贷款状态
-	 * @param datamap 
+	 * 
+	 * @param datamap
 	 */
 	void modifyComState(Map<String, String> datamap);
+
+	/**
+	 * 申请核销
+	 * 
+	 * @param datamap
+	 */
+	void applyWriteOff(Map<String, String> datamap);
+
+	/**
+	 * 添加贷款回收记录
+	 * 
+	 * @param datamap
+	 */
+	void updateUnrepayNumber(Map<String, String> datamap);
 }

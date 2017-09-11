@@ -123,4 +123,16 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 		comloanInfoDao.modifyLoanState(datamap);
 	}
 
+	@Transactional
+	public void applyWriteOff(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyLoanState(datamap);
+	}
+
+	@Transactional
+	public void updateUnrepayNumber(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyUnrepayNumber(datamap);
+	}
+
 }

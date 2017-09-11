@@ -67,10 +67,16 @@ public interface BorLoanInfoService {
 	List<BorLoanInfo> findcontractId(String contractId);
 
 	/**
-	 * test
+	 * 申请核销
 	 * 
-	 * @return
+	 * @param datamap
 	 */
-	List<Map<String, String>> findTestDemo();
+	void applyWriteOff(Map<String, String> datamap);
 
+	/**
+	 * 修改未还金额,添加贷款回收记录
+	 * 
+	 * @param datamap
+	 */
+	void updateUnrepayNumber(Map<String, String> datamap);
 }

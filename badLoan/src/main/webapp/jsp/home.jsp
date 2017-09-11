@@ -29,9 +29,9 @@
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
-		style="height: 12%;">
+		style="height: 'auto';">
 		<h4 style="float: left;">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h4>
-		<div style="width: 230px; float: right;">
+		<div style="width: 240px; float: right;">
 			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp; <a
 				href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>
 		</div>
@@ -40,7 +40,7 @@
 		style="width: 13%;">
 		<ul id="homeTree"></ul>
 	</div>
-	<div data-options="region:'center',title:''" style="background: #eee;">
+	<div data-options="region:'center',title:''">
 		<div id="tabsInfo" class="easyui-tabs" data-options="fit:true">
 			<div title="主页">
 				<div id="container1" class="pict"></div>

@@ -29,19 +29,17 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Autowired
 	private BorLoanInfoDao borLoanInfoDao;
 	@Autowired
-	private BorLoanInfoDao BorLoanInfoDao;
-	@Autowired
-	private PledgeDao PledgeDao;
+	private PledgeDao pledgeDao;
 	@Autowired
 	private CustomerGoodsDao customerGoodsDao;
 	@Autowired
-	private GuarantorDao GuarantorDao;
+	private GuarantorDao guarantorDao;
 	@Autowired
 	private BorguaDao borguaDao;
 	@Autowired
-	private LoanManageRecordDao LoanManageRecordDao;
+	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
-	private LoanmanageDao LoanmanageDao;
+	private LoanmanageDao loanmanageDao;
 
 	@Override
 	public List<BorLoanInfo> findBorLoanInfo() {
@@ -112,13 +110,13 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		int loaninfoType = borLoanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
 		try {
-			BorLoanInfoDao.addBorLoanInfo(borLoanInfo);
-			PledgeDao.addPledge(pledge);
+			borLoanInfoDao.addBorLoanInfo(borLoanInfo);
+			pledgeDao.addPledge(pledge);
 			customerGoodsDao.addCustomerGoods(customerGoods);
-			GuarantorDao.addGuarantor(guarantor);
+			guarantorDao.addGuarantor(guarantor);
 			borguaDao.addBorgua(borgua);
-			LoanManageRecordDao.addLoanManageRecord(lmr);
-			LoanmanageDao.addLoanmanage(lonm);
+			loanManageRecordDao.addLoanManageRecord(lmr);
+			loanmanageDao.addLoanmanage(lonm);
 
 		} catch (Exception e) {
 			System.out.println("---------------------------------------" + e.getMessage());
@@ -133,7 +131,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Override
 	public List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId) {
 
-		return BorLoanInfoDao.findBorLoanInfo2(borloaninfoId);
+		return borLoanInfoDao.findBorLoanInfo2(borloaninfoId);
 	}
 
 	@Transactional
@@ -148,21 +146,28 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	}
 
 	/**
-	 * test
-	 * 
-	 * @return
-	 */
-	public List<Map<String, String>> findTestDemo() {
-		return borLoanInfoDao.findTestDemo();
-	}
-
-	/**
 	 * 合同编号唯一性验证
 	 */
 	@Override
 	public List<BorLoanInfo> findcontractId(String contractId) {
 
-		return BorLoanInfoDao.findcontractId(contractId);
+		return borLoanInfoDao.findcontractId(contractId);
 	}
 
+	/**
+	 * 申请核销
+	 * 
+	 * @param datamap
+	 */
+	@Transactional
+	public void applyWriteOff(Map<String, String> datamap) {
+		borLoanInfoDao.addLoanManageRecordMap(datamap);
+		borLoanInfoDao.modifyLoanStateMap(datamap);
+	}
+
+	@Transactional
+	public void updateUnrepayNumber(Map<String, String> datamap) {
+		borLoanInfoDao.addLoanManageRecordMap(datamap);
+		borLoanInfoDao.modifyUnrepayNumber(datamap);
+	}
 }

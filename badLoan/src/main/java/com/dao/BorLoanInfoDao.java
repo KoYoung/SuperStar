@@ -84,14 +84,14 @@ public interface BorLoanInfoDao {
 	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
 
 	/**
-	 * test
-	 * 
-	 * @return
-	 */
-	List<Map<String, String>> findTestDemo();
-
-	/**
 	 * 合同编号唯一性验证
 	 */
 	List<BorLoanInfo> findcontractId(String contractId);
+
+	/**
+	 * 修改未还金额
+	 * 
+	 * @param datamap
+	 */
+	void modifyUnrepayNumber(Map<String, String> datamap);
 }

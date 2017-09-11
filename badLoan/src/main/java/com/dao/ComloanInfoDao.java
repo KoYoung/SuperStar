@@ -52,4 +52,11 @@ public interface ComloanInfoDao {
 	 * @param datamap
 	 */
 	void modifyLoanState(Map<String, String> datamap);
+
+	/**
+	 * 修改未还金额
+	 * 
+	 * @param datamap
+	 */
+	void modifyUnrepayNumber(Map<String, String> datamap);
 }

@@ -137,6 +137,10 @@
 				title : '贷款金额/(万元)',
 				width : 100
 			}, {
+				field : 'UNREPAY_NUMBER',
+				title : '已还金额/(万元)',
+				width : 100
+			}, {
 				field : 'LOAN_ACCOUNT',
 				title : '贷款账户',
 				width : 100

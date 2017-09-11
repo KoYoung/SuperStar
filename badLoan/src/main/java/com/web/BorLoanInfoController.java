@@ -192,10 +192,23 @@ public class BorLoanInfoController {
 		return findBorSearch;
 	}
 
-	@RequestMapping(value = "/findTestDemo")
+	@RequestMapping("/applyWriteOff")
 	@ResponseBody
-	public List<Map<String, String>> findTestDemo() {
-		return borService.findTestDemo();
+	public String applyWriteOff(@RequestBody String data) {
+		System.out.println(data);
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		System.out.println(datamap);
+		borService.applyWriteOff(datamap);
+		return "success";
 	}
 
+	@RequestMapping("/updateUnrepayNumber")
+	@ResponseBody
+	public String updateUnrepayNumber(@RequestBody String data) {
+		System.out.println(data);
+		Map<String, String> datamap = JSON.parseObject(data, Map.class);
+		System.out.println(datamap);
+		borService.updateUnrepayNumber(datamap);
+		return "success";
+	}
 }
