@@ -20,11 +20,6 @@
 		and lg.loaninfo_id=bori.borloaninfo_id
 		and bori.loaninfo_type=0
 	</select>
-	<!-- select * from borloaninfo </select> -->
-	<!-- 添加个人用户贷款信息 -->
-	<!-- <insert id="addBorLoanInfo" parameterType="com.entity.BorLoanInfo"> 
-		insert into borloaninfo values(#{borId},#{bankinfoId},#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate}) 
-		</insert> -->
 
 	<!-- 查询个人用户贷款信息详情 -->
 	<select id="findBorLoanDetail" resultType="java.util.HashMap">
@@ -75,13 +70,6 @@
 		ls.loanstate_id and bli.borloaninfo_id=
 		#{borloaninfoId}
 	</select>
-	<!-- select bli.borloaninfo_id, bli.bor_id, bli.emp_id , bli.loan_number 
-		,bli.loan_account , bli.loan_date ,bli.loan_repayment_date, bli.loan_rate 
-		, bli.borloaninfo_type , lt.loantype_name ,ls.loanstate_name,bi.bankinfo_name,bi.bankinfo_telephone,bi.bankinfo_address 
-		from borLoanInfo bli,loantype lt,loanmanage lm, loanstate ls,bankInfo bi 
-		where bli.loan_type = lt.loantype_id and bli.bank_id = bi.bankinfo_id and 
-		lm.loaninfo_id = bli.borloaninfo_id and lm.loanstate_id = ls.loanstate_id 
-		and bli.borloaninfo_id= -->
 	<select id="findCusDetailsById" parameterType="int"
 		resultType="java.util.HashMap">
 		select
@@ -192,10 +180,11 @@
 			<if test="contractId!=null and contractId!=''">
 				and bli.contract_id like '%' || '${contractId}' || '%'
 			</if>
-			<if test="!(loanStateId.length()>5)">
+			<if
+				test="loanStateId!=null and loanStateId!='' and !(loanStateId.length()>5)">
 				and lm.loanstate_id = #{loanStateId,jdbcType=VARCHAR}
 			</if>
-			<if test="!(bankId.length()>5)">
+			<if test="bankId!=null and bankId!='' and !(bankId.length()>5)">
 				and bli.bankinfo_id = #{bankId,jdbcType=VARCHAR}
 			</if>
 			<choose>

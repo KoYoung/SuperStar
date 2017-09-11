@@ -108,7 +108,6 @@
 					url : '',
 					data : data
 				});
-				$('#lmrDataGrid').datagrid("reload");
 			},
 			error : function() {
 				alert("error");
@@ -281,6 +280,7 @@
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
 							alert(data);
+							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {
 							alert("error");

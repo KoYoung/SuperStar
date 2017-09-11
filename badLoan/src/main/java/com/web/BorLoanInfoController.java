@@ -1,9 +1,6 @@
 package com.web;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.entity.BorLoanInfo;
-import com.entity.BorRower;
 import com.entity.Borgua;
 import com.entity.CustomerGoods;
 import com.entity.Guarantor;
@@ -40,7 +36,6 @@ public class BorLoanInfoController {
 	private BorLoanInfoService borService;
 	@Autowired
 	private ComloanInfoService comService;
-
 
 	/**
 	 * 添加个人用户贷款信息 马利肖
@@ -180,7 +175,7 @@ public class BorLoanInfoController {
 	@ResponseBody
 	public String updateLoanState(@RequestBody String data) {
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
-		borService.updateLoanState(datamap);
+		borService.modifyLoanState(datamap);
 		return "success";
 	}
 

@@ -88,10 +88,11 @@
 			<if test="contractId!=null and contractId!=''">
 				and cli.contract_id like '%' || '${contractId}' || '%'
 			</if>
-			<if test="!(loanStateId.length()>5)">
+			<if
+				test="loanStateId!=null and loanStateId!='' and !(loanStateId.length()>5)">
 				and lm.loanstate_id = #{loanStateId,jdbcType=VARCHAR}
 			</if>
-			<if test="!(bankId.length()>5)">
+			<if test="bankId!=null and bankId!='' and !(bankId.length()>5)">
 				and cli.bankinfo_id = #{bankId,jdbcType=VARCHAR}
 			</if>
 			<choose>
@@ -114,5 +115,19 @@
 			</choose>
 		</where>
 	</select>
+	<insert id="addLmr">
+		insert into
+		loanmanagerecord
+		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name)
+		values
+		(lmr_sequence.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),1)
+	</insert>
+	<update id="modifyLoanState">
+		update loanmanage
+		set loanstate_id =
+		#{loanState,jdbcType=VARCHAR} where
+		loaninfo_id =
+		#{comloaninfoId,jdbcType=VARCHAR}
+	</update>
 
 </mapper>

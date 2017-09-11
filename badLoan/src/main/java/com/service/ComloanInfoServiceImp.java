@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dao.BorguaDao;
 import com.dao.ComloanInfoDao;
 import com.dao.CustomerGoodsDao;
@@ -116,6 +115,12 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	@Override
 	public List<Map<String, String>> findComLoan(Map<String, String> datamap) {
 		return comloanInfoDao.findComLoan(datamap);
+	}
+
+	@Transactional
+	public void modifyComState(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyLoanState(datamap);
 	}
 
 }

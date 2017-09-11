@@ -51,7 +51,7 @@ public interface BorLoanInfoService {
 	 * 
 	 * @param datamap
 	 */
-	void updateLoanState(Map<String, String> datamap);
+	void modifyLoanState(Map<String, String> datamap);
 
 	/**
 	 * 个人贷款模糊查询

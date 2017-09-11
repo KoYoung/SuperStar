@@ -38,4 +38,10 @@ public interface ComloanInfoService {
 	 * 查询企业贷款
 	 */
 	List<Map<String, String>> findComLoan(Map<String, String> datamap);
+
+	/**
+	 * 修改企业贷款状态
+	 * @param datamap 
+	 */
+	void modifyComState(Map<String, String> datamap);
 }

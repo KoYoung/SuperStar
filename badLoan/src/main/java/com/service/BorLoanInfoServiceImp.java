@@ -137,7 +137,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	}
 
 	@Transactional
-	public void updateLoanState(Map<String, String> datamap) {
+	public void modifyLoanState(Map<String, String> datamap) {
 		borLoanInfoDao.addLoanManageRecordMap(datamap);
 		borLoanInfoDao.modifyLoanStateMap(datamap);
 	}

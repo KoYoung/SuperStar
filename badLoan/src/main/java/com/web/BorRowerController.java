@@ -102,15 +102,6 @@ public class BorRowerController {
 		}
 	}
 	
-	/*@RequestMapping(value="/addUplod",method = RequestMethod.POST)
-	@ResponseBody
-	public String addUplod(MultipartFile  borPhoto,HttpServletRequest request) throws IOException{
-		String filePath = FileUpload.uploadFile(borPhoto, request);
-								
-		System.out.println("====filePath=========="+filePath);
-		return filePath;
-		
-	}*/
 	@RequestMapping("/modify")
 	@ResponseBody
 	public String  modifyBorRower(@RequestBody String  string){
