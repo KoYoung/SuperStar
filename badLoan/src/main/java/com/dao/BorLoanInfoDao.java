@@ -94,4 +94,11 @@ public interface BorLoanInfoDao {
 	 * @param datamap
 	 */
 	void modifyUnrepayNumber(Map<String, String> datamap);
+
+	/**
+	 * 添加贷款回收信息
+	 * 
+	 * @param datamap
+	 */
+	void addRepaymentinfo(Map<String, String> datamap);
 }

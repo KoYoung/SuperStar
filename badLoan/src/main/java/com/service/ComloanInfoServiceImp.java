@@ -131,7 +131,7 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 
 	@Transactional
 	public void updateUnrepayNumber(Map<String, String> datamap) {
-		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.addRepaymentinfo(datamap);
 		comloanInfoDao.modifyUnrepayNumber(datamap);
 	}
 
