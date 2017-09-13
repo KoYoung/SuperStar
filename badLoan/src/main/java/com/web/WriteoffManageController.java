@@ -74,23 +74,6 @@ public class WriteoffManageController {
 		}
 
 	}
-
-	/**
-	 * 添加核销信息
-	 */
-	@RequestMapping("/addWriteoffManage")
-	@ResponseBody
-	public String addWriteoffManage(@RequestBody String data, HttpSession session) {
-		// System.out.println("========================"+data);
-		WriteoffManage wm = JSON.parseObject(data, WriteoffManage.class);
-		int flag = writeService.addWriteoffManage(wm, session);
-		if (flag == 1) {
-			return "add success";
-		} else {
-			return "add error";
-		}
-	}
-
 	/**
 	 * 根据贷款编号和贷款人姓名进行模糊查询
 	 */
