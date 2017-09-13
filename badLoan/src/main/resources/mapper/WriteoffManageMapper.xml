@@ -42,11 +42,12 @@
 		and bi.loan_type=lt.loantype_id
 		and
 		bi.bankinfo_id=bk.bankinfo_id
-		and lg.loanstate_id=ls.loanstate_id
-		and lg.loanstate_id=8
+		and lg.loanstate_id=ls.loanstate_id and
+		lg.loanstate_id=7
 		union
 		select
-		ci.loaninfo_type,ci.comloaninfo_id loaninfoId,
+		ci.loaninfo_type,ci.comloaninfo_id
+		loaninfoId,
 		ci.com_id borId,cp.com_name borName,
 		ci.loan_type,ci.loan_number,ci.loan_account,
 		ci.loan_date,ci.loan_repayment_date,ci.unrepay_number,
@@ -65,14 +66,16 @@
 		and
 		ci.bankinfo_id=bk.bankinfo_id
 		and lg.loanstate_id=ls.loanstate_id
-		and lg.loanstate_id=8
+		and
+		lg.loanstate_id=7
 
 	</select>
-	<!-- 根据贷款编号查询这笔贷款的所有回收记录 -->
+	<!-- 根据贷款编号查询这笔贷款的所有贷款回收记录 -->
 	<select id="findReayment" resultType="com.entity.Repaymentinfo">
 		select re.*,e.emp_name from
 		repaymentinfo re,employee e
-		where re.emp_id=e.emp_id and loaninfo_id=#{loaninfoId}
+		where re.emp_id=e.emp_id and
+		loaninfo_id=#{loaninfoId}
 	</select>
 	<!-- 添加核销信息 -->
 	<insert id="addWriteoffManage" parameterType="com.entity.Repaymentinfo">
@@ -81,4 +84,78 @@
 		#{loaninfoId,jdbcType=VARCHAR},#{borId,jdbcType=VARCHAR}
 		,#{empId,jdbcType=VARCHAR},#{witeoffMoney,jdbcType=NUMERIC},#{opinion,jdbcType=VARCHAR})
 	</insert>
+	<!-- 根据贷款编号和贷款人姓名进行模糊查询 -->
+	<select id="findWriteM" resultType="com.entity.WriteoffManage"
+		parameterType="String">
+		select * from(select
+		bi.loaninfo_type,bi.borloaninfo_id
+		loaninfoId,bi.bor_id,
+		bw.bor_name
+		borName,bi.loan_type,bi.loan_number,bi.loan_account,
+		bi.loan_date,bi.loan_repayment_date,bi.unrepay_number,
+		e.emp_id
+		empId,e.emp_name,
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
+		from employee
+		e,borloaninfo bi,loanstate ls,
+		borrower bw,loantype lt,bankinfo
+		bk,loanmanage lg
+		where bi.bor_id=bw.bor_id and bi.emp_id=e.emp_id
+		and
+		bi.borloaninfo_id=lg.loaninfo_id
+		and bi.loan_type=lt.loantype_id
+		and
+		bi.bankinfo_id=bk.bankinfo_id
+		and lg.loanstate_id=ls.loanstate_id
+		and
+		lg.loanstate_id=7
+		union
+		select
+		ci.loaninfo_type,ci.comloaninfo_id
+		loaninfoId,
+		ci.com_id borId,cp.com_name borName,
+		ci.loan_type,ci.loan_number,ci.loan_account,
+		ci.loan_date,ci.loan_repayment_date,ci.unrepay_number,
+		e.emp_id
+		empId,e.emp_name,
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
+		from comloaninfo
+		ci,company cp,employee e,
+		loanmanage lg,loantype lt,bankinfo
+		bk,loanstate ls
+		where ci.com_id=cp.com_id and ci.emp_id=e.emp_id
+		and
+		ci.comloaninfo_id=lg.loaninfo_id
+		and ci.loan_type=lt.loantype_id
+		and
+		ci.bankinfo_id=bk.bankinfo_id
+		and lg.loanstate_id=ls.loanstate_id
+		and
+		lg.loanstate_id=7) where
+		<if test="_parameter!=null and _parameter!='' ">
+			borName like '%' || #{_parameter} || '%'
+		</if>
+		<if test="_parameter!=null and _parameter!='' ">
+			or loaninfoId like '%' || #{_parameter} || '%'
+		</if>
+
+	</select>
+
 </mapper>
+
+<!-- and lg.loanstate_id=8 union select ci.loaninfo_type,ci.comloaninfo_id 
+	loaninfoId, ci.com_id borId,cp.com_name borName, ci.loan_type,ci.loan_number,ci.loan_account, 
+	ci.loan_date,ci.loan_repayment_date,ci.unrepay_number, e.emp_id empId,e.emp_name, 
+	bk.bankinfo_name,bk.bankinfo_id, lg.loanstate_id,lt.loantype_name,ls.loanstate_name 
+	from comloaninfo ci,company cp,employee e, loanmanage lg,loantype lt,bankinfo 
+	bk,loanstate ls where ci.com_id=cp.com_id and ci.emp_id=e.emp_id and ci.comloaninfo_id=lg.loaninfo_id 
+	and ci.loan_type=lt.loantype_id and ci.bankinfo_id=bk.bankinfo_id and lg.loanstate_id=ls.loanstate_id 
+	and lg.loanstate_id=8 </select> 根据贷款编号查询这笔贷款的所有回收记录 <select id="findReayment" 
+	resultType="com.entity.Repaymentinfo"> select re.*,e.emp_name from repaymentinfo 
+	re,employee e where re.emp_id=e.emp_id and loaninfo_id=#{loaninfoId} </select> 
+	添加核销信息 <insert id="addWriteoffManage" parameterType="com.entity.Repaymentinfo"> 
+	insert into writeoffmanage values(writeoff_se.nextval, #{loaninfoId,jdbcType=VARCHAR},#{borId,jdbcType=VARCHAR} 
+	,#{empId,jdbcType=VARCHAR},#{witeoffMoney,jdbcType=NUMERIC},#{opinion,jdbcType=VARCHAR}) 
+	</insert> -->

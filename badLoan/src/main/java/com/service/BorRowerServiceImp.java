@@ -29,19 +29,6 @@ public class BorRowerServiceImp implements BorRowerService {
 	public List<BorRower> findBorRowers() {
 		return BorrowerDao.findBorRowers();
 	}
-
-/*	@Override
-	public int addBorrowers(BorRower bor, Contect contect, ContectUser contectUser) {
-		System.out.println("________3----------------------");
-		int flag= BorrowerDao.addBorRowers(bor)+ContectDao.addContecct(contect)+ContectUserDao.addContectUser(contectUser);
-		System.out.println(flag);
-		System.out.println("________3----------------------");
-		return flag;
-	}*/
-	
-	
-	
-
 	@Override
 	public int modifyBorRower(BorRower borRower, ContectUser contectUser, Contect contect) {
 		int flag= BorrowerDao.addBorRowers(borRower)+ContectDao.addContecct(contect)+ContectUserDao.addContectUser(contectUser);
@@ -60,5 +47,11 @@ public class BorRowerServiceImp implements BorRowerService {
 		ContectUserDao.addContectUser(contectUser);
 		return 0;
 	}
-
+	/**
+	 * 查询所有个人用户编号
+	 */
+	public List<BorRower> findBorId() {
+		return BorrowerDao.findBorId();
+	}
+	
 }

@@ -45,7 +45,6 @@ public class ComloanInfoController {
 			ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua,
 			LoanManageRecord lmr, Loanmanage lonm) throws IOException {
 		List files = FileUpload.uploadFile1(borPhotos, request);
-		System.out.println("-----------------------");
 		String phonePath = "";
 		for (int i = 0; i < files.size(); i++) {
 
@@ -72,6 +71,8 @@ public class ComloanInfoController {
 		List<ComloanInfo> comList = comloanInfoService.findComloanInfo();
 		Paging<ComloanInfo> paging = new Paging<ComloanInfo>();
 		List<ComloanInfo> list = paging.paging(comList, rows, page);
+		System.out.println("rows---"+rows);
+		System.out.println("page---"+page);
 		PagingResult<ComloanInfo> pr = new PagingResult<ComloanInfo>();
 		pr.setRows(list);
 		pr.setTotal(comList.size());

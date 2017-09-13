@@ -19,7 +19,7 @@ public class ReplaceController {
 	private ReplaceService replaceService;
 	
 	/**
-	 * 业务移交记录
+	 * 添加业务移交记录
 	 */
 	@RequestMapping("/addReplace")
 	@ResponseBody

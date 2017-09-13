@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.entity.LoanManageRecord;
 
 /**
@@ -29,4 +31,8 @@ public interface LoanManageRecordService {
 	 * 当核销通过时，添加贷款处理记录
 	 */
 	int addLoanMR(LoanManageRecord loanManageRecord);
+	/**
+	 * 当核销驳回时，添加贷款处理记录
+	 */
+	int addLoanMRBo(LoanManageRecord loanManageRecord,HttpSession session);
 }

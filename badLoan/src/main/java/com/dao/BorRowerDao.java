@@ -18,5 +18,9 @@ public interface BorRowerDao {
 	public int addBorRowers(BorRower bor);// 添加
 
 	public int modifyBorRower(BorRower borRower);// 修改
+	/**
+	 * 查询所有个人用户编号
+	 */
+	List<BorRower> findBorId();
 
 }

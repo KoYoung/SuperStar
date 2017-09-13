@@ -30,4 +30,8 @@ public interface LoanManageRecordDao {
 	 * 当核销通过时，添加贷款处理记录
 	 */
 	int addLoanMR(LoanManageRecord loanManageRecord);
+	/**
+	 * 当核销驳回时，添加贷款处理记录
+	 */
+	int addLoanMRBo(LoanManageRecord loanManageRecord);
 }

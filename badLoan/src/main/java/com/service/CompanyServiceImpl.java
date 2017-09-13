@@ -59,5 +59,11 @@ public class CompanyServiceImpl implements CompanyService {
 		return 0;
 
 	}
-
+	/**
+	 * 查询所有企业用户编号
+	 */
+	@Override
+	public List<Company> findCompanyId() {
+		return CompanyDao.findCompanyId();
+	}
 }

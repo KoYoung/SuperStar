@@ -16,7 +16,7 @@ public class FileUpload {
 			
 	        String fileName = file.getOriginalFilename(); //获取上传文件的原名 
 	       // String path=request.getSession().getServletContext().getRealPath("images/"); //找到tomcat服务器文件保存目录
-	        String path ="F:\\upload\\"; //找到本地路径
+	        String path ="D:\\upload\\"; //找到本地路径
 	        System.out.println("================="+path);
 	        
 	        String photoName = new Date().getTime() + fileName.substring(fileName.lastIndexOf(".") -1);//重命名

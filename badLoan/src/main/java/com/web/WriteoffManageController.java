@@ -1,6 +1,9 @@
 package com.web;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,4 +75,34 @@ public class WriteoffManageController {
 
 	}
 
+	/**
+	 * 添加核销信息
+	 */
+	@RequestMapping("/addWriteoffManage")
+	@ResponseBody
+	public String addWriteoffManage(@RequestBody String data, HttpSession session) {
+		// System.out.println("========================"+data);
+		WriteoffManage wm = JSON.parseObject(data, WriteoffManage.class);
+		int flag = writeService.addWriteoffManage(wm, session);
+		if (flag == 1) {
+			return "add success";
+		} else {
+			return "add error";
+		}
+	}
+
+	/**
+	 * 根据贷款编号和贷款人姓名进行模糊查询
+	 */
+	@RequestMapping("/findWriteM")
+	@ResponseBody
+	public PagingResult<WriteoffManage> findWriteM(String loaninfoId, Integer rows, Integer page) {
+		List<WriteoffManage> wrList = writeService.findWriteM(loaninfoId);
+		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
+		List<WriteoffManage> wrRows = paging.paging(wrList, rows, page);
+		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
+		pr.setRows(wrRows);
+		pr.setTotal(wrList.size());
+		return pr;
+	}
 }

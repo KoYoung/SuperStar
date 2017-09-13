@@ -76,20 +76,12 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
 		System.out.println("--------------------cusList:" + cusList + "----------------------");
 		System.out.println("--------------------empList:" + empList + "----------------------");
-		/*
-		 * if(!guaList.isEmpty()){ for (Map<String, String> map : empList) {
-		 * map.get(key); } }
-		 */
 		for (Map<String, String> map : cusList) {
 			borList.add(map);
 		}
 		for (Map<String, String> map : empList) {
 			borList.add(map);
 		}
-		System.out.println("borlist::::::::::::::::::::::::::::::::::::::::::::::::::" + borList);
-		// String str = "{'total':3,'rows':[" + borList.get(0) + "," +
-		// cusList.get(0) + "," + empList.get(0) + "]}";
-
 		return borList;
 	}
 
@@ -99,9 +91,9 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Transactional
 	public int addBorLoanInfo(BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
 			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
-		System.out.println("银行id----" + borLoanInfo.getBankinfoId());
-		String pledgeGenre = borLoanInfo.getLoanType();
-		System.out.println("担保人：" + " " + pledgeGenre);
+				String pledgeGenre = borLoanInfo.getLoanType();
+		int unrepayNumber = Integer.parseInt(borLoanInfo.getLoanNumber());
+		borLoanInfo.setUnrepayNumber(unrepayNumber);
 		pledge.setPledgeGenre(pledgeGenre);
 		String empId = borLoanInfo.getEmpId();
 		lmr.setEmpId(empId);

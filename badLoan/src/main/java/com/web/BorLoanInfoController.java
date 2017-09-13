@@ -45,18 +45,19 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/addBorLoanInfo")
 	@ResponseBody
-	public String addBorLoanInfo(MultipartFile borPhoto, HttpServletRequest request, BorLoanInfo borLoanInfo,
+	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request, BorLoanInfo borLoanInfo,
 			Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua, LoanManageRecord lmr,
 			Loanmanage loanmanage) throws IOException {
 		System.out.println("****************************");
-		String filepath = FileUpload.uploadFile(borPhoto, request);
-		pledge.setPledgePhoto(filepath);
+		List filepath = FileUpload.uploadFile1(borPhoto, request);
+		String path = "";
+		for (int i = 0; i < borPhoto.length; i++) {
+			path=path+filepath.get(i).toString()+",";
+		}
+		System.out.println("path-------"+path);
+		pledge.setPledgePhoto(path);
 		System.out.println("zhaopi=a==n=====" + pledge.getPledgePhoto());
 
-		/*
-		 * int bor = borService.addBorLoanInfo(BorLoanInfo,
-		 * pledge,customergoods, guarantor,borgua, lmr, lonm);
-		 */
 		int bor = borService.addBorLoanInfo(borLoanInfo, pledge, customerGoods, guarantor, borgua, lmr, loanmanage);
 		if (bor > 0) {
 			return "添加个人用户贷款信息success";

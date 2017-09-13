@@ -71,23 +71,6 @@ public class BorRowerController {
 		pResult.setRows(list1);
 		return pResult;
 	} 
-	
-	/*@RequestMapping("/addbor")
-	@ResponseBody
-	public String addbor(@RequestBody String str) {
-		System.out.println("-----------1--------------str-------------"+str);
-		BorRower bor=JSON.parseObject(str,BorRower.class );
-		Contect  con=JSON.parseObject(str, Contect.class);
-		ContectUser contect=JSON.parseObject(str, ContectUser.class);
-		int flag = borRowerService.addBorrowers(bor,con,contect);
-		System.out.println("--------------2---------------------"+flag);
-		if(flag>0){
-			return "success";
-		}else{
-			return "eroor";
-		}
-	}*/
-	
 	@RequestMapping("/addbor")
 	@ResponseBody
 	public String  addbor(BorRower bor,Contect contect,ContectUser contectUser,MultipartFile borP,HttpServletRequest request) throws IOException{
@@ -115,5 +98,13 @@ public class BorRowerController {
 			return "error";
 		}
 	};
-	
+	/**
+	 * 查询所有个人用户编号
+	 */
+	@RequestMapping("/findBorId")
+	@ResponseBody
+	public List<BorRower> findBorId(){
+		List<BorRower> bList = borRowerService.findBorId();
+		return bList;
+	}
 }

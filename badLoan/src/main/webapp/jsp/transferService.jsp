@@ -5,12 +5,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
-	type="text/css"></link>
+<title>Insert title here</title>
 </head>
 <style>
 tr td {
@@ -124,7 +119,7 @@ tr td {
 					//dataType : "text",
 					success : function(data) {
 						$("#borId").val(data.borName);
-						$("#empName").val(data.empName+data.empId);
+						$("#empName").val(data.empName+" "+data.empId);
 						$("#bankinfoName").val(data.bankinfoName);
 					}
 				});

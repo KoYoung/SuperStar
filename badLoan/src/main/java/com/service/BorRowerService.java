@@ -16,4 +16,8 @@ public interface BorRowerService {
 	public int addBorrowers(BorRower bor,Contect contect,ContectUser contectUser);//添加
 	public int modifyBorRower(BorRower borRower, ContectUser contectUser, Contect contect);//修改
 	List<BorRower> findBorRowersMohu(String str);//模糊查询
+	/**
+	 * 查询所有个人用户编号
+	 */
+	List<BorRower> findBorId();
 }

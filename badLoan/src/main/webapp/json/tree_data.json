@@ -58,7 +58,7 @@
     }]    
 },{
    	"id":4,
-   	"state":"closed",
+   	"state":"open",
     "text":"贷款信息管理",    
     "children":[{  
     	"id":401,   

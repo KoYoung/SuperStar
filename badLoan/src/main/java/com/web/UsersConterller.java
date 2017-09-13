@@ -29,7 +29,6 @@ public class UsersConterller {
 	@RequestMapping("/queryUsers")
 	@ResponseBody
 	public List<Users> queryRole() {
-		System.out.println("11111111111111111");
 		List<Users> usersList = us.findUsers();
 		return usersList;
 	}
