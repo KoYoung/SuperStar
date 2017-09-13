@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WriteoffManageDao">
+	<!-- <resultMap type="com.entity.WriteoffManage" id="WriteoffManageResultMap"> 
+		<id column="loaninfo_type" property="loaninfoType"/> <result column="loaninfo_id" 
+		property="loaninfoId"/> <result column="bor_id" property="borId"/> <result 
+		column="bor_name" property="borName"/> <result column="loan_type" property="loanType"/> 
+		<result column="loantype_name" property="loantypeName"/> <result column="loan_number" 
+		property="loanNumber"/> <result column="loan_account" property="loanAccount"/> 
+		<result column="loan_date" property="loanDate"/> <result column="loan_repayment_date" 
+		property="loanRepaymentDate"/> <result column="emp_id" property="empId"/> 
+		<result column="emp_name" property="empName"/> <result column="bankinfo_name" 
+		property="bankinfoName"/> <result column="bankinfo_id" property="bankinfoId"/> 
+		<result column="lmr_name" property="lmrName"/> <result column="lmr_comment" 
+		property="lmrComment"/> <result column="loantype_name" property="loantypeName"/> 
+		一对多的关系 property: 指的是集合属性的值, ofType：指的是集合中元素的类型 <collection property="repaymentinfo" 
+		ofType="com.entity.Repaymentinfo"> <id column="repay_id" property="repayId"/> 
+		<result column="loaninfo_id" property="loaninfoId"/> <result column="emp_id" 
+		property="empId"/> <result column="repay_date" property="repayDate"/> <result 
+		column="repay_type" property="repayType"/> <result column="repay_comment" 
+		property="repayComment"/> <result column="repay_number" property="repayNumber"/> 
+		</collection> </resultMap> -->
+	<!-- 查询所有申请核销的贷款信息 -->
+	<select id="findWriteoffManage" resultType="com.entity.WriteoffManage">
+		select
+		bi.loaninfo_type,bi.borloaninfo_id loaninfoId,bi.bor_id,
+		bw.bor_name,bi.loan_type,bi.loan_number,bi.loan_account,
+		bi.loan_date,bi.loan_repayment_date,bi.unrepay_number,
+		e.emp_id
+		empId,e.emp_name,
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
+		from employee
+		e,borloaninfo bi,loanstate ls,
+		borrower bw,loantype lt,bankinfo
+		bk,loanmanage lg
+		where bi.bor_id=bw.bor_id and bi.emp_id=e.emp_id
+		and
+		bi.borloaninfo_id=lg.loaninfo_id
+		and bi.loan_type=lt.loantype_id
+		and
+		bi.bankinfo_id=bk.bankinfo_id
+		and lg.loanstate_id=ls.loanstate_id
+		and lg.loanstate_id=8
+		union
+		select
+		ci.loaninfo_type,ci.comloaninfo_id loaninfoId,
+		ci.com_id borId,cp.com_name borName,
+		ci.loan_type,ci.loan_number,ci.loan_account,
+		ci.loan_date,ci.loan_repayment_date,ci.unrepay_number,
+		e.emp_id
+		empId,e.emp_name,
+		bk.bankinfo_name,bk.bankinfo_id,
+		lg.loanstate_id,lt.loantype_name,ls.loanstate_name
+		from comloaninfo
+		ci,company cp,employee e,
+		loanmanage lg,loantype lt,bankinfo
+		bk,loanstate ls
+		where ci.com_id=cp.com_id and ci.emp_id=e.emp_id
+		and
+		ci.comloaninfo_id=lg.loaninfo_id
+		and ci.loan_type=lt.loantype_id
+		and
+		ci.bankinfo_id=bk.bankinfo_id
+		and lg.loanstate_id=ls.loanstate_id
+		and lg.loanstate_id=8
+
+	</select>
+	<!-- 根据贷款编号查询这笔贷款的所有回收记录 -->
+	<select id="findReayment" resultType="com.entity.Repaymentinfo">
+		select re.*,e.emp_name from
+		repaymentinfo re,employee e
+		where re.emp_id=e.emp_id and loaninfo_id=#{loaninfoId}
+	</select>
+	<!-- 添加核销信息 -->
+	<insert id="addWriteoffManage" parameterType="com.entity.Repaymentinfo">
+		insert into
+		writeoffmanage values(writeoff_se.nextval,
+		#{loaninfoId,jdbcType=VARCHAR},#{borId,jdbcType=VARCHAR}
+		,#{empId,jdbcType=VARCHAR},#{witeoffMoney,jdbcType=NUMERIC},#{opinion,jdbcType=VARCHAR})
+	</insert>
+</mapper>
