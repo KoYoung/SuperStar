@@ -56,7 +56,11 @@
 			</tr>
 			<tr>
 				<td><span>贷款金额：</span></td>
-				<td><span id="loanNumber"></span>/万元</td>
+				<td><span id="loanNumber"></span>万</td>
+			</tr>
+			<tr>
+				<td><span>已还金额：</span></td>
+				<td><span id="unrepayNumber"></span>万</td>
 			</tr>
 			<tr>
 				<td><span>贷款状态：</span></td>
@@ -67,7 +71,101 @@
 				<td><span id="empId_update" style="display: none"></span><span
 					id="empName"></span></td>
 			</tr>
+			<tr>
+				<td><span>申请原因：</span></td>
+				<td><textarea id="lmrComment"></textarea></td>
+			</tr>
 		</table>
+	</div>
+	<div id="applyWriteOff">
+		<!-- 核销弹框结束-->
+		<table>
+			<tr>
+				<td><span>贷款编号：</span></td>
+				<td><span id="comLoanIdAWO"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款人：</span></td>
+				<td><span id="comNameAWO"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款类型：</span></td>
+				<td><span id="comTypeNameAWO"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款金额：</span></td>
+				<td><span id="loanNumberAWO"></span>万</td>
+			</tr>
+			<tr>
+				<td><span>已还金额：</span></td>
+				<td><span id="unrepayNumberAWO"></span>万</td>
+			</tr>
+			<tr>
+				<td><span>贷款状态：</span></td>
+				<td><span id="loanStateAWO"></span></td>
+			</tr>
+			<tr>
+				<td><span>负责人：</span></td>
+				<td><span id="empId_updateAWO" style="display: none"></span><span
+					id="empNameAWO"></span></td>
+			</tr>
+			<tr>
+				<td><span>申请原因：</span></td>
+				<td><textarea id="lmrCommentAWO"></textarea></td>
+			</tr>
+		</table>
+	</div>
+	<!-- 核销弹框结束-->
+	<div id="addLMR">
+		<!-- 回收信息登记弹框 -->
+		<table>
+			<tr>
+				<td><span>贷款编号：</span></td>
+				<td><span id="comLoanIdLMR"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款企业：</span></td>
+				<td><span id="comNameLMR"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款类型：</span></td>
+				<td><span id="comTypeNameLMR"></span></td>
+			</tr>
+			<tr>
+				<td><span>贷款金额：</span></td>
+				<td><span id="loanNumberLMR"></span>万</td>
+			</tr>
+			<tr>
+				<td><span>已还金额：</span></td>
+				<td><span id="unrepayNumberLMR"></span>万</td>
+			</tr>
+			<tr>
+				<td><span>偿还方式：</span></td>
+				<td><select id="repayType" class="easyui-combobox"
+					style="width: 170px;" data-options="penalheight:'auto'">
+						<option value="银行支票">银行支票</option>
+						<option value="现金支付">现金支付</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><span>偿还金额：</span></td>
+				<td><input id="repayNumberLMR" />万</td>
+			</tr>
+			<tr>
+				<td><span>贷款状态：</span></td>
+				<td><span id="loanStateLMR"></span></td>
+			</tr>
+			<tr>
+				<td><span>负责人：</span></td>
+				<td><span id="empId_updateLMR" style="display: none"></span><span
+					id="empNameLMR"></span></td>
+			</tr>
+			<tr>
+				<td><span>回收总结：</span></td>
+				<td><textarea id="lmrCommentLMR"></textarea></td>
+			</tr>
+		</table>
+		<!-- 回收信息登记弹框 -->
 	</div>
 </body>
 </html>
@@ -181,27 +279,167 @@
 					});
 					$("#detailDialog").dialog("open");
 				}
-			}, '-', '-', {
+			}, '-', {
 				iconCls : 'icon-edit',
 				text : '修改状态',
 				handler : function() {
 					var row = $('#comDataGrid').datagrid("getSelected");
-					$('#updateLoanDirlog').dialog("open");
-					$("#comLoanId").html(row.COMLOANINFO_ID);
-					$("#comTypeName").html(row.LOANTYPE_NAME);
-					$("#comName").html(row.COM_NAME);
-					$("#loanNumber").html(row.LOAN_NUMBER);
-					$("#loanState").combobox('setValues', row.LOANSTATE_ID);
-					$("#empName").html(row.EMP_NAME);
-					$("#empId_update").html(row.EMP_ID);
+					if (row == null) {
+						alert("请选择需要修改的信息");
+					} else if (row.LOANSTATE_NAME == '已核销') {
+						alert("该贷款项已被核销");
+					} else {
+						$('#updateLoanDirlog').dialog("open");
+						$("#comLoanId").html(row.COMLOANINFO_ID);
+						$("#comTypeName").html(row.LOANTYPE_NAME);
+						$("#comName").html(row.COM_NAME);
+						$("#loanNumber").html(row.LOAN_NUMBER);
+						$("#unrepayNumber").html(row.UNREPAY_NUMBER);
+						$("#loanState").combobox('setValues', row.LOANSTATE_ID);
+						$("#empName").html(row.EMP_NAME);
+						$("#empId_update").html(row.EMP_ID);
+					}
 				}
-			}, '-', '-' ]
+			}, '-',{
+				iconCls : 'icon-edit',
+				text : '回收信息登记',
+				handler : function() {
+					var row = $('#comDataGrid')
+							.datagrid("getSelected");
+					if (row == null) {
+						alert("请选择需要回收的信息");
+					} else if (row.LOANSTATE_NAME == '已核销') {
+						alert("该贷款项已被核销");
+					} else {
+						$('#addLMR').dialog("open");
+						$("#comLoanIdLMR").html(row.COMLOANINFO_ID);
+						$("#comTypeNameLMR").html(row.LOANTYPE_NAME);
+						$("#comNameLMR").html(row.COM_NAME);
+						$("#loanNumberLMR").html(row.LOAN_NUMBER);
+						$("#unrepayNumberLMR").html(row.UNREPAY_NUMBER);
+						$("#empNameLMR").html(row.EMP_NAME);
+						$("#empId_updateLMR").html(row.EMP_ID);
+						$("#loanStateLMR").html(row.LOANSTATE_NAME);
+					}
+				}
+			},'-',{
+				iconCls : 'icon-edit',
+				text : '申请核销 ',
+				handler : function() {
+					var row = $('#comDataGrid')
+							.datagrid("getSelected");
+					if (row == null) {
+						alert("请选择需要核销的信息");
+					} else {
+						if (row.LOANSTATE_NAME == '核销中') {
+							alert("该贷款项正在核销中");
+						} else if (row.LOANSTATE_NAME == '已核销') {
+							alert("该贷款项已被核销");
+						} else {
+							$('#applyWriteOff').dialog("open");
+							$("#comLoanIdAWO").html(row.COMLOANINFO_ID);
+							$("#comTypeNameAWO").html(row.LOANTYPE_NAME);
+							$("#comNameAWO").html(row.COM_NAME);
+							$("#loanNumberAWO").html(row.LOAN_NUMBER);
+							$("#unrepayNumberAWO").html(row.UNREPAY_NUMBER);
+							$("#empNameAWO").html(row.EMP_NAME);
+							$("#empId_updateAWO").html(row.EMP_ID);
+							$("#loanStateAWO").html(row.LOANSTATE_NAME);
+						}
+					}
+				}
+			}, '-' ]
 		});
 	});
+	/* 回收信息登记弹框*/
+	$('#addLMR').dialog({
+		title : '回收信息登记',
+		width : 500,
+		height : 300,
+		closed : true,
+		cache : false,
+		modal : true,
+		buttons : [ {
+			iconCls : 'icon-edit',
+			text : '保存',
+			handler : function() {
+				var data = {
+					comloaninfoId : $("#comLoanIdLMR").html(),
+					empId : $("#empId_updateLMR").html(),
+					loanState : $("#loanStateLMR").val(),
+					unrepayNumber : parseInt($("#loanNumberLMR").html())-parseInt($("#unrepayNumberLMR").html())-parseInt($("#repayNumberLMR").val()),
+					repayType:$("#repayType").val(),
+					repayNumber:$("#repayNumberLMR").val(),
+					repayComment : $("#lmrCommentLMR").val()
+				};
+				$.ajax({
+					url : '/badLoan/ComloanInfo/updateUnrepayNumber',
+					type : 'post',
+					data : JSON.stringify(data),
+					contentType : 'application/json;charset=UTF-8',
+					success : function(data) {
+						alert(data);
+						$('#comDataGrid').datagrid();
+					},
+					error : function() {
+						alert("error");
+					}
+				});
+				$('#addLMR').dialog("close");
+			}
+		}, {
+			iconCls : 'icon-help',
+			text : '取消',
+			handler : function() {
+				$('#addLMR').dialog("close");
+			}
+		} ]
+	});/* 回收信息登记弹框结束*/
+	/* 核销弹框*/
+	$('#applyWriteOff').dialog({
+		title : '申请核销',
+		width : 500,
+		height : 300,
+		closed : true,
+		cache : false,
+		modal : true,
+		buttons : [ {
+			iconCls : 'icon-edit',
+			text : '保存',
+			handler : function() {
+				var data = {
+					comloaninfoId : $("#comLoanIdAWO").html(),
+					empId : $("#empId_updateAWO").html(),
+					loanState : 7,
+					lmrComment : $("#lmrCommentAWO").val()
+				};
+				$.ajax({
+					url : '/badLoan/ComloanInfo/applyWriteOff',
+					type : 'post',
+					data : JSON.stringify(data),
+					contentType : 'application/json;charset=UTF-8',
+					success : function(data) {
+						alert(data);
+						$('#comDataGrid').datagrid();
+					},
+					error : function() {
+						alert("error");
+					}
+				});
+				$('#applyWriteOff').dialog("close");
+			}
+		}, {
+			iconCls : 'icon-help',
+			text : '取消',
+			handler : function() {
+				$('#applyWriteOff').dialog("close");
+			}
+		} ]
+	});/* 核销弹框结束*/
 	$('#updateLoanDirlog').dialog({
 		title : '修改贷款状态',
-		width : 'auto',
-		height : 'auto',
+		width : 500,
+		height : 300,
 		closed : true,
 		cache : false,
 		modal : true,
@@ -212,7 +450,8 @@
 				var data = {
 					comloaninfoId : $("#comLoanId").html(),
 					empId : $("#empId_update").html(),
-					loanState : $("#loanState").val()
+					loanState : $("#loanState").val(),
+					lmrComment : $("#lmrComment").val()
 				};
 				$.ajax({
 					url : '/badLoan/ComloanInfo/modifyComState',

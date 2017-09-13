@@ -94,8 +94,6 @@ $("#addBtn").click(function() {
 		} ]
 	});
 	
-	
-	
 	//-----------------------------
 	$(function() {
 		$('#proDataGrid').datagrid({

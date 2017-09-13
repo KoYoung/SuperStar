@@ -157,9 +157,12 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		borLoanInfoDao.modifyLoanStateMap(datamap);
 	}
 
+	/**
+	 * 登记回收信息
+	 */
 	@Transactional
 	public void updateUnrepayNumber(Map<String, String> datamap) {
-		borLoanInfoDao.addLoanManageRecordMap(datamap);
+		borLoanInfoDao.addRepaymentinfo(datamap);
 		borLoanInfoDao.modifyUnrepayNumber(datamap);
 	}
 }

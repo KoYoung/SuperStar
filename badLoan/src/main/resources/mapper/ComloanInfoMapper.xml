@@ -124,9 +124,9 @@
 	<insert id="addLmr">
 		insert into
 		loanmanagerecord
-		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name)
+		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name,lmr_comment)
 		values
-		(lmr_sequence.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),1)
+		(lmr_sequence.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),1,#{lmrComment})
 	</insert>
 	<update id="modifyLoanState">
 		update loanmanage
@@ -138,7 +138,15 @@
 
 	<update id="modifyUnrepayNumber" parameterType="java.util.HashMap">
 		update
-		comloaninfo set unrepay_number = #{unrepay_number,jdbcType=NUMERIC}
-		where comloaninfo_id = #{comloaninfo_id}
+		comloaninfo set unrepay_number = #{unrepayNumber,jdbcType=NUMERIC}
+		where comloaninfo_id = #{comloaninfoId,jdbcType=VARCHAR}
 	</update>
+	
+	<insert id="addRepaymentinfo" parameterType="java.util.HashMap">
+		insert into
+		repaymentinfo
+		(repay_id,loaninfo_id,emp_id,repay_date,repay_type,repay_comment,repay_number)
+		values
+		(repay_se.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),#{repayType,jdbcType=VARCHAR},#{repayComment,jdbcType=VARCHAR},#{repayNumber,jdbcType=NUMERIC})
+	</insert>
 </mapper>

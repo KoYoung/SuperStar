@@ -217,7 +217,14 @@
 	</select>
 	<update id="modifyUnrepayNumber" parameterType="java.util.HashMap">
 		update
-		borloaninfo set unrepay_number = #{unrepay_number,jdbcType=NUMERIC}
-		where borloaninfo_id = #{borloaninfo_id}
+		borloaninfo set unrepay_number = #{unrepayNumber,jdbcType=NUMERIC}
+		where borloaninfo_id = #{borloaninfoId,jdbcType=VARCHAR}
 	</update>
+	<insert id="addRepaymentinfo" parameterType="java.util.HashMap">
+		insert into
+		repaymentinfo
+		(repay_id,loaninfo_id,emp_id,repay_date,repay_type,repay_comment,repay_number)
+		values
+		(repay_se.nextval,#{borloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_date(sysdate,'yyyy-MM-dd'),#{repayType,jdbcType=VARCHAR},#{repayComment,jdbcType=VARCHAR},#{repayNumber,jdbcType=NUMERIC})
+	</insert>
 </mapper>

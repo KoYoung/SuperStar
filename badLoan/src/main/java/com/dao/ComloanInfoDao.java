@@ -59,4 +59,11 @@ public interface ComloanInfoDao {
 	 * @param datamap
 	 */
 	void modifyUnrepayNumber(Map<String, String> datamap);
+
+	/**
+	 * 添加回收信息 修改未还金额
+	 * 
+	 * @param datamap
+	 */
+	void addRepaymentinfo(Map<String, String> datamap);
 }

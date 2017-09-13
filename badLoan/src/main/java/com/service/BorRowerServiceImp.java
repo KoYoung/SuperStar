@@ -31,20 +31,17 @@ public class BorRowerServiceImp implements BorRowerService {
 	}
 	@Override
 	public int modifyBorRower(BorRower borRower, ContectUser contectUser, Contect contect) {
-		// TODO Auto-generated method stub
 		int flag= BorrowerDao.addBorRowers(borRower)+ContectDao.addContecct(contect)+ContectUserDao.addContectUser(contectUser);
 		return flag;
 	}
 
 	@Override
 	public List<BorRower> findBorRowersMohu(String str) {
-		// TODO Auto-generated method stub
 		return BorrowerDao.findBorRowersMohu(str);
 	}
 
 	@Override
 	public int addBorrowers(BorRower bor, Contect contect,ContectUser contectUser) {
-		// TODO Auto-generated method stub
 		BorrowerDao.addBorRowers(bor);
 		ContectDao.addContecct(contect);
 		ContectUserDao.addContectUser(contectUser);
@@ -57,5 +54,4 @@ public class BorRowerServiceImp implements BorRowerService {
 		return BorrowerDao.findBorId();
 	}
 	
-
 }
