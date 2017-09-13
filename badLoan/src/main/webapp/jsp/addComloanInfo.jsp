@@ -117,7 +117,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款利率:</td>
-									<td><input type="text" id="loanRate" name="loanRate" value="0.0490"/>%</td>
+									<td><input type="text" id="loanRate" name="loanRate" value="4.90"/>%</td>
 								</tr>
 								<tr>
 									<td>抵(质)押物品类型:</td>

@@ -48,12 +48,12 @@ tr td {
 					</tr>
 					<tr>
 						<td>贷款银行：<input class="text1" id="bankinfoName" readonly="readonly"/></td>
-						<td>经手人：&nbsp;&nbsp;<input class="text1" id="empName" name="oldEmpId" readonly="readonly"/></td>	
+						<td>经手人：<input class="text1" id="empName" name="oldEmpId" readonly="readonly"/></td>	
 					</tr>
 					<tr><td style="font-size:18px;font-family:微软雅黑;color:red">移交贷款经手人</td></tr>
 					<tr>
 						<td>贷款银行：<input id="bankInfoId" name="bankInfoId" /></td>
-						<td>经&nbsp;手&nbsp;人：<input id="empId"  name="newEmpId"/></td>
+						<td>经手人：<input id="empId"  name="newEmpId" data-options="required:true,validType:'newEmpId'"/></td>
 					</tr>
 				</table>
 				<div style="margin-left:30px">说明：&nbsp;<input class="easyui-textbox" name="replaceComment" data-options="required:true" style="height:70px;width:240px"/></div>
@@ -65,8 +65,6 @@ tr td {
 		$('#dd').dialog(
 						{
 							title : '不良贷款信息录入',
-							width : '35%',
-							height : 600,
 							closed : true,
 							cache : false,
 							modal : true,
@@ -77,11 +75,18 @@ tr td {
 											$('#ff').form('submit',{
 												url : '/badLoan/replace/addReplace',
 												onSubmit : function() {
+													var aa=$("#empId").combobox('getText')+" "+$("#empId").val();
+													var bb=$("#empName").val();
+													if(aa==bb){
+														$.messager.alert("提示","所移交的经手人不能和原经手人相同","error");
+														return false;
+													}
 													var isValid = $(this).form('validate');
 													if (!isValid) {
 															$.messager.progress('close');// 如果表单是无效的则隐藏进度条
 														}
 															return isValid; // 返回false终止表单提交
+													
 												},
 												success : function(data) {
 													alert(data);
@@ -118,9 +123,16 @@ tr td {
 					data : JSON.stringify(data),
 					//dataType : "text",
 					success : function(data) {
-						$("#borId").val(data.borName);
-						$("#empName").val(data.empName+" "+data.empId);
-						$("#bankinfoName").val(data.bankinfoName);
+						if(data!=""){
+							$("#borId").val(data.borName);
+							$("#empName").val(data.empName+" "+data.empId);
+							$("#bankinfoName").val(data.bankinfoName);
+						}else{
+							$("#borId").val("");
+							$("#empName").val("");
+							$("#bankinfoName").val("");
+						}
+						
 					}
 				});
 			}
@@ -135,7 +147,7 @@ tr td {
 				panelHeight : "auto",
 				editable : false,
 				required : true,
-				width : 170,
+				width : 160,
 				onLoadSuccess : function() {
 					var data = $("#bankInfoId").combobox('getData');
 					if (data.length > 0) {
@@ -151,24 +163,39 @@ tr td {
 							editable : false,
 							required : true,
 							url : url,
-							width : 170,
+							width : 160,
 							onLoadSuccess : function() {
 								var data = $("#empId").combobox('getData');
 								if (data.length > 0) {
 									$("#empId").combobox('setValue', data[0].empId);
 								}
+								
+								/* $.extend($.fn.validatebox.defaults.rules, {
+										newEmpId: {
+									          validator: function (value, param) {
+									        	  alert("sad"+$("#empId").val());
+									        	var oldEmpName =  $("#empName").val();
+									        	var newEmpId=value+" "+$("#empId").val();
+									        	alert(oldEmpName);
+									        	alert(newEmpId); 
+									        	if(oldEmpName.equals(newEmpId)){
+									            	return false;
+									        	}
+									        	return true;
+									        },
+									          message: '所移交的经手人不能和原经手人相同'
+									        },
+									}); */
 							}, 
 							onselect : function(rec){
 									$("#bankInfoId").val(rec.empId);
+									
 							}
 						});
 					}
 			
 			});
 		});
-		
-		
-
 		$("#loaninfoType").combobox({
 			panelHeight : "auto",
 			editable : false,

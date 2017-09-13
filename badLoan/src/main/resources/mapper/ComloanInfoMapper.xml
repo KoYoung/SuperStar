@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.ComloanInfoDao">
 	<!-- 查询企业贷款信息 -->
 	<select id="findComloanInfo" resultType="com.entity.ComloanInfo">
-		select
+		select distinct
 		ci.comloaninfo_id,cp.com_name,bi.bankinfo_name,ci.contract_id,
 		e.emp_name,lt.loantype_name,ci.loan_number,ci.loan_account,
 		ci.loan_date,ci.loan_repayment_date,ci.loan_rate,
@@ -38,20 +38,10 @@
 	</insert>
 	<!-- 根据贷款编号查询贷款详情 -->
 	<select id="findComloanInfo2" resultType="com.entity.BorLoanInfo">
-		select * from(select e.emp_id,
+		select e.emp_id,
 		cp.com_id,cp.com_name borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
 		from comloaninfo ci,company cp,bankinfo bk,employee e
 		where ci.com_id=cp.com_id
-		select e.emp_id,
-		cp.com_id,cp.com_name
-		borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
-		from
-		comloaninfo ci,company cp,bankinfo bk,employee e
-		where
-		ci.com_id=cp.com_id
-		and ci.bankinfo_id=bk.bankinfo_id
-		and ci.emp_id=e.emp_id
-		and loaninfo_type=1) and comloaninfo_id=#{comloaninfoId}
 		and
 		ci.emp_id=e.emp_id
 		and loaninfo_type=1 and
