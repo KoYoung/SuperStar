@@ -1,7 +1,7 @@
 package com.entity;
 
 /**
- * @author 蒙奇·D·路飞 权限实体类 Right
+ * @author 权限实体类 Right
  */
 public class Right {
 	// 权限表
@@ -59,6 +59,12 @@ public class Right {
 
 	public void setRightFlag(String rightFlag) {
 		this.rightFlag = rightFlag;
+	}
+
+	@Override
+	public String toString() {
+		return "Right [rightId=" + rightId + ", rightName=" + rightName + ", rightUrl=" + rightUrl + ", rightParent="
+				+ rightParent + ", rightFlag=" + rightFlag + ", roleId=" + roleId + "]";
 	}
 
 }
