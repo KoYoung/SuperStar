@@ -322,6 +322,7 @@ td {
 						if (row != null) {
 							$('#aa').dialog({
 								title : '贷款详情',
+								top : '5%',
 								closed : false,
 								cache : false,
 								modal : true

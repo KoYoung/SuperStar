@@ -66,6 +66,7 @@ tr td {
 						{
 							title : '不良贷款信息录入',
 							closed : true,
+							top : '5%',
 							cache : false,
 							modal : true,
 							buttons : [{
