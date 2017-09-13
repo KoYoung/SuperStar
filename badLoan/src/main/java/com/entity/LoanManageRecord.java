@@ -9,14 +9,13 @@ package com.entity;
 public class LoanManageRecord {
 	private String lmrId;
 	private String empId;
-	private String loaninfoId; 
+	private String loaninfoId;
 	private String lmrDate;
 	private String lmrName;
 	private String lmrComment;
 	private String empName;
 	private String loanstateName;
-	
-	
+
 	public String getEmpName() {
 		return empName;
 	}

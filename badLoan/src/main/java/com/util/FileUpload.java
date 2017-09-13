@@ -10,18 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-/**
- * 
- * @author 图片上传帮助类
- *@file input的name属性
- *2017-09-06
- */
+
 public class FileUpload {
 	public static String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException { 
 			
 	        String fileName = file.getOriginalFilename(); //获取上传文件的原名 
 	       // String path=request.getSession().getServletContext().getRealPath("images/"); //找到tomcat服务器文件保存目录
-	        String path ="d:\\upload\\"; //找到本地路径
+	        String path ="D:\\upload\\"; //找到本地路径
 	        System.out.println("================="+path);
 	        
 	        String photoName = new Date().getTime() + fileName.substring(fileName.lastIndexOf(".") -1);//重命名
@@ -40,7 +35,7 @@ public class FileUpload {
 	
 	public static List uploadFile1(MultipartFile[] file, HttpServletRequest request)  { 
 		List<String> listImagePath = new ArrayList<String>();
-		String path ="d:\\upload\\"; //找到本地路径
+		String path ="D:\\upload\\"; //找到本地路径
 		String photoPath="";
 			for (MultipartFile mf : file) {
 				if(!mf.isEmpty()){
@@ -58,7 +53,7 @@ public class FileUpload {
 					        }  
 					        mf.transferTo(tempFile);//上传文件的位置
 					} catch (IOException e) {
-						
+						// TODO: handle exception
 						System.out.println("====异常==="+e.getMessage());
 					}
 				       
@@ -68,6 +63,7 @@ public class FileUpload {
 				}
 			}
 			System.out.println(photoPath);
+			//request.setAttribute("imagePathList", listImagePath);
 			return   listImagePath;
     } 
 	

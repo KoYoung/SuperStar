@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.entity.Dept;
 import com.entity.Emp;
 import com.service.EmpService;
 
@@ -28,14 +27,22 @@ public class EmpConntroller {
 			resp.getWriter().flush();
 			resp.getWriter().close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
-	private int addEmp(){
-		return 0;
-	}
-	private int modify(){
-		return 0;
-		
+	@RequestMapping("/addEmp")
+	private void addEmp(Emp emp,HttpServletResponse resp){
+		System.out.println(emp);
+		int flag = es.addEmp(emp);
+		try {
+			if(flag>0){
+				resp.getWriter().print("success");
+			}
+			else{
+				resp.getWriter().print("error");
+			}
+			resp.getWriter().flush();
+			resp.getWriter().close();
+		} catch (Exception e) {
+		}
 	}
 }

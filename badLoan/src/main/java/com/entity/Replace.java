@@ -1,7 +1,7 @@
 package com.entity;
 
 public class Replace {
-	private String  repId;
+	private String repId;
 	private String oldEmpId;
 	private String newEmpId;
 	private String loaninfoId;
@@ -11,74 +11,91 @@ public class Replace {
 	private String comName;
 	private String oldEmpName;
 	private String newEmpName;
-	
-	
-	
-	public String getComName() {
-		return comName;
-	}
-	public void setComName(String comName) {
-		this.comName = comName;
-	}
-	public String getOldEmpName() {
-		return oldEmpName;
-	}
-	public void setOldEmpName(String oldEmpName) {
-		this.oldEmpName = oldEmpName;
-	}
-	public String getNewEmpName() {
-		return newEmpName;
-	}
-	public void setNewEmpName(String newEmpName) {
-		this.newEmpName = newEmpName;
-	}
-	public String getReplaceDate() {
-		return replaceDate;
-	}
-	public void setReplaceDate(String replaceDate) {
-		this.replaceDate = replaceDate;
-	}
-	public Integer getLoaninfoType() {
-		return loaninfoType;
-	}
-	public void setLoaninfoType(Integer loaninfoType) {
-		this.loaninfoType = loaninfoType;
-	}
+
 	public String getRepId() {
 		return repId;
 	}
+
 	public void setRepId(String repId) {
 		this.repId = repId;
 	}
+
 	public String getOldEmpId() {
 		return oldEmpId;
 	}
+
 	public void setOldEmpId(String oldEmpId) {
 		this.oldEmpId = oldEmpId;
 	}
+
 	public String getNewEmpId() {
 		return newEmpId;
 	}
+
 	public void setNewEmpId(String newEmpId) {
 		this.newEmpId = newEmpId;
 	}
+
 	public String getLoaninfoId() {
 		return loaninfoId;
 	}
+
 	public void setLoaninfoId(String loaninfoId) {
 		this.loaninfoId = loaninfoId;
 	}
+
 	public String getReplaceComment() {
 		return replaceComment;
 	}
+
 	public void setReplaceComment(String replaceComment) {
 		this.replaceComment = replaceComment;
 	}
+
+	public String getReplaceDate() {
+		return replaceDate;
+	}
+
+	public void setReplaceDate(String replaceDate) {
+		this.replaceDate = replaceDate;
+	}
+
+	public Integer getLoaninfoType() {
+		return loaninfoType;
+	}
+
+	public void setLoaninfoType(Integer loaninfoType) {
+		this.loaninfoType = loaninfoType;
+	}
+
+	public String getComName() {
+		return comName;
+	}
+
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
+
+	public String getOldEmpName() {
+		return oldEmpName;
+	}
+
+	public void setOldEmpName(String oldEmpName) {
+		this.oldEmpName = oldEmpName;
+	}
+
+	public String getNewEmpName() {
+		return newEmpName;
+	}
+
+	public void setNewEmpName(String newEmpName) {
+		this.newEmpName = newEmpName;
+	}
+
 	@Override
 	public String toString() {
 		return "Replace [repId=" + repId + ", oldEmpId=" + oldEmpId + ", newEmpId=" + newEmpId + ", loaninfoId="
 				+ loaninfoId + ", replaceComment=" + replaceComment + "]";
 	}
-	
-	
+
 }

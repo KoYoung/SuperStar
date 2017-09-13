@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.LegalDao">
+	<select id="findLegal" resultType="com.entity.Legal">
+		select
+		legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info
+		from legal
+	</select>
+	<!-- <insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
+		insert into legal
+		(legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info)
+		values(#{legalId,jdbcType=VARCHAR},#{legalName,jdbcType=VARCHAR},#{legalCardtype,jdbcType=VARCHAR},#{legalCardnumber,jdbcType=VARCHAR},#{legalNation,jdbcType=VARCHAR},#{legalGender,jdbcType=VARCHAR},#{legalMarry,jdbcType=VARCHAR},#{legalAddress,jdbcType=VARCHAR},#{legalPhone,jdbcType=VARCHAR},#{legalInfo,jdbcType=VARCHAR})
+	</insert> -->
+	<insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
+		insert into legal values(legal_seq.nextval,#{legalName},#{legalCardtype},#{legalCardnumber},#{legalNation},#{legalGender},#{legalMarry},#{legalAddress},#{legalPhone},#{legalInfo})
+	</insert>
+</mapper>

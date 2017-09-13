@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.ContractDao">
+	<select id="findContract" resultType="com.entity.Contract">
+		select
+		contract_id,emp_id,loan_type,loan_number,loan_account,loan_date,loan_repayment_date,loan_rate
+		from contract
+	</select>
+	<insert id="addContract" parameterType="com.entity.Contract">
+		insert into contract
+		(contract_id,emp_id,loan_type,loan_number,loan_account,loan_date,loan_repayment_date,loan_rate)
+		values(#{contractId},#{empId},#{loanType},#{loanNumber},#{loanAccount},#{loanDate},#{loanRepaymentDate},#{loanRate})
+	</insert>
+</mapper>

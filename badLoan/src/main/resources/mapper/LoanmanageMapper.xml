@@ -11,8 +11,12 @@
 	<!-- <insert id="addLoanmanageCom" useGeneratedKeys="false" parameterType="com.entity.Loanmanage" >
 		insert into loanmanage values(#{loaninfoType},comloaninfo_sequence.currval,0)
 	</insert> -->
-	<!-- 核销通过后，改变贷款状态为9 -->
+	<!-- 核销通过后，改变贷款状态为8 -->
 	<update id="modifyloanstateId" parameterType="com.entity.Loanmanage">
 		update loanmanage set loanstate_id =8  where loaninfo_id=#{loaninfoId}
+	</update>
+	<!-- 核销驳回后，改变贷款状态为9 -->
+	<update id="modifyloanstateIdBo" parameterType="com.entity.Loanmanage">
+		update loanmanage set loanstate_id =9  where loaninfo_id=#{loaninfoId}
 	</update>
 </mapper>

@@ -26,11 +26,6 @@ public class DeptConntroller {
 			resp.getWriter().flush();
 			resp.getWriter().close();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
-	}
-	private int addDept(){
-		return 0;
-		
 	}
 }

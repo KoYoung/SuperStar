@@ -9,7 +9,7 @@ import com.dao.UserDao;
 import com.entity.User;
 
 /**
- * @author 蒙奇·D·路飞
+ * @author why
  * 用户Service实现类
  * UserServiceImp
  *
@@ -21,9 +21,29 @@ public class UserServiceImp implements UserService{
 	/**
 	 * 登录验证，查询用户名和密码
 	 */
-	public List<User> findUserNameAndPassWord(){
-		List<User> list = ud.findUserNameAndPassWord();
+	public List<User> findUserNameAndPassWord(User user){
+		List<User> list = ud.findUserNameAndPassWord(user);
 		return list;
+	}
+	
+	/**
+	 * 登录验证，查询用户名
+	 */
+	@Override
+	public List<String> findUserName(String username) {
+		// TODO Auto-generated method stub
+		List<String> list = ud.findUserName(username);
+		return list;
+	}
+	@Override
+	public List<User> findUser() {
+		// TODO Auto-generated method stub
+		return ud.findUser();
+	}
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return ud.addUser(user);
 	}
 	
 }

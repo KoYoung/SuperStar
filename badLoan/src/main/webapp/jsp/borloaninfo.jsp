@@ -13,19 +13,16 @@
 }
 
 tr td {
-	padding-bottom: 15px;s
+	padding-bottom: 10px;
 }
 
 #tab2 {
-	margin-left: 70px;
-	margin-top: 13px;
-	/* border:1px solid red; */
+	margin-left: 50px;
+	
 }
 
 #tab3 {
-	margin-left: 100px;
-	margin-top: -23px;
-	/* border:1px solid red; */
+	margin-left: 50px;
 }
 .form-control{
 	width:200px;
@@ -38,7 +35,7 @@ tr td {
 }
 #borName{
 	width:200px;
-	height:25px;
+	height:21px;
 	border:1px solid #95B8E7;
 	border-radius:5px;
 }
@@ -46,7 +43,6 @@ tr td {
             width: 293px;
             height: 150px;
             background:#F2F2F2;
-           /*  margin-bottom:35px;  */
             overflow: hidden;
             border: 1px solid #000;
         }
@@ -66,7 +62,7 @@ tr td {
 	</div>
 	<table id="dg"></table>
 	<div id="dd">
-		<div style="padding: 0 60px 20px 60px">
+		<div style="padding: 0 30px 20px 30px">
 			<h1>个人贷款信息录入</h1>
 			<form id="ff" method="post" enctype="multipart/form-data">
 				<table>
@@ -98,7 +94,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款种类:</td>
-									<td><input id="loanTypeId" name="loanType"/></td>
+									<td><input id="loantypeId" name="loanType"/></td>
 								</tr>
 								<tr>
 									<td>贷款金额:</td>
@@ -106,7 +102,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
-									<td><input type="text" id="loanAccount" name="loanAccount"></input></td>
+									<td><input type="text" id="loanAccount" name="loanAccount" value="6378003699632259896"></input></td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -123,7 +119,7 @@ tr td {
 								<tr>
 									<td>贷款利率:</td>
 									<td><input type="text" id="loanRate" name="loanRate"
-										data-options="required:true"></input></td>
+										data-options="required:true" value="0.0490"/>%</td>
 								</tr>
 								<tr>
 									<td>抵(质)押物品类型:</td>
@@ -215,7 +211,7 @@ tr td {
 								<tr>
 									<td>担保人证件号码:</td>
 									<td><input class="easyui-textbox" id="guaCardNumber" name="guaCardNumber"
-										data-options="required:true,validType:'guaCardNumber'"></input></td>
+										data-options="required:true,validType:'guaCardNumber'" value="410223198711222586"></input></td>
 								</tr>
 							</table>
 						</td>
@@ -228,19 +224,19 @@ tr td {
 											<div data-toggle="distpicker">
 												<div class="form-group">
 													<select
-														class="form-control" data-province="北京市" id="province"
+														class="form-control" data-province="河南省" id="province"
 														name="guaRegister">
 													</select>
 												</div>
 												<div class="form-group">
 													<select
-														class="form-control" data-city="北京市市辖区" id="city"
+														class="form-control" data-city="郑州市" id="city"
 														name="guaRegister">
 													</select>
 												</div>
 												<div class="form-group">
 													<select
-														class="form-control" data-district="东城区" id="district"
+														class="form-control" data-district="中原区" id="district"
 														name="guaRegister">
 													</select>
 												</div>
@@ -259,19 +255,19 @@ tr td {
 											<div data-toggle="distpicker">
 												<div class="form-group">
 													<select
-														class="form-control" data-province="北京市" id="province"
+														class="form-control" data-province="河南省" id="province"
 														name="guaAddress">
 													</select>
 												</div>
 												<div class="form-group">
 													<select
-														class="form-control" data-city="北京市市辖区" id="city"
+														class="form-control" data-city="郑州市" id="city"
 														name="guaAddress">
 													</select>
 												</div>
 												<div class="form-group">
 													<select
-														class="form-control" data-district="东城区" id="district"
+														class="form-control" data-district="中原区" id="district"
 														name="guaAddress">
 													</select>
 												</div>
@@ -300,7 +296,7 @@ tr td {
 								<tr>
 									<td>担保人民族:</td>
 									<td><input class="easyui-textbox" id="guaNation" name="guaNation"
-										data-options="required:true"></input></td>
+										data-options="required:true" value="汉族"></input></td>
 								</tr>
 								<tr>
 									<td>担保人学历:</td>
@@ -330,7 +326,6 @@ $('#dd')
 		.dialog(
 				{
 					title : '不良贷款信息录入',
-					width : '80%',
 					closed : true,
 					cache : false,
 					modal : true,
@@ -411,7 +406,7 @@ $('#dd')
 		});
 		//查询所有个人用户
 		$('#borId').combobox({
-			url : '/badLoan/borrower/findborr',
+			url : '/badLoan/borrower/findBorId',
 			valueField : 'borId',
 			textField : 'borId',
 			width : 200,
@@ -429,21 +424,18 @@ $('#dd')
 				$("#borName").val(rec.borName);
 			}
 		});
-		
 		//查询所有个人贷款种类
-		$("#loanTypeId").combobox({
+		$('#loantypeId').combobox({
 			url : '/badLoan/LoanType/findLoanType',
-			valueField : 'loanTypeId',
+			valueField : 'loantypeId',
 			textField : 'loanTypeName',
-			panelHeight : "auto",
-			editable : false,
-			required : true,
 			width : 200,
+			panelHeight : "auto", 
+			 editable : false,
 			onLoadSuccess : function() {
-				var data = $("#loanTypeId").combobox('getData');
+				var data = $("#loantypeId").combobox('getData');
 				if (data.length > 0) {
-					$("#loanTypeId").combobox('setValue', data[0].loanTypeId);
-
+					$("#loantypeId").combobox('setValue', data[0].loantypeId);
 				}
 			},
 		});
@@ -540,6 +532,12 @@ $('#dd')
 		          },
 		          message: '手机号码格式不正确'
 		        },
+		   /*  idCode:{
+		            validator:function(value,param){
+		              return /^[0-9]+.?[0-9]*$/.test(value);;
+		            },
+		            message: '请输入正确的身份证号'
+		          }, */
 		        loanDate: {  
 			          validator: function(value,param){  
 			               if(value)  
@@ -674,7 +672,7 @@ $('#dd')
 			}, {
 				field : 'loanAccount',
 				title : '贷款账号',
-				width : 100
+				width : 150
 			}, {
 				field : 'loanDate',
 				title : '贷款日期',

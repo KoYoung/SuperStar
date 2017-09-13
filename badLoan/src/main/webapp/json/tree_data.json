@@ -1,24 +1,25 @@
 [{    
     "id":1,
     "text":"权限管理",
+    "state":"closed",
     "children":[{
     	"id":101,
         "text":"用户管理",
         "checked":true,
         "attributes":{    
-            "url":"subjectManager.jsp"
+            "url":"users.jsp"
         }
     },{
     	"id":102, 
         "text":"角色管理",    
         "attributes":{    
-            "url":"teacherManager.jsp"
+            "url":"role.jsp"
         }
     },{   
     	"id":103, 
         "text":"权限管理",    
         "attributes":{
-            "url":"studentManager.jsp"
+            "url":"right.jsp"
         }
     }]    
 },{
@@ -29,13 +30,13 @@
     	"id":201,
         "text":"人员管理",
         "attributes":{
-            "url":"studentManager.jsp"
+            "url":"emp.jsp"
         }
     },{    
     	"id":202, 
-        "text":"银行信息评教",
+        "text":"银行信息管理",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"bankinfo.jsp"
         }
     }]    
 },{
@@ -46,19 +47,19 @@
     	"id":301,   
         "text":"个人客户",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addpersonal.jsp"
         }
     },{    
     	"id":302, 
         "text":"企业客户",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"addCompany.jsp"
         }
     }]    
 },{
    	"id":4,
+   	"state":"open",
     "text":"贷款信息管理",    
-    "state":"closed",    
     "children":[{  
     	"id":401,   
         "text":"个人贷款信息管理",
@@ -81,36 +82,36 @@
 },{
    	"id":5,
     "text":"不良贷款处理",    
-    "state":"open",    
+    "state":"closed",    
     "children":[{  
     	"id":501,   
-        "text":"催收管理",
+        "text":"个人贷款",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"borLoanManager.jsp"
+        }
+    },{  
+    	"id":502,   
+        "text":"企业贷款",
+        "attributes":{    
+            "url":"compLoanManager.jsp"
         }
     },{    
-    	"id":502, 
+    	"id":503, 
         "text":"诉讼记录",
         "attributes":{    
             "url":"studentManager.jsp"
         }
     },{    
-    	"id":503, 
+    	"id":504, 
         "text":"清收记录",
         "attributes":{    
             "url":"studentManager.jsp"
         }
     },{    
-    	"id":504, 
+    	"id":505, 
         "text":"核销审核",
         "attributes":{    
             "url":"writeOffManage.jsp"
-        }
-    },{    
-    	"id":505, 
-        "text":"贷款清收",
-        "attributes":{    
-            "url":"studentManager.jsp"
         }
     }]    
 },{
@@ -119,9 +120,27 @@
     "state":"closed",    
     "children":[{  
     	"id":601,   
-        "text":"客户查询",
+        "text":"客户(个人)查询",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"findBorLoan.jsp"
+        }
+    },{    
+    	"id":602, 
+        "text":"客户(企业)查询",
+        "attributes":{    
+            "url":"findComLoan.jsp"
+        }
+    },{    
+    	"id":603, 
+        "text":"担保人查询",
+        "attributes":{    
+            "url":"findGuarantor.jsp"
+        }
+    },{    
+    	"id":604, 
+        "text":"经手人查询",
+        "attributes":{    
+            "url":"findEmp.jsp"
         }
     }]    
 }]

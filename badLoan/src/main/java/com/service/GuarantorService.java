@@ -4,17 +4,26 @@ import java.util.List;
 
 import com.entity.Guarantor;
 
+/**
+ * 担保人service
+ * 
+ * @author yang
+ *
+ */
 public interface GuarantorService {
 	/**
-	 * 手机号唯一性校验
-	 * @author Administrator
-	 * 马利肖
+	 * 查询担保人s
+	 * 
+	 * @return 担保人集合
 	 */
-	List<Guarantor> findguaPhone(String guaPhone);
+	List<Guarantor> findGuarantor();
+
 	/**
-	 * 证件号唯一性校验
-	 * @author Administrator
-	 * 马利肖
+	 * 添加担保人
+	 * 
+	 * @param guarantor担保人实体
+	 * @return 添加成功返回1
 	 */
-	List<Guarantor> findguaCardNumber(String guaCardNumber);
+	int addGuarantor(Guarantor guarantor);
+
 }

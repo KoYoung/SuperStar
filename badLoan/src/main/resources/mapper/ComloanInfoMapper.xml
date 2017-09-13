@@ -14,18 +14,15 @@
 		from comloaninfo ci,company cp,bankinfo bi,
 		employee
 		e,loantype lt,
-		<!-- customergoods cg,pledge p,guarantor
-		gua,borgua bg, -->
+		<!-- customergoods cg,pledge p,guarantor gua,borgua bg, -->
 		loanmanagerecord lg
 		where ci.com_id=cp.com_id and
 		ci.bankinfo_id=bi.bankinfo_id
 		and ci.emp_id=e.emp_id and
 		ci.loan_type=lt.loantype_id
-		<!-- and cg.loaninfo_id=ci.comloaninfo_id and
-		cg.goods_id=p.pledge_id
-		and bg.loaninfo_id=ci.comloaninfo_id and
-		bg.gua_id=gua.gua_id -->
-		and lg.loaninfo_id=ci.comloaninfo_id 
+		<!-- and cg.loaninfo_id=ci.comloaninfo_id and cg.goods_id=p.pledge_id and 
+			bg.loaninfo_id=ci.comloaninfo_id and bg.gua_id=gua.gua_id -->
+		and lg.loaninfo_id=ci.comloaninfo_id
 		and ci.loaninfo_type=1
 	</select>
 	<!-- 添加企业贷款信息 -->
@@ -37,7 +34,7 @@
 		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
 		#{loanAccount,jdbcType=VARCHAR},to_date(#{loanDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
 		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
-		#{loanRate,jdbcType=VARCHAR},#{unrepayNumber})
+		#{loanRate,jdbcType=VARCHAR},#{unrepayNumber,jdbcType=NUMERIC})
 	</insert>
 	<!-- 根据贷款编号查询贷款详情 -->
 	<select id="findComloanInfo2" resultType="com.entity.BorLoanInfo">
@@ -45,17 +42,103 @@
 		cp.com_id,cp.com_name borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
 		from comloaninfo ci,company cp,bankinfo bk,employee e
 		where ci.com_id=cp.com_id
+		select e.emp_id,
+		cp.com_id,cp.com_name
+		borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
+		from
+		comloaninfo ci,company cp,bankinfo bk,employee e
+		where
+		ci.com_id=cp.com_id
 		and ci.bankinfo_id=bk.bankinfo_id
 		and ci.emp_id=e.emp_id
 		and loaninfo_type=1) and comloaninfo_id=#{comloaninfoId}
+		and
+		ci.emp_id=e.emp_id
+		and loaninfo_type=1 and
+		comloaninfo_id=#{comloaninfoId}
 	</select>
-	 <!-- 根据贷款编号修改企业业务移交相关信息 -->
-	 <update id="modifyComloanInfo" parameterType="com.entity.ComloanInfo">
-		update comloaninfo set emp_id=#{0} 
+	<!-- 根据贷款编号修改企业业务移交相关信息 -->
+	<update id="modifyComloanInfo" parameterType="com.entity.ComloanInfo">
+		update comloaninfo
+		set emp_id=#{0}
 		where comloaninfo_id=#{1} and loaninfo_type=1
 	</update>
 	<!-- 合同编号唯一性验证 -->
 	<select id="findContractIdCom" resultType="com.entity.ComloanInfo">
-		select contract_id from comloaninfo where contract_id=#{contractId}
+		select contract_id
+		from comloaninfo where contract_id=#{contractId}
 	</select>
+
+	<select id="findComLoan" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select
+		cli.loaninfo_type,cli.comloaninfo_id,cli.contract_id,cli.loan_type,cli.loan_number,cli.loan_account,to_char(cli.loan_date,'yyyy-MM-dd')
+		LOAN_DATE,to_char(cli.loan_repayment_date,'yyyy-MM-dd')
+		LOAN_REPAYMENT_DATE,cli.loan_rate,(cli.loan_number-cli.unrepay_number)unrepay_number,bi.*,cp.*,ee.*,lt.*,ls.*,lm.*
+		from comloaninfo cli,bankinfo bi,employee ee,loantype
+		lt,loanstate
+		ls,company cp,loanmanage lm
+		<where>
+			cli.bankinfo_id = bi.bankinfo_id and cli.com_id = cp.com_id and
+			cli.emp_id = ee.emp_id
+			and cli.loan_type = lt.loantype_id and
+			ls.loanstate_id = lm.loanstate_id
+			and cli.comloaninfo_id =
+			lm.loaninfo_id
+			<if test="comName!=null and comName!=''">
+				and cp.com_name like '%' || '${comName}' ||'%'
+			</if>
+			<if test="empName!=null and empName!=''">
+				and ee.emp_name like '%' || '${empName}' ||'%'
+			</if>
+			<if test="contractId!=null and contractId!=''">
+				and cli.contract_id like '%' || '${contractId}' || '%'
+			</if>
+			<if
+				test="loanStateId!=null and loanStateId!='' and !(loanStateId.length()>5)">
+				and lm.loanstate_id = #{loanStateId,jdbcType=VARCHAR}
+			</if>
+			<if test="bankId!=null and bankId!='' and !(bankId.length()>5)">
+				and cli.bankinfo_id = #{bankId,jdbcType=VARCHAR}
+			</if>
+			<choose>
+				<when test="dateFrom!=null and dateFrom!=''">
+					and cli.loan_repayment_date between
+					to_date('${dateFrom}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and cli.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dateTo!=null and dateTo!=''">
+					and to_date('${dateTo}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and to_date('2100-12-31','yyyy/MM/dd')
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	<insert id="addLmr">
+		insert into
+		loanmanagerecord
+		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name)
+		values
+		(lmr_sequence.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),1)
+	</insert>
+	<update id="modifyLoanState">
+		update loanmanage
+		set loanstate_id =
+		#{loanState,jdbcType=VARCHAR} where
+		loaninfo_id =
+		#{comloaninfoId,jdbcType=VARCHAR}
+	</update>
+
+	<update id="modifyUnrepayNumber" parameterType="java.util.HashMap">
+		update
+		comloaninfo set unrepay_number = #{unrepay_number,jdbcType=NUMERIC}
+		where comloaninfo_id = #{comloaninfo_id}
+	</update>
 </mapper>

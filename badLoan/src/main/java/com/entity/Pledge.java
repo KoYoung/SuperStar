@@ -95,6 +95,5 @@ public class Pledge {
 				+ ", pledgeStartdate=" + pledgeStartdate + ", pledgeEnddate=" + pledgeEnddate + ", pledgePhoto="
 				+ pledgePhoto + "]";
 	}
-	
 
 }

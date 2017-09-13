@@ -1,15 +1,16 @@
 package com.web;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.dao.LoanManageRecordDao;
 import com.entity.Repaymentinfo;
 import com.entity.WriteoffManage;
 import com.service.WriteoffManageService;
@@ -55,11 +56,10 @@ public class WriteoffManageController {
 	 */
 	@RequestMapping("/addWriteoffManage")
 	@ResponseBody
-	public String addWriteoffManage(@RequestBody String data){
-		
+	public String addWriteoffManage(@RequestBody String data,HttpSession session){
 		//System.out.println("========================"+data);
 		WriteoffManage wm=JSON.parseObject(data,WriteoffManage.class);
-		int flag = writeService.addWriteoffManage(wm);
+		int flag = writeService.addWriteoffManage(wm, session);
 		if(flag==1){
 			return "add success";
 		}else{
@@ -79,6 +79,5 @@ public class WriteoffManageController {
 		pr.setRows(wrRows);
 		pr.setTotal(wrList.size());
 		return pr;
-		
 	}
 }

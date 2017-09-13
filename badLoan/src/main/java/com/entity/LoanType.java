@@ -6,15 +6,16 @@ package com.entity;
  * @author 马利肖 2017-8-31
  */
 public class LoanType {
-	private String loanTypeId;
+	private String loantypeId;
 	private String loanTypeName;
 	private Integer typesOfLoant;
-	public String getLoanTypeId() {
-		return loanTypeId;
+
+	public String getLoantypeId() {
+		return loantypeId;
 	}
 
-	public void setLoanTypeId(String loanTypeId) {
-		this.loanTypeId = loanTypeId;
+	public void setLoantypeId(String loantypeId) {
+		this.loantypeId = loantypeId;
 	}
 
 	public String getLoanTypeName() {
@@ -33,4 +34,9 @@ public class LoanType {
 		this.typesOfLoant = typesOfLoant;
 	}
 
+	@Override
+	public String toString() {
+		return "LoanType [loantypeId=" + loantypeId + ", loanTypeName=" + loanTypeName + ", typesOfLoant=" + typesOfLoant + "]";
+	}
+	
 }

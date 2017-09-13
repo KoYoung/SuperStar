@@ -10,6 +10,13 @@ import java.util.List;
 import com.entity.Company;
 
 public interface CompanyDao {
-	public int addCompany(Company company);
-	public List<Company>findCompany();
+	public int addCompany(Company company);// 添加
+
+	public List<Company> findCompany();// 查询
+
+	public List<Company> findCompanmohu(String string);// 模糊查询公司
+	/**
+	 * 查询所有企业用户编号
+	 */
+	public List<Company> findCompanyId();
 }

@@ -4,15 +4,53 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../easyui/themes/default/easyui.css"
-	type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+	type="text/css"></link>
 </head>
 <body>
 	<table id="dg"></table>
+	<div id="empDialog" style="padding:5px;display:none;">
+		<form id="empForm" method="post">
+			<table>
+				<tr>
+					<th>员工编号</th>
+					<td><input type="text" name="empId" class="easyui-validatebox" data-options="validType:'minLength[4]'"  required="required"></input></td>
+					<th>员工姓名</th>
+					<td><input type="text" name="empName"></td>
+				</tr>
+				<tr>
+					<th>员工性别</th>
+					<td><input type="text" name="empGender"></td>
+					<th>电话</th>
+					<td><input type="text" name="empTelphone"></td>
+				</tr>
+				<tr>
+					<th>身份证号</th>
+					<td width="160px">
+					<input type="text" name="empCardnumber">
+				</td>
+					<th>地址</th>
+					<td><input type="text" name="empAddress"></td>
+				</tr>
+				<tr>
+					<th>学历</th>
+					<td><input type="text" name="empEducation"></td>
+					<th>部门</th>
+					<td><input type="text"  name="empDepartment"></td>
+				</tr>
+				<tr>
+					<th>邮箱</th>
+					<td><input type="text" name="empEmail"></td>
+					<th>民族</th>
+					<td><input type="text" name="empNation"></td>
+				</tr>
+			</table>
+		</form>
+	</div>  
 </body>
 <script>
 	var datagrid;
@@ -89,25 +127,15 @@
 			buttons : [ {
 				text : '添加',
 				handler : function() {
-					var f = $("#empForm");
-					f.form('submit', {
-						url : 'EmpServlet?chenjian=addEmp',
-						success : function(data) {
-							var json = $.parseJSON(data);//如果使用的是easyui自带ajax，则需要将返回数据转换成json对象
-							if (json.success) {
+					var f = $("#empForm").serialize();
+						$.ajax({
+							url : '/badLoan/Emp/addEmp',
+							data:f,
+							success:function(data){
 								datagrid.datagrid("reload");
 								p.dialog("close");
 							}
-							$.messager.show({
-								msg : json.msg,
-								timeout : 3000,
-								title : "提示"
-							}
-
-							);
-						}
-
-					})
+						});
 				}
 
 			} ],

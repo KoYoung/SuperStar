@@ -32,12 +32,6 @@ td {
 #one0, #top0 {
 	width: 50%;
 }
-
-#tab2 {
-	margin-left: 30px;
-	/* margin-top:-35px; */
-}
-
 #chuli, #huishou {
 	margin-top: 10px;
 }
@@ -277,19 +271,20 @@ td {
 	$('#aa').dialog({
 		title : '贷款详情',
 		closed : true,
-		width : '50%',
+		width : '52%',
 		height : 'auto',
-		top : '5%',
 		buttons : [ {
 			iconCls : 'icon-ok',
 			text : '通过',
 			handler : function() {
 				var row = $('#dg').datagrid('getSelected');
 				var data={};
-				data["loaninfoId"]=$("#loaninfoId").html();
+				data["loaninfoId"]=row.loaninfoId;
+				alert(row.loaninfoId);
 				data["borId"]=row.borId;
 				data["empId"]=row.empId;
-				data["unrepayNumber"]=$("#unrepayNumber").html();
+				data["witeoffMoney"]=row.unrepayNumber;
+				alert(row.unrepayNumber);
 				data["opinion"]=$("#opinion").val();
 				$.ajax({
 					url:'/badLoan/WriteoffManage/addWriteoffManage',
@@ -306,6 +301,21 @@ td {
 			iconCls : 'icon-cancel',
 			text : '驳回',
 			handler : function() {
+				var row = $('#dg').datagrid('getSelected');
+				var data={};
+				data["loaninfoId"]=row.loaninfoId;
+				data["empId"]=row.empId;
+				data["lmrComment"]=$("#opinion").val();
+				$.ajax({
+					url:'/badLoan/lmrController/addLoanMRBo',
+					type:'post',
+					contentType : "application/json;charset=utf-8",
+					data :JSON.stringify(data),
+					success:function(data){
+						alert(data);
+						window.location.href="/badLoan/jsp/writeOffManage.jsp";
+					}
+				});
 				$('#aa').dialog('close');
 			}
 		} ]

@@ -24,6 +24,7 @@ public class LoanTypeController {
 	@ResponseBody
 	public List<LoanType> findLoanType(){
 		List<LoanType> loanList = loanService.findLoanType();
+		System.out.println("loanList"+loanList);
 		return loanList;
 	}
 	/**

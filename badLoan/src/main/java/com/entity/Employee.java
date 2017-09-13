@@ -18,9 +18,7 @@ public class Employee {
 	private String empNation;
 	private String empBankinfo;
 	private String empFlag;
-	
-	
-	
+
 	public String getEmpBankinfo() {
 		return empBankinfo;
 	}
@@ -116,4 +114,13 @@ public class Employee {
 	public void setEmpNation(String empNation) {
 		this.empNation = empNation;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empGender=" + empGender + ", empTelphone="
+				+ empTelphone + ", empCardnumber=" + empCardnumber + ", empAddress=" + empAddress + ", empEducation="
+				+ empEducation + ", empDepartment=" + empDepartment + ", empEmail=" + empEmail + ", empNation="
+				+ empNation + ", empBankinfo=" + empBankinfo + ", empFlag=" + empFlag + "]";
+	}
+	
 }

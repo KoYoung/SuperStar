@@ -3,11 +3,11 @@ package com.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dao.BorguaDao;
 import com.dao.ComloanInfoDao;
 import com.dao.CustomerGoodsDao;
@@ -23,29 +23,30 @@ import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
 import com.entity.Loanmanage;
 import com.entity.Pledge;
+
 @Service
 public class ComloanInfoServiceImp implements ComloanInfoService {
 	@Autowired
-	private ComloanInfoDao ComloanInfoDao;
+	private ComloanInfoDao comloanInfoDao;
 	@Autowired
-	private PledgeDao PledgeDao;
+	private PledgeDao pledgeDao;
 	@Autowired
 	private CustomerGoodsDao customerGoodsDao;
 	@Autowired
-	private GuarantorDao GuarantorDao;
+	private GuarantorDao guarantorDao;
 	@Autowired
 	private BorguaDao borguaDao;
 	@Autowired
-	private LoanManageRecordDao LoanManageRecordDao;
+	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
-	private LoanmanageDao LoanmanageDao;
+	private LoanmanageDao loanmanageDao;
+
 	/**
 	 * 添加企业贷款信息
 	 */
-	@Override
 	@Transactional
-	public int addComloanInfo(ComloanInfo comloanInfo,Pledge pledge,CustomerGoods customerGoods,Guarantor guarantor,Borgua borgua
-			,LoanManageRecord lmr,Loanmanage lonm) {
+	public int addComloanInfo(ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
+			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
 		System.out.println(comloanInfo.toString());
 		String pledgeGenre = comloanInfo.getLoanType();
 		int unrepayNumber = Integer.parseInt(comloanInfo.getLoanNumber());
@@ -53,52 +54,85 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 		pledge.setPledgeGenre(pledgeGenre);
 		String empId = comloanInfo.getEmpId();
 		lmr.setEmpId(empId);
-		SimpleDateFormat sd =new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		lmr.setLmrDate(sd.format(new Date()));
 		int loaninfoType = comloanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
 		try {
-		ComloanInfoDao.addComloanInfo(comloanInfo);
-		System.out.println(ComloanInfoDao.toString());
-		PledgeDao.addPledge(pledge);
-		System.out.println(PledgeDao.toString());
-		customerGoodsDao.addCustomerGoods(customerGoods);
-		GuarantorDao.addGuarantor(guarantor);
-		borguaDao.addBorgua(borgua);
-		LoanManageRecordDao.addLoanManageRecord(lmr);
-		LoanmanageDao.addLoanmanage(lonm);
-		
+			comloanInfoDao.addComloanInfo(comloanInfo);
+			System.out.println(comloanInfoDao.toString());
+			pledgeDao.addPledge(pledge);
+			System.out.println(pledgeDao.toString());
+			customerGoodsDao.addCustomerGoods(customerGoods);
+			guarantorDao.addGuarantor(guarantor);
+			borguaDao.addBorgua(borgua);
+			loanManageRecordDao.addLoanManageRecord(lmr);
+			loanmanageDao.addLoanmanage(lonm);
+
 		} catch (Exception e) {
-			System.out.println("---------------------------------------"+e.getMessage());
+			System.out.println("---------------------------------------" + e.getMessage());
 			return 0;
 		}
 		return 1;
-		
+
 	}
+
 	/**
 	 * 查询企业贷款信息
 	 */
 	@Override
 	public List<ComloanInfo> findComloanInfo() {
-		return ComloanInfoDao.findComloanInfo();
+		return comloanInfoDao.findComloanInfo();
 	}
+
 	/**
 	 * 根据贷款编号查询贷款详情
 	 */
-	
+
 	@Override
 	public List<BorLoanInfo> findComloanInfo2(String comloaninfoId) {
-		
-		return ComloanInfoDao.findComloanInfo2(comloaninfoId);
+
+		return comloanInfoDao.findComloanInfo2(comloaninfoId);
 	}
+
 	/**
-	 * 合同编号唯一性验证
+	 * 根据贷款编号修改企业业务移交相关信息
+	 * 
+	 * @return 合同编号唯一性验证
+	 */
+	/*
+	 * @Override public void modifyComloanInfo(String empId,String
+	 * comloaninfoId) { ComloanInfoDao.modifyComloanInfo(empId,comloaninfoId);
+	 * 
+	 * }
 	 */
 	@Override
 	public List<ComloanInfo> findContractIdCom(String contractId) {
-		
-		return ComloanInfoDao.findContractIdCom(contractId);
+
+		return comloanInfoDao.findContractIdCom(contractId);
 	}
-	
+
+	@Override
+	public List<Map<String, String>> findComLoan(Map<String, String> datamap) {
+		return comloanInfoDao.findComLoan(datamap);
+	}
+
+	@Transactional
+	public void modifyComState(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyLoanState(datamap);
+	}
+
+	@Transactional
+	public void applyWriteOff(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyLoanState(datamap);
+	}
+
+	@Transactional
+	public void updateUnrepayNumber(Map<String, String> datamap) {
+		comloanInfoDao.addLmr(datamap);
+		comloanInfoDao.modifyUnrepayNumber(datamap);
+	}
 
 }

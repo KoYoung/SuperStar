@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.dao.ContectDao">
+	<insert id="addContecct"  parameterType="com.entity.Contect">
+		insert into contect values(contect_seq.nextval,#{contectName},#{contectGender},#{contectBirthday},#{contectCardtype},#{contectCardnumber},#{contectAddress},#{contectTelphone})
+	</insert>
+	<update id="modifyContect" parameterType="com.entity.Contect">
+		update contect set contect_name=#{contectName},contect_gender=#{contectGender},contect_birthday=#{contectBirthday},contect_cardtype=#{contectCardtype},contect_cardnumber=#{contectCardnumber},contect_address=#{contectAddress},contect_telphone=#{contectTelphone} where contect_id=#{contectId} 
+	</update>
+</mapper>
