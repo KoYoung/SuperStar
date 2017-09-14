@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.BorLoanInfoDao">
 	<!-- 查询个人用户贷款信息 -->
 	<select id="findBorLoanInfo" resultType="com.entity.BorLoanInfo">
-		select
+		select distinct
 		bor.bor_name,bori.borloaninfo_id,bi.bankinfo_name,bori.contract_id,
 		e.emp_name,lt.loantype_name,bori.loan_number,bori.loan_account,
 		bori.loan_date,bori.loan_repayment_date,bori.loan_rate,
@@ -102,18 +102,14 @@
 		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
 		#{loanRate,jdbcType=VARCHAR},#{unrepayNumber,jdbcType=NUMERIC})
 	</insert>
-	<!-- 根据贷款类型，贷款编号查询贷款信息 -->
+	<!-- 根据贷款类型，贷款编号查询个人贷款信息 -->
 	<select id="findBorLoanInfo2" resultType="com.entity.BorLoanInfo">
-		select e.emp_id,
-		bw.bor_name,bk.bankinfo_name,e.emp_name
-		from borloaninfo bi,borrower
-		bw,bankinfo bk,employee e
-		where bi.bor_id=bw.bor_id
-		and
-		bi.bankinfo_id=bk.bankinfo_id
+		select
+		bi.bor_id,bw.bor_name,e.emp_id,e.emp_name,bk.bankinfo_id,bk.bankinfo_name
+		from borloaninfo bi,borrower bw,bankinfo bk,employee e
+		where bi.bor_id=bw.bor_id and bi.bankinfo_id=bk.bankinfo_id
 		and bi.emp_id=e.emp_id
-		and
-		bi.loaninfo_type=0
+		and bi.loaninfo_type=0
 		and bi.borloaninfo_id=#{borloaninfoId}
 	</select>
 	<!-- 根据贷款编号修改业务移交相关信息 -->
