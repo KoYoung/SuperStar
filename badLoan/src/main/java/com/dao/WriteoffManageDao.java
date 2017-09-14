@@ -28,8 +28,4 @@ public interface WriteoffManageDao {
 	 * 根据贷款编号和贷款人姓名进行模糊查询
 	 */
 	List<WriteoffManage> findWriteM(String loaninfoId);
-	/**
-	 * 根据员工名称查询员工编号
-	 */
-	// List<Employee> findEmpId(String empName);
 }

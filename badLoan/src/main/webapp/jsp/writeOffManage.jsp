@@ -270,11 +270,9 @@ td {
 												'getSelected');
 										var data = {};
 										data["loaninfoId"] = row.loaninfoId;
-										alert(row.loaninfoId);
 										data["borId"] = row.borId;
 										data["empId"] = row.empId;
 										data["witeoffMoney"] = row.unrepayNumber;
-										alert(row.unrepayNumber);
 										data["opinion"] = $("#opinion").val();
 										$
 												.ajax({

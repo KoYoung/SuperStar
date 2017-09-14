@@ -33,7 +33,16 @@ import com.util.UrlUtil;
 public class ComloanInfoController {
 	@Autowired
 	private ComloanInfoService comloanInfoService;
-
+	
+	/**
+	 * 查询企业贷款信息
+	 */
+	@RequestMapping("/findComloanInfo")
+	@ResponseBody
+	public PagingResult<ComloanInfo> findComloanInfo(Integer page, Integer rows) {
+		PagingResult<ComloanInfo> comList = comloanInfoService.findComloanInfo(page, rows);
+		return  comList;
+	}
 	/**
 	 * 添加企业贷款信息
 	 * 
@@ -43,51 +52,17 @@ public class ComloanInfoController {
 	@ResponseBody
 	public String addComloanInfo(@RequestParam("borPhoto") MultipartFile[] borPhotos, HttpServletRequest request,
 			ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua,
-			LoanManageRecord lmr, Loanmanage lonm) throws IOException {
-		List files = FileUpload.uploadFile1(borPhotos, request);
-		String phonePath = "";
-		for (int i = 0; i < files.size(); i++) {
-
-			phonePath = phonePath + files.get(i).toString() + ",";
-			// 保存文件
-		}
-		pledge.setPledgePhoto(phonePath);
-		System.out.println("zhaopi=a==n=====" + pledge.getPledgePhoto());
-		int flag = comloanInfoService.addComloanInfo(comloanInfo, pledge, customerGoods, guarantor, borgua, lmr, lonm);
-		if (flag > 0) {
-			return "add Success";
-		} else {
-			return "add error";
-		}
-
+			LoanManageRecord lmr, Loanmanage lonm){
+		
+		return comloanInfoService.addComloanInfo(borPhotos, request, comloanInfo, pledge, customerGoods, guarantor, borgua, lmr, lonm);
 	}
-
-	/**
-	 * 查询企业贷款信息
-	 */
-	@RequestMapping("/findComloanInfo")
-	@ResponseBody
-	public PagingResult<ComloanInfo> findComloanInfo(Integer page, Integer rows) {
-		List<ComloanInfo> comList = comloanInfoService.findComloanInfo();
-		Paging<ComloanInfo> paging = new Paging<ComloanInfo>();
-		List<ComloanInfo> list = paging.paging(comList, rows, page);
-		System.out.println("rows---"+rows);
-		System.out.println("page---"+page);
-		PagingResult<ComloanInfo> pr = new PagingResult<ComloanInfo>();
-		pr.setRows(list);
-		pr.setTotal(comList.size());
-		return pr;
-	}
-
 	/**
 	 * 合同编号唯一性验证
 	 */
 	@RequestMapping("/findContractIdCom")
 	@ResponseBody
 	public boolean findContractIdCom(String contractId) {
-		System.out.println("comList--" + contractId);
 		List<ComloanInfo> comList = comloanInfoService.findContractIdCom(contractId);
-		System.out.println("*******comList.size()********" + comList.size());
 		if (comList.size() > 0) {
 			return false;
 		} else {

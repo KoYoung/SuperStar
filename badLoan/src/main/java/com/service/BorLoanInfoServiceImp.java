@@ -5,12 +5,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dao.BorLoanInfoDao;
 import com.dao.BorguaDao;
+import com.dao.ComloanInfoDao;
 import com.dao.CustomerGoodsDao;
 import com.dao.GuarantorDao;
 import com.dao.LoanManageRecordDao;
@@ -23,11 +28,16 @@ import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
 import com.entity.Loanmanage;
 import com.entity.Pledge;
+import com.util.FileUpload;
+import com.util.Paging;
+import com.util.PagingResult;
 
 @Service
 public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Autowired
 	private BorLoanInfoDao borLoanInfoDao;
+	@Autowired 
+	private ComloanInfoDao ComloanInfoDao;
 	@Autowired
 	private PledgeDao pledgeDao;
 	@Autowired
@@ -40,12 +50,22 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
 	private LoanmanageDao loanmanageDao;
-
+	/**
+	 * 查询个人用户贷款信息
+	 * 
+	 * @return
+	 */
 	@Override
-	public List<BorLoanInfo> findBorLoanInfo() {
-		return borLoanInfoDao.findBorLoanInfo();
+	@Transactional
+	public PagingResult<BorLoanInfo> findBorLoanInfo(Integer page, Integer rows) {
+		List<BorLoanInfo> comList = borLoanInfoDao.findBorLoanInfo();
+		Paging<BorLoanInfo> paging = new Paging<BorLoanInfo>();
+		List<BorLoanInfo> borList = paging.paging(comList, rows, page);
+		PagingResult<BorLoanInfo> pr = new PagingResult<BorLoanInfo>();
+		pr.setRows(borList);
+		pr.setTotal(comList.size());
+		return pr;
 	}
-
 	/**
 	 * 查询个人用户贷款详情
 	 * 
@@ -57,39 +77,11 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	}
 
 	/**
-	 * 查询某用户贷款所有详情
-	 * 
-	 * @return
-	 */
-	@Override
-	public List<Map<String, String>> findDetailsById(int borloaninfoId) {
-		List<Map<String, String>> borList = borLoanInfoDao.findBorLoanDetailsById(borloaninfoId);
-		List<Map<String, String>> guaList = borLoanInfoDao.findGuaDetailsById(borloaninfoId);
-		System.out.println("--------------------borList:" + borList + "----------------------");
-		System.out.println("--------------------guaList:" + guaList + "----------------------");
-		System.out.println(borList.get(0).get("BOR_ID"));
-		System.out.println(borList.get(0).get("EMP_ID"));
-		int borId = Integer.parseInt(borList.get(0).get("BOR_ID"));
-		String empId = borList.get(0).get("EMP_ID");
-		System.out.println("--------------------" + borId + "   " + empId + "----------------------");
-		List<Map<String, String>> cusList = borLoanInfoDao.findCusDetailsById(borId);
-		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
-		System.out.println("--------------------cusList:" + cusList + "----------------------");
-		System.out.println("--------------------empList:" + empList + "----------------------");
-		for (Map<String, String> map : cusList) {
-			borList.add(map);
-		}
-		for (Map<String, String> map : empList) {
-			borList.add(map);
-		}
-		return borList;
-	}
-
-	/**
-	 * 添加个人用户贷款信息
+	 * 添加个人用户贷款信息 马利肖
+	 * requestParam要写才知道是前台的那个数组
 	 */
 	@Transactional
-	public int addBorLoanInfo(BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
+	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
 			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
 				String pledgeGenre = borLoanInfo.getLoanType();
 		int unrepayNumber = Integer.parseInt(borLoanInfo.getLoanNumber());
@@ -101,31 +93,73 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		lmr.setLmrDate(sd.format(new Date()));
 		int loaninfoType = borLoanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
+		//获取页面传过来的图片路径
+		List filepath = FileUpload.uploadFile1(borPhoto, request);
+		String path = "";
+		for (int i = 0; i < borPhoto.length; i++) {
+			path=path+filepath.get(i).toString()+",";
+		}
+		pledge.setPledgePhoto(path);
 		try {
-			borLoanInfoDao.addBorLoanInfo(borLoanInfo);
+			int flag = borLoanInfoDao.addBorLoanInfo(borLoanInfo);
 			pledgeDao.addPledge(pledge);
 			customerGoodsDao.addCustomerGoods(customerGoods);
 			guarantorDao.addGuarantor(guarantor);
 			borguaDao.addBorgua(borgua);
 			loanManageRecordDao.addLoanManageRecord(lmr);
 			loanmanageDao.addLoanmanage(lonm);
-
+			if(flag>0){
+				return "add success";
+			}else{
+				return "add error";
+			}
 		} catch (Exception e) {
-			System.out.println("---------------------------------------" + e.getMessage());
-			return 0;
+			System.out.println("--->" + e.getMessage());
+			return "异常";
 		}
-		return 1;
+		
 	}
-
 	/**
-	 * 根据贷款类型，贷款编号查询贷款信息
+	 * 根据贷款类型，贷款编号查询贷款信息  马利肖
 	 */
 	@Override
-	public List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId) {
-
-		return borLoanInfoDao.findBorLoanInfo2(borloaninfoId);
+	@Transactional
+	public BorLoanInfo findBorLoanInfo2(BorLoanInfo borLoanInfo,String borloaninfoId) {
+		int loaninfoType = borLoanInfo.getLoaninfoType();
+		System.out.println("loaninfoType--->"+loaninfoType);
+		String borloaninfoId1 = borLoanInfo.getBorloaninfoId();
+		List<BorLoanInfo> borList = null;
+		if (loaninfoType == 0) {
+			borList = borLoanInfoDao.findBorLoanInfo2(borloaninfoId1);
+		} else {
+			borList = ComloanInfoDao.findComloanInfo2(borloaninfoId1);
+		}
+		if (borList.size() > 0) {
+			return borList.get(0);
+		}
+		return null;
 	}
-
+	/**
+	 * 查询某用户贷款所有详情
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Map<String, String>> findDetailsById(int borloaninfoId) {
+		List<Map<String, String>> borList = borLoanInfoDao.findBorLoanDetailsById(borloaninfoId);
+		List<Map<String, String>> guaList = borLoanInfoDao.findGuaDetailsById(borloaninfoId);
+		int borId = Integer.parseInt(borList.get(0).get("BOR_ID"));
+		String empId = borList.get(0).get("EMP_ID");
+		List<Map<String, String>> cusList = borLoanInfoDao.findCusDetailsById(borId);
+		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
+		for (Map<String, String> map : cusList) {
+			borList.add(map);
+		}
+		for (Map<String, String> map : empList) {
+			borList.add(map);
+		}
+		return borList;
+	}
 	@Transactional
 	public void modifyLoanState(Map<String, String> datamap) {
 		borLoanInfoDao.addLoanManageRecordMap(datamap);

@@ -73,6 +73,7 @@ tr td {
 										iconCls : 'icon-save',
 										text : '保存',
 										handler : function() {
+											
 											$('#ff').form('submit',{
 												url : '/badLoan/replace/addReplace',
 												onSubmit : function() {
@@ -170,23 +171,6 @@ tr td {
 								if (data.length > 0) {
 									$("#empId").combobox('setValue', data[0].empId);
 								}
-								
-								/* $.extend($.fn.validatebox.defaults.rules, {
-										newEmpId: {
-									          validator: function (value, param) {
-									        	  alert("sad"+$("#empId").val());
-									        	var oldEmpName =  $("#empName").val();
-									        	var newEmpId=value+" "+$("#empId").val();
-									        	alert(oldEmpName);
-									        	alert(newEmpId); 
-									        	if(oldEmpName.equals(newEmpId)){
-									            	return false;
-									        	}
-									        	return true;
-									        },
-									          message: '所移交的经手人不能和原经手人相同'
-									        },
-									}); */
 							}, 
 							onselect : function(rec){
 									$("#bankInfoId").val(rec.empId);

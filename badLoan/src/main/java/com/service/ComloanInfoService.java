@@ -3,6 +3,11 @@ package com.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.entity.BorLoanInfo;
 import com.entity.Borgua;
 import com.entity.ComloanInfo;
@@ -11,24 +16,20 @@ import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
 import com.entity.Loanmanage;
 import com.entity.Pledge;
+import com.util.PagingResult;
 
 public interface ComloanInfoService {
 	/**
 	 * 添加企业贷款信息
 	 */
-	int addComloanInfo(ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
+	String addComloanInfo(@RequestParam("borPhoto") MultipartFile[] borPhotos, HttpServletRequest request,
+			ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
 			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm);
 
 	/**
 	 * 查询企业贷款信息
 	 */
-	List<ComloanInfo> findComloanInfo();
-
-	/**
-	 * 根据贷款编号查询贷款详情
-	 */
-	List<BorLoanInfo> findComloanInfo2(String comloaninfoId);
-
+	PagingResult<ComloanInfo> findComloanInfo(Integer page, Integer rows);
 	/**
 	 * 合同编号唯一性验证
 	 */

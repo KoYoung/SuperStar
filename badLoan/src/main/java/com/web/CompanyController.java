@@ -51,7 +51,6 @@ public class CompanyController {
 	@RequestMapping("/mohu")
 	@ResponseBody
 	public PagingResult findcompanymohu(@RequestParam(value = "va") String va, HttpServletRequest request) {
-		System.out.println(va);
 		try {
 			va = new String(va.getBytes("iso-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
