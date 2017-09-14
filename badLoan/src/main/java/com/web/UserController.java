@@ -15,9 +15,7 @@ import com.entity.User;
 import com.service.UserService;
 
 /**
- * @author why
- * 用户controller
- * UserController
+ * @author why 用户controller UserController
  *
  */
 @Controller
@@ -25,30 +23,43 @@ import com.service.UserService;
 public class UserController {
 	@Autowired
 	public UserService us;
-	
+
 	/**
 	 * 登录处理
+	 * 
 	 * @param username
 	 * @param password
 	 */
-	@ResponseBody
 	@RequestMapping("/login")
-	public Integer login(@RequestBody String str,HttpSession session){
-		System.out.println(str+"********************");	
-		User user = JSON.parseObject(str,User.class);
+	@ResponseBody
+	public Integer login(@RequestBody String str, HttpSession session) {
+		System.out.println(str + "********************");
+		User user = JSON.parseObject(str, User.class);
 		System.out.println(user);
 		List<String> list = us.findUserName(user.getUserName());
-		if(list.size() == 1){
+		if (list.size() == 1) {
 			List<User> list2 = us.findUserNameAndPassWord(user);
-			if (list2 != null && list2.size()>0) {
-				String userName = list2.get(0).getUserName();
-				session.setAttribute("username", userName);
+			if (list2 != null && list2.size() > 0) {
+				// String userName = list2.get(0).getUserName();
+				session.setAttribute("user", list2.get(0));
 				return 1;
-			}else {
+			} else {
 				return 2;
 			}
-		}else {
+		} else {
 			return 0;
 		}
+	}
+
+	/**
+	 * 注销登录
+	 * 
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/userLogout")
+	public String userLogout( HttpSession session) {
+		session.invalidate();
+		return "redirect:/jsp/login.jsp";
 	}
 }

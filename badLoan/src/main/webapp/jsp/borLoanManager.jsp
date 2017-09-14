@@ -8,29 +8,29 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 </head>
 <body>
 	<form method="post" id="searchForm"><!-- 模糊查询-->
 		<table style="width: 1000px;">
 			<tr class="tot">
-				<td>&nbsp;&nbsp;&nbsp;合同号&nbsp;&nbsp;<input name="contractId"
+				<td>合&nbsp;&nbsp;同&nbsp;&nbsp;号&nbsp;<input name="contractId"
 					type="text" class="easyui-textbox"
 					data-options=" prompt:'输入合同号模糊查询'"></td>
-				<td>企业名称&nbsp;&nbsp;<input name="borName" type="text"
+				<td>&nbsp;&nbsp;企业名称&nbsp;&nbsp;<input name="borName" type="text"
 					class="easyui-textbox" data-options=" prompt:'输入企业名称查询'"></td>
-				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
-					name="loanStateId"></td>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;银行&nbsp;&nbsp;<input type="text"
-					id="bankSearch" name="bankId"></td>
-			</tr>
-			<tr class="tot">
-				<td colSpan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还款日期&nbsp;&nbsp;<input
+				<td colSpan="2">&nbsp;&nbsp;还款日期&nbsp;&nbsp;<input
 					type="text" class="easyui-datebox" name="dateFrom">&nbsp;&nbsp;~&nbsp;&nbsp;<input
 					type="text" class="easyui-datebox" name="dateTo">
 				</td>
-				<td>&nbsp;&nbsp;&nbsp;负责人&nbsp;&nbsp;<input type="text"
+			</tr>
+			<tr class="tot">
+				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
+					name="loanStateId"></td>
+				<td>&nbsp;&nbsp;银&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行&nbsp;&nbsp;<input type="text"
+					id="bankSearch" name="bankId"></td>
+				<td>&nbsp;&nbsp;负&nbsp;&nbsp;责&nbsp;&nbsp;人&nbsp;&nbsp;<input type="text"
 					class="easyui-textbox" data-options=" prompt:'输入负责人查询'"
 					name="empName"></td>
 				<td><a class="easyui-linkbutton"
@@ -436,7 +436,6 @@
 						repayNumber:$("#repayNumberLMR").val(),
 						repayComment : $("#lmrCommentLMR").val()
 					};
-					alert( data.borloaninfoId+" "+data.empId+" "+data.loanState+" "+data.repayNumber+" "+data.unrepayNumber+"   "+data.repayType +data.repayComment+" ");
 					$.ajax({
 						url : '/badLoan/BorLoanInfo/updateUnrepayNumber',
 						type : 'post',

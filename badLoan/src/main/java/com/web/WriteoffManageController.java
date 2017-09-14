@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.dao.LoanManageRecordDao;
 import com.entity.Repaymentinfo;
 import com.entity.WriteoffManage;
 import com.service.WriteoffManageService;
@@ -60,20 +59,18 @@ public class WriteoffManageController {
 	/**
 	 * 添加核销信息
 	 */
-	@RequestMapping("/addWriteoffManage")
-	@ResponseBody
-	public String addWriteoffManage(@RequestBody String data) {
-
-		// System.out.println("========================"+data);
-		WriteoffManage wm = JSON.parseObject(data, WriteoffManage.class);
-		int flag = writeService.addWriteoffManage(wm);
-		if (flag == 1) {
-			return "add success";
-		} else {
-			return "add error";
-		}
-
-	}
+	/*
+	 * @RequestMapping("/addWriteoffManage")
+	 * 
+	 * @ResponseBody public String addWriteoffManage(@RequestBody String data) {
+	 * 
+	 * // System.out.println("========================"+data); WriteoffManage wm
+	 * = JSON.parseObject(data, WriteoffManage.class); int flag =
+	 * writeService.addWriteoffManage(wm); if (flag == 1) { return "add success"
+	 * ; } else { return "add error"; }
+	 * 
+	 * }
+	 */
 
 	/**
 	 * 添加核销信息

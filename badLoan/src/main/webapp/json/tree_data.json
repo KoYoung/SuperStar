@@ -58,8 +58,8 @@
     }]    
 },{
    	"id":4,
-   	"state":"open",
-    "text":"贷款信息管理",    
+    "text":"贷款信息管理",
+    "state":"closed",     
     "children":[{  
     	"id":401,   
         "text":"个人贷款信息管理",

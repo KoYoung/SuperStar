@@ -3,8 +3,22 @@ package com.entity;
 import java.util.List;
 
 public class RoleTree {
+	private int id;
 	private String text;
-	private List children;
+	private List<Children> children;
+	
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 
 	public String getText() {
 		return text;
@@ -20,6 +34,11 @@ public class RoleTree {
 
 	public void setChildren(List children) {
 		this.children = children;
+	}
+
+	@Override
+	public String toString() {
+		return "RoleTree [id=" + id + ", text=" + text + ", children=" + children + "]";
 	}
 
 }

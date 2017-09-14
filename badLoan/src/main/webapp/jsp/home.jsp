@@ -8,7 +8,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
@@ -26,14 +26,15 @@
 	margin: 5px;
 }
 </style>
+
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
 		style="height: 'auto';">
 		<h4 style="float: left;">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h4>
 		<div style="width: 240px; float: right;">
-			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp; <a
-				href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>
+			欢迎,<span id="userName")>${user.userName }</span>! &nbsp;&nbsp;&nbsp;
+			<a href="/badLoan/user/userLogout">注销</a><br> 现在的时间是:<span id="date"></span>
 		</div>
 	</div>
 	<div data-options="region:'west',title:'系统菜单',collapsible:true"
@@ -67,7 +68,6 @@
 		$("#date").html(str);
 	}
 	setInterval("showData()", 1000);
-
 	$(function() {
 		$("#homeTree").tree({
 			url : "../json/tree_data.json",
