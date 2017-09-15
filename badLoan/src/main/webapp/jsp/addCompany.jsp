@@ -483,7 +483,7 @@ td {
 				pagination : true,//开启分页功能
 				fit : true,
 				pageNumber : 1,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 25, 30 ],
 				sortOrder : 'desc',//定义列的排序顺序,默认正序asc
 				fitColumns : true,
@@ -642,7 +642,7 @@ td {
 				url : "/badLoan/company/mohu?va=" + value,
 				singleSelect : true,
 				pagination : true,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 30, 50 ],
 				contentType : "application/json;charset=utf-8",
 

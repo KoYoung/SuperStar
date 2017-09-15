@@ -126,7 +126,7 @@
 			rownumbers : true,
 			singleSelect : true,
 			pagination : true,
-			pageSize : 5,
+			pageSize : 10,
 			pageList : [ 5, 10, 20 ],
 			toolbar : "#toolbar",
 			columns : [ [ {

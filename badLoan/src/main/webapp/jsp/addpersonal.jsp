@@ -473,7 +473,7 @@ td {
 				pagination : true,//开启分页功能
 				fit : true,
 				pageNumber : 1,
-				pageSize : 5,
+				pageSize : 10,
 				singleSelect : true,
 				pageList : [ 5, 10, 15, 20, 25, 30 ],
 				sortOrder : 'asc',//定义列的排序顺序,默认正序asc
@@ -685,7 +685,7 @@ td {
 				url : "/badLoan/borrower/findbormohu?va=" + value,
 				singleSelect : true,
 				pagination : true,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 30, 50 ],
 				/* 	queryParams:form2Json("searchform"), */
 				columns : [ [ {

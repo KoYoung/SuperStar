@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 <link rel="stylesheet" href="../js/css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Lato"
@@ -79,16 +79,16 @@
 			data : JSON.stringify(data),
 			success : function(data) {
 				if (data == 0) {
-					alert("该用户不存在！");
+					$.messager.alert("系统提示","该用户不存在！","");
 					//window.location.href = "/badLoan/jsp/login.jsp";
 					$("#passWord").val("");
 				}
 				if (data == 1) {
-					alert("登录成功！");
+					$.messager.alert("系统提示","登录成功！");
 					window.location.href = "/badLoan/jsp/home.jsp";
 				}
 				if (data == 2) {
-					alert("密码错误，请重新输入！");
+					$.messager.alert("系统提示","密码错误，请重新输入！");
 					//window.location.href = "/badLoan/jsp/login.jsp";
 					$("#passWord").val("");
 				}

@@ -10,7 +10,7 @@ import com.dao.RightDao;
 import com.entity.Right;
 
 /**
- * @author 蒙奇·D·路飞 service实现类 RightServiceImp
+ * @ service实现类 RightServiceImp
  *
  */
 @Service
@@ -20,19 +20,12 @@ public class RightServiceImp implements RightService {
 
 	/**
 	 * 添加权限
+	 * 
+	 * @author yang
 	 */
 	@Override
 	public void addRight(Right right) {
 		String rightp = right.getRightParent();
-		if (rightp != null) {
-			System.out.println(1);
-			if (rightp != "") {
-				System.out.println(1);
-				if (!rightp.equals("无")) {
-					System.out.println(1);
-				}
-			}
-		}
 		if (rightp != null && !(rightp.equals("")) && !(rightp.equals("无"))) {
 			Integer childrenId = rd.findMaxChildByParentId(right.getRightParent()) + 1;
 			right.setRightId(childrenId + "");
@@ -50,6 +43,8 @@ public class RightServiceImp implements RightService {
 
 	/**
 	 * 查询权限
+	 * 
+	 * @author yang
 	 */
 	@Override
 	public List<Right> findAllRight() {
@@ -58,20 +53,27 @@ public class RightServiceImp implements RightService {
 
 	/**
 	 * 查询父权限
+	 * 
+	 * @author yang
 	 */
-	@Override
 	public List<Right> findParentRight() {
 		return rd.findParentRight();
 	}
 
 	/**
-	 * 查询子权限
+	 * 查询所有子权限
+	 * 
+	 * @author yang
 	 */
-	@Override
 	public List<Right> findSonRight() {
 		return rd.findSonRight();
 	}
 
+	/**
+	 * 将父子节点list转换成tree
+	 * 
+	 * @author yang
+	 */
 	public String listToTree(List<Right> parentList, List<Right> sonList) {
 		String tree = "";
 		tree += "[";
@@ -106,6 +108,11 @@ public class RightServiceImp implements RightService {
 		return tree;
 	}
 
+	/**
+	 * 根据权限ID禁用权限
+	 * 
+	 * @author yang
+	 */
 	public void stopRightById(Map<String, Object> datamap) {
 		if (datamap.get("rightParent").equals("0")) {
 			rd.stopRightByParentId((String) datamap.get("rightId"));
@@ -114,12 +121,26 @@ public class RightServiceImp implements RightService {
 		}
 	}
 
+	/**
+	 * 根据权限ID开启权限
+	 * 
+	 * @author yang
+	 */
 	public void startRightById(Map<String, Object> datamap) {
 		if (datamap.get("rightParent").equals("0")) {
 			rd.startRightByParentId((String) datamap.get("rightId"));
 		} else {
 			rd.startRightById((String) datamap.get("rightId"));
 		}
+	}
+
+	/**
+	 * 根据用户ID返回权限树
+	 */
+	public String findHomeTree(String userId) {
+		List<Right> findRightP = rd.findRightP(userId);
+		List<Right> findRightS = rd.findRightS(userId);
+		return listToTree(findRightP, findRightS);
 	}
 
 }

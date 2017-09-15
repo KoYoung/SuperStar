@@ -25,7 +25,7 @@
 		url : "/badLoan/find/findEmp",
 		pagination : true,//开启分页功能
 		pageNumber : 1,
-		pageSize : 5,
+		pageSize : 10,
 		pageList : [ 5, 10, 15, 20, 25, 30 ],
 		singleSelect : true,
 		rownumbers : true,

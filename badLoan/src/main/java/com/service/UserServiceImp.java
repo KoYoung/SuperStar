@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,9 @@ public class UserServiceImp implements UserService {
 	/**
 	 * 登录验证，查询用户名和密码
 	 */
-	public List<User> findUserNameAndPassWord(User user) {
+	public List<Map<String, String>>  findUserNameAndPassWord(User user) {
 		user.setPassWord(MD5Util.toMD5(user.getPassWord()).toUpperCase());
-		List<User> list = ud.findUserNameAndPassWord(user);
+		List<Map<String, String>>  list = ud.findUserNameAndPassWord(user);
 		return list;
 	}
 

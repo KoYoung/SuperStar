@@ -71,4 +71,20 @@ public interface RightDao {
 	 * @param string
 	 */
 	void startRightById(String string);
+
+	/**
+	 * 根据用户ID查询用户对应的父权限
+	 * 
+	 * @param String
+	 *            userId 用户ID
+	 */
+	List<Right> findRightP(String userId);
+
+	/**
+	 * 根据用户ID查询用户对应查询子权限
+	 * 
+	 * @param String
+	 *            userId 用户ID
+	 */
+	List<Right> findRightS(String userId);
 }

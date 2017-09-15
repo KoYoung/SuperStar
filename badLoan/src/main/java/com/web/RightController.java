@@ -60,6 +60,12 @@ public class RightController {
 		return rs.findParentRight();
 	}
 
+	/**
+	 * 查询所有jsp页面
+	 * 
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/findAllUrl")
 	@ResponseBody
 	public List<Map<String, String>> findAllUrl(HttpServletRequest req) {
@@ -118,5 +124,15 @@ public class RightController {
 		System.out.println(datamap);
 		rs.startRightById(datamap);
 		return "success";
+	}
+
+	/**
+	 * 获取登录用户权限
+	 */
+	@RequestMapping("/getUserRightList")
+	@ResponseBody
+	public String getUserRightList(String data) {
+		String userId = data;
+		return rs.findHomeTree(userId);
 	}
 }

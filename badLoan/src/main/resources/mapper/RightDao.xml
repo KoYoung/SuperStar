@@ -5,7 +5,7 @@
 
 <mapper namespace="com.dao.RightDao">
 	<select id="findAllRight" resultType="com.entity.Right">
-		select * from right
+		select * from right order by right_id
 	</select>
 	<insert id="addRight" parameterType="com.entity.Right">
 		insert into right
@@ -55,4 +55,30 @@
 		right_flag = 1 where right_id =
 		#{rightId,jdbcType=VARCHAR}
 	</update>
+
+	<select id="findRightP" parameterType="String" resultType="com.entity.Right">
+		select distinct ri.* from role ro, right ri,
+		roleright rr where
+		ro.role_id = rr.role_id and ri.right_id =
+		rr.right_id and ri.right_flag
+		= 1 and ri.right_parent=0 and ro.role_id in
+		(select r.role_id from
+		users u, role r ,userrole ur where u.user_id =
+		ur.user_id and r.role_id
+		= ur.role_id and u.user_id = #{userId} ) order by
+		ri.right_id
+	</select>
+
+	<select id="findRightS" parameterType="String" resultType="com.entity.Right">
+		select distinct ri.* from role ro, right ri,
+		roleright rr where
+		ro.role_id = rr.role_id and ri.right_id =
+		rr.right_id and ri.right_flag
+		= 1 and ri.right_parent!=0 and ro.role_id in
+		(select r.role_id from
+		users u, role r ,userrole ur where u.user_id =
+		ur.user_id and r.role_id
+		= ur.role_id and u.user_id = #{userId} ) order by
+		ri.right_id
+	</select>
 </mapper>

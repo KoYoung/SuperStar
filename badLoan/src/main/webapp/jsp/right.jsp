@@ -106,7 +106,7 @@ $("#addBtn").click(function() {
 			rownumbers : true,
 			singleSelect : false,
 			pagination : true,
-			pageSize : 5,
+			pageSize : 10,
 			pageList : [ 10, 20, 30 ],
 			toolbar : "#toolbar",
 			

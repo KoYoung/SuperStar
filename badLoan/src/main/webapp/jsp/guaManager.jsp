@@ -119,7 +119,7 @@
 			url : '/badLoan/guaController/findGua',
 			rownumbers : true, //显示行号
 			pagination : true, //显示分页
-			pageSize : 5, //默认显示多少行
+			pageSize : 10, //默认显示多少行
 			pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 			sortOrder : 'asc',//默认升序
 			remoteSort : false,//不去服务器排序

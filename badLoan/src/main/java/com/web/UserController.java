@@ -1,6 +1,7 @@
 package com.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,9 +39,10 @@ public class UserController {
 		System.out.println(user);
 		List<String> list = us.findUserName(user.getUserName());
 		if (list.size() == 1) {
-			List<User> list2 = us.findUserNameAndPassWord(user);
+			List<Map<String, String>> list2 = us.findUserNameAndPassWord(user);
 			if (list2 != null && list2.size() > 0) {
 				// String userName = list2.get(0).getUserName();
+				System.out.println(list2.get(0));
 				session.setAttribute("user", list2.get(0));
 				return 1;
 			} else {
@@ -58,8 +60,22 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/userLogout")
-	public String userLogout( HttpSession session) {
+	public String userLogout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/jsp/login.jsp";
+	}
+
+	/**
+	 * 获取用户session
+	 */
+	@RequestMapping("/getUserSession")
+	@ResponseBody
+	public String getUserSession(HttpSession session) {
+		Map<String, String> usermap = (Map<String, String>) session.getAttribute("user");
+		if (usermap != null) {
+			return JSON.toJSONString(usermap);
+		} else {
+			return "error";
+		}
 	}
 }

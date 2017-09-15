@@ -632,7 +632,7 @@ $('#dd')
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 			pagination : true, //底部分页
-			pageSize:5,
+			pageSize:10,
 			pageNumber:1,
 			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列

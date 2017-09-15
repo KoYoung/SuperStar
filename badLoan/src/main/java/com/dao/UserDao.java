@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.User;
 
@@ -14,7 +15,7 @@ public interface UserDao {
 	/**
 	 * 登录验证，查询用户名和密码
 	 */
-	public List<User> findUserNameAndPassWord(User user);
+	public List<Map<String, String>> findUserNameAndPassWord(User user);
 	
 	/**
 	 * 登录验证，查询用户名
