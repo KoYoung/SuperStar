@@ -8,7 +8,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 </head>
 <body>
@@ -58,7 +58,7 @@
 		url : '/badLoan/Emp/findEmp',
 		rownumbers : true, //显示行号
 		pagination : true, //显示分页
-		pageSize : 5, //默认显示多少行
+		pageSize : 10, //默认显示多少行
 		pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 		sortName : 'empId',//默认员工编号
 		sortOrder : 'asc',//默认升序

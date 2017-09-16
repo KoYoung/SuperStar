@@ -34,4 +34,19 @@ public interface UsersDao {
 	 */
 	public List<Role> findRole();
 
+	/**
+	 * 增加用户角色
+	 * 
+	 * @param userId
+	 * @param roleId
+	 */
+	void addUserRole(String userId, String roleId);
+
+	/**
+	 * 查询users序列自增主键
+	 * 
+	 * @return
+	 */
+	String getUsersKey();
+
 }

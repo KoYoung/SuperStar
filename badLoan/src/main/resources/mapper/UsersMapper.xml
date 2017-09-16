@@ -2,25 +2,62 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.dao.UsersDao">
-	<!--  查询系统用户 -->
-	<select id="findUsers" resultType="com.entity.Users">
-		select * from Users
+	<!-- 查询系统用户 -->
+	<select id="findUsers" resultMap="usersRoleMap">
+		select * from users u,employee
+		ee,role r,userrole ur where u.user_id = ur.user_id and ur.role_id =
+		r.role_id and u.emp_id = ee.emp_id
 	</select>
-	
-	<!--  查询員工沒有账户密码的-->
+	<resultMap id="usersRoleMap" type="com.entity.Users">
+		<id property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="userUsername" column="user_username" />
+		<result property="userPassword" column="user_password" />
+		<result property="empId" column="emp_id" />
+		<association property="emp" javaType="com.entity.Employee">
+			<id property="empId" column="emp_id" />
+			<result property="empName" column="emp_name" />
+			<result property="empGender" column="emp_gender" />
+			<result property="empTelphone" column="emp_telphone" />
+			<result property="empCardnumber" column="emp_cardnumber" />
+			<result property="empAddress" column="emp_address" />
+			<result property="empEducation" column="emp_education" />
+			<result property="empDepartment" column="emp_department" />
+			<result property="empEmail" column="emp_email" />
+			<result property="empNation" column="emp_nation" />
+			<result property="empBankinfo" column="emp_bankinfo" />
+			<result property="empFlag" column="emp_flag" />
+		</association>
+		<collection property="role" ofType="com.entity.Role">
+			<id property="roleId" column="role_id" />
+			<result property="roleName" column="role_name" />
+			<result property="roleComment" column="role_comment" />
+		</collection>
+	</resultMap>
+	<!-- 查询員工沒有账户密码的 -->
 	<select id="findEmp" resultType="com.entity.Emp">
-		select emp_id,emp_name from employee where emp_id not in (select emp_id from users)
+		select emp_id,emp_name from
+		employee where emp_id not in (select emp_id from users)
 	</select>
-	
-	
-	<!-- 添加系统用户-->
+
+	<!-- 添加系统用户 -->
 	<insert id="addUsers" parameterType="com.entity.Users">
-		insert into users(user_id,user_name,user_username,user_password,emp_id)values(#{userId,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},#{userUsername,jdbcType=VARCHAR},#{userPassword,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR})
+		insert into
+		users(user_id,user_name,user_username,user_password,emp_id)values(user_sequence.nextval,#{userName,jdbcType=VARCHAR},#{userUsername,jdbcType=VARCHAR},MD5(#{userPassword,jdbcType=VARCHAR}),#{empId,jdbcType=VARCHAR})
 	</insert>
-	<!--  查询沒有角色的用戶-->
+	<select id="getUsersKey"  resultType="String">
+		select user_sequence.currval from dual
+	</select>
+	<!-- 查询沒有角色的用戶 -->
 	<select id="findRole" resultType="com.entity.Role">
 		select * from role
 	</select>
+
+	<insert id="addUserRole" parameterType="String">
+		insert into userrole
+		(user_id,role_id)
+		values(#{param1,jdbcType=VARCHAR},#{param2,jdbcType=VARCHAR})
+	</insert>
 </mapper>

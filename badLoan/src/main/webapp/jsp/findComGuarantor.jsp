@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
@@ -31,7 +31,7 @@ $(function(){
 				url : data,
 				pagination:true,//开启分页功能
 				pageNumber:1,
-				pageSize:5,
+				pageSize:10,
 				pageList:[5,10,15,20,25,30],
 				singleSelect:true,
 				rownumbers:true,

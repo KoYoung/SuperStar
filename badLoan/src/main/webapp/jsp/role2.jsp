@@ -8,7 +8,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 </head>
 <body class="easyui-layout">
@@ -62,12 +62,12 @@
 						data : JSON.stringify(data),
 						contentType:"application/JSON;charset=UTF-8",
 						success : function(data) {
-							alert(data);
+							$.messager.alert("", data,"");
 							$("#roleTree").tree();
 							$("#addRoleDialog").dialog("close");
 						},
 						error : function() {
-							alert("error");
+							$.messager.alert("", "服务器忙，请稍候。。。","");
 							$("#addRoleDialog").dialog("close");
 						}
 					});
@@ -89,12 +89,12 @@
 				type : 'post',
 				data : roleId,
 				success : function(data) {
-					alert(data);
+					$.messager.alert("", data,"");
 					$("#roleTree").tree();
 					$("#addRightDialog").dialog("close");
 				},
 				error : function() {
-					alert("error");
+					$.messager.alert("", "服务器忙，请稍候。。。","");
 					$("#addRightDialog").dialog("close");
 				}
 			});
@@ -119,28 +119,32 @@
 				iconCls : 'icon-save',
 				handler : function() {
 					var checkeds = $("#rightTree").tree("getChecked");
+					var identerCheck = $("#rightTree").tree("getChecked","indeterminate");
 					var rolecheck = $("#roleTree").tree("getSelected");
+					
 					var rightids = ""; 
 					for(var i=0;i<checkeds.length;i++){
 						rightids+=checkeds[i].id+",";
+					}
+					for(var i=0;i<identerCheck.length;i++){
+						rightids+=identerCheck[i].id+",";
 					}
 					var data = {
 							roleId : rolecheck.id+"",
 							rightIds :rightids
 					}
-					alert(data.roleId);
 					$.ajax({
 						url:"/badLoan/roleController/updateRoleRightById",
 						type : 'post',
 						data : JSON.stringify(data),
 						contentType:"application/JSON;charset=UTF-8",
 						success : function(data) {
-							alert(data);
+							$.messager.alert("",data,"");
 							$('#rightDataGrid').datagrid();
 							$("#addRightDialog").dialog("close");
 						},
 						error : function() {
-							alert("error");
+							$.messager.alert("", "服务器忙，请稍候。。。","");
 							$("#addRightDialog").dialog("close");
 						}
 					});
@@ -157,13 +161,6 @@
 			url : '/badLoan/roleController/queryRole',
 			animate : true,
 			lines : true,
-			toolbar:[{
-				text : '添加角色',
-				iconCls : 'icon-add',
-				handler : function() {
-					
-				}
-			}],
 			onClick : function(node) {
 				var children = $("#roleTree").tree("getChildren", node.target);
 				if (children.length == 0) {
@@ -209,30 +206,31 @@
 							iconCls : 'icon-remove',
 							handler : function() {
 								var selections = $("#rightDataGrid").datagrid("getSelections");
-								alert(selections.length);
-								var str = "";
-								$(selections).each(function(){
-									str += this.RIGHT_ID+",";
-								});
-								alert(str);
-								var data = {
-										roleId : roleId+"",
-										rightIds :str
-								};
-								alert(data.roleId+"  "+data.rightIds);
-								$.ajax({
-									url:"/badLoan/roleController/deleteRoleRightById",
-									type : 'post',
-									data : JSON.stringify(data),
-									contentType:"application/JSON;charset=UTF-8",
-									success : function(data) {
-										alert(data);
-										$('#rightDataGrid').datagrid();
-									},
-									error : function() {
-										alert("error");
-									}
-								});
+								if(selections.length==0){
+									$.messager.alert('',"请选择需要删除的权限",'');
+								}else{
+									var str = "";
+									$(selections).each(function(){
+										str += this.RIGHT_ID+",";
+									});
+									var data = {
+											roleId : roleId+"",
+											rightIds :str
+									};
+									$.ajax({
+										url:"/badLoan/roleController/deleteRoleRightById",
+										type : 'post',
+										data : JSON.stringify(data),
+										contentType:"application/JSON;charset=UTF-8",
+										success : function(data) {
+											$.messager.alert('',data,'');
+											$('#rightDataGrid').datagrid();
+										},
+										error : function() {
+											$.messager.alert("", "服务器忙，请稍候。。。","");
+										}
+									});
+								}
 							}
 						}, '-', {
 							text : '修改权限',
@@ -247,7 +245,6 @@
 									onLoadSuccess:function(){
 										 		//var row = $("#rightDataGrid").datagrid("getRows");
 										 		var roleChecked = $("#roleTree").tree("getSelected");
-										 		console.log(roleChecked);
 										 		$.ajax({
 										 			url:"/badLoan/roleController/queryRightByRoleIdNoPage",
 										 			type:"post",

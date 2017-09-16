@@ -9,14 +9,14 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 <script src="../easyui/jquery.validate.min.js""></script>
 <script src="../easyui/jquery.validator.js""></script>
 <script src="../easyui/jquery.validate.js""></script>
-	
+
 <!--级联  -->
 <!-- <script src="../bootstrap-3.3.7-distjs/jquery-3.2.1.min.js"></script> -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -25,9 +25,11 @@
 <script src="../bootstrap-3.3.7-dist/js/main.js"></script>
 <!--级联  -->
 <script src="https://cdn.hcharts.cn/highcharts/5.0.10/highcharts.js"></script>
-<script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/exporting.js"></script>
+<script
+	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/exporting.js"></script>
 <script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/data.js"></script>
-<script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script>
+<script
+	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script>
 <style type="text/css">
 tr {
 	line-height: 40px;
@@ -39,63 +41,66 @@ td {
 }
 
 #box {
-	margin: 10px ;
-	height:auto;
+	margin: 10px;
+	height: auto;
 	width: auto;
 	min-height: auto;
 }
 
+.img-container {
+	width: 293px;
+	height: 150px;
+	background: #F2F2F2;
+	margin-bottom: 35px;
+	overflow: hidden;
+}
 
-.img-container{
-            width: 293px;
-            height: 150px;
-            background:#F2F2F2;
-            margin-bottom:35px;
-            overflow: hidden;
-          
-        }
-        .img-container>img{
-            width: 293px;
-            height: 150px;
-        }
-        .img{
-            width: 293px;
-            height: 150px;
-        }
-		#drivingLicence0{
-			width: 200px;
-			height:100px;
-			
-		}
-		#tableAddper,#xiangqing{
-			margin-left:20px
-		}
+.img-container>img {
+	width: 293px;
+	height: 150px;
+}
+
+.img {
+	width: 293px;
+	height: 150px;
+}
+
+#drivingLicence0 {
+	width: 200px;
+	height: 100px;
+}
+
+#tableAddper, #xiangqing {
+	margin-left: 20px
+}
 </style>
 </head>
 <body>
-	
-	
-	
-	<div id="toobar">
-		<a id="addpersonal" class="easyui-linkbutton" href="javascript:void(0)"
-			data-options="iconCls:'icon-add'">添加个人客户信息</a> 
-		<a id="updatepersonal" class="easyui-linkbutton" data-options=" iconCls:'icon-edit'"
-			href="javascript:void(0)" onclick="edituser()">修改</a> 
-		<input class="easyui-searchbox" id="mohu"
-			data-options="searcher:ad,prompt:'请输入客户名搜索'" style="width: 150px" />
-		
-		<a id="searchpersonal" class="easyui-linkbutton" href="javascript:void(0)"
-		    data-options="iconCls:'icon-search'">查看</a>
-	</div>
-	
-	
 
-	<div id="addper" >
+
+
+	<div id="toobar">
+		<a id="addpersonal" class="easyui-linkbutton"
+			href="javascript:void(0)" data-options="iconCls:'icon-add'">添加个人客户信息</a>
+		<a id="updatepersonal" class="easyui-linkbutton"
+			data-options=" iconCls:'icon-edit'" href="javascript:void(0)"
+			onclick="edituser()">修改</a> <input class="easyui-searchbox" id="mohu"
+			data-options="searcher:ad,prompt:'请输入客户名搜索'" style="width: 150px" />
+
+		<a id="searchpersonal" class="easyui-linkbutton"
+			href="javascript:void(0)" data-options="iconCls:'icon-search'">查看</a>
+	</div>
+
+
+
+	<div id="addper">
 		<form id="myForm" enctype="multipart/form-data" method="post">
-			<table  class="formtable" id="tableAddper">
+			<table class="formtable" id="tableAddper">
 				<tr>
 					<th>姓名</th>
-					<td><input class="easyui-textbox" data-options="validType:'CHS'"   type="text" id="borName" name="borName"></td>
+					<td><input class="easyui-textbox"
+						data-options="validType:'CHS'" type="text" id="borName"
+						name="borName"></td>
 					<th>性别</th>
 					<td><input type="radio" checked="checked" id="borGender"
 						name="borGender" value="男" />男 <input type="radio" id="borGender"
@@ -107,7 +112,7 @@ td {
 						editable="false" class="easyui-datebox" /></td>
 					<th>民族</th>
 					<td><input type="text" class="" id="borNation"
-						name="borNation"/></td>
+						name="borNation" /></td>
 				</tr>
 				<tr>
 					<th>婚姻状况</th>
@@ -156,13 +161,13 @@ td {
 
 					</td>
 					<th>身份证号</th>
-					<td><input  class="easyui-numberbox" required="true"
+					<td><input class="easyui-numberbox" required="true"
 						id="borCardnumber" name="borCardnumber"></td>
 				</tr>
 				<tr>
 					<th>住址</th>
 					<td>
-						
+
 
 						<div class="form-inline">
 							<div data-toggle="distpicker">
@@ -187,7 +192,7 @@ td {
 				</tr>
 				<tr>
 					<th>单位名称</th>
-					<td><input  class="easyui-textbox" id="borUnit" required="true"
+					<td><input class="easyui-textbox" id="borUnit" required="true"
 						name="borUnit"></td>
 					<th>单位地址</th>
 					<td>
@@ -214,27 +219,28 @@ td {
 				</tr>
 				<tr>
 					<th>单位电话</th>
-					<td><input class="easyui-numberbox" data-options="min:10000000000,max:99999999999" required="true" 
+					<td><input class="easyui-numberbox"
+						data-options="min:10000000000,max:99999999999" required="true"
 						id="borUnitPhone" name="borUnitPhone"></td>
 					<th>职务</th>
-					<td><input  class="easyui-textbox" id="borPosition" required="true"
-						name="borPosition"></td>
+					<td><input class="easyui-textbox" id="borPosition"
+						required="true" name="borPosition"></td>
 				</tr>
 				<tr>
 					<th>收入</th>
-					<td><input  class="easyui-numberbox" id="borIncome" required="true"
-						data-options="min:0,precision:2" name="borIncome"></td>
+					<td><input class="easyui-numberbox" id="borIncome"
+						required="true" data-options="min:0,precision:2" name="borIncome"></td>
 					<th>电话</th>
-					<td><input type="text" class="easyui-numberbox" id="borPhone" required="true"
-						name="borPhone"></td>
+					<td><input type="text" class="easyui-numberbox" id="borPhone"
+						required="true" name="borPhone"></td>
 				</tr>
 				<tr>
 					<th>邮编</th>
 					<td><input class="easyui-numberbox" required="true"
 						id="borPostcode" name="borPostcode"></td>
 					<th>学历</th>
-					<td><select id="borEducation" class="easyui-combobox" required="true"
-						name="borEducation" style="width: 200px;"
+					<td><select id="borEducation" class="easyui-combobox"
+						required="true" name="borEducation" style="width: 200px;"
 						data-options="editable:false,panelHeight:'auto'">
 							<option value="硕士以上">硕士以上</option>
 							<option value="大学本科">大学本科</option>
@@ -248,7 +254,8 @@ td {
 					</tr> -->
 				<tr>
 					<th>紧急联系人名</th>
-					<td><input class="easyui-textbox" required="true" id="contectName" name="contectName"></td>
+					<td><input class="easyui-textbox" required="true"
+						id="contectName" name="contectName"></td>
 					<th>紧急联系人性别</th>
 					<td><input type="radio" id="contectGender" checked="checked"
 						name="contectGender" value="男">男 <input type="radio"
@@ -267,12 +274,13 @@ td {
 							<option value="其他">其他</option>
 					</select></td>
 					<th>身份证号</th>
-					<td><input class="easyui-numberbox" required="true"id="contectCardnumber" name="contectCardnumber"></td>
+					<td><input class="easyui-numberbox" required="true"
+						id="contectCardnumber" name="contectCardnumber"></td>
 				</tr>
 				<tr>
 					<th>紧急联系人生日</th>
-					<td><input id="contectBirthday" name="contectBirthday" required="true"
-						editable="false" class="easyui-datebox" /></td>
+					<td><input id="contectBirthday" name="contectBirthday"
+						required="true" editable="false" class="easyui-datebox" /></td>
 					<th>紧急联系人地址</th>
 					<td>
 						<div class="form-inline">
@@ -299,150 +307,174 @@ td {
 				<tr>
 					<th>紧急联系人电话</th>
 					<td><input class="easyui-numberbox" required="true"
-						 id="contectTelphone" name="contectTelphone" /></td>
+						id="contectTelphone" name="contectTelphone" /></td>
 					<th>信用</th>
-					<td><input  class="easyui-textbox" id="borCredit" required="true"
-						name="borCredit" /></td>
+					<td><input class="easyui-textbox" id="borCredit"
+						required="true" name="borCredit" /></td>
 				</tr>
 				<tr>
 					<th>借款人照片</th>
 					<td>
 						<div id="box">
 							<div>
-					            <div class="img-container"></div>
-					            <input class="img-btn" type="file" required="true" id="borPhoto" name="borP">
-					        </div>
+								<div class="img-container"></div>
+								<input class="img-btn" type="file" required="true" id="borPhoto"
+									name="borP">
+							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
-		</form> 
+		</form>
 	</div>
-	<table id="personal"></table>		
-	<div id="add" >
+	<table id="personal"></table>
+	<div id="add">
 		<table id="xiangqing">
 			<tr>
-				<th>姓名</th><td><span id="borName0"></span></td>
-				<th>性别</th><td><span id="borGender0"></span></td>
-				<th>出生年月</th><td><span id="borBirthday0"></span></td>
+				<th>姓名</th>
+				<td><span id="borName0"></span></td>
+				<th>性别</th>
+				<td><span id="borGender0"></span></td>
+				<th>出生年月</th>
+				<td><span id="borBirthday0"></span></td>
 			</tr>
 			<tr>
-				<th>民族</th><td><span id="borNation0"></span></td>
-				<th>婚姻状况</th><td><span id="borMarry0"></span></td>
-				<th>住址</th><td><span id="borAddress0"></span></td>
+				<th>民族</th>
+				<td><span id="borNation0"></span></td>
+				<th>婚姻状况</th>
+				<td><span id="borMarry0"></span></td>
+				<th>住址</th>
+				<td><span id="borAddress0"></span></td>
 			</tr>
 			<tr>
-				<th>证件类型</th><td><span id="borCardtype0"></span></td>
-				<th>证件号码</th><td><span id="borCardnumber0"></span></td>
-				<th>户籍</th><td><span id="borRegister0"></span></td>
+				<th>证件类型</th>
+				<td><span id="borCardtype0"></span></td>
+				<th>证件号码</th>
+				<td><span id="borCardnumber0"></span></td>
+				<th>户籍</th>
+				<td><span id="borRegister0"></span></td>
 			</tr>
 			<tr>
-				<th>客户电话</th><td><span id="borPhone0"></span></td>
-				<th>单位名称</th><td><span id="borUnit0"></span></td>
-				<th>单位电话</th><td><span id="borUnitPhone0"></span></td>
-				
-			</tr>
-			<tr>
-				<th>单位地址</th><td><span id="borUnitAddress0"></span></td>
-				<th>单位职务</th><td><span id="borPosition0"></span></td>
-				<th>单位收入</th><td><span id="borIncome0"></span></td>
-			</tr>
-			<tr>
-				<th>邮编</th><td><span id="borPostcode0"></span></td>
-				<th>学历</th><td><span id="borEducation0"></span></td>
-				<th>紧急联系人</th><td><span id="contectName0"></span></td>
-			</tr>
-			<tr>
-				<th>紧急联系人性别</th>   <td><span id="contectGender0" ></span></td>
-				<th>紧急联系人证件类型</th><td><span id="contectCardtype0"></span></td>
-				<th>紧急联系人证件号</th><td><span id="contectCardnumber0"></span></td>
-			</tr>
-			<tr>
-				<th>紧急联系人生日</th><td><span id="contectBirthday0"></span></td>
-				<th>紧急联系人地址</th><td><span id="contectAddress0"></span></td>
-				<th>紧急联系人电话</th><td><span id="contectTelphone0"></span></td>
-			</tr>
-			<tr>
-				<th>信用</th><td><span id="borCredit0"></span></td>
-				<th>客户照片</th><td id="drivingLicence0"></td>
-			</tr>
-		</table >
+				<th>客户电话</th>
+				<td><span id="borPhone0"></span></td>
+				<th>单位名称</th>
+				<td><span id="borUnit0"></span></td>
+				<th>单位电话</th>
+				<td><span id="borUnitPhone0"></span></td>
 
-	
+			</tr>
+			<tr>
+				<th>单位地址</th>
+				<td><span id="borUnitAddress0"></span></td>
+				<th>单位职务</th>
+				<td><span id="borPosition0"></span></td>
+				<th>单位收入</th>
+				<td><span id="borIncome0"></span></td>
+			</tr>
+			<tr>
+				<th>邮编</th>
+				<td><span id="borPostcode0"></span></td>
+				<th>学历</th>
+				<td><span id="borEducation0"></span></td>
+				<th>紧急联系人</th>
+				<td><span id="contectName0"></span></td>
+			</tr>
+			<tr>
+				<th>紧急联系人性别</th>
+				<td><span id="contectGender0"></span></td>
+				<th>紧急联系人证件类型</th>
+				<td><span id="contectCardtype0"></span></td>
+				<th>紧急联系人证件号</th>
+				<td><span id="contectCardnumber0"></span></td>
+			</tr>
+			<tr>
+				<th>紧急联系人生日</th>
+				<td><span id="contectBirthday0"></span></td>
+				<th>紧急联系人地址</th>
+				<td><span id="contectAddress0"></span></td>
+				<th>紧急联系人电话</th>
+				<td><span id="contectTelphone0"></span></td>
+			</tr>
+			<tr>
+				<th>信用</th>
+				<td><span id="borCredit0"></span></td>
+				<th>客户照片</th>
+				<td id="drivingLicence0"></td>
+			</tr>
+		</table>
+
+
 	</div>
-   
-	<script type="text/javascript">
-	
-	$.extend($.fn.validatebox.defaults.rules, {  
-	    //验证汉子  
-	    CHS: {  
-	        validator: function (value) {  
-	            return /^[\u0391-\uFFE5]+$/.test(value);  
-	        },  
-	        message: '只能输入汉字'  
-	    },  
-	
-	});   
-	
-	/* 客户详情  */
-	 $("#searchpersonal").click(function () {
-	        var row = $('#personal').datagrid('getSelected');
-	        if (row!=null) {
-	            $('#add').dialog({    
-	    		    title: '个人客户详情',    
-	    		    width: '60%',    
-	    		    height: 'auto',
-	    		    closed: false,    
-	    		    cache: false,    
-	    		    modal: true   
-	    		}); 
-	            $("#borName0").html(row.borName);
-	            $("#borGender0").html(row.borGender); 
-	            $("#borNation0").html(row.borNation);
-	            $("#borBirthday0").html(row.borBirthday);
-	            $("#borPhone0").html(row.borPhone);
-	            $("#borPostcode0").html(row.borPostcode);
-	            $("#borAddress0").html(row.borAddress);
-	            $("#borCardtype0").html(row.borCardtype);
-	            $("#borCardnumber0").html(row.borCardnumber);
-	            $("#borMarry0").html(row.borMarry);
-	            $("#borRegister0").html(row.borRegister);
-	            $("#borUnit0").html(row.borUnit);
-	            $("#borUnitPhone0").html(row.borUnitPhone);
-	            $("#borPosition0").html(row.borPosition);
-	            $("#borIncome0").html(row.borIncome);
-	            $("#borEducation0").html(row.borEducation);
-	            $("#borUnitAddress0").html(row.borUnitAddress);
-	            $("#contectName0").html(row.contectName);
-	            $("#contectTelphone0").html(row.contectTelphone);
-	            $("#contectGender0").html(row.contectGender);
-	            $("#contectBirthday0").html(row.contectBirthday);
-	            $("#contectCardtype0").html(row.contectCardtype);
-	            $("#contectCardnumber0").html(row.contectCardnumber);
-	            $("#contectAddress0").html(row.contectAddress);
-	            $("#borCredit0").html(row.borCredit);
-	            
-	            var img= "<img class='img' src="+row.borPhoto+"\>";
-	       	 	$("#drivingLicence0").empty();
-	        	$("#drivingLicence0").append(img);
-	        
-	        } else {
-	           alert("请选中一行！");
-	        } 
-	    });
 
-	
-		
+	<script type="text/javascript">
+		$.extend($.fn.validatebox.defaults.rules, {
+			//验证汉子  
+			CHS : {
+				validator : function(value) {
+					return /^[\u0391-\uFFE5]+$/.test(value);
+				},
+				message : '只能输入汉字'
+			},
+
+		});
+
+		/* 客户详情  */
+		$("#searchpersonal").click(function() {
+			var row = $('#personal').datagrid('getSelected');
+			if (row != null) {
+				$('#add').dialog({
+					title : '个人客户详情',
+					width : '60%',
+					height : 'auto',
+					closed : false,
+					cache : false,
+					modal : true
+				});
+				$("#borName0").html(row.borName);
+				$("#borGender0").html(row.borGender);
+				$("#borNation0").html(row.borNation);
+				$("#borBirthday0").html(row.borBirthday);
+				$("#borPhone0").html(row.borPhone);
+				$("#borPostcode0").html(row.borPostcode);
+				$("#borAddress0").html(row.borAddress);
+				$("#borCardtype0").html(row.borCardtype);
+				$("#borCardnumber0").html(row.borCardnumber);
+				$("#borMarry0").html(row.borMarry);
+				$("#borRegister0").html(row.borRegister);
+				$("#borUnit0").html(row.borUnit);
+				$("#borUnitPhone0").html(row.borUnitPhone);
+				$("#borPosition0").html(row.borPosition);
+				$("#borIncome0").html(row.borIncome);
+				$("#borEducation0").html(row.borEducation);
+				$("#borUnitAddress0").html(row.borUnitAddress);
+				$("#contectName0").html(row.contectName);
+				$("#contectTelphone0").html(row.contectTelphone);
+				$("#contectGender0").html(row.contectGender);
+				$("#contectBirthday0").html(row.contectBirthday);
+				$("#contectCardtype0").html(row.contectCardtype);
+				$("#contectCardnumber0").html(row.contectCardnumber);
+				$("#contectAddress0").html(row.contectAddress);
+				$("#borCredit0").html(row.borCredit);
+
+				var img = "<img class='img' src="+row.borPhoto+"\>";
+				$("#drivingLicence0").empty();
+				$("#drivingLicence0").append(img);
+
+			} else {
+				alert("请选中一行！");
+			}
+		});
+
 		$(function() {
 			/*   查询函数       */
 			$("#personal").datagrid({
 				url : "/badLoan/borrower/findborr",
 				toolbar : "#toobar",
 				pagination : true,//开启分页功能
-				fit:true,
+				fit : true,
 				pageNumber : 1,
-				pageSize : 5,
-				singleSelect: true,
+				pageSize : 10,
+				singleSelect : true,
 				pageList : [ 5, 10, 15, 20, 25, 30 ],
 				sortOrder : 'asc',//定义列的排序顺序,默认正序asc
 				fitColumns : true,
@@ -539,7 +571,7 @@ td {
 					title : '照片',
 					width : 100,
 				},
-				
+
 				{
 					field : 'contectName',
 					title : '紧急联系人姓名',
@@ -573,9 +605,11 @@ td {
 					width : 180
 				}, ] ]
 			});
-			
+
 			/*    添加客户     */
-			$('#addper').dialog({
+			$('#addper')
+					.dialog(
+							{
 								title : '添加客户信息',
 								iconCls : 'icon-save',
 								width : '70%',
@@ -597,21 +631,29 @@ td {
 											text : '保存客户信息',
 											iconCls : 'icon-save',
 											handler : function() {
-												$.messager.progress();	// 显示进度条
-												$('#myForm').form('submit', {
-													url:'/badLoan/borrower/addbor',
-													onSubmit: function(){
-														var isValid = $(this).form('validate');
-														if (!isValid){
-															$.messager.progress('close');	// 如果表单是无效的则隐藏进度条
-														}
-														return isValid;	// 返回false终止表单提交
-													},
-													success: function(){
-														$.messager.progress('close');	// 如果提交成功则隐藏进度条
-														window.location.href="/badLoan/jsp/addpersonal.jsp"
-													}
-												});
+												$.messager.progress(); // 显示进度条
+												$('#myForm')
+														.form(
+																'submit',
+																{
+																	url : '/badLoan/borrower/addbor',
+																	onSubmit : function() {
+																		var isValid = $(
+																				this)
+																				.form(
+																						'validate');
+																		if (!isValid) {
+																			$.messager
+																					.progress('close'); // 如果表单是无效的则隐藏进度条
+																		}
+																		return isValid; // 返回false终止表单提交
+																	},
+																	success : function() {
+																		$.messager
+																				.progress('close'); // 如果提交成功则隐藏进度条
+																		window.location.href = "/badLoan/jsp/addpersonal.jsp"
+																	}
+																});
 											}
 										}, {
 											text : '关闭',
@@ -625,7 +667,7 @@ td {
 			$("#addpersonal").click(function() {
 				$('#addper').dialog("open");
 			});
-			
+
 			/* 民族  */
 			$("#borNation").combobox({
 				url : '../json/nation.json',
@@ -643,7 +685,7 @@ td {
 				url : "/badLoan/borrower/findbormohu?va=" + value,
 				singleSelect : true,
 				pagination : true,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 30, 50 ],
 				/* 	queryParams:form2Json("searchform"), */
 				columns : [ [ {
@@ -738,7 +780,7 @@ td {
 					title : '照片',
 					width : 100,
 					hidden : 'true'
-				},{
+				}, {
 					field : 'contectName',
 					title : '紧急联系人姓名',
 					width : 180
@@ -773,42 +815,39 @@ td {
 
 			});
 		}
-		
-		
-		
-		
-		
-		//图片上传预览
-		 function previewImg(fileInput,imgDiv){
-	        if(window.FileReader){//支持FileReader的时候
-	            var reader=new FileReader();
-	            reader.readAsDataURL(fileInput.files[0]);
-	            reader.onload=function(evt){
-	                imgDiv.innerHTML="\<img src="+evt.target.result+"\>";
-	            }
-	        }else{//兼容ie9-
-	            imgDiv.innerHTML='<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + fileInput.value + '\)\';"></div>';
-	        }
-	    }
-	    function selectImg(fileInputs,imgDivs){
-	        var checkImg=new RegExp("(.jpg$)|(.png$)|(.bmp$)|(.jpeg$)","i");
-	        var i=0;
-	        for(;i<fileInputs.length&&i<imgDivs.length;i++){
-	            (function(i){//立即执行函数；保存i
-	                fileInputs[i].onchange=function(){
-	                    if(checkImg.test(fileInputs[i].value)){
-	                        previewImg(this,imgDivs[i]);
-	                    }else{
-	                        alert("只支持上传.jpg .png .bmp .jpeg;你的选择有误");
-	                    }
-	                };
-	            })(i);
-	        }
 
-	    }
-	    var fileInputs=document.getElementsByClassName("img-btn");//文件选择按钮
-	    var imgDivs=document.getElementsByClassName("img-container");//图片容器
-	    selectImg(fileInputs,imgDivs);
+		//图片上传预览
+		function previewImg(fileInput, imgDiv) {
+			if (window.FileReader) {//支持FileReader的时候
+				var reader = new FileReader();
+				reader.readAsDataURL(fileInput.files[0]);
+				reader.onload = function(evt) {
+					imgDiv.innerHTML = "\<img src="+evt.target.result+"\>";
+				}
+			} else {//兼容ie9-
+				imgDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\''
+						+ fileInput.value + '\)\';"></div>';
+			}
+		}
+		function selectImg(fileInputs, imgDivs) {
+			var checkImg = new RegExp("(.jpg$)|(.png$)|(.bmp$)|(.jpeg$)", "i");
+			var i = 0;
+			for (; i < fileInputs.length && i < imgDivs.length; i++) {
+				(function(i) {//立即执行函数；保存i
+					fileInputs[i].onchange = function() {
+						if (checkImg.test(fileInputs[i].value)) {
+							previewImg(this, imgDivs[i]);
+						} else {
+							alert("只支持上传.jpg .png .bmp .jpeg;你的选择有误");
+						}
+					};
+				})(i);
+			}
+
+		}
+		var fileInputs = document.getElementsByClassName("img-btn");//文件选择按钮
+		var imgDivs = document.getElementsByClassName("img-container");//图片容器
+		selectImg(fileInputs, imgDivs);
 	</script>
 </body>
 </html>

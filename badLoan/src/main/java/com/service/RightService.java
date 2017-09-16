@@ -56,4 +56,12 @@ public interface RightService {
 	 * @param datamap
 	 */
 	void startRightById(Map<String, Object> datamap);
+
+	/**
+	 * 查询主页权限树
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	String findHomeTree(String userId);
 }

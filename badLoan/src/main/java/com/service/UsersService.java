@@ -30,7 +30,7 @@ public  interface UsersService {
 	/**
 	 * 添加用户
 	 */	
-	public int addUsers(Users us);
+	public void addUsers(Users us);
 	
 	/**
 	 * 添加角色

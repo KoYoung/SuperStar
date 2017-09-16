@@ -23,4 +23,9 @@ public class User {
 		this.passWord = passWord;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", passWord=" + passWord + "]";
+	}
+
 }

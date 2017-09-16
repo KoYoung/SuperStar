@@ -3,13 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
@@ -484,7 +483,7 @@ td {
 				pagination : true,//开启分页功能
 				fit : true,
 				pageNumber : 1,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 25, 30 ],
 				sortOrder : 'desc',//定义列的排序顺序,默认正序asc
 				fitColumns : true,
@@ -643,7 +642,7 @@ td {
 				url : "/badLoan/company/mohu?va=" + value,
 				singleSelect : true,
 				pagination : true,
-				pageSize : 5,
+				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 30, 50 ],
 				contentType : "application/json;charset=utf-8",
 

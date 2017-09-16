@@ -8,7 +8,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 </head>
 <body>
@@ -84,9 +84,9 @@
 	$("#stopBtn").click(function() {
 		var row = $('#proDataGrid').datagrid("getSelected");
 		if (row == null) {
-			alert("请选择想要禁用的权限");
+			$.messager.alert("", "请选择想要禁用的权限", "");
 		} else if (row.rightFlag == "0") {
-			alert("已经是禁用状态了");
+			$.messager.alert("", "已经是禁用状态了", "");
 		} else {
 			$.ajax({
 				url : "/badLoan/right/stopRightById",
@@ -94,7 +94,7 @@
 				data : JSON.stringify(row),
 				contentType : "application/JSON;charset=UTF-8",
 				success : function(data) {
-					alert("禁用成功");
+					$.messager.alert("", "禁用成功", "");
 					$('#proDataGrid').datagrid();
 				}
 			});
@@ -103,9 +103,9 @@
 	$("#startBtn").click(function() {
 		var row = $('#proDataGrid').datagrid("getSelected");
 		if (row == null) {
-			alert("请选择想要禁用的权限");
+			$.messager.alert("", "请选择想要禁用的权限", "");
 		} else if (row.rightFlag == "1") {
-			alert("已经是启用状态了");
+			$.messager.alert("", "已经是启用状态了", "");
 		} else {
 			$.ajax({
 				url : "/badLoan/right/startRightById",
@@ -113,7 +113,7 @@
 				data : JSON.stringify(row),
 				contentType : "application/JSON;charset=UTF-8",
 				success : function(data) {
-					alert("启用成功");
+					$.messager.alert("", "启用成功", "");
 					$('#proDataGrid').datagrid();
 				}
 			});
@@ -138,7 +138,7 @@
 						return isValid;
 					},
 					success : function(data) {
-						alert("添加成功！");
+						$.messager.alert("", "添加成功！", "");
 						$('#proDataGrid').datagrid();
 						$('#handlerDialog').dialog("close");
 					}
@@ -158,7 +158,7 @@
 			url : '/badLoan/right/findRight',
 			// data:data,
 			striped : true,//显示斑马线
-			pageSize : 5,
+			pageSize : 10,
 			rownumbers : true, //显示行号
 			pagination : true, //显示分页
 			singleSelect : true,
@@ -178,7 +178,7 @@
 				width : 100
 			}, {
 				field : 'rightUrl',
-				title : '子节点',
+				title : '权限路径',
 				width : 100
 			}, {
 				field : 'rightParent',
