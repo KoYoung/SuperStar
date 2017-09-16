@@ -75,7 +75,6 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public List<Map<String, String>> findBorLoanDetail() {
 		return borLoanInfoDao.findBorLoanDetail();
 	}
-
 	/**
 	 * 添加个人用户贷款信息 马利肖
 	 * requestParam要写才知道是前台的那个数组

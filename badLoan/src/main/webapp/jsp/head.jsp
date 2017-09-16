@@ -11,6 +11,8 @@
 	type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <!-- <link href="../bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
+	type="text/css"></link>
 <script src="../js/jquery-3.2.1.min.js"></script>
 <!-- <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="../easyui/jquery.form.js"></script>
