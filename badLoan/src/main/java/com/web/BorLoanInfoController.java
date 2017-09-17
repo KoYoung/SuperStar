@@ -45,16 +45,16 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping("/addBorLoanInfo")
 	@ResponseBody
-	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request, BorLoanInfo borLoanInfo,
-			Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua, LoanManageRecord lmr,
-			Loanmanage loanmanage) throws IOException {
+	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,
+			BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua,
+			LoanManageRecord lmr, Loanmanage loanmanage) throws IOException {
 		System.out.println("****************************");
 		List filepath = FileUpload.uploadFile1(borPhoto, request);
 		String path = "";
 		for (int i = 0; i < borPhoto.length; i++) {
-			path=path+filepath.get(i).toString()+",";
+			path = path + filepath.get(i).toString() + ",";
 		}
-		System.out.println("path-------"+path);
+		System.out.println("path-------" + path);
 		pledge.setPledgePhoto(path);
 		System.out.println("zhaopi=a==n=====" + pledge.getPledgePhoto());
 
@@ -142,12 +142,10 @@ public class BorLoanInfoController {
 	 */
 	@RequestMapping(value = "/findDetailById", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String findDetailById(@RequestParam String data) {
-		int borloaninfoId = Integer.parseInt(data);
+	public String findDetailById(@RequestBody String data) {
+		int borloaninfoId = Integer.parseInt(data.substring(6));
 		List<Map<String, String>> borDetails = borService.findDetailsById(borloaninfoId);
-		System.out.println(borDetails);
 		String borDetailsStr = JSON.toJSONString(borDetails);
-		System.out.println(borDetailsStr);
 		return borDetailsStr;
 	}
 
@@ -182,15 +180,25 @@ public class BorLoanInfoController {
 
 	@RequestMapping(value = "/findBorSearch")
 	@ResponseBody
-	public List<Map<String, String>> findBorSearch(@RequestBody String data) {
+	public PagingResult<Map<String, String>> findBorSearch(@RequestBody String data) {
 		data = UrlUtil.getURLDecoderString(data);
+		data = data.substring(5);
 		// 将获取到的表单序列化数据拼装成JSON字符串，并转为MAP
 		data = "{" + data.replace("&", "\",").replace("=", ":\"") + "\"}";
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
 		System.out.println(datamap);
 		List<Map<String, String>> findBorSearch = borService.findBorSearch(datamap);
 		System.out.println(findBorSearch);
-		return findBorSearch;
+
+		Paging<Map<String, String>> pagingMap = new Paging<Map<String, String>>();
+		List<Map<String, String>> list1 = pagingMap.paging(findBorSearch, Integer.parseInt(datamap.get("rows")),
+				Integer.parseInt(datamap.get("page")));
+		PagingResult<Map<String, String>> pResult = new PagingResult<Map<String, String>>();
+		pResult.setTotal(findBorSearch.size());
+		pResult.setRows(list1);
+		System.out.println(pResult);
+
+		return pResult;
 	}
 
 	@RequestMapping("/applyWriteOff")
