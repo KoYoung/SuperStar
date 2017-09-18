@@ -24,8 +24,8 @@ public class GuarantorServiceImpl implements GuarantorService {
 	 * @return 担保人集合
 	 */
 	@Override
-	public List<Guarantor> findGuarantor() {
-		return guaDao.findGuarantor();
+	public List<Guarantor> findGuarantor(String loaninfoId) {
+		return guaDao.findGuarantor(loaninfoId);
 	}
 
 	/**

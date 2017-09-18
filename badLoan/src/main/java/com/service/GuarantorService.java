@@ -16,7 +16,7 @@ public interface GuarantorService {
 	 * 
 	 * @return 担保人集合
 	 */
-	List<Guarantor> findGuarantor();
+	List<Guarantor> findGuarantor(String loaninfoId);
 
 	/**
 	 * 添加担保人

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Guarantor;
@@ -28,8 +30,10 @@ public class GuarantorController {
 	 */
 	@RequestMapping("/findGua")
 	@ResponseBody
-	public List<Guarantor> findGuarantor() {
-		return guaService.findGuarantor();
+	public List<Guarantor> findGuarantor(@RequestParam String loaninfoId) {
+		System.out.println("loaninfoId-->"+loaninfoId);
+		List<Guarantor> gList = guaService.findGuarantor(loaninfoId);
+		return gList;
 	}
 
 	/**

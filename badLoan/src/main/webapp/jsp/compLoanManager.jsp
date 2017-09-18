@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,30 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
+<style>
+	.ti1{
+	font-size: 15px;
+	font-family: 新宋体;
+	color: #386FD2;
+	line-height: 40px;
+}
+.one0,.top0 {
+	width: 50%;
+}
+#gua1,#gua2,#ple1,#ple2{
+	width: 50%;
+}
+.ti{
+	width:632px;
+}
+#chuli, #huishou {
+	margin-top: 10px;
+}
+.img{
+	width: 293px;
+	height: 150px;
+}
+</style>
 </head>
 <body>
 	<form method="post" id="searchForm">
@@ -40,6 +65,133 @@
 		</table>
 	</form>
 	<table id="comDataGrid"></table>
+	<!-- 贷款详情弹框-->
+	<div id="detailDialog">
+		<div style="padding: 0 20px 20px 20px">
+			<div class="ti1">贷款信息</div>
+				<table class="ti">
+					<tr>
+						<td class="one0">
+							<table cellpadding="5">
+								<tr>
+									<td>贷款编号:</td>
+									<td><span id="loaninfoId"></span></td>
+								</tr>
+
+								<tr>
+									<td>贷款企业:</td>
+									<td><span id="borName"></span></td>
+								</tr>
+								<tr>
+									<td>贷款银行:</td>
+									<td><span id="bankinfoName"></span></td>
+								</tr>
+								<tr>
+									<td>贷款账号:</td>
+									<td><span id="loanAccount"></span></td>
+								</tr>
+								<tr>
+									<td>贷款种类:</td>
+									<td><span id="loantypeName"></span></td>
+								</tr>
+							</table>
+						</td>
+						<td class="top0">
+							<table cellpadding="5">
+								<tr>
+									<td>经手人:</td>
+									<td><span id="empName"></span></td>
+								</tr>
+								<tr>
+									<td>贷款金额:</td>
+									<td><span id="loanNumber"></span>万元</td>
+								</tr>
+								<tr>
+									<td>贷款日期:</td>
+									<td><span id="loanDate"></span></td>
+								</tr>
+								<tr>
+									<td>还款日期:</td>
+									<td><span id="loanRepaymentDate"></span></td>
+								</tr>
+								<tr>
+									<td>贷款利率:</td>
+									<td><span id="loanRate"></span>%</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<div class="ti1">企业法人信息</div>
+				<span id="meiyou">该企业没有法人</span>
+				<div id="leg">
+					<table class="ti">
+						<tr>
+							<td class="one0">
+								<table>
+									<tr>
+										<td>法人姓名:</td>
+										<td><span id="legalName"></span></td>
+									</tr>
+									<tr>
+										<td>性别:</td>
+										<td><span id="legalGender"></span></td>
+									</tr>
+									<tr>
+										<td>证件类型:</td>
+										<td><span id="legalCardtype"></span></td>
+									</tr>
+									<tr>
+										<td>证件号码:</td>
+										<td><span id="legalCardnumber"></span></td>
+									</tr>
+								</table>	
+							</td>
+							<td id="top0">
+								<table id="tab">
+									<tr>
+										<td>婚姻状况:</td>
+										<td><span id="legalMarry"></span></td>
+									</tr>
+									<tr>
+										<td>地址:</td>
+										<td><span id="legalAddress"></span></td>
+									</tr>
+									<tr>
+										<td>电话:</td>
+										<td><span id="legalPhone"></span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					资料照片：<div id="legalInfo"></div>
+				</div>
+				<div class="ti1">担保人信息</div>
+				<div id="gua">
+					<table class="ti">
+						<tr>
+							<td id="gua1"></td>
+							<td id="gua2"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="ti1">抵押物信息</div>
+				<div id="ple">
+					<table class="ti">
+						<tr>
+							<td id="ple1"></td>
+							<td id="ple2"></td>
+						</tr>
+					</table>
+					抵押物照片：<div id="pledgePhoto"></div>
+				</div>
+				<div class="ti1">贷款处理记录</div>
+				<table id="chuli"></table>
+				<div class="ti1">贷款回收记录</div>
+				<table id="huishou"></table>
+		</div>
+	</div><!-- 贷款详情弹框-->
 	<div id="updateLoanDirlog">
 		<table>
 			<tr>
@@ -168,7 +320,6 @@
 		<!-- 回收信息登记弹框 -->
 	</div>
 </body>
-</html>
 <script>
 	function searchFormSubmit() {
 		$('#comDataGrid').datagrid({
@@ -271,19 +422,187 @@
 										text : '查看详情',
 										iconCls : 'icon-help',
 										handler : function() {
-											var row = $('#lmrDataGrid')
+											var row = $('#comDataGrid')
 													.datagrid("getSelected");
-											alert(row.borloaninfoId);
-											$("#detailDialog").dialog({
-												title : '贷款详情',
-												width : 500,
-												height : 300,
-												closed : true,
-												cache : false,
-												modal : true
-											});
-											$("#detailDialog").dialog("open");
-										}
+											//console.log(row);
+											if (row == null) {
+												alert("请选中一行！");
+											} else{
+												//企业贷款信息
+												$("#detailDialog").dialog("open");
+												$("#loaninfoId").html(row.COMLOANINFO_ID);
+												$("#borName").html(row.COM_NAME);
+												$("#bankinfoName").html(row.BANKINFO_NAME);
+												$("#loanAccount").html(row.LOAN_ACCOUNT);
+												$("#loantypeName").html(row.LOANTYPE_NAME);
+												$("#empName").html(row.EMP_NAME);
+												$("#loanNumber").html(row.LOAN_NUMBER);
+												$("#loanDate").html(row.LOAN_DATE);
+												$("#loanRepaymentDate").html(row.LOAN_REPAYMENT_DATE);
+												$("#loanRate").html(row.LOAN_RATE);
+												//企业法人信息
+												$.ajax({
+													url : '/badLoan/legalController/findLegalCom?comId='+row.COM_ID,
+													success : function(data){
+														if(data==""){
+															$("#meiyou").show();
+															rmaa();
+															$("#leg").hide();
+															//$("#leg").html("该企业没有法人");
+														}else{
+															$("#meiyou").hide();
+															$("#leg").show();
+															rmaa();
+															$("#legalName").html(data.legalName);
+															$("#legalCardtype").html(data.legalCardtype);
+															$("#legalCardnumber").html(data.legalCardnumber);
+															$("#legalGender").html(data.legalGender);
+															$("#legalMarry").html(data.legalMarry);
+															$("#legalAddress").html(data.legalAddress);
+															$("#legalPhone").html(data.legalPhone);
+															$("#legalInfo").empty();
+															$("#legalInfo").append("<img class='img' src='"+data.legalInfo+"'/>");
+														} 
+													},error:function(){
+														alert(error);
+													}	
+												});
+												//企业贷款担保人信息
+												$.ajax({
+													url : '/badLoan/guaController/findGua?loaninfoId='+row.COMLOANINFO_ID,
+													success : function(data){
+														if(data==""){
+															$("#gua").empty();
+															$("#gua").html("该笔贷款没有担保人");
+														}else{
+															$("#gua1").empty();
+															$("#gua2").empty();
+															$.each(data,function(index,value){
+																$("#gua1").append("<table>");
+																$("#gua2").append("<table>");
+																$("#gua1").append("<tr><td>"+"姓名："+"</td><td>"+value.guaName+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"性别："+"</td><td>"+value.guaGender+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"联系方式："+"</td><td>"+value.guaPhone+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"出生日期："+"</td><td>"+value.guaBirthday+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"证件类型："+"</td><td>"+value.guaCardType+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"证件号码："+"</td><td>"+value.guaCardNumber+"</td></tr>");
+																$("#gua1").append("<tr><td>"+"户籍地址："+"</td><td>"+value.guaRegister+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"居住地址："+"</td><td>"+value.guaAddress+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"工作单位："+"</td><td>"+value.guaUnit+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"职位："+"</td><td>"+value.guaPosition+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"婚姻状况："+"</td><td>"+value.guaMarry+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"民族："+"</td><td>"+value.guaNation+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"学历："+"</td><td>"+value.guaEducation+"</td></tr>");
+																$("#gua2").append("<tr><td>"+"收入："+"</td><td>"+value.guaIncome+"元"+"</td></tr>");
+															});
+														}
+													},error:function(){
+														alert("error");
+													}	
+												});
+												//企业贷款抵押物信息
+												$.ajax({
+													url : '/badLoan/pledge/findPledge?loaninfoId='+row.COMLOANINFO_ID,
+													success : function(data){
+														if(data==""){
+															$("#ple").empty();
+															$("#ple").html("该笔贷款没有抵押物");
+														}else{
+															$("#ple1").empty();
+															$("#ple2").empty();
+															$.each(data,function(index,value){
+																$("#ple1").append("<table>");
+																$("#ple2").append("<table>");
+																$("#ple1").append("<tr><td>"+"抵（质）押物品类型："+"</td><td>"+value.pledgeType+"</td></tr>");
+																$("#ple1").append("<tr><td>"+"抵（质）押物品名称："+"</td><td>"+value.pledgeName+"</td></tr>");
+																$("#ple2").append("<tr><td>"+"抵（质）押物品价值："+"</td><td>"+value.pledgeValue+"万元"+"</td></tr>");
+																$("#ple2").append("<tr><td>"+"抵（质）押物品所有人："+"</td><td>"+value.pledgeOwner+"</td></tr>");
+																var photos=value.pledgePhoto;
+													            var arr=photos.split(",");
+													            $("#pledgePhoto").empty();
+													            var rows=$("#ple2").children().children().length;
+													           if(rows<5){
+													        	   for (var i = 0; i < arr.length-1; i++) {
+													               	var t= "<img class='img' src='"+arr[i]+"'/>";
+													                  $("#pledgePhoto").append("<td colspan='2'>"+t+"</td>");
+													   			}
+													        	   
+													           } 
+															});
+														}
+													},error:function(){
+														alert("error");
+													}	
+												});
+												//单笔贷款处理记录
+												$('#chuli')
+														.datagrid(
+																{
+																	url : '/badLoan/lmrController/findlmr?loaninfoId='
+																			+ row.COMLOANINFO_ID,
+																	striped : true, //斑马线 
+																	width : 632,
+																	nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+																	rownumbers : true, //如果为true，则显示一个行号列
+																	columns : [ [ {
+																		field : 'loaninfoId',
+																		title : '贷款编号',
+																		width : 80
+																	}, {
+																		field : 'empName',
+																		title : '经手人',
+																		width : 100
+																	}, {
+																		field : 'lmrDate',
+																		title : '处理日期',
+																		width : 100
+																	},{
+																		field : 'loanstateName',
+																		title : '贷款状态',
+																		width : 100
+																	},{
+																		field : 'lmrComment',
+																		title : '处理说明',
+																		width : 220
+																	}]],
+																});
+												//单笔贷款还款记录
+												$("#huishou")
+														.datagrid(
+																{
+																	url : '/badLoan/WriteoffManage/findReayment?loaninfoId='
+																			+ row.COMLOANINFO_ID,
+																	striped : true, //斑马线 
+																	width : 632,
+																	nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+																	//resizeHandle : 'right',
+																	rownumbers : true, //如果为true，则显示一个行号列
+																	columns : [ [  {
+																		field : 'empName',
+																		title : '经手人',
+																		width : 80
+																	}, {
+																		field : 'repayDate',
+																		title : '回收日期',
+																		width : 100
+																	}, {
+																		field : 'repayType',
+																		title : '回收类型',
+																		align : 'center',
+																		width : 100
+																	},{
+																		field : 'repayNumber',
+																		title : '回收金额(万元)',
+																		width : 100
+																	},{
+																		field : 'repayComment',
+																		title : '回收说明',
+																		width : 220
+
+																	}] ],
+																});
+															}
+												}
 									},
 									'-',
 									{
@@ -396,6 +715,7 @@
 			.dialog(
 					{
 						title : '回收信息登记',
+						top : '10%',
 						width : 500,
 						height : 300,
 						closed : true,
@@ -452,9 +772,21 @@
 									}
 								} ]
 					});/* 回收信息登记弹框结束*/
+	/* 详情弹框 */
+	$("#detailDialog").dialog({
+		title : '贷款详情',
+		width : '40%',
+		height : 750,
+		top : '0%',
+		closed : true,
+		cache : false,
+		modal : true
+	});	
+	/* 详情弹框结束*/
 	/* 核销弹框*/
 	$('#applyWriteOff').dialog({
 		title : '申请核销',
+		top : '10%',
 		width : 500,
 		height : 300,
 		closed : true,
@@ -495,6 +827,7 @@
 	});/* 核销弹框结束*/
 	$('#updateLoanDirlog').dialog({
 		title : '修改贷款状态',
+		top : '10%',
 		width : 500,
 		height : 300,
 		closed : true,
@@ -531,6 +864,19 @@
 			handler : function() {
 				$('#updateLoanDirlog').dialog("close");
 			}
-		}, '-', '-' ]
+		}]
 	});
+	
+	function rmaa(){
+		$("#legalName").empty();
+		$("#legalCardtype").empty();
+		$("#legalCardnumber").empty();
+		$("#legalGender").empty();
+		$("#legalMarry").empty();
+		$("#legalAddress").empty();
+		$("#legalPhone").empty();
+		$("#legalInfo").empty();
+		$("#legalInfo").empty();
+	}
 </script>
+</html>

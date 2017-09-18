@@ -98,4 +98,12 @@ public class Legal {
 		this.legalInfo = legalInfo;
 	}
 
+	@Override
+	public String toString() {
+		return "Legal [legalId=" + legalId + ", legalName=" + legalName + ", legalCardtype=" + legalCardtype
+				+ ", legalCardnumber=" + legalCardnumber + ", legalNation=" + legalNation + ", legalGender="
+				+ legalGender + ", legalMarry=" + legalMarry + ", legalAddress=" + legalAddress + ", legalPhone="
+				+ legalPhone + ", legalInfo=" + legalInfo + "]";
+	}
+	
 }

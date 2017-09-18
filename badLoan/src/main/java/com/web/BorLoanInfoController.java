@@ -34,8 +34,6 @@ import com.util.UrlUtil;
 public class BorLoanInfoController {
 	@Autowired
 	private BorLoanInfoService borService;
-	@Autowired
-	private ComloanInfoService comService;
 	
 	/**
 	 * 查询个人用户贷款信息 马利肖
