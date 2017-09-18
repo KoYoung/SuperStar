@@ -19,6 +19,7 @@ public class Find {
 	private String loanNumber;			//贷款金额
 	private String loanDate;			//贷款日期
 	private String loanRepaymentdate;	//还款日期
+	private String unrepayNumber;		//未还金额
 	
 	//个人客户基本信息表(borrower)
 	private String borName;				//客户姓名（个人）
@@ -76,7 +77,7 @@ public class Find {
 	
 	//抵押物品信息表(pledge)
 	private String pledgeId;			//抵押物品编号
-	private String pledgeGenre;			//抵押或质押
+	private String pledgeType;			//抵押类型
 	private String pledgeName;			//抵押物品名称
 	private String pledgeValue;			//抵押物品价值
 	private String pledgePhoto;			//抵押物品照片
@@ -299,12 +300,14 @@ public class Find {
 		this.pledgeId = pledgeId;
 	}
 
-	public String getPledgeGenre() {
-		return pledgeGenre;
+
+
+	public String getPledgeType() {
+		return pledgeType;
 	}
 
-	public void setPledgeGenre(String pledgeGenre) {
-		this.pledgeGenre = pledgeGenre;
+	public void setPledgeType(String pledgeType) {
+		this.pledgeType = pledgeType;
 	}
 
 	public String getPledgeName() {
@@ -504,6 +507,14 @@ public class Find {
 
 	public void setEmpBankinfo(String empBankinfo) {
 		this.empBankinfo = empBankinfo;
+	}
+
+	public String getUnrepayNumber() {
+		return unrepayNumber;
+	}
+
+	public void setUnrepayNumber(String unrepayNumber) {
+		this.unrepayNumber = unrepayNumber;
 	}
 	
 }

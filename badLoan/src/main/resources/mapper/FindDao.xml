@@ -14,6 +14,107 @@
 			b1.loan_type=l1.loantype_id and b1.borloaninfo_id=l3.loaninfo_id 
 			and l3.loanstate_id=l2.loanstate_id
     	</select>
+    	<!-- 模糊查询1 -->
+    	<select id="searchBorLoan" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select b1.borloaninfo_id,b2.bor_name,l1.loantype_name,b3.bankinfo_name,b1.loan_number,
+    		e.emp_name,b1.loan_date,b1.loan_repayment_date,l2.loanstate_name 
+			from borloaninfo b1,borrower b2,bankinfo b3,loantype l1,
+			loanstate l2,loanmanage l3,employee e
+			<where>
+				b1.bor_id=b2.bor_id 
+				and b1.bankinfo_id=b3.bankinfo_id and b1.emp_id=e.emp_id and 
+				b1.loan_type=l1.loantype_id and b1.borloaninfo_id=l3.loaninfo_id 
+				and l3.loanstate_id=l2.loanstate_id
+				<if test="borName!=null and borName!=''">
+					and b2.bor_name like '%' || '${borName}' ||'%'
+				</if>
+				<if test="empName!=null and empName!=''">
+					and e.emp_name like '%' || '${empName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l2.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b3.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+				<choose>
+				<when test="loanDate!=null and loanDate!=''">
+					and b1.loan_repayment_date between
+					to_date('${loanDate}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and b1.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+				</choose>
+				<choose>
+					<when test="loanRepaymentdate!=null and loanRepaymentdate!=''">
+						and to_date('${loanRepaymentdate}','yyyy/MM/dd')
+					</when>
+					<otherwise>
+						and to_date('2100-12-31','yyyy/MM/dd')
+					</otherwise>
+				</choose>
+			</where>	
+    	</select>
+    	
+    	
+    	
+    					<!-- 查询担保人关系表(个人) -->
+    	<select id="findBorGuarantor" resultType="com.entity.Find" parameterType="String">
+    		select bo.borloaninfo_id,br.bor_name,gr.gua_name,gr.gua_phone,gr.gua_cardtype,
+    		gr.gua_cardnumber,gr.gua_unit,gr.gua_position,gr.gua_education,
+    		gr.gua_income from borgua ba,guarantor gr,borrower br,
+    		borloaninfo bo where ba.gua_id=gr.gua_id and 
+    		ba.loaninfo_id=bo.borloaninfo_id and bo.bor_id=br.bor_id and 
+    		bo.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+    	</select>
+    	<!-- 模糊查询2 -->
+    	<select id="searchBorGuarantor" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select bo.borloaninfo_id,br.bor_name,gr.gua_name,gr.gua_phone,gr.gua_cardtype,
+    		gr.gua_cardnumber,gr.gua_unit,gr.gua_position,gr.gua_education,
+    		gr.gua_income from borgua ba,guarantor gr,borrower br,
+    		borloaninfo bo
+    		<where>
+    			ba.gua_id=gr.gua_id and 
+    			ba.loaninfo_id=bo.borloaninfo_id and bo.bor_id=br.bor_id and 
+    			bo.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+    			<if test="borName!=null and borName!=''">
+					and br.bor_name like '%' || '${borName}' ||'%'
+				</if>
+				<if test="guaName!=null and guaName!=''">
+					and gr.gua_name like '%' || '${guaName}' ||'%'
+				</if>
+    		</where>	
+    	</select>
+    	
+    	
+    	
+    					<!-- 查询客户抵押物关系表(个人) -->
+    	<select id="findBorPledge" resultType="com.entity.Find" parameterType="String">
+    		select b2.borloaninfo_id,b1.bor_name,p.pledge_type,p.pledge_name,p.pledge_value,
+    		p.pledge_photo from customergoods c,pledge p,borrower b1,borloaninfo b2 
+			where c.goods_id=p.pledge_id and c.loaninfo_id=b2.borloaninfo_id 
+			and b2.bor_id=b1.bor_id and b2.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+    	</select>
+    	<!-- 模糊查询3 -->
+    	<select id="searchBorPledge" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select b2.borloaninfo_id,b1.bor_name,p.pledge_type,p.pledge_name,p.pledge_value,
+    		p.pledge_photo from customergoods c,pledge p,borrower b1,borloaninfo b2 
+			<where>
+				c.goods_id=p.pledge_id and c.loaninfo_id=b2.borloaninfo_id 
+				and b2.bor_id=b1.bor_id and b2.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+				<if test="borName!=null and borName!=''">
+					and b1.bor_name like '%' || '${borName}' ||'%'
+				</if>
+				<if test="pledgeName!=null and pledgeName!=''">
+					and p.pledgeName like '%' || '${pledgeName}' ||'%'
+				</if>
+			</where>
+    	</select>
+    	
+	
+	
     					<!-- 查询客户（企业）信息 -->
     	<select id="findComLoan" resultType="com.entity.Find">
     		select c1.comloaninfo_id,c2.com_name,l4.legal_name,l2.loantype_name,b.bankinfo_name,
@@ -26,15 +127,54 @@
     		c1.loan_type=l2.loantype_id and c2.com_id=c3.company_id 
     		and c3.legal_id=l4.legal_id
     	</select>
-    					<!-- 查询担保人关系表(个人) -->
-    	<select id="findBorGuarantor" resultType="com.entity.Find" parameterType="String">
-    		select bo.borloaninfo_id,br.bor_name,gr.gua_name,gr.gua_phone,gr.gua_cardtype,
-    		gr.gua_cardnumber,gr.gua_unit,gr.gua_position,gr.gua_education,
-    		gr.gua_income from borgua ba,guarantor gr,borrower br,
-    		borloaninfo bo where ba.gua_id=gr.gua_id and 
-    		ba.loaninfo_id=bo.borloaninfo_id and bo.bor_id=br.bor_id and 
-    		bo.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+    	<!-- 模糊查询4 -->	
+    	<select id="searchComLoan" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select c1.comloaninfo_id,c2.com_name,l4.legal_name,l2.loantype_name,b.bankinfo_name,
+    		c1.loan_number,e.emp_name,c1.loan_date,c1.loan_repayment_date,
+    		l3.loanstate_name from comloaninfo c1,company c2,conpanylegal c3,
+    		loanmanage l1,loantype l2,loanstate l3,legal l4,employee e,
+    		bankinfo b
+			<where>
+				l1.loaninfo_id=c1.comloaninfo_id and 
+	    		l1.loanstate_id=l3.loanstate_id and c1.bankinfo_id=b.bankinfo_id 
+	    		and c1.emp_id=e.emp_id and c1.com_id=c2.com_id and 
+	    		c1.loan_type=l2.loantype_id and c2.com_id=c3.company_id 
+	    		and c3.legal_id=l4.legal_id
+	    		<if test="comName!=null and comName!=''">
+					and c2.com_name like '%' || '${comName}' ||'%'
+				</if>
+				<if test="empName!=null and empName!=''">
+					and e.emp_name like '%' || '${empName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l3.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+				<choose>
+				<when test="loanDate!=null and loanDate!=''">
+					and c1.loan_repayment_date between
+					to_date('${loanDate}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and c1.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+				</choose>
+				<choose>
+					<when test="loanRepaymentdate!=null and loanRepaymentdate!=''">
+						and to_date('${loanRepaymentdate}','yyyy/MM/dd')
+					</when>
+					<otherwise>
+						and to_date('2100-12-31','yyyy/MM/dd')
+					</otherwise>
+				</choose>
+			</where>
     	</select>
+    	
+    	
+    	
     					<!-- 查询担保人关系表(企业) -->
     	<select id="findComGuarantor" resultType="com.entity.Find" parameterType="String">
     		select c1.comloaninfo_id,c2.com_name,l.legal_name,g.gua_name,g.gua_phone,
@@ -45,29 +185,77 @@
     		c2.com_id=c3.company_id and c3.legal_id=l.legal_id and 
     		c1.comloaninfo_id=#{comloaninfoId,jdbcType=VARCHAR}
     	</select>
-    					<!-- 查询客户抵押物关系表(个人) -->
-    	<select id="findBorPledge" resultType="com.entity.Find" parameterType="String">
-    		select b2.borloaninfo_id,b1.bor_name,p.pledge_genre,p.pledge_name,p.pledge_value,
-    		p.pledge_photo from customergoods c,pledge p,borrower b1,borloaninfo b2 
-			where c.goods_id=p.pledge_id and c.loaninfo_id=b2.borloaninfo_id 
-			and b2.bor_id=b1.bor_id and b2.borloaninfo_id=#{borloaninfoId,jdbcType=VARCHAR}
+    	<!-- 模糊查询5 -->
+    	<select id="searchComGuarantor" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select c1.comloaninfo_id,c2.com_name,l.legal_name,g.gua_name,g.gua_phone,
+    		g.gua_cardtype,g.gua_cardnumber,g.gua_unit,g.gua_position,
+    		g.gua_education,g.gua_income from borgua b,guarantor g,
+    		comloaninfo c1,company c2,conpanylegal c3,legal l
+    		<where>
+    			b.gua_id=g.gua_id and b.loaninfo_id=c1.comloaninfo_id and 
+    			c2.com_id=c3.company_id and c3.legal_id=l.legal_id and 
+    			c1.comloaninfo_id=#{comloaninfoId,jdbcType=VARCHAR}
+    			<if test="comName!=null and comName!=''">
+					and c2.com_name like '%' || '${comName}' ||'%'
+				</if>
+				<if test="guaName!=null and guaName!=''">
+					and g.gua_name like '%' || '${guaName}' ||'%'
+				</if>
+    		</where>
     	</select>
+    	
+    	
+    	
     					<!-- 查询客户抵押物关系表(企业) -->
     	<select id="findComPledge" resultType="com.entity.Find" parameterType="String">
-    		select c1.comloaninfo_id,c2.com_name,l.legal_name,p.pledge_genre,p.pledge_name,
+    		select c1.comloaninfo_id,c2.com_name,l.legal_name,p.pledge_type,p.pledge_name,
     		p.pledge_value,p.pledge_photo from comloaninfo c1,company c2,
     		conpanylegal c3,customergoods c4,legal l,pledge p where 
 			c4.goods_id=p.pledge_id and c4.loaninfo_id=c1.comloaninfo_id 
 			and c1.com_id=c2.com_id and c2.com_id=c3.company_id and 
 			c3.legal_id=l.legal_id and c1.comloaninfo_id=#{comloaninfoId,jdbcType=VARCHAR}
     	</select>
+    	<!-- 模糊查询6 -->
+    	<select id="searchComPledge" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select c1.comloaninfo_id,c2.com_name,l.legal_name,p.pledge_type,p.pledge_name,
+    		p.pledge_value,p.pledge_photo from comloaninfo c1,company c2,
+    		conpanylegal c3,customergoods c4,legal l,pledge p
+    		<where>
+    			c4.goods_id=p.pledge_id and c4.loaninfo_id=c1.comloaninfo_id 
+				and c1.com_id=c2.com_id and c2.com_id=c3.company_id and 
+				c3.legal_id=l.legal_id and c1.comloaninfo_id=#{comloaninfoId,jdbcType=VARCHAR}
+				<if test="comName!=null and comName!=''">
+					and c2.com_name like '%' || '${comName}' ||'%'
+				</if>
+				<if test="pledgeName!=null and pledgeName!=''">
+					and p.pledgeName like '%' || '${pledgeName}' ||'%'
+				</if>
+    		</where>	
+    	</select>
+
+
+
     					<!-- 查询所有担保人 -->
     	<select id="findGuarantor" resultType="com.entity.Find">
     		select g.gua_id,g.gua_name,g.gua_gender,g.gua_nation,g.gua_phone,
-    		g.gua_cardtype,g.gua_cardnumber,g.gua_register,g.gua_address,
-    		g.gua_unit,g.gua_position,g.gua_education,g.gua_income 
-    		from guarantor g
+    		g.gua_cardtype,g.gua_cardnumber,g.gua_unit,g.gua_position,
+    		g.gua_education,g.gua_income from guarantor g
     	</select>
+    	<!-- 模糊查询7 -->
+    	<select id="searchGuarantor" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select g.gua_id,g.gua_name,g.gua_gender,g.gua_nation,g.gua_phone,
+    		g.gua_cardtype,g.gua_cardnumber,g.gua_unit,g.gua_position,
+    		g.gua_education,g.gua_income 
+    		from guarantor g
+    		<where>
+    			<if test="guaName!=null and guaName!=''">
+					and g.gua_name like '%' || '${guaName}' ||'%'
+				</if>
+    		</where>
+    	</select>
+    	
+    	
+    	
     					<!-- 查询某个担保人所担保的个人项目 -->
     	<select id="findGuarantorBor" resultType="com.entity.Find" parameterType="String">
     		select g.gua_id,g.gua_name,b2.bor_name,b3.bankinfo_name,
@@ -76,10 +264,55 @@
     		borgua b4,contectuser c1,contect c2,guarantor g,loanmanage l1,
     		loanstate l2 where b1.bor_id=b2.bor_id and b1.bankinfo_id=b3.bankinfo_id 
     		and b1.borloaninfo_id=b4.loaninfo_id and b4.gua_id=g.gua_id and 
-    		c1.contect_id=c2.contect_id and c1.bcom_id=b1.borloaninfo_id and 
+    		c1.bcom_id=c2.contect_id and c1.contect_id=b2.bor_id and 
 			l1.loaninfo_id=b1.borloaninfo_id and l1.loanstate_id=l2.loanstate_id 
 			and g.gua_id=#{guaId,jdbcType=VARCHAR}
     	</select>
+    	<!-- 模糊查询8 -->
+    	<select id="searchGuarantorBor" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select g.gua_id,g.gua_name,b2.bor_name,b3.bankinfo_name,
+    		b1.loan_number,c2.contect_name,b1.loan_date,b1.loan_repayment_date,
+    		l2.loanstate_name from borloaninfo b1,borrower b2,bankinfo b3,
+    		borgua b4,contectuser c1,contect c2,guarantor g,loanmanage l1,
+    		loanstate l2
+			<where>
+				b1.bor_id=b2.bor_id and b1.bankinfo_id=b3.bankinfo_id 
+	    		and b1.borloaninfo_id=b4.loaninfo_id and b4.gua_id=g.gua_id and 
+	    		c1.bcom_id=c2.contect_id and c1.contect_id=b2.bor_id and 
+				l1.loaninfo_id=b1.borloaninfo_id and l1.loanstate_id=l2.loanstate_id 
+				and g.gua_id=#{guaId,jdbcType=VARCHAR}
+				<if test="borName!=null and borName!=''">
+					and b2.bor_name like '%' || '${borName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l2.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b3.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+				<choose>
+				<when test="loanDate!=null and loanDate!=''">
+					and b1.loan_repayment_date between
+					to_date('${loanDate}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and b1.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+				</choose>
+				<choose>
+					<when test="loanRepaymentdate!=null and loanRepaymentdate!=''">
+						and to_date('${loanRepaymentdate}','yyyy/MM/dd')
+					</when>
+					<otherwise>
+						and to_date('2100-12-31','yyyy/MM/dd')
+					</otherwise>
+				</choose>
+			</where>
+    	</select>
+    	
+    	
+    	
     					<!-- 查询某个担保人所担保的企业项目 -->
     	<select id="findGuarantorCom" resultType="com.entity.Find" parameterType="String">
     		select g.gua_id,g.gua_name,c4.com_name,l3.legal_name,
@@ -89,12 +322,60 @@
 			conpanylegal c3,company c4,contect c5,guarantor g,
 			loanmanage l1,loanstate l2,legal l3 where b1.gua_id=g.gua_id and 
 			b1.loaninfo_id=c1.comloaninfo_id and b2.bankinfo_id=c1.bankinfo_id 
-			and c2.contect_id=c5.contect_id and c2.bcom_id=c1.comloaninfo_id 
+			and c2.bcom_id=c5.contect_id and c2.contect_id=c4.com_id 
 			and c3.legal_id=l3.legal_id and c3.company_id=c4.com_id and 
 			c4.com_id=c1.com_id and l1.loanstate_id=l2.loanstate_id and 
 			l1.loaninfo_id=c1.comloaninfo_id and 
 			g.gua_id=#{guaId,jdbcType=VARCHAR}
     	</select>
+    	<!-- 模糊查询9 -->
+    	<select id="searchGuarantorCom" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select g.gua_id,g.gua_name,c4.com_name,l3.legal_name,
+    		b2.bankinfo_name,c1.loan_number,c5.contect_name,
+			c1.loan_date,c1.loan_repayment_date,l2.loanstate_name 
+			from borgua b1,bankinfo b2,comloaninfo c1,contectuser c2,
+			conpanylegal c3,company c4,contect c5,guarantor g,
+			loanmanage l1,loanstate l2,legal l3
+			<where>
+				b1.gua_id=g.gua_id and 
+				b1.loaninfo_id=c1.comloaninfo_id and b2.bankinfo_id=c1.bankinfo_id 
+				and c2.bcom_id=c5.contect_id and c2.contect_id=c4.com_id 
+				and c3.legal_id=l3.legal_id and c3.company_id=c4.com_id and 
+				c4.com_id=c1.com_id and l1.loanstate_id=l2.loanstate_id and 
+				l1.loaninfo_id=c1.comloaninfo_id and 
+				g.gua_id=#{guaId,jdbcType=VARCHAR}
+				<if test="comName!=null and comName!=''">
+					and c4.com_name like '%' || '${comName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l2.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b2.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+				<choose>
+				<when test="loanDate!=null and loanDate!=''">
+					and c1.loan_repayment_date between
+					to_date('${loanDate}','yyyy/MM/dd')
+				</when>
+				<otherwise>
+					and c1.loan_repayment_date between
+					to_date('1900-01-01','yyyy/MM/dd')
+				</otherwise>
+				</choose>
+				<choose>
+					<when test="loanRepaymentdate!=null and loanRepaymentdate!=''">
+						and to_date('${loanRepaymentdate}','yyyy/MM/dd')
+					</when>
+					<otherwise>
+						and to_date('2100-12-31','yyyy/MM/dd')
+					</otherwise>
+				</choose>
+			</where>
+    	</select>
+
+
+
     					<!-- 查询所有经手人 -->
     	<select id="findEmp" resultType="com.entity.Find">
     		select e.emp_id,e.emp_name,e.emp_gender,e.emp_nation,e.emp_telphone,
@@ -102,6 +383,24 @@
 			e.emp_department,b.bankinfo_name from employee e,bankinfo b where 
 			b.bankinfo_id=e.emp_bankinfo
     	</select>
+    	<!-- 模糊查询10 -->
+    	<select id="searchEmp" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select e.emp_id,e.emp_name,e.emp_gender,e.emp_nation,e.emp_telphone,
+			e.emp_email,e.emp_cardnumber,e.emp_address,e.emp_education,
+			e.emp_department,b.bankinfo_name from employee e,bankinfo b
+			<where>
+				b.bankinfo_id=e.emp_bankinfo
+				<if test="empName!=null and empName!=''">
+					and e.emp_name like '%' || '${empName}' ||'%'
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+			</where> 	
+    	</select>
+    	
+    	
+    	
     					<!-- 查询某个经手人所经手的个人项目 -->
     	<select id="findEmpBor" resultType="com.entity.Find" parameterType="String">
     		select e.emp_id,e.emp_name,d.dept_name,b3.bor_name,
@@ -114,6 +413,35 @@
 			and l1.loanstate_id=l2.loanstate_id and l1.loaninfo_id=b1.borloaninfo_id 
 			and e.emp_id=#{empId,jdbcType=VARCHAR}
     	</select>
+    	<!-- 模糊查询11 -->
+    	<select id="searchEmpBor" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select e.emp_id,e.emp_name,d.dept_name,b3.bor_name,
+    		b4.bankinfo_name,g.gua_name,b1.loan_number,l2.loanstate_name 
+			from borloaninfo b1,borgua b2,borrower b3,bankinfo b4,
+			department d,employee e,guarantor g,loanmanage l1,loanstate l2 
+			<where>
+				b2.gua_id=g.gua_id and b2.loaninfo_id=b1.borloaninfo_id 
+				and b3.bor_id=b1.bor_id and b4.bankinfo_id=b1.bankinfo_id and 
+				d.bankinfo_id=b4.bankinfo_id and e.emp_bankinfo=b4.bankinfo_id 
+				and l1.loanstate_id=l2.loanstate_id and l1.loaninfo_id=b1.borloaninfo_id 
+				and e.emp_id=#{empId,jdbcType=VARCHAR}
+				<if test="borName!=null and borName!=''">
+					and b3.bor_name like '%' || '${borName}' ||'%'
+				</if>
+				<if test="empName!=null and empName!=''">
+					and e.emp_name like '%' || '${empName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l2.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b4.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+			</where>		
+    	</select>
+    	
+    	
+    	
     					<!-- 查询某个经手人所经手的企业项目 -->
     	<select id="findEmpCom" resultType="com.entity.Find" parameterType="String">
     		select e.emp_id,e.emp_name,d.dept_name,c3.com_name,l3.legal_name,
@@ -128,4 +456,78 @@
 			and l1.loaninfo_id=c1.comloaninfo_id and 
 			e.emp_id=#{empId,jdbcType=VARCHAR}
     	</select>
+    	<!-- 模糊查询12 -->
+    	<select id="searchEmpCom" resultType="com.entity.Find" parameterType="com.entity.Find">
+    		select e.emp_id,e.emp_name,d.dept_name,c3.com_name,l3.legal_name,
+    		b2.bankinfo_name,g.gua_name,c1.loan_number,l2.loanstate_name 
+			from borgua b1,bankinfo b2,comloaninfo c1,conpanylegal c2,
+			company c3,department d,employee e,guarantor g,loanmanage l1,
+			loanstate l2,legal l3
+			<where>
+				b1.gua_id=g.gua_id and 
+				b1.loaninfo_id=c1.comloaninfo_id and b2.bankinfo_id=c1.bankinfo_id 
+				and c2.legal_id=l3.legal_id and c2.company_id=c3.com_id and 
+				c3.com_id=c1.com_id and d.bankinfo_id=b2.bankinfo_id and 
+				e.emp_bankinfo=b2.bankinfo_id and l1.loanstate_id=l2.loanstate_id 
+				and l1.loaninfo_id=c1.comloaninfo_id and 
+				e.emp_id=#{empId,jdbcType=VARCHAR}
+				<if test="comName!=null and comName!=''">
+					and c3.com_name like '%' || '${comName}' ||'%'
+				</if>
+				<if test="empName!=null and empName!=''">
+					and e.emp_name like '%' || '${empName}' ||'%'
+				</if>
+				<if test="!(loanstateName.length()>5)">
+					and l2.loanstate_name = #{loanstateName,jdbcType=VARCHAR}
+				</if>
+				<if test="!(bankinfoName.length()>5)">
+					and b2.bankinfo_name = #{bankinfoName,jdbcType=VARCHAR}
+				</if>
+			</where>
+    	</select>
+    	
+    	
+    	
+    	<!-- 查询银行的个人不良贷款总额记录(柱状图) -->
+    	<select id="findBankBorColumn" resultType="java.util.HashMap">
+    		select b2.bankinfo_name,sum(b1.unrepay_number) sum 
+			from borloaninfo b1,bankinfo b2 
+			where b1.bankinfo_id=b2.bankinfo_id group by b2.bankinfo_name
+    	</select>
+    	<!-- 根据银行的名称查询该银行的个人贷款金额 -->
+    	<select id="findBankBor" resultType="java.util.HashMap">
+    		select b1.loan_repayment_date,b2.bankinfo_name,b1.unrepay_number 
+			from borloaninfo b1,bankinfo b2 
+			where b1.bankinfo_id=b2.bankinfo_id and b2.bankinfo_name=#{bankinfoName,jdbcType=VARCHAR}
+    	</select>
+    	<!-- 查询银行的企业不良贷款记录(柱状图) -->
+    	<select id="findBankComColumn" resultType="java.util.HashMap">
+    		select b.bankinfo_name,sum(c.unrepay_number) sum 
+			from comloaninfo c,bankinfo b 
+			where c.bankinfo_id=b.bankinfo_id group by b.bankinfo_name
+    	</select>
+    	<!-- 根据银行的名称查询该银行的企业贷款金额 -->
+    	<select id="findBankCom" resultType="java.util.HashMap">
+    		select c.loan_repayment_date,b.bankinfo_name,c.unrepay_number 
+			from comloaninfo c,bankinfo b 
+			where c.bankinfo_id=b.bankinfo_id and b.bankinfo_name=#{bankinfoName,jdbcType=VARCHAR}
+    	</select>
+    	
+    	
+    	
+    	<!-- 查询银行的个人不良贷款总额记录(饼图) -->
+    	<select id="findBankBorPie" resultType="java.util.HashMap">
+    		select b2.bankinfo_name,sum(b1.unrepay_number) sum 
+			from borloaninfo b1,bankinfo b2 
+			where b1.bankinfo_id=b2.bankinfo_id group by b2.bankinfo_name
+    	</select>
+    	<!-- 查询银行的企业不良贷款记录(饼图) -->
+    	<select id="findBankComPie" resultType="java.util.HashMap">
+    		select b.bankinfo_name,sum(c.unrepay_number) sum 
+			from comloaninfo c,bankinfo b 
+			where c.bankinfo_id=b.bankinfo_id group by b.bankinfo_name
+    	</select>
+    	
+    	
+    	
     </mapper>
