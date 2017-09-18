@@ -10,6 +10,12 @@
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
 <link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
+	<style type="text/css">
+		.diaTab{
+			border:1px solid gray;
+			margin-top:10px;
+		}
+	</style>
 </head>
 <body>
 	<form method="post" id="searchForm"><!-- 模糊查询-->
@@ -39,7 +45,131 @@
 		</table><!-- 模糊查询结束-->
 	</form>
 	<table id="lmrDataGrid"></table>
-	<div id="detailDialog"></div><!-- 贷款详情弹框-->
+	<div id="detailDialog">
+		<div id="borLoanDetail" class="diaTab">
+			<span>贷款信息</span>
+			<table>
+				<tr>
+					<td>贷款编号：<span id="DiaBORLOANINFO_ID"></span></td>
+					<td>贷款类型：<span id="DiaLOANTYPE_NAME"></span></td>
+				</tr>
+				<tr>
+					<td>贷款日期：<span  id="DiaLOANDATE"></span></td>
+					<td>还款日期：<span  id="DiaLOANREPAYMENTDATE"></span></td>
+				</tr>
+				<tr>
+					<td>贷款金额：&nbsp;<span  id="DiaLOAN_NUMBER"></span>&nbsp;万元</td>
+					<td>未还金额：&nbsp;<span  id="DiaunUNREPAY_NUMBER"></span>&nbsp;万元</td>
+				</tr>
+				<tr>
+					<td>银行：<span  id="DiaBANKINFO_NAME"></span>&nbsp;地址：<span id-"DiaBANKINFO_ADDRESS"></span></td>
+					<td>银行联系电话：<span  id="DiaBANKINFO_TELEPHONE"></span></td>
+				</tr>
+				<tr>
+					<td>贷款账户：<span  id="DiaLOAN_ACCOUNT"></span></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>贷款状态：<span id="DiaLOANSTATE_NAME"></span></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div id="cusDetail" class="diaTab">
+			<span>贷款人信息</span>
+			<table>
+				<tr>
+					<td>联系电话：<span id="DiaBOR_PHONE"></span></td>
+					<td>照片：<span id="BOR_PHOTO"></span></td>
+				</tr>
+				<tr>
+					<td>信用：<span id="DiaBOR_CREDIT"></span></td>
+					<td>生日：<span id="DiaBOR_BIRTHDAY"></span></td>
+				</tr>
+				<tr>
+					<td>单位地址：<span id="DiaBOR_UNIT_ADDRESS"></span></td>
+					<td>收入：<span id="DiaBOR_INCOME"></span>/年</td>
+				</tr>
+				<tr>
+					<td>婚否：<span id="DiaBOR_MARRY"></span></td>
+					<td>学历：<span id="DiaBOR_EDUCATION"></span></td>
+				</tr>
+				<tr>
+					<td>民族：<span id="DiaBOR_NATION"></span></td>
+					<td>姓名：<span id="Dia BOR_NAME"></span></td>
+				</tr>
+				<tr>
+					<td>性别：<span id="DiaBOR_GENDER"></span></td>
+					<td>证件号：<span id="Dia BOR_CARDNUMBER"></span></td>
+				</tr>
+				<tr>
+					<td>单位：<span id="DiaBOR_UNIT"></span></td>
+					<td>证件类型：<span id="Dia BOR_CARDTYPE"></span></td>
+				</tr>
+				<tr>
+					<td>住址：<span id="DiaBOR_ADDRESS"></span></td>
+					<td><span id="DiaBOR_POSTCODE"></span></td>
+				</tr>
+				<tr>
+					<td>职位<span id="DiaBOR_POSITION"></span></td>
+					<td>用户编号：<span id="DiaBOR_ID"></span></td>
+				</tr>
+				<tr>
+					<td>单位电话：<span id="DiaBOR_UNIT_PHONE"></span></td>
+					<td>籍贯：<span id="DiaBOR_REGISTER"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div id="empDetail" class="diaTab">
+			<span>负责人信息</span>
+			<table>
+				<tr>
+					<td>姓名：<span id="DiaEMP_NAME"></span></td>
+					<td>邮箱：<span id="DiaEMP_EMAIL"></span></td>
+				</tr>
+				<tr>
+					<td>联系电话：<span id="DiaEMP_TELPHONE"></span></td>
+					<td><span id="DiaEMP_BANKINFO"></span></td>
+				</tr>
+				<tr>
+					<td>员工编号：<span id="DiaEMP_ID"></span></td>
+					<td>员工学历：<span id="DiaEMP_EDUCATION"></span></td>
+				</tr>
+				<tr>
+					<td>证件号：<span id="DiaEMP_CARDNUMBER"></span></td>
+					<td>家庭地址：<span id="DiaEMP_ADDRESS"></span></td>
+				</tr>
+				<tr>
+					<td>员工状态：<span id="DiaEMP_FLAG"></span></td>
+					<td>部门：<span id="DiaEMP_DEPARTMENT"></span></td>
+				</tr>
+				<tr>
+					<td>民族：<span id="DiaEMP_NATION"></span></td>
+					<td>性别：<span id="DiaEMP_GENDER"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div id="repDetail">
+			<span>还款信息</span>
+			<table id="repData"></table>
+		</div>
+		<div id="lmrDetail">
+			<span>催收信息</span>
+			<table id="lmrData"></table>
+		</div>
+		<div id="guaDetail">
+			<span>担保人信息</span>
+			<table id="guaData"></table>
+		</div>
+		<div id="contectDetail">
+			<span>紧急联系人信息</span>
+			<table id="conData"></table>
+		</div>
+		<div id="pleDetail">
+			<span>抵（质）押物信息</span>
+			<table id="pleData"></table>
+		</div>
+	</div><!-- 贷款详情弹框-->
 	<div id="updateLoanDirlog"><!-- 修改状态弹框-->
 		<table>
 			<tr>
@@ -166,24 +296,25 @@
 </body>
 </html>
 <script>
+	
 	function searchFormSubmit() {
 		var data = $("#searchForm").serialize();
 		data = decodeURIComponent(data, true);
-		$.ajax({
+		$('#lmrDataGrid').datagrid({
 			url : '/badLoan/BorLoanInfo/findBorSearch',
-			type : 'POST',
-			data : data,
-			success : function(data) {
-				$('#lmrDataGrid').datagrid({
-					url : '',
-					data : data
-				});
-			},
-			error : function() {
-				alert("error");
+			queryParams:{
+				data:data
 			}
 		});
 	}
+	$("#detailDialog").dialog({
+		title : '贷款详情',
+		width : 800,
+		height : 450,
+		closed : true,
+		cache : false,
+		modal : true
+	});
 	$("#loanStateSearch").combobox({
 		url : '/badLoan/loanStateController/findLoanState',
 		valueField : 'LOANSTATEID',
@@ -211,14 +342,12 @@
 			lmrName : $("#lmrName").val(),
 			lmrComment : $("#lmrComment").val(),
 		};
-		alert(data.lmrId + " " + data.empId + " " + data.lmrDate + " "
-				+ data.lmrName + " " + data.lmrComment + " ");
 		$.ajax({
 			url : '/badLoan/lmrController/addlmr',
 			contentType : "application/json;charset:UTF-8",
 			data : data,
 			success : function(data1) {
-				alert(data1);
+				$.message.alert(data1);
 			}
 		});
 	}
@@ -242,7 +371,7 @@
 								width : 100
 							}, {
 								field : 'LOANTYPE_NAME',
-								title : '贷款种类',
+								title : '贷款类型',
 								width : 100
 							}, {
 								field : 'BOR_NAME',
@@ -287,19 +416,256 @@
 										handler : function() {
 											var row = $('#lmrDataGrid').datagrid("getSelected");
 											if (row == null) {
-												$("#wormPrompt").dialog("open");
-												alert("请选择需要查看的信息");
+												$.messager.alert("提示","请选择需要查看的信息");
 											} else {
-												$("#detailDialog").dialog({
-													title : '贷款详情',
-													width : 500,
-													height : 300,
-													closed : true,
-													cache : false,
-													modal : true
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findDetailById",
+													type : "post",
+													data : {
+														borId : row.BORLOANINFO_ID
+													},
+													dataType:"json",
+													success:function(data){
+														for(var i=0;i<data.length;i++)
+														{
+														  for(var filedName in data[i]){
+															  $("#Dia"+filedName).html(data[i][filedName]);
+														  } 
+														}
+													}
 												});
-												$("#detailDialog").dialog(
-														"open");
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findRepayRecord",
+													type:"post",
+													data:{
+														borId : row.BORLOANINFO_ID
+													},
+													dataType:"json",
+													success:function(data){
+														if(data.length==0){
+															$("#repData").empty();
+															$("#repData").html("<tr><td>未查到相关信息</td></tr>");
+														}else{
+															$("#repData").datagrid({
+																data:data,
+																columns : [ [ {
+																	field : 'BORLOANINFO_ID',
+																	title : '贷款编号',
+																	width : 100
+																}] ]
+															});
+														}
+													}
+												});
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findLMR",
+													type:"post",
+													data:{
+														borId : row.BORLOANINFO_ID
+													},
+													dataType:"json",
+													success:function(data){
+														if(data.length==0){
+															$("#lmrData").empty();
+															$("#lmrData").html("<tr><td>未查到相关信息</td></tr>");
+														}else{
+															$("#lmrData").datagrid({
+																data:data,
+																columns : [ [ {
+																	field : 'EMP_ID',
+																	title : '负责人编号',
+																	width : 100
+																},{
+																	field : 'LMR_DATE',
+																	title : '操作日期',
+																	width : 100
+																},{
+																	field : 'LMR_NAME',
+																	title : '贷款编号',
+																	width : 100
+																}] ]
+															});
+														}
+													}
+												});
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findGuaDetailsById",
+													type:"post",
+													data:{
+														borId : row.BORLOANINFO_ID
+													},
+													dataType:"json",
+													success:function(data){
+														if(data.length==0){
+															$("#guaData").empty();
+															$("#guaData").html("<tr><td>未查到相关信息</td></tr>");
+														}else{
+															$("#guaData").datagrid({
+																data:data,
+																columns : [ [ {
+																	field : 'GUA_ADDRESS',
+																	title : '家庭住址',
+																	width : 100
+																},{
+																	field : 'GUA_BIRTHDAY',
+																	title : '出生日期',
+																	width : 100
+																},{
+																	field : 'GUA_CARDNUMBER',
+																	title : '证件号码',
+																	width : 100
+																},{
+																	field : 'GUA_CARDTYPE',
+																	title : '证件类型',
+																	width : 100
+																},{
+																	field : 'GUA_EDUCATION',
+																	title : '学历',
+																	width : 100
+																},{
+																	field : 'GUA_GENDER',
+																	title : '性别',
+																	width : 100
+																},{
+																	field : 'GUA_INCOME',
+																	title : '年收入',
+																	width : 100
+																},{
+																	field : 'GUA_MARRY',
+																	title : '婚否',
+																	width : 100
+																},{
+																	field : 'GUA_NAME',
+																	title : '姓名',
+																	width : 100
+																},{
+																	field : 'GUA_NATION',
+																	title : '民族',
+																	width : 100
+																},{
+																	field : 'GUA_PHONE',
+																	title : '联系方式',
+																	width : 100
+																},{
+																	field : 'GUA_POSITION',
+																	title : '职位',
+																	width : 100
+																},{
+																	field : 'GUA_REGISTER',
+																	title : '籍贯',
+																	width : 100
+																},{
+																	field : 'GUA_UNIT',
+																	title : '单位',
+																	width : 100
+																}] ]
+															});
+														}
+													}
+												});
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findPledge",
+													type:"post",
+													data:{
+														borId : row.BORLOANINFO_ID
+													},
+													dataType:"json",
+													success:function(data){
+														if(data.length==0){
+															$("pleData").empty();
+															$("pleData").html("<tr><td>未查到相关信息</td></tr>");
+														}else{
+															$("#pleData").datagrid({
+																data:data,
+																columns : [ [ {
+																	field : 'PLEDGE_GENRE',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_ID',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_NAME',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_OWNER',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_PHOTO',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_TYPE',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'PLEDGE_VALUE',
+																	title : '贷款编号',
+																	width : 100
+																}] ]
+															});
+														}
+													}
+												});
+												$.ajax({
+													url:"/badLoan/BorLoanInfo/findContect",
+													type:"post",
+													data:{
+														cusId : row.BOR_ID
+													},
+													dataType:"json",
+													success:function(data){
+														if(data.length==0){
+															$("#conData").empty();
+															$("#conData").html("<tr><td>未查到相关信息</td></tr>");
+														}else{
+															$("#conData").datagrid({
+																data:data,
+																columns : [ [ {
+																	field : 'BCOM_ID',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_ADDRESS',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_BIRTHDAY',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_CARDNUMBER',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_CARDTYPE',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_GENDER',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_ID',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_NAME',
+																	title : '贷款编号',
+																	width : 100
+																},{
+																	field : 'CONTECT_TELPHONE',
+																	title : '贷款编号',
+																	width : 100
+																}] ]
+															});
+														}
+													}
+												});
+												$("#detailDialog").dialog("open");
 											}
 										}
 									},'-',{
@@ -309,9 +675,9 @@
 											var row = $('#lmrDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要修改的信息");
+												$.message.alert("请选择需要修改的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												alert("该贷款项已被核销");
+												$.message.alert("该贷款项已被核销");
 											} else {
 												$('#updateLoanDirlog').dialog("open");
 												$("#borLoanId").html(row.BORLOANINFO_ID);
@@ -331,9 +697,9 @@
 											var row = $('#lmrDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要回收的信息");
+												$.message.alert("请选择需要回收的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												alert("该贷款项已被核销");
+												$.message.alert("该贷款项已被核销");
 											} else {
 												$('#addLMR').dialog("open");
 												$("#borLoanIdLMR").html(row.BORLOANINFO_ID);
@@ -353,12 +719,12 @@
 											var row = $('#lmrDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要核销的信息");
+												$.message.alert("请选择需要核销的信息");
 											} else {
 												if (row.LOANSTATE_NAME == '核销中') {
-													alert("该贷款项正在核销中");
+													$.message.alert("该贷款项正在核销中");
 												} else if (row.LOANSTATE_NAME == '已核销') {
-													alert("该贷款项已被核销");
+													$.message.alert("该贷款项已被核销");
 												} else {
 													$('#applyWriteOff').dialog("open");
 													$("#borLoanIdAWO").html(row.BORLOANINFO_ID);
@@ -398,11 +764,11 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							alert(data);
+							$.message.alert(data);
 							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {
-							alert("error");
+							$.message.alert("error");
 						}
 					});
 					$('#updateLoanDirlog').dialog("close");
@@ -442,11 +808,11 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							alert(data);
+							$.message.alert(data);
 							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {
-							alert("error");
+							$.message.alert("error");
 						}
 					});
 					$('#addLMR').dialog("close");
@@ -483,7 +849,7 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							alert(data);
+							$.message.alert(data);
 							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {

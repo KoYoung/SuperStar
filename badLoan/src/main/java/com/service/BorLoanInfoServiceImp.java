@@ -36,7 +36,7 @@ import com.util.PagingResult;
 public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	@Autowired
 	private BorLoanInfoDao borLoanInfoDao;
-	@Autowired 
+	@Autowired
 	private ComloanInfoDao ComloanInfoDao;
 	@Autowired
 	private PledgeDao pledgeDao;
@@ -50,6 +50,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
 	private LoanmanageDao loanmanageDao;
+
 	/**
 	 * 查询个人用户贷款信息
 	 * 
@@ -67,6 +68,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		pr.setTotal(comList.size());
 		return pr;
 	}
+
 	/**
 	 * 查询个人用户贷款详情
 	 * 
@@ -76,14 +78,41 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public List<Map<String, String>> findBorLoanDetail() {
 		return borLoanInfoDao.findBorLoanDetail();
 	}
+
 	/**
-	 * 添加个人用户贷款信息 马利肖
-	 * requestParam要写才知道是前台的那个数组
+	 * 查询某用户贷款所有详情
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Map<String, String>> findDetailsById(int borloaninfoId) {
+		List<Map<String, String>> borList = borLoanInfoDao.findBorLoanDetailsById(borloaninfoId);
+		int borId = Integer.parseInt(borList.get(0).get("BOR_ID"));
+		String empId = borList.get(0).get("EMP_ID");
+		System.out.println("--------------------borId" + borId + "   " + "----------------------" + empId);
+		List<Map<String, String>> cusList = borLoanInfoDao.findCusDetailsById(borId);
+		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
+
+		System.out.println("--------------------borList:" + borList + "----------------------");
+		System.out.println("--------------------cusList:" + cusList + "----------------------");
+		System.out.println("--------------------empList:" + empList + "----------------------");
+		for (Map<String, String> map : cusList) {
+			borList.add(map);
+		}
+		for (Map<String, String> map : empList) {
+			borList.add(map);
+		}
+		return borList;
+	}
+
+	/**
+	 * 添加个人用户贷款信息 马利肖 requestParam要写才知道是前台的那个数组
 	 */
 	@Transactional
-	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
-			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
-				String pledgeGenre = borLoanInfo.getLoanType();
+	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,
+			BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua,
+			LoanManageRecord lmr, Loanmanage lonm) {
+		String pledgeGenre = borLoanInfo.getLoanType();
 		int unrepayNumber = Integer.parseInt(borLoanInfo.getLoanNumber());
 		borLoanInfo.setUnrepayNumber(unrepayNumber);
 		pledge.setPledgeGenre(pledgeGenre);
@@ -93,11 +122,11 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		lmr.setLmrDate(sd.format(new Date()));
 		int loaninfoType = borLoanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
-		//获取页面传过来的图片路径
+		// 获取页面传过来的图片路径
 		List filepath = FileUpload.uploadFile1(borPhoto, request);
 		String path = "";
 		for (int i = 0; i < borPhoto.length; i++) {
-			path=path+filepath.get(i).toString()+",";
+			path = path + filepath.get(i).toString() + ",";
 		}
 		pledge.setPledgePhoto(path);
 		try {
@@ -108,25 +137,26 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 			borguaDao.addBorgua(borgua);
 			loanManageRecordDao.addLoanManageRecord(lmr);
 			loanmanageDao.addLoanmanage(lonm);
-			if(flag>0){
+			if (flag > 0) {
 				return "add success";
-			}else{
+			} else {
 				return "add error";
 			}
 		} catch (Exception e) {
 			System.out.println("--->" + e.getMessage());
 			return "异常";
 		}
-		
+
 	}
+
 	/**
-	 * 根据贷款类型，贷款编号查询贷款信息  马利肖
+	 * 根据贷款类型，贷款编号查询贷款信息 马利肖
 	 */
 	@Override
 	@Transactional
-	public BorLoanInfo findBorLoanInfo2(BorLoanInfo borLoanInfo,String borloaninfoId) {
+	public BorLoanInfo findBorLoanInfo2(BorLoanInfo borLoanInfo, String borloaninfoId) {
 		int loaninfoType = borLoanInfo.getLoaninfoType();
-		System.out.println("loaninfoType--->"+loaninfoType);
+		System.out.println("loaninfoType--->" + loaninfoType);
 		String borloaninfoId1 = borLoanInfo.getBorloaninfoId();
 		List<BorLoanInfo> borList = null;
 		if (loaninfoType == 0) {
@@ -139,27 +169,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		}
 		return null;
 	}
-	/**
-	 * 查询某用户贷款所有详情
-	 * 
-	 * @return
-	 */
-	@Override
-	public List<Map<String, String>> findDetailsById(int borloaninfoId) {
-		List<Map<String, String>> borList = borLoanInfoDao.findBorLoanDetailsById(borloaninfoId);
-		List<Map<String, String>> guaList = borLoanInfoDao.findGuaDetailsById(borloaninfoId);
-		int borId = Integer.parseInt(borList.get(0).get("BOR_ID"));
-		String empId = borList.get(0).get("EMP_ID");
-		List<Map<String, String>> cusList = borLoanInfoDao.findCusDetailsById(borId);
-		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
-		for (Map<String, String> map : cusList) {
-			borList.add(map);
-		}
-		for (Map<String, String> map : empList) {
-			borList.add(map);
-		}
-		return borList;
-	}
+
 	@Transactional
 	public void modifyLoanState(Map<String, String> datamap) {
 		borLoanInfoDao.addLoanManageRecordMap(datamap);
@@ -198,5 +208,25 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public void updateUnrepayNumber(Map<String, String> datamap) {
 		borLoanInfoDao.addRepaymentinfo(datamap);
 		borLoanInfoDao.modifyUnrepayNumber(datamap);
+	}
+
+	public List<Map<String, String>> findRepayRecord(int borloaninfoId) {
+		return borLoanInfoDao.findRepayRecord(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findLMR(int borloaninfoId) {
+		return borLoanInfoDao.findLMR(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findGuaDetailsById(int borloaninfoId) {
+		return borLoanInfoDao.findGuaDetailsById(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findPledge(int borloaninfoId) {
+		return borLoanInfoDao.findPledge(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findContect(int borId) {
+		return borLoanInfoDao.findContect(borId);
 	}
 }
