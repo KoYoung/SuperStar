@@ -69,40 +69,16 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		System.out.println("--------------------borId" + borId + "   " + "----------------------" + empId);
 		List<Map<String, String>> cusList = borLoanInfoDao.findCusDetailsById(borId);
 		List<Map<String, String>> empList = borLoanInfoDao.findEmpDetailsById(empId);
-		List<Map<String, String>> conList = borLoanInfoDao.findContect(borId);
-		
-		List<Map<String, String>> guaList = borLoanInfoDao.findGuaDetailsById(borloaninfoId);
-		List<Map<String, String>> pleList = borLoanInfoDao.findPledge(borloaninfoId);
-		List<Map<String, String>> lmrList = borLoanInfoDao.findLMR(borloaninfoId);
-		List<Map<String, String>> repayList = borLoanInfoDao.findRepayRecord(borloaninfoId);
 
 		System.out.println("--------------------borList:" + borList + "----------------------");
-		System.out.println("--------------------guaList:" + guaList + "----------------------");
-		System.out.println("--------------------pleList:" + pleList + "----------------------");
-		System.out.println("--------------------lmrList:" + lmrList + "----------------------");
-		System.out.println("--------------------repayList:" + repayList + "----------------------");
 		System.out.println("--------------------cusList:" + cusList + "----------------------");
 		System.out.println("--------------------empList:" + empList + "----------------------");
-		System.out.println("--------------------conList:" + conList + "----------------------");
 		for (Map<String, String> map : cusList) {
 			borList.add(map);
 		}
 		for (Map<String, String> map : empList) {
 			borList.add(map);
 		}
-		for (Map<String, String> map : conList) {
-			borList.add(map);
-		}
-		for (Map<String, String> map : pleList) {
-			borList.add(map);
-		}
-		for (Map<String, String> map : lmrList) {
-			borList.add(map);
-		}
-		for (Map<String, String> map : repayList) {
-			borList.add(map);
-		}
-		
 		return borList;
 	}
 
@@ -185,5 +161,25 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	public void updateUnrepayNumber(Map<String, String> datamap) {
 		borLoanInfoDao.addRepaymentinfo(datamap);
 		borLoanInfoDao.modifyUnrepayNumber(datamap);
+	}
+
+	public List<Map<String, String>> findRepayRecord(int borloaninfoId) {
+		return borLoanInfoDao.findRepayRecord(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findLMR(int borloaninfoId) {
+		return borLoanInfoDao.findLMR(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findGuaDetailsById(int borloaninfoId) {
+		return borLoanInfoDao.findGuaDetailsById(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findPledge(int borloaninfoId) {
+		return borLoanInfoDao.findPledge(borloaninfoId);
+	}
+
+	public List<Map<String, String>> findContect(int borId) {
+		return borLoanInfoDao.findContect(borId);
 	}
 }

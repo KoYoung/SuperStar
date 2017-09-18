@@ -150,6 +150,60 @@ public class BorLoanInfoController {
 	}
 
 	/**
+	 * 根据贷款编号查询还款记录
+	 */
+	@RequestMapping(value = "/findRepayRecord")
+	@ResponseBody
+	public List<Map<String, String>> findRepayRecord(@RequestBody String data) {
+		int borloaninfoId = Integer.parseInt(data.substring(6));
+		List<Map<String, String>> borDetails = borService.findRepayRecord(borloaninfoId);
+		return borDetails;
+	}
+
+	/**
+	 * 根据贷款编号查询管理记录
+	 */
+	@RequestMapping(value = "/findLMR")
+	@ResponseBody
+	public List<Map<String, String>> findLMR(@RequestBody String data) {
+		int borloaninfoId = Integer.parseInt(data.substring(6));
+		List<Map<String, String>> borDetails = borService.findLMR(borloaninfoId);
+		return borDetails;
+	}
+
+	/**
+	 * 根据贷款编号查询管理记录
+	 */
+	@RequestMapping(value = "/findGuaDetailsById")
+	@ResponseBody
+	public List<Map<String, String>> findGuaDetailsById(@RequestBody String data) {
+		int borloaninfoId = Integer.parseInt(data.substring(6));
+		List<Map<String, String>> borDetails = borService.findGuaDetailsById(borloaninfoId);
+		return borDetails;
+	}
+	
+	/**
+	 * 根据贷款编号查询管理记录
+	 */
+	@RequestMapping(value = "/findPledge")
+	@ResponseBody
+	public List<Map<String, String>> findPledge(@RequestBody String data) {
+		int borloaninfoId = Integer.parseInt(data.substring(6));
+		List<Map<String, String>> borDetails = borService.findPledge(borloaninfoId);
+		return borDetails;
+	}
+	/**
+	 * 根据贷款编号查询管理记录
+	 */
+	@RequestMapping(value = "/findContect")
+	@ResponseBody
+	public List<Map<String, String>> findContect(@RequestBody String data) {
+		int borId = Integer.parseInt(data.substring(6));
+		List<Map<String, String>> borDetails = borService.findContect(borId);
+		return borDetails;
+	}
+
+	/**
 	 * 根据贷款类型，贷款编号查询贷款信息
 	 */
 	@RequestMapping("/findBorLoanInfo2")

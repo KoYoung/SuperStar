@@ -79,4 +79,45 @@ public interface BorLoanInfoService {
 	 * @param datamap
 	 */
 	void updateUnrepayNumber(Map<String, String> datamap);
+
+	/**
+	 * 根据贷款编号查询还款记录
+	 * 
+	 * @param borloaninfoId
+	 * @return
+	 */
+	List<Map<String, String>> findRepayRecord(int borloaninfoId);
+
+	/**
+	 * 根据贷款编号查询管理记录
+	 * 
+	 * @param borloaninfoId
+	 * @return
+	 */
+	List<Map<String, String>> findLMR(int borloaninfoId);
+
+	/**
+	 * 根据贷款编号查询担保人
+	 * 
+	 * @param borloaninfoId
+	 * @return
+	 */
+	List<Map<String, String>> findGuaDetailsById(int borloaninfoId);
+
+	/**
+	 * 根据贷款编号查询抵（质）押物信息
+	 * 
+	 * @param borloaninfoId
+	 * @return
+	 */
+	List<Map<String, String>> findPledge(int borloaninfoId);
+
+	/**
+	 * 根据贷款编号查询紧急联系人
+	 * 
+	 * @param borId
+	 * @return
+	 */
+	List<Map<String, String>> findContect(int borloaninfoId);
+
 }
