@@ -56,7 +56,7 @@ tr td {
 <body>
 	<div>
 		<a class="easyui-linkbutton" data-options="iconCls:'icon-add'"
-			id="addBtn">添加</a>
+			id="addBtn">企业贷款信息录入</a>
 	</div>
 	<table id="dg"></table>
 	<div id="dd">
@@ -623,6 +623,7 @@ tr td {
 		});
 		$('#dg').datagrid({
 			url : '/badLoan/ComloanInfo/findComloanInfo',
+			height : '85%',
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 			pagination : true, //底部分页

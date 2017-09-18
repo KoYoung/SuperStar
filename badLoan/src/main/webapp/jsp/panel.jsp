@@ -8,7 +8,7 @@
 <body class="easyui-layout">
 
 	<div
-		data-options="region:'north',title:'欢迎<%=request.getSession().getAttribute("studentName")%>登录',split:false,collapsible:false"
+		data-options="region:'north',title:'欢迎<%=request.getSession().getAttribute("userName")%>登录',split:false,collapsible:false"
 		style="height: 100px;"></div>
 	<div
 		data-options="region:'south',title:'south',split:false,collapsible:false"

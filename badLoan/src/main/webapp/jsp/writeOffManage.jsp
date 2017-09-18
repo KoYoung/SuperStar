@@ -63,9 +63,9 @@ td {
 <body>
 	<div id="toobar">
 		<a id="xiangBtn" href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-add'">详情</a> <input
+			data-options="iconCls:'icon-add'">贷款详情</a> <input
 			class="easyui-textbox" id="select" type="text"
-			Style="height: 25px; width: 180px" /> <a id="btn" href="#"
+			Style="height: 25px; width: 180px" prompt='请输入贷款编号和贷款人姓名'/> <a id="btn" href="#"
 			class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
 	</div>
 	<table id="dg"></table>
@@ -269,11 +269,9 @@ td {
 												'getSelected');
 										var data = {};
 										data["loaninfoId"] = row.loaninfoId;
-										alert(row.loaninfoId);
 										data["borId"] = row.borId;
 										data["empId"] = row.empId;
 										data["witeoffMoney"] = row.unrepayNumber;
-										alert(row.unrepayNumber);
 										data["opinion"] = $("#opinion").val();
 										$
 												.ajax({
@@ -375,11 +373,7 @@ td {
 												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 												//resizeHandle : 'right',
 												rownumbers : true, //如果为true，则显示一个行号列
-												columns : [ [ {
-													field : 'loaninfoId',
-													title : '贷款编号',
-													width : 80
-												}, {
+												columns : [ [  {
 													field : 'empName',
 													title : '经手人',
 													width : 80

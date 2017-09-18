@@ -30,7 +30,7 @@
 		comloaninfo.com_id=company.com_id and
 		replace.old_emp_id=e1.emp_id and
 		replace.new_emp_id=e2.emp_id
-		union
+		union all
 		select replace.loaninfo_id loaninfoId,
 		replace.loaninfo_type loaninfoType,
 		bw.bor_name comName,

@@ -16,6 +16,8 @@ import com.dao.WriteoffManageDao;
 import com.entity.LoanManageRecord;
 import com.entity.Repaymentinfo;
 import com.entity.WriteoffManage;
+import com.util.Paging;
+import com.util.PagingResult;
 
 @Service
 public class WriteoffManageServiceImp implements WriteoffManageService {
@@ -33,45 +35,27 @@ public class WriteoffManageServiceImp implements WriteoffManageService {
 	 *
 	 */
 	@Override
-	public List<WriteoffManage> findWriteoffManage() {
-
-		return writeDao.findWriteoffManage();
+	public PagingResult<WriteoffManage> findWriteoffManage(Integer rows, Integer page){
+		List<WriteoffManage> weList = writeDao.findWriteoffManage();
+		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
+		List<WriteoffManage> row = paging.paging(weList, rows, page);
+		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
+		pr.setRows(row);
+		pr.setTotal(weList.size());
+		return pr;
 	}
-
 	/**
 	 * 根据贷款编号查询这笔贷款的所有回收记录
 	 */
 	public List<Repaymentinfo> findReayment(String loaninfoId) {
 		return writeDao.findReayment(loaninfoId);
 	}
-
 	/**
 	 * 添加核销信息
 	 */
 	@Override
 	@Transactional
-	public int addWriteoffManage(WriteoffManage write) {
-		String loaninfoId = write.getLoaninfoId();
-		String empId = write.getEmpId();
-		String lmrComment = write.getOpinion();
-		System.out.println("loaninfoId---" + loaninfoId + "--empId--" + loaninfoId + "lmrComment--" + lmrComment);
-		LoanManageRecord loanMR = new LoanManageRecord();
-		loanMR.setLoaninfoId(loaninfoId);
-		loanMR.setEmpId(empId);
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-		loanMR.setLmrDate(sd.format(new Date()));
-		loanMR.setLmrComment(lmrComment);
-		loanMRDao.addLoanMR(loanMR);
-		loanMDao.modifyloanstateId(loaninfoId);
-		return writeDao.addWriteoffManage(write);
-	}
-
-	/**
-	 * 添加核销信息
-	 */
-	@Override
-	@Transactional
-	public int addWriteoffManage(WriteoffManage write, HttpSession session) {
+	public String addWriteoffManage(WriteoffManage write, HttpSession session) {
 		String loaninfoId = write.getLoaninfoId();
 		String lmrComment = write.getOpinion();
 		LoanManageRecord loanMR = new LoanManageRecord();
@@ -85,16 +69,25 @@ public class WriteoffManageServiceImp implements WriteoffManageService {
 		loanMR.setLmrComment(lmrComment);
 		loanMRDao.addLoanMR(loanMR);
 		loanMDao.modifyloanstateId(loaninfoId);
-		return writeDao.addWriteoffManage(write);
+		int flag = writeDao.addWriteoffManage(write);
+		if(flag>0){
+			return "add success";
+		}else{
+			return "add error";
+		}
 	}
-
 	/**
 	 * 根据贷款编号和贷款人姓名进行模糊查询
 	 */
 	@Override
-	public List<WriteoffManage> findWriteM(String loaninfoId) {
-
-		return writeDao.findWriteM(loaninfoId);
+	public PagingResult<WriteoffManage> findWriteM(String loaninfoId, Integer rows, Integer page){
+		List<WriteoffManage> wrList = writeDao.findWriteM(loaninfoId);
+		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
+		List<WriteoffManage> wrRows = paging.paging(wrList, rows, page);
+		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
+		pr.setRows(wrRows);
+		pr.setTotal(wrList.size());
+		return pr;
 	}
 
 }

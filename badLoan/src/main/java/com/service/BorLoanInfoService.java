@@ -3,6 +3,11 @@ package com.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.entity.BorLoanInfo;
 import com.entity.Borgua;
 import com.entity.CustomerGoods;
@@ -10,6 +15,7 @@ import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
 import com.entity.Loanmanage;
 import com.entity.Pledge;
+import com.util.PagingResult;
 
 public interface BorLoanInfoService {
 	/**
@@ -17,7 +23,7 @@ public interface BorLoanInfoService {
 	 * 
 	 * @return
 	 */
-	int addBorLoanInfo(BorLoanInfo BorLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
+	String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,BorLoanInfo BorLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
 			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm);
 
 	/**
@@ -25,7 +31,7 @@ public interface BorLoanInfoService {
 	 * 
 	 * @return
 	 */
-	List<BorLoanInfo> findBorLoanInfo();
+	PagingResult<BorLoanInfo> findBorLoanInfo(Integer page, Integer rows);
 
 	/**
 	 * 查询个人用户贷款详情
@@ -44,7 +50,7 @@ public interface BorLoanInfoService {
 	/**
 	 * 根据贷款类型，贷款编号查询贷款信息
 	 */
-	List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId);
+	BorLoanInfo findBorLoanInfo2(BorLoanInfo borLoanInfo,String borloaninfoId);
 
 	/**
 	 * 更新债款状态

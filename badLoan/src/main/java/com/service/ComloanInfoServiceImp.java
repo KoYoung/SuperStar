@@ -5,9 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dao.BorguaDao;
 import com.dao.ComloanInfoDao;
 import com.dao.CustomerGoodsDao;
@@ -23,6 +28,9 @@ import com.entity.Guarantor;
 import com.entity.LoanManageRecord;
 import com.entity.Loanmanage;
 import com.entity.Pledge;
+import com.util.FileUpload;
+import com.util.Paging;
+import com.util.PagingResult;
 
 @Service
 public class ComloanInfoServiceImp implements ComloanInfoService {
@@ -40,14 +48,28 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 	private LoanManageRecordDao loanManageRecordDao;
 	@Autowired
 	private LoanmanageDao loanmanageDao;
-
+	
+	/**
+	 * 查询企业贷款信息
+	 */
+	@Override
+	@Transactional
+	public PagingResult<ComloanInfo> findComloanInfo(Integer page, Integer rows) {
+		List<ComloanInfo> comList = comloanInfoDao.findComloanInfo();
+		Paging<ComloanInfo> paging = new Paging<ComloanInfo>();
+		List<ComloanInfo> list = paging.paging(comList, rows, page);
+		PagingResult<ComloanInfo> pr = new PagingResult<ComloanInfo>();
+		pr.setRows(list);
+		pr.setTotal(comList.size());
+		return pr;
+	}
 	/**
 	 * 添加企业贷款信息
 	 */
 	@Transactional
-	public int addComloanInfo(ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
-			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm) {
-		System.out.println(comloanInfo.toString());
+	public String addComloanInfo(@RequestParam("borPhoto") MultipartFile[] borPhotos, HttpServletRequest request,
+			ComloanInfo comloanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor,
+			Borgua borgua, LoanManageRecord lmr, Loanmanage lonm){
 		String pledgeGenre = comloanInfo.getLoanType();
 		int unrepayNumber = Integer.parseInt(comloanInfo.getLoanNumber());
 		comloanInfo.setUnrepayNumber(unrepayNumber);
@@ -58,8 +80,17 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 		lmr.setLmrDate(sd.format(new Date()));
 		int loaninfoType = comloanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
+		//获取图片路径
+		List files = FileUpload.uploadFile1(borPhotos, request);
+		String phonePath = "";
+		for (int i = 0; i < files.size(); i++) {
+
+			phonePath = phonePath + files.get(i).toString() + ",";
+			// 保存文件
+		}
+		pledge.setPledgePhoto(phonePath);
 		try {
-			comloanInfoDao.addComloanInfo(comloanInfo);
+			int flag = comloanInfoDao.addComloanInfo(comloanInfo);
 			System.out.println(comloanInfoDao.toString());
 			pledgeDao.addPledge(pledge);
 			System.out.println(pledgeDao.toString());
@@ -68,50 +99,26 @@ public class ComloanInfoServiceImp implements ComloanInfoService {
 			borguaDao.addBorgua(borgua);
 			loanManageRecordDao.addLoanManageRecord(lmr);
 			loanmanageDao.addLoanmanage(lonm);
-
+			if(flag>0){
+				return "add success";
+			}else{
+				return "add error";
+			}
 		} catch (Exception e) {
-			System.out.println("---------------------------------------" + e.getMessage());
-			return 0;
+			System.out.println("--->" + e.getMessage());
+			return "异常";
 		}
-		return 1;
 
 	}
-
 	/**
-	 * 查询企业贷款信息
-	 */
-	@Override
-	public List<ComloanInfo> findComloanInfo() {
-		return comloanInfoDao.findComloanInfo();
-	}
-
-	/**
-	 * 根据贷款编号查询贷款详情
-	 */
-
-	@Override
-	public List<BorLoanInfo> findComloanInfo2(String comloaninfoId) {
-
-		return comloanInfoDao.findComloanInfo2(comloaninfoId);
-	}
-
-	/**
-	 * 根据贷款编号修改企业业务移交相关信息
-	 * 
-	 * @return 合同编号唯一性验证
-	 */
-	/*
-	 * @Override public void modifyComloanInfo(String empId,String
-	 * comloaninfoId) { ComloanInfoDao.modifyComloanInfo(empId,comloaninfoId);
-	 * 
-	 * }
+	 * 合同编号唯一性验证
+	 * @return 
 	 */
 	@Override
 	public List<ComloanInfo> findContractIdCom(String contractId) {
 
 		return comloanInfoDao.findContractIdCom(contractId);
 	}
-
 	@Override
 	public List<Map<String, String>> findComLoan(Map<String, String> datamap) {
 		return comloanInfoDao.findComLoan(datamap);

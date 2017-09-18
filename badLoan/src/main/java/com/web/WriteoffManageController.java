@@ -32,19 +32,9 @@ public class WriteoffManageController {
 	@RequestMapping("/findWriteoffManage")
 	@ResponseBody
 	public PagingResult<WriteoffManage> findWriteoffManage(Integer rows, Integer page) {
-		List<WriteoffManage> weList = writeService.findWriteoffManage();
-		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
-		System.out.println("rows---" + rows);
-		System.out.println("page---" + page);
-		System.out.println(weList.size());
-		List<WriteoffManage> row = paging.paging(weList, rows, page);
-		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
-		pr.setRows(row);
-		pr.setTotal(weList.size());
-		return pr;
-
+		PagingResult<WriteoffManage> weList = writeService.findWriteoffManage(rows, page);
+		return weList;
 	}
-
 	/**
 	 * 根据贷款编号查询这笔贷款的所有回收记录
 	 */
@@ -52,26 +42,16 @@ public class WriteoffManageController {
 	@ResponseBody
 	public List<Repaymentinfo> findReayment(String loaninfoId) {
 		List<Repaymentinfo> reList = writeService.findReayment(loaninfoId);
-		System.out.println("贷款编号---》" + loaninfoId);
 		return reList;
 	}
-
 	/**
 	 * 添加核销信息
 	 */
 	@RequestMapping("/addWriteoffManage")
 	@ResponseBody
-	public String addWriteoffManage(@RequestBody String data) {
-
-		// System.out.println("========================"+data);
+	public String addWriteoffManage(@RequestBody String data,HttpSession session) {
 		WriteoffManage wm = JSON.parseObject(data, WriteoffManage.class);
-		int flag = writeService.addWriteoffManage(wm);
-		if (flag == 1) {
-			return "add success";
-		} else {
-			return "add error";
-		}
-
+		return writeService.addWriteoffManage(wm, session);
 	}
 	/**
 	 * 根据贷款编号和贷款人姓名进行模糊查询
@@ -79,12 +59,7 @@ public class WriteoffManageController {
 	@RequestMapping("/findWriteM")
 	@ResponseBody
 	public PagingResult<WriteoffManage> findWriteM(String loaninfoId, Integer rows, Integer page) {
-		List<WriteoffManage> wrList = writeService.findWriteM(loaninfoId);
-		Paging<WriteoffManage> paging = new Paging<WriteoffManage>();
-		List<WriteoffManage> wrRows = paging.paging(wrList, rows, page);
-		PagingResult<WriteoffManage> pr = new PagingResult<WriteoffManage>();
-		pr.setRows(wrRows);
-		pr.setTotal(wrList.size());
-		return pr;
+		PagingResult<WriteoffManage> wrList = writeService.findWriteM(loaninfoId, rows, page);
+		return wrList;
 	}
 }
