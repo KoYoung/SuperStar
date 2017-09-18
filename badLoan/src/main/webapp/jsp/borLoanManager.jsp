@@ -292,8 +292,10 @@
 			</tr>
 		</table>
 		<!-- 回收信息登记弹框 -->
-		
-		<script type="text/javascript">
+	</div>
+</body>
+</html>
+<script>
 	
 	function searchFormSubmit() {
 		var data = $("#searchForm").serialize();
@@ -307,8 +309,8 @@
 	}
 	$("#detailDialog").dialog({
 		title : '贷款详情',
-		width : 700,
-		height : 400,
+		width : 800,
+		height : 450,
 		closed : true,
 		cache : false,
 		modal : true
@@ -445,14 +447,6 @@
 															$("#repData").html("<tr><td>未查到相关信息</td></tr>");
 														}else{
 															$("#repData").datagrid({
-																rownumbers : true, //显示行号
-																pagination : true, //显示分页
-																singleSelect : true,
-																pageSize : 10, //默认显示多少行
-																pageList : [ 5, 10, 15, 20 ],//行号下拉列表
-																sortOrder : 'asc',//默认升序
-																remoteSort : false,//不去服务器排序
-																fitColumns : true,
 																data:data,
 																columns : [ [ {
 																	field : 'BORLOANINFO_ID',
@@ -476,6 +470,7 @@
 															$("#lmrData").html("<tr><td>未查到相关信息</td></tr>");
 														}else{
 															$("#lmrData").datagrid({
+																data:data,
 																columns : [ [ {
 																	field : 'EMP_ID',
 																	title : '负责人编号',
@@ -506,6 +501,7 @@
 															$("#guaData").html("<tr><td>未查到相关信息</td></tr>");
 														}else{
 															$("#guaData").datagrid({
+																data:data,
 																columns : [ [ {
 																	field : 'GUA_ADDRESS',
 																	title : '家庭住址',
@@ -580,6 +576,7 @@
 															$("pleData").html("<tr><td>未查到相关信息</td></tr>");
 														}else{
 															$("#pleData").datagrid({
+																data:data,
 																columns : [ [ {
 																	field : 'PLEDGE_GENRE',
 																	title : '贷款编号',
@@ -626,6 +623,7 @@
 															$("#conData").html("<tr><td>未查到相关信息</td></tr>");
 														}else{
 															$("#conData").datagrid({
+																data:data,
 																columns : [ [ {
 																	field : 'BCOM_ID',
 																	title : '贷款编号',
@@ -870,6 +868,3 @@
 		});/* 核销弹框结束*/
 	});
 </script>
-	</div>
-</body>
-</html>
