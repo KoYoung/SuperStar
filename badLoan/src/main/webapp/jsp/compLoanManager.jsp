@@ -426,7 +426,7 @@
 													.datagrid("getSelected");
 											//console.log(row);
 											if (row == null) {
-												alert("请选中一行！");
+												$.message.alert("请选中一行！");
 											} else{
 												//企业贷款信息
 												$("#detailDialog").dialog("open");
@@ -464,7 +464,7 @@
 															$("#legalInfo").append("<img class='img' src='"+data.legalInfo+"'/>");
 														} 
 													},error:function(){
-														alert(error);
+														$.message.alert(error);
 													}	
 												});
 												//企业贷款担保人信息
@@ -497,7 +497,7 @@
 															});
 														}
 													},error:function(){
-														alert("error");
+														$.message.alert("error");
 													}	
 												});
 												//企业贷款抵押物信息
@@ -531,7 +531,7 @@
 															});
 														}
 													},error:function(){
-														alert("error");
+														$.message.alert("error");
 													}	
 												});
 												//单笔贷款处理记录
@@ -612,9 +612,9 @@
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要修改的信息");
+												$.message.alert("请选择需要修改的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												alert("该贷款项已被核销");
+												$.message.alert("该贷款项已被核销");
 											} else {
 												$('#updateLoanDirlog').dialog(
 														"open");
@@ -646,9 +646,9 @@
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要回收的信息");
+												$.message.alert("请选择需要回收的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												alert("该贷款项已被核销");
+												$.message.alert("该贷款项已被核销");
 											} else {
 												$('#addLMR').dialog("open");
 												$("#comLoanIdLMR").html(
@@ -678,12 +678,12 @@
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												alert("请选择需要核销的信息");
+												$.message.alert("请选择需要核销的信息");
 											} else {
 												if (row.LOANSTATE_NAME == '核销中') {
-													alert("该贷款项正在核销中");
+													$.message.alert("该贷款项正在核销中");
 												} else if (row.LOANSTATE_NAME == '已核销') {
-													alert("该贷款项已被核销");
+													$.message.alert("该贷款项已被核销");
 												} else {
 													$('#applyWriteOff').dialog(
 															"open");
@@ -754,12 +754,12 @@
 													data : JSON.stringify(data),
 													contentType : 'application/json;charset=UTF-8',
 													success : function(data) {
-														alert(data);
+														$.message.alert(data);
 														$('#comDataGrid')
 																.datagrid();
 													},
 													error : function() {
-														alert("error");
+														$.message.alert("error");
 													}
 												});
 										$('#addLMR').dialog("close");
@@ -808,11 +808,11 @@
 					data : JSON.stringify(data),
 					contentType : 'application/json;charset=UTF-8',
 					success : function(data) {
-						alert(data);
+						$.message.alert(data);
 						$('#comDataGrid').datagrid();
 					},
 					error : function() {
-						alert("error");
+						$.message.alert("error");
 					}
 				});
 				$('#applyWriteOff').dialog("close");
@@ -849,11 +849,11 @@
 					data : JSON.stringify(data),
 					contentType : 'application/json;charset=UTF-8',
 					success : function(data) {
-						alert(data);
+						$.message.alert(data);
 						$('#comDataGrid').datagrid();
 					},
 					error : function() {
-						alert("error");
+						$.message.alert("error");
 					}
 				});
 				$('#updateLoanDirlog').dialog("close");
