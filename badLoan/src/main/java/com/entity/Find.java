@@ -9,6 +9,8 @@ package com.entity;
 public class Find {
 	//银行信息表(bankinfo)
 	private String bankinfoName;		//银行名称
+	//部门表(department)
+	private String deptName;			//部门名称
 	
 	//!!!个人客户贷款信息表(borloaninfo)
 	private String borloaninfoId;		//贷款编号（个人）
@@ -515,6 +517,14 @@ public class Find {
 
 	public void setUnrepayNumber(String unrepayNumber) {
 		this.unrepayNumber = unrepayNumber;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
 	}
 	
 }

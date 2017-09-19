@@ -43,11 +43,6 @@ public interface FindDao {
 	 * 查询担保人关系表(个人)
 	 */
 	public List<Find> findBorGuarantor(String borloaninfoId);
-	/**
-	 * 模糊查询3
-	 */
-	public List<Find> searchBorGuarantor(Find find);
-	
 	
 	
 	
@@ -56,12 +51,6 @@ public interface FindDao {
 	 * 查询担保人关系表(企业)
 	 */
 	public List<Find> findComGuarantor(String comloaninfoId);
-	/**
-	 * 模糊查询4
-	 */
-	public List<Find> searchComGuarantor(Find find);
-	
-	
 	
 	
 	
@@ -69,12 +58,6 @@ public interface FindDao {
 	 * 查询客户抵押物关系表(个人)
 	 */
 	public List<Find> findBorPledge(String borloaninfoId);
-	/**
-	 * 模糊查询5
-	 */
-	public List<Find> searchBorPledge(Find find);
-	
-	
 	
 	
 	
@@ -82,12 +65,6 @@ public interface FindDao {
 	 * 查询客户抵押物关系表(企业)
 	 */
 	public List<Find> findComPledge(String comloaninfoId);
-	/**
-	 * 模糊查询6
-	 */
-	public List<Find> searchComPledge(Find find);
-	
-	
 	
 	
 	
@@ -108,12 +85,6 @@ public interface FindDao {
 	 * 查询某个担保人所担保的个人项目
 	 */
 	public List<Find> findGuarantorBor(String guaId);
-	/**
-	 * 模糊查询8
-	 */
-	public List<Find> searchGuarantorBor(Find find);
-	
-	
 	
 	
 	
@@ -121,11 +92,6 @@ public interface FindDao {
 	 * 查询某个担保人所担保的企业项目
 	 */
 	public List<Find> findGuarantorCom(String guaId);
-	/**
-	 * 模糊查询9
-	 */
-	public List<Find> searchGuarantorCom(Find find);
-	
 	
 	
 	
@@ -147,24 +113,13 @@ public interface FindDao {
 	 * 查询某个经手人所经手的个人项目
 	 */
 	public List<Find> findEmpBor(String empId);
-	/**
-	 * 模糊查询11
-	 */
-	public List<Find> searchEmpBor(Find find);
-	
-	
-	
+
 	
 	
 	/**
 	 * 查询某个经手人所经手的企业项目
 	 */
 	public List<Find> findEmpCom(String empId);
-	/**
-	 * 模糊查询12
-	 */
-	public List<Find> searchEmpCom(Find find);
-	
 	
 	
 	

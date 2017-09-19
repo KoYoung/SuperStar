@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Find;
@@ -87,17 +86,6 @@ public class FindController {
 		System.out.println(list+"*************************************");
 		return list;
 	}
-	/**
-	 * 模糊查询3
-	 */
-	@RequestMapping("/searchBorGuarantor")
-	@ResponseBody
-	public List<Find> searchBorGuarantor(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchBorGuarantor(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
 	
 	
 	
@@ -112,18 +100,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询4
-	 */
-	@RequestMapping("/searchComGuarantor")
-	@ResponseBody
-	public List<Find> searchComGuarantor(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchComGuarantor(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 	
 	/**
@@ -137,18 +113,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询5
-	 */
-	@RequestMapping("/searchBorPledge")
-	@ResponseBody
-	public List<Find> searchBorPledge(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchBorPledge(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 	
 	/**
@@ -162,18 +126,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询6
-	 */
-	@RequestMapping("/searchComPledge")
-	@ResponseBody
-	public List<Find> searchComPledge(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchComPledge(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 	
 	/**
@@ -210,18 +162,6 @@ public class FindController {
 		System.out.println(list.size()+"+++++++++++++**********************+++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询8
-	 */
-	@RequestMapping("/searchGuarantorBor")
-	@ResponseBody
-	public List<Find> searchGuarantorBor(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchGuarantorBor(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 	
 	/**
@@ -235,18 +175,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询9
-	 */
-	@RequestMapping("/searchGuarantorCom")
-	@ResponseBody
-	public List<Find> searchGuarantorCom(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchGuarantorCom(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 		
 	/**
@@ -283,18 +211,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询11
-	 */
-	@RequestMapping("/searchEmpBor")
-	@ResponseBody
-	public List<Find> searchEmpBor(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchEmpBor(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
 	
 	
 	/**
@@ -308,19 +224,6 @@ public class FindController {
 		System.out.println(list+"++++++++++++++++++++++++++");
 		return list;
 	}
-	/**
-	 * 模糊查询12
-	 */
-	@RequestMapping("/searchEmpCom")
-	@ResponseBody
-	public List<Find> searchEmpCom(Find find) {
-		System.out.println(find+"++++++++++++++++++++++++++++");
-		List<Find> list = fs.searchEmpCom(find);
-		System.out.println(list+"++++++++++++++++++++++++++++");
-		return list;
-	}
-	
-	
 	
 	/**
 	 * 查询银行的个人不良贷款记录(柱状图)

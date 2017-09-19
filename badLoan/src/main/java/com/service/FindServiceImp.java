@@ -92,14 +92,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findBorGuarantor(borloaninfoId);
 		return list;
 	}
-	/**
-	 * 模糊查询3
-	 */
-	@Override
-	public List<Find> searchBorGuarantor(Find find){
-		List<Find> list = fd.searchBorGuarantor(find);
-		return list;
-	}
 	
 	
 	
@@ -113,16 +105,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findComGuarantor(comloaninfoId);
 		return list;
 	}
-	/**
-	 * 模糊查询4
-	 */
-	@Override
-	public List<Find> searchComGuarantor(Find find){
-		List<Find> list = fd.searchComGuarantor(find);
-		return list;
-	}
-	
-	
 	
 	
 	
@@ -132,14 +114,6 @@ public class FindServiceImp implements FindService{
 	@Override
 	public List<Find> findBorPledge(String borloaninfoId){
 		List<Find> list = fd.findBorPledge(borloaninfoId);
-		return list;
-	}
-	/**
-	 * 模糊查询5
-	 */
-	@Override
-	public List<Find> searchBorPledge(Find find){
-		List<Find> list = fd.searchBorPledge(find);
 		return list;
 	}
 	
@@ -153,14 +127,6 @@ public class FindServiceImp implements FindService{
 	@Override
 	public List<Find> findComPledge(String comloaninfoId){
 		List<Find> list = fd.findComPledge(comloaninfoId);
-		return list;
-	}
-	/**
-	 * 模糊查询6
-	 */
-	@Override
-	public List<Find> searchComPledge(Find find){
-		List<Find> list = fd.searchComPledge(find);
 		return list;
 	}
 	
@@ -204,16 +170,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findGuarantorBor(guaId);
 		return list;
 	}
-	/**
-	 * 模糊查询8
-	 */
-	@Override
-	public List<Find> searchGuarantorBor(Find find){
-		List<Find> list = fd.searchGuarantorBor(find);
-		return list;
-	}
-	
-	
 	
 	
 	
@@ -225,16 +181,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findGuarantorCom(guaId);
 		return list;
 	}
-	/**
-	 * 模糊查询9
-	 */
-	@Override
-	public List<Find> searchGuarantorCom(Find find){
-		List<Find> list = fd.searchGuarantorCom(find);
-		return list;
-	}
-	
-	
 	
 	
 	
@@ -274,16 +220,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findEmpBor(empId);
 		return list;
 	}
-	/**
-	 * 模糊查询11
-	 */
-	@Override
-	public List<Find> searchEmpBor(Find find){
-		List<Find> list = fd.searchEmpBor(find);
-		return list;
-	}
-	
-	
 	
 	
 	
@@ -295,15 +231,6 @@ public class FindServiceImp implements FindService{
 		List<Find> list = fd.findEmpCom(empId);
 		return list;
 	}
-	/**
-	 * 模糊查询12
-	 */
-	@Override
-	public List<Find> searchEmpCom(Find find){
-		List<Find> list = fd.searchEmpCom(find);
-		return list;
-	}
-	
 	
 	
 	

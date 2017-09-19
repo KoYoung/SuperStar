@@ -16,54 +16,10 @@
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 </head>
 <body>
-	<form id="search" method="post">
-		<table>
-			<tr>
-				<td>
-					&nbsp;&nbsp;贷款企业&nbsp;&nbsp;<input name="comName" type="text" 
-					class="easyui-textbox" data-options="prompt:'请输入关键字'">
-				</td>
-				<td>
-					&nbsp;&nbsp;担保人&nbsp;&nbsp;<input name="guaName" type="text" 
-					class="easyui-textbox" data-options="prompt:'请输入关键字'">
-				</td>
-				<td>
-					<a class="easyui-linkbutton" 
-					data-options="iconCls:'icon-search'" id="find">查询</a>
-				</td>
-			</tr>
-		</table>
-	</form>
 	<input type="hidden" id="one" value="<%=request.getParameter("id") %>">
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-$("#find").click(function(){
-	var data = $("#search").serialize();
-	//alert(data);
-	$.ajax({
-		url : "/badLoan/find/searchComGuarantor",
-		type : "post",
-		data : data,
-		success : function(data){
-			$("#dg").datagrid({
-				url : "",
-				data : data
-			});
-			//$('#dg').datagrid("reload");
-		},
-		error : function(){
-			alert("error!");
-		}
-	});
-});
-
-
-
-
-
-
-
 
 $(function(){
 	var a = $("#one").val();;

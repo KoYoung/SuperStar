@@ -15,79 +15,10 @@
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 </head>
 <body>
-	<form id="search" method="post">
-		<table>
-			<tr>
-				<td>
-					&nbsp;&nbsp;贷款企业&nbsp;&nbsp;<input name="comName" type="text" 
-					class="easyui-textbox" data-options="prompt:'请输入关键字'">
-				</td>
-				<td>
-					&nbsp;&nbsp;贷款状态&nbsp;&nbsp;<input name="loanstateName" 
-					type="text" id="loanStateSearch" >
-				</td>
-				<td>
-					&nbsp;&nbsp;银行&nbsp;&nbsp;<input name="bankinfoName" 
-					type="text" id="bankSearch" >
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					&nbsp;&nbsp;日期&nbsp;&nbsp;<input type="text" 
-					class="easyui-datebox" name="loanDate">&nbsp;&nbsp;
-					~&nbsp;&nbsp;<input type="text" class="easyui-datebox" 
-					name="loanRepaymentdate">
-				</td>
-				<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton" 
-					data-options="iconCls:'icon-search'" id="find">查询</a>	
-				</td>
-			</tr>
-		</table>
-	</form>
 	<input type="hidden" id="one" value="<%=request.getParameter("id") %>">
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-$("#find").click(function(){
-	var data = $("#search").serialize();
-	//alert(data);
-	$.ajax({
-		url : "/badLoan/find/searchGuarantorCom",
-		type : "post",
-		data : data,
-		success : function(data){
-			$("#dg").datagrid({
-				url : "",
-				data : data
-			});
-			//$('#dg').datagrid("reload");
-		},
-		error : function(){
-			alert("error!");
-		}
-	});
-});
-
-$("#loanStateSearch").combobox({
-	url : '/badLoan/loanStateController/findLoanState',
-	valueField : 'LOANSTATEID',
-	textField : 'LOANSTATENAME',
-	panelHeight : 'height',
-	value : '----选择状态----'
-});
-$("#bankSearch").combobox({
-	url : '/badLoan/BankInfo/findBankInfo',
-	valueField : 'bankInfoName',
-	textField : 'bankInfoName',
-	panelHeight : 'auto',
-	value : '----选择银行----'
-});
-
-
-
-
-
 
 $(function(){
 	var a = $("#one").val();
@@ -110,7 +41,6 @@ $(function(){
 					{field:'legalName',title:'法人代表',width:100},
 					{field:'bankinfoName',title:'银行',width:100},
 					{field:'loanNumber',title:'贷款金额',width:100},
-					{field:'contectName',title:'紧急联系人',width:100},
 					{field:'loanDate',title:'贷款时间',width:100},
 					{field:'loanRepaymentdate',title:'还款时间',width:100},
 					{field:'loanstateName',title:'贷款状态',width:100}

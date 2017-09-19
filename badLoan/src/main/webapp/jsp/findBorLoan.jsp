@@ -75,7 +75,7 @@ $("#find").click(function(){
 
 $("#loanStateSearch").combobox({
 	url : '/badLoan/loanStateController/findLoanState',
-	valueField : 'LOANSTATEID',
+	valueField : 'LOANSTATENAME',
 	textField : 'LOANSTATENAME',
 	panelHeight : 'height',
 	value : '----选择状态----'
