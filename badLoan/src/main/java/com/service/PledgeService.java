@@ -1,15 +1,10 @@
-package com.dao;
+package com.service;
 
 import java.util.List;
 
 import com.entity.Pledge;
 
-public interface PledgeDao {
-	/**
-	 * 添加抵押物品信息
-	 * 马利肖
-	 */
-	int addPledge(Pledge pledge);
+public interface PledgeService {
 	/**
 	 * 根据贷款编号查询抵押物信息
 	 */

@@ -9,12 +9,19 @@
 		legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info
 		from legal
 	</select>
-	<!-- <insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
-		insert into legal
-		(legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info)
-		values(#{legalId,jdbcType=VARCHAR},#{legalName,jdbcType=VARCHAR},#{legalCardtype,jdbcType=VARCHAR},#{legalCardnumber,jdbcType=VARCHAR},#{legalNation,jdbcType=VARCHAR},#{legalGender,jdbcType=VARCHAR},#{legalMarry,jdbcType=VARCHAR},#{legalAddress,jdbcType=VARCHAR},#{legalPhone,jdbcType=VARCHAR},#{legalInfo,jdbcType=VARCHAR})
-	</insert> -->
+	<!-- <insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal"> 
+		insert into legal (legal_id,legal_name,legal_cardtype,legal_cardnumber,legal_nation,legal_gender,legal_marry,legal_address,legal_phone,legal_info) 
+		values(#{legalId,jdbcType=VARCHAR},#{legalName,jdbcType=VARCHAR},#{legalCardtype,jdbcType=VARCHAR},#{legalCardnumber,jdbcType=VARCHAR},#{legalNation,jdbcType=VARCHAR},#{legalGender,jdbcType=VARCHAR},#{legalMarry,jdbcType=VARCHAR},#{legalAddress,jdbcType=VARCHAR},#{legalPhone,jdbcType=VARCHAR},#{legalInfo,jdbcType=VARCHAR}) 
+		</insert> -->
 	<insert id="addLegal" useGeneratedKeys="false" parameterType="com.entity.Legal">
-		insert into legal values(legal_seq.nextval,#{legalName},#{legalCardtype},#{legalCardnumber},#{legalNation},#{legalGender},#{legalMarry},#{legalAddress},#{legalPhone},#{legalInfo})
+		insert into legal
+		values(legal_seq.nextval,#{legalName},#{legalCardtype},#{legalCardnumber},#{legalNation},#{legalGender},#{legalMarry},#{legalAddress},#{legalPhone},#{legalInfo})
 	</insert>
+	<!-- 根据企业编号查询贷款企业的法人 -->
+	<select id="findLegalCom" useCache="false" resultType="com.entity.Legal">
+		select lg.* from company
+		cp,legal lg,conpanylegal cl
+		where cp.com_id=cl.company_id and lg.legal_id=cl.legal_id
+		and cp.com_id=#{comId,jdbcType=VARCHAR}
+	</select>
 </mapper>

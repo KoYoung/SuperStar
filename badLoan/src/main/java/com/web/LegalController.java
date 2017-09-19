@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.entity.Legal;
 import com.service.LegalService;
 
@@ -44,5 +43,14 @@ public class LegalController {
 			return "add success";
 		else
 			return "add false";
+	}
+	/**
+	 * 根据企业编号查询贷款企业的法人
+	 */
+	@RequestMapping("/findLegalCom")
+	@ResponseBody
+	public Legal findLegalCom(@RequestParam String comId){
+		Legal lList = legalService.findLegalCom(comId);
+		return lList;
 	}
 }

@@ -62,6 +62,7 @@ tr td {
 	</div>
 
 	<script>
+	$(function(){
 		$('#dd').dialog(
 						{
 							title : '不良贷款信息录入',
@@ -108,6 +109,7 @@ tr td {
 										}
 									} ]
 						});
+	});
 		$("#borloaninfoId").blur(
 			function() {
 				$("#borId").val();
@@ -187,6 +189,7 @@ tr td {
 			required : true,
 			width : 200,
 		});
+		$(function(){
 		$('#dg').datagrid({
 			url : '/badLoan/replace/findReplace',
 			striped : true, //斑马线 
@@ -215,12 +218,8 @@ tr td {
 			}, {
 				field : 'replaceDate',
 				title : '移交时间',
-				width : 200
+				width : 150
 			},{
-				field : 'replaceComment',
-				title : '移交说明',
-				width : 200
-			}, {
 				field : 'loaninfoType',
 				title : '贷款种类',
 				width : 100,
@@ -231,7 +230,12 @@ tr td {
 				        return "企业贷款";
 				    }
 				}
-			}] ]
+			},{
+				field : 'replaceComment',
+				title : '移交说明',
+				width : 400
+			}]]
+		});
 		});
 	</script>
 </body>

@@ -25,4 +25,8 @@ public interface LegalService {
 	 * @return 插入成功返回1
 	 */
 	int addLegal(Legal legal);
+	/**
+	 * 根据企业编号查询贷款企业的法人
+	 */
+	public Legal findLegalCom(String comId);
 }

@@ -142,6 +142,7 @@ td {
 	</div>
 </body>
 <script type="text/javascript">
+$(function(){
 	$('#dg').datagrid({
 		url : '/badLoan/WriteoffManage/findWriteoffManage',
 		striped : true, //斑马线 
@@ -254,7 +255,6 @@ td {
 		} */] ]
 
 	});
-
 	//点击详情按钮弹出模态框
 	$('#aa')
 			.dialog(
@@ -313,6 +313,7 @@ td {
 									}
 								} ]
 					});
+	});
 	$("#xiangBtn")
 			.click(
 					function() {

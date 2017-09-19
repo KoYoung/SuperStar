@@ -61,7 +61,7 @@ tr td {
 	</div>
 	<table id="dg"></table>
 	<div id="dd">
-		<div style="padding: 0 30px 20px 30px">
+		<div style="padding: 0 25px 20px 25px">
 			<h1>个人贷款信息录入</h1>
 			<form id="ff" method="post" enctype="multipart/form-data">
 				<table>
@@ -321,10 +321,12 @@ tr td {
 	</div>
 
 	<script>
+$(function(){
 $('#dd')
 		.dialog(
 				{
 					title : '不良贷款信息录入',
+					height: 750,
 					closed : true,
 					cache : false,
 					modal : true,
@@ -360,7 +362,7 @@ $('#dd')
 								}
 							} ]
 				});
-
+});
 
 		$("#addBtn").click(function() {
 			$('#dd').dialog("open");
@@ -629,7 +631,6 @@ $('#dd')
 	 	
 		$('#dg').datagrid({
 			url : '/badLoan/BorLoanInfo/findBorLoanInfo',
-			height : '80%',
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 			pagination : true, //底部分页
@@ -683,8 +684,8 @@ $('#dd')
 				width : 150
 			}, {
 				field : 'loanRate',
-				title : '贷款利率',
-				width : 100
+				title : '贷款利率(%)',
+				width : 70
 			},{
 				field : 'lmrName',
 				title : '贷款状态',
