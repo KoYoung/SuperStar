@@ -13,7 +13,7 @@
 	type="text/css"></link>
 <style>
 	.ti1{
-	font-size: 15px;
+	font-size: 20px;
 	font-family: 新宋体;
 	color: #386FD2;
 	line-height: 40px;
@@ -33,6 +33,9 @@
 .img{
 	width: 293px;
 	height: 150px;
+}
+tr td{
+	font-size:14px;
 }
 </style>
 </head>
@@ -165,7 +168,7 @@
 							</td>
 						</tr>
 					</table>
-					资料照片：<div id="legalInfo"></div>
+					<span style="font-size:14px;margin-left:6px">资料照片：</span><div id="legalInfo"></div>
 				</div>
 				<div class="ti1">担保人信息</div>
 				<div id="gua">
@@ -184,7 +187,7 @@
 							<td id="ple2"></td>
 						</tr>
 					</table>
-					抵押物照片：<div id="pledgePhoto"></div>
+					<span style="font-size:14px;margin-left:6px">抵押物照片：</span><div id="pledgePhoto"></div>
 				</div>
 				<div class="ti1">贷款处理记录</div>
 				<table id="chuli"></table>
@@ -776,8 +779,8 @@
 	$("#detailDialog").dialog({
 		title : '贷款详情',
 		width : '40%',
-		height : 750,
-		top : '0%',
+		height : 740,
+		top : '0.5%',
 		closed : true,
 		cache : false,
 		modal : true

@@ -12,11 +12,13 @@
 }
 
 tr td {
-	padding-bottom: 15px;
+	padding-bottom: 10px;
+	font-size: 15px;
 }
 
 td {
 	margin-left: 10px;
+	font-size: 15px;
 }
 
 .form-control {
@@ -37,7 +39,7 @@ td {
 }
 
 #ti1, #ti2 {
-	font-size: 18px;
+	font-size: 20px;
 	font-family: 新宋体;
 	color: red;
 	line-height: 40px;
@@ -320,9 +322,9 @@ $(function(){
 						var row = $('#dg').datagrid('getSelected');
 						if (row != null) {
 							$('#aa').dialog({
-								height:"400",
+								height:"700",
 								title : '贷款详情',
-								top : '5%',
+								top : '4%',
 								closed : false,
 								cache : false,
 								modal : true
