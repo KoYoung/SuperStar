@@ -65,8 +65,9 @@ td {
 		<a id="xiangBtn" href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add'">贷款详情</a> <input
 			class="easyui-textbox" id="select" type="text"
-			Style="height: 25px; width: 180px" prompt='请输入贷款编号和贷款人姓名'/> <a id="btn" href="#"
-			class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+			Style="height: 25px; width: 180px" prompt='请输入贷款编号和贷款人姓名' /> <a
+			id="btn" href="#" class="easyui-linkbutton"
+			data-options="iconCls:'icon-search'">查询</a>
 	</div>
 	<table id="dg"></table>
 	<div id="aa">
@@ -207,15 +208,15 @@ td {
 			field : 'unrepayNumber',
 			title : '未还贷款金额(万元)',
 			width : 100
-		}, {
-			field : 'loanDate',
-			title : '贷款日期',
-			width : 150
-		}, {
-			field : 'loanRepaymentDate',
-			title : '还款日期',
-			width : 150
-		}, {
+		}/* , {
+					field : 'loanDate',
+					title : '贷款日期',
+					width : 150
+				}, {
+					field : 'loanRepaymentDate',
+					title : '还款日期',
+					width : 150
+				} */, {
 			field : 'loanstateName',
 			title : '贷款状态',
 			width : 100
@@ -250,7 +251,7 @@ td {
 				var str = '<a href="#" name="no" class="easyui-linkbutton noBtn"></a>';
 				return str;
 			}
-		} */] ],
+		} */] ]
 
 	});
 
@@ -318,6 +319,7 @@ td {
 						var row = $('#dg').datagrid('getSelected');
 						if (row != null) {
 							$('#aa').dialog({
+								height:"400",
 								title : '贷款详情',
 								top : '5%',
 								closed : false,
@@ -362,7 +364,7 @@ td {
 													field : 'loanstateName',
 													title : '贷款状态',
 													width : 100
-												} ]],
+												} ] ],
 											});
 							$("#huishou")
 									.datagrid(
@@ -373,7 +375,7 @@ td {
 												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
 												//resizeHandle : 'right',
 												rownumbers : true, //如果为true，则显示一个行号列
-												columns : [ [  {
+												columns : [ [ {
 													field : 'empName',
 													title : '经手人',
 													width : 80
