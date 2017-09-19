@@ -8,17 +8,18 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 </head>
 <body>
 	<table id="dg"></table>
-	<div id="empDialog" style="padding:5px;display:none;">
+	<div id="empDialog" style="padding: 5px; display: none;">
 		<form id="empForm" method="post">
 			<table>
 				<tr>
 					<th>员工编号</th>
-					<td><input type="text" name="empId" class="easyui-validatebox" data-options="validType:'minLength[4]'"  required="required"></input></td>
+					<td><input type="text" name="empId" class="easyui-validatebox"
+						data-options="validType:'minLength[4]'" required="required"></input></td>
 					<th>员工姓名</th>
 					<td><input type="text" name="empName"></td>
 				</tr>
@@ -30,9 +31,8 @@
 				</tr>
 				<tr>
 					<th>身份证号</th>
-					<td width="160px">
-					<input type="text" name="empCardnumber">
-				</td>
+					<td width="160px"><input type="text" name="empCardnumber">
+					</td>
 					<th>地址</th>
 					<td><input type="text" name="empAddress"></td>
 				</tr>
@@ -40,7 +40,7 @@
 					<th>学历</th>
 					<td><input type="text" name="empEducation"></td>
 					<th>部门</th>
-					<td><input type="text"  name="empDepartment"></td>
+					<td><input type="text" name="empDepartment"></td>
 				</tr>
 				<tr>
 					<th>邮箱</th>
@@ -50,7 +50,7 @@
 				</tr>
 			</table>
 		</form>
-	</div>  
+	</div>
 </body>
 <script>
 	var datagrid;
@@ -58,7 +58,7 @@
 		url : '/badLoan/Emp/findEmp',
 		rownumbers : true, //显示行号
 		pagination : true, //显示分页
-		pageSize : 5, //默认显示多少行
+		pageSize : 10, //默认显示多少行
 		pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 		sortName : 'empId',//默认员工编号
 		sortOrder : 'asc',//默认升序
@@ -99,16 +99,13 @@
 			handler : function() {
 				edit();
 			}
-		}
-
-		]
+		} ]
 	});
 	function searchByCondition() {
 		datagrid.datagrid('load', {
 			ename : $("#ename").val(),
 			job : $("#job").val()
 		});
-
 	}
 	function resetsearchByCondition() {
 		//刷新页面
@@ -128,14 +125,14 @@
 				text : '添加',
 				handler : function() {
 					var f = $("#empForm").serialize();
-						$.ajax({
-							url : '/badLoan/Emp/addEmp',
-							data:f,
-							success:function(data){
-								datagrid.datagrid("reload");
-								p.dialog("close");
-							}
-						});
+					$.ajax({
+						url : '/badLoan/Emp/addEmp',
+						data : f,
+						success : function(data) {
+							datagrid.datagrid("reload");
+							p.dialog("close");
+						}
+					});
 				}
 
 			} ],

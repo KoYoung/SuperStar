@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.ComloanInfoDao">
 	<!-- 查询企业贷款信息 -->
 	<select id="findComloanInfo" resultType="com.entity.ComloanInfo">
-		select
+		select distinct
 		ci.comloaninfo_id,cp.com_name,bi.bankinfo_name,ci.contract_id,
 		e.emp_name,lt.loantype_name,ci.loan_number,ci.loan_account,
 		ci.loan_date,ci.loan_repayment_date,ci.loan_rate,
@@ -34,18 +34,14 @@
 		#{loanType,jdbcType=VARCHAR},#{loanNumber,jdbcType=VARCHAR},
 		#{loanAccount,jdbcType=VARCHAR},to_date(#{loanDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
 		to_date(#{loanRepaymentDate,jdbcType=VARCHAR},'yyyy-MM-dd'),
-		#{loanRate,jdbcType=VARCHAR})
+		#{loanRate,jdbcType=VARCHAR},#{unrepayNumber,jdbcType=NUMERIC})
 	</insert>
 	<!-- 根据贷款编号查询贷款详情 -->
 	<select id="findComloanInfo2" resultType="com.entity.BorLoanInfo">
 		select e.emp_id,
-		cp.com_id,cp.com_name
-		borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
-		from
-		comloaninfo ci,company cp,bankinfo bk,employee e
-		where
-		ci.com_id=cp.com_id
-		and ci.bankinfo_id=bk.bankinfo_id
+		cp.com_id,cp.com_name borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
+		from comloaninfo ci,company cp,bankinfo bk,employee e
+		where ci.com_id=cp.com_id
 		and
 		ci.emp_id=e.emp_id
 		and loaninfo_type=1 and
@@ -63,15 +59,22 @@
 		from comloaninfo where contract_id=#{contractId}
 	</select>
 
-	<select id="findComLoan" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		select * from comloaninfo cli,bankinfo bi,employee ee,loantype
+	<select id="findComLoan" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select
+		cli.loaninfo_type,cli.comloaninfo_id,cli.contract_id,cli.loan_type,cli.loan_number,cli.loan_account,to_char(cli.loan_date,'yyyy-MM-dd')
+		LOAN_DATE,to_char(cli.loan_repayment_date,'yyyy-MM-dd')
+		LOAN_REPAYMENT_DATE,cli.loan_rate,(cli.loan_number-cli.unrepay_number)unrepay_number,bi.*,cp.*,ee.*,lt.*,ls.*,lm.*
+		from comloaninfo cli,bankinfo bi,employee ee,loantype
 		lt,loanstate
 		ls,company cp,loanmanage lm
 		<where>
 			cli.bankinfo_id = bi.bankinfo_id and cli.com_id = cp.com_id and
 			cli.emp_id = ee.emp_id
-			and cli.loan_type = lt.loantype_id and ls.loanstate_id = lm.loanstate_id
-			and cli.comloaninfo_id = lm.loaninfo_id
+			and cli.loan_type = lt.loantype_id and
+			ls.loanstate_id = lm.loanstate_id
+			and cli.comloaninfo_id =
+			lm.loaninfo_id
 			<if test="comName!=null and comName!=''">
 				and cp.com_name like '%' || '${comName}' ||'%'
 			</if>
@@ -81,10 +84,11 @@
 			<if test="contractId!=null and contractId!=''">
 				and cli.contract_id like '%' || '${contractId}' || '%'
 			</if>
-			<if test="!(loanStateId.length()>5)">
+			<if
+				test="loanStateId!=null and loanStateId!='' and !(loanStateId.length()>5)">
 				and lm.loanstate_id = #{loanStateId,jdbcType=VARCHAR}
 			</if>
-			<if test="!(bankId.length()>5)">
+			<if test="bankId!=null and bankId!='' and !(bankId.length()>5)">
 				and cli.bankinfo_id = #{bankId,jdbcType=VARCHAR}
 			</if>
 			<choose>
@@ -107,5 +111,32 @@
 			</choose>
 		</where>
 	</select>
+	<insert id="addLmr">
+		insert into
+		loanmanagerecord
+		(lmr_id,loaninfo_id,emp_id,lmr_date,lmr_name,lmr_comment)
+		values
+		(lmr_sequence.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),1,#{lmrComment})
+	</insert>
+	<update id="modifyLoanState">
+		update loanmanage
+		set loanstate_id =
+		#{loanState,jdbcType=VARCHAR} where
+		loaninfo_id =
+		#{comloaninfoId,jdbcType=VARCHAR}
+	</update>
 
+	<update id="modifyUnrepayNumber" parameterType="java.util.HashMap">
+		update
+		comloaninfo set unrepay_number = #{unrepayNumber,jdbcType=NUMERIC}
+		where comloaninfo_id = #{comloaninfoId,jdbcType=VARCHAR}
+	</update>
+	
+	<insert id="addRepaymentinfo" parameterType="java.util.HashMap">
+		insert into
+		repaymentinfo
+		(repay_id,loaninfo_id,emp_id,repay_date,repay_type,repay_comment,repay_number)
+		values
+		(repay_se.nextval,#{comloaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},to_char(sysdate,'yyyy-MM-dd'),#{repayType,jdbcType=VARCHAR},#{repayComment,jdbcType=VARCHAR},#{repayNumber,jdbcType=NUMERIC})
+	</insert>
 </mapper>

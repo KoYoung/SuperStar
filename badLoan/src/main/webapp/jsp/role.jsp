@@ -15,9 +15,17 @@
 	<table id="proDataGrid"></table>
 	<div id="toolbar">
 		<a id="addBtn" href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-save'">增加</a>
+			data-options="iconCls:'icon-add'">增加角色</a> <a id="addRight"
+			href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-add'">增加权限</a> <a id="selRight"
+			href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-search'">查看权限</a> <a id="updateRight"
+			href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-tip'">修改权限</a>
 	</div>
-
+	<div id="rightDialog">
+		
+	</div>
 	<div id="handlerDialog">
 		<form id="myForm" method="post">
 			<table width="100%" class="formtable">
@@ -43,9 +51,18 @@
 	$("#addBtn").click(function() {
 		$('#handlerDialog').dialog("open");
 	});
+	$("#addRight").click(function() {
+		$('#handlerDialog').dialog("open");
+	});
+	$("#selRight").click(function() {
+		$('#handlerDialog').dialog("open");
+	});
+	$("#updateRight").click(function() {
+		$('#handlerDialog').dialog("open");
+	});
 	$('#handlerDialog').dialog({
 		title : '增加角色',
-		iconCls : 'icon-save',
+		iconCls : 'icon-add',
 		width : 400,
 		height : 300,
 		top : 100,
@@ -94,23 +111,21 @@
 	$(function() {
 		$('#proDataGrid').datagrid({
 			url : '/badLoan/roleController/queryRole',
-			// data:data,
 			fitColumns : true,//自动适应网格宽度
 			striped : true,//显示斑马线
 			idField : "roleId",//设置productid为主键
 			fit : true,//
 			rownumbers : true,
-			singleSelect : false,
+			singleSelect : true,
 			pagination : true,
 			pageSize : 5,
 			pageList : [ 5, 10, 20 ],
 			toolbar : "#toolbar",
-			
 			columns : [ [ {
 				field : 'roleId',
 				title : '编号',
 				width : 200
-			} ,{
+			}, {
 				field : 'roleName',
 				title : '名称',
 				width : 200,
@@ -118,28 +133,8 @@
 				field : 'roleComment',
 				title : '说明',
 				width : 200,
-			}, {
-				field:'operate',
-				title:'操作',
-				align:'center',
-				width:$(this).width()*0.1,  
-			    formatter:function(value, row, index){  
-			        var str = '<a href="#" name="opera" class="easyui-linkbutton" ></a><a href="#" name="opera2" class="easyui-linkbutton" ></a>';  
-			        return str;  
-			        }
-			} ] ],
-			onLoadSuccess:function(data){    
-	       		$("a[name='opera']").linkbutton({
-	       			text:'禁用',
-	       			plain:true,
-	       			iconCls:'icon-cancel'
-	       			
-	       		});
-	       		$("a[name='opera2']").linkbutton({text:'启用',plain:true,iconCls:'icon-ok'});
-			},  
+			} ] ]
 		});
-
-		});
-	
+	});
 </script>
 </html>

@@ -13,13 +13,13 @@
     	"id":102, 
         "text":"角色管理",    
         "attributes":{    
-            "url":"role.jsp"
+            "url":"role2.jsp"
         }
     },{   
     	"id":103, 
         "text":"权限管理",    
         "attributes":{
-            "url":"right.jsp"
+            "url":"right2.jsp"
         }
     }]    
 },{
@@ -58,8 +58,8 @@
     }]    
 },{
    	"id":4,
-   	"state":"closed",
-    "text":"贷款信息管理",    
+    "text":"贷款信息管理",
+    "state":"closed",     
     "children":[{  
     	"id":401,   
         "text":"个人贷款信息管理",
@@ -109,9 +109,9 @@
         }
     },{    
     	"id":505, 
-        "text":"贷款清收",
+        "text":"核销审核",
         "attributes":{    
-            "url":"studentManager.jsp"
+            "url":"writeOffManage.jsp"
         }
     }]    
 },{

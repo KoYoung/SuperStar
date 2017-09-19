@@ -7,8 +7,6 @@ package com.entity;
  */
 public class LoanType {
 	private String loantypeId;
-	private String loantypeName;
-	private String loanTypeId;
 	private String loanTypeName;
 	private Integer typesOfLoant;
 
@@ -18,22 +16,6 @@ public class LoanType {
 
 	public void setLoantypeId(String loantypeId) {
 		this.loantypeId = loantypeId;
-	}
-
-	public String getLoantypeName() {
-		return loantypeName;
-	}
-
-	public void setLoantypeName(String loantypeName) {
-		this.loantypeName = loantypeName;
-	}
-
-	public String getLoanTypeId() {
-		return loanTypeId;
-	}
-
-	public void setLoanTypeId(String loanTypeId) {
-		this.loanTypeId = loanTypeId;
 	}
 
 	public String getLoanTypeName() {
@@ -52,4 +34,9 @@ public class LoanType {
 		this.typesOfLoant = typesOfLoant;
 	}
 
+	@Override
+	public String toString() {
+		return "LoanType [loantypeId=" + loantypeId + ", loanTypeName=" + loanTypeName + ", typesOfLoant=" + typesOfLoant + "]";
+	}
+	
 }

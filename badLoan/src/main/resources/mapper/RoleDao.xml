@@ -2,14 +2,43 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.dao.RoleDao">
-	<!--  查询角色 -->
+	<!-- 查询角色 -->
 	<select id="findRole" resultType="com.entity.Role">
 		select * from role
 	</select>
 	<!-- 添加角色 -->
 	<insert id="addRole" parameterType="com.entity.Role">
-		insert into role (role_id,role_name,role_comment) values(#{roleId,jdbcType=VARCHAR},#{roleName,jdbcType=VARCHAR},#{roleComment,jdbcType=VARCHAR})
+		insert into role
+		(role_id,role_name,role_comment)
+		values(#{roleId,jdbcType=VARCHAR},#{roleName,jdbcType=VARCHAR},#{roleComment,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="queryRightByRoleId" parameterType="String"
+		resultType="java.util.HashMap">
+		select * from
+		right ri , role ro,roleright rr where
+		ro.role_id = #{roleId} and ri.right_id = rr.right_id and ro.role_id =
+		rr.role_id
+	</select>
+
+	<delete id="deleteRoleRightById" parameterType="String">
+		delete from
+		roleright where role_id = #{param1} and right_id = (#{param2})
+	</delete>
+	<delete id="deleteAllRightById" parameterType="String">
+		delete from
+		roleright where role_id = #{roleId}
+	</delete>
+	<insert id="addRoleRight" parameterType="String">
+		insert into roleright
+		(role_id,right_id)values(#{param1},#{param2})
+	</insert>
+	
+	<insert id="addRoleByAJAX" parameterType="java.util.HashMap">
+		insert into role
+		(role_id,role_name,role_comment)
+		values(role_sequence.nextval,#{roleName,jdbcType=VARCHAR},#{roleComment,jdbcType=VARCHAR})
 	</insert>
 </mapper>

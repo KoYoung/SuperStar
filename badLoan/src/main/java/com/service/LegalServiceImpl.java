@@ -39,5 +39,15 @@ public class LegalServiceImpl implements LegalService {
 	public int addLegal(Legal legal) {
 		return legalDao.addLegal(legal);
 	}
-
+	/**
+	 * 根据企业编号查询贷款企业的法人
+	 */
+	public Legal findLegalCom(String comId){
+		List<Legal> lList = null;
+		lList = legalDao.findLegalCom(comId);
+		if(lList.size()>0){
+			return lList.get(0);
+		}
+		return null;
+	}
 }

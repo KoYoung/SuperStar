@@ -26,4 +26,8 @@
 		insert into company
 		values(company_seq.nextval,#{comName,jdbcType=VARCHAR},#{comCode,jdbcType=VARCHAR},#{comType,jdbcType=VARCHAR},#{comLicense,jdbcType=VARCHAR},#{comAddress,jdbcType=VARCHAR},#{comCard,jdbcType=VARCHAR},#{comParent,jdbcType=VARCHAR},#{comLegalId,jdbcType=VARCHAR},#{comProperty,jdbcType=VARCHAR},#{comPostcode,jdbcType=VARCHAR},#{comLinkman,jdbcType=VARCHAR},#{comLinphone,jdbcType=VARCHAR},#{comFund,jdbcType=VARCHAR},#{comCredit,jdbcType=VARCHAR},#{conPhoto,jdbcType=VARCHAR})
 	</insert>
+	<!-- 查询所有企业用户编号 -->
+	<select id="findCompanyId" resultType="com.entity.Company">
+		select com_id,com_name from company
+	</select>
 </mapper>

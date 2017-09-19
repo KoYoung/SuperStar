@@ -48,6 +48,9 @@
 			bor_unit_address=#{borUnitAddress,jdbcType=VARCHAR},bor_unit_phone=#{borUnitPhone,jdbcType=VARCHAR},bor_position=#{borPosition,jdbcType=VARCHAR},bor_income=#{borIncome,jdbcType=NUMERIC},bor_phone=#{borPhone,jdbcType=VARCHAR},bor_postcode=#{borPostcode,jdbcType=VARCHAR},bor_education=#{borEducation,jdbcType=VARCHAR},bor_credit=#{borCredit,jdbcType=VARCHAR},bor_photo=#{borPhoto,jdbcType=VARCHAR}
 			where borrower_id=#{borrowerId}
 		</update>
-
+		<!-- 查询所有个人用户编号 -->
+		<select id="findBorId" resultType="com.entity.BorRower">
+			select bor_id,bor_name from borrower
+		</select>
 </mapper>
 	

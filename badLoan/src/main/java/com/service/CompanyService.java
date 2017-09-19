@@ -21,4 +21,8 @@ public interface CompanyService {
 
 	public int addCompany(Company company);
 
+	/**
+	 * 查询所有企业用户编号
+	 */
+	public List<Company> findCompanyId();
 }

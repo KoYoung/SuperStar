@@ -2,19 +2,28 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
 <mapper namespace="com.dao.LoanManageRecordDao">
+	<!-- 查询所有贷款处理记录 -->
 	<select id="findLoanManageRecord" resultType="com.entity.LoanManageRecord">
-		select lmr_id,emp_id,lmr_date,lmr_name,lmr_comment from loanmanagerecord
+		select
+		lg.*,e.emp_name,ls.loanstate_name from loanmanagerecord lg,employee
+		e,loanstate ls
+		where lg.emp_id=e.emp_id and lg.lmr_name=ls.loanstate_id
+		and
+		loaninfo_id=#{loaninfoId}
 	</select>
 	<!-- 添加个人贷款处理记录 -->
-	<insert id="addLoanManageRecord" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord">
-		insert into loanmanagerecord values(lmr_sequence.nextval,borloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
+	<insert id="addLoanManageRecord" useGeneratedKeys="false"
+		parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord
+		values(lmr_sequence.nextval,borloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
 	</insert>
-	<!-- 添加企业贷款处理记录 -->
-	<!-- <insert id="addLoanManageRecordCom" useGeneratedKeys="false" parameterType="com.entity.LoanManageRecord">
-		insert into loanmanagerecord values(lmr_sequence.nextval,comloaninfo_sequence.currval,#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},0,null)
-	</insert> -->
-
+	<!-- 当核销通过时，添加贷款处理记录 -->
+	<insert id="addLoanMR" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord values(lmr_sequence.nextval,#{loaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},8,#{lmrComment,jdbcType=VARCHAR})
+	</insert>	
+	<!-- 当核销驳回时，添加贷款处理记录 -->
+	<insert id="addLoanMRBo" parameterType="com.entity.LoanManageRecord">
+		insert into loanmanagerecord values(lmr_sequence.nextval,#{loaninfoId,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{lmrDate,jdbcType=VARCHAR},9,#{lmrComment,jdbcType=VARCHAR})
+	</insert>	
 </mapper>

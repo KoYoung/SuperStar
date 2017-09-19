@@ -1,16 +1,15 @@
 package com.service;
 
-import java.util.List;
-
 import com.entity.Replace;
+import com.util.PagingResult;
 
 public interface ReplaceService {
 	/**
 	 * 业务移交记录
 	 */
-	int addReplace(Replace replace);
+	String addReplace(Replace replace);
 	/**
 	 * 查询所有的业务移交记录
 	 */
-	List<Replace> findReplace();
+	PagingResult<Replace> findReplace(Integer page,Integer rows);
 }

@@ -11,4 +11,8 @@ import com.entity.Legal;
 public interface LegalDao {
 	public List<Legal> findLegalDao();
 	public int addLegal(Legal legal);
+	/**
+	 * 根据企业编号查询贷款企业的法人
+	 */
+	public List<Legal> findLegalCom(String comId);
 }

@@ -8,7 +8,7 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
 	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
@@ -30,22 +30,31 @@
 	background-size : cover;
 }
 </style>
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+	
+</script>
+>>>>>>> branch 'master' of https://github.com/KoYoung/superStar.git
 
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
-		style="height: 105px;">
-		<h3 align="center">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h3>
-		<div style="width: 250px; margin-left: 80%; padding-top: 10px;">
-			欢迎,<%=session.getAttribute("username")%>!&nbsp;&nbsp;&nbsp; <a
-				href="login.jsp">注销</a><br> 现在的时间是:<span id="date"></span>
+		style="height: 'auto';">
+		<h4 style="float: left;">银&nbsp;行&nbsp;不&nbsp;良&nbsp;贷&nbsp;款&nbsp;信&nbsp;息&nbsp;管&nbsp;理&nbsp;系&nbsp;统</h4>
+		<div style="width: 240px; float: right;">
+			欢迎,<span id="userName"></span>! &nbsp;&nbsp;&nbsp; <a
+				href="/badLoan/user/userLogout">注销</a><br> 现在的时间是:<span
+				id="date"></span>
 		</div>
 	</div>
-	<div data-options="region:'west',title:'系统菜单',collapsible:false"
-		style="width: 140px;">
+	<div data-options="region:'west',title:'系统菜单',collapsible:true"
+		style="width: 13%;">
+		<a id="openBtn" href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-add'" style="width: 100%">展开</a>
 		<ul id="homeTree"></ul>
 	</div>
-	<div data-options="region:'center',title:''" style="background: #eee;">
+	<div data-options="region:'center',title:''">
 		<div id="tabsInfo" class="easyui-tabs" data-options="fit:true">
 			<div title="主页" id="zhuye" class="aa">
 			
@@ -441,6 +450,7 @@
 	</div>
 </body>
 <script type="text/javascript">
+<<<<<<< HEAD
 
 function showData() {
 	var date = new Date();
@@ -464,6 +474,91 @@ $(function() {
 			if (children.length == 0) {
 				addTab(node.text, node.attributes.url);
 			}
+=======
+	var flag = 0;
+	$("#openBtn").click(function() {
+		//console.log($("#homeTree").tree("expandAll"));
+		if (flag != 1) {
+			$("#homeTree").tree("expandAll");
+			$("#openBtn").linkbutton({
+				iconCls : 'icon-remove',
+				text : '关闭'
+			});
+		} else {
+			$("#homeTree").tree("collapseAll");
+			$("#openBtn").linkbutton({
+				iconCls : 'icon-add',
+				text : '展开'
+			});
+			flag =0;
+		}
+	});
+	$.ajax({
+		url : "/badLoan/user/getUserSession",
+		success : function(data) {
+			if (data == "error") {
+				$.messager.alert('系统提示', '请重新登录', 'info');
+				window.location.href = "/badLoan/jsp/login.jsp";
+			} else {
+				var data = JSON.parse(data);
+				//console.log(data.USER_NAME);
+				$("#userName").html(data.USER_NAME);
+				$("#homeTree").tree(
+						{
+							url : "/badLoan/right/getUserRightList",
+							animate : true,
+							lines : true,
+							queryParams : {
+								data : data.USER_ID
+							},
+							onClick : function(node) {
+								var children = $("#homeTree").tree(
+										"getChildren", node.target);
+								if (children.length == 0) {
+									addTab(node.text, node.attributes.url);
+								}
+							},
+							onLoadSuccess : function() {
+								$("#homeTree").tree("collapseAll");
+							},
+							onExpand : function() {
+								flag = 1;
+								$("#openBtn").linkbutton({
+									iconCls : 'icon-remove',
+									text : '关闭'
+								});
+							}
+						});
+			}
+		}
+	});
+
+	function showData() {
+		var date = new Date();
+		var str = "" + date.getFullYear() + "年";
+		str += (date.getMonth() + 1) + "月";
+		str += date.getDate() + "日";
+		str += date.getHours() + "时";
+		str += date.getMinutes() + "分";
+		str += date.getSeconds() + "秒";
+		$("#date").html(str);
+	}
+	setInterval("showData()", 1000);
+
+	function addTab(title, url) {
+		var tab = $("#tabsInfo").tabs("getTab", title);
+		if (tab) {
+			$("#tabsInfo").tabs("select", title);
+		} else {
+			$("#tabsInfo").tabs(
+					"add",
+					{
+						title : title,
+						content : "<iframe src=" + url
+								+ " width='99%' height='99%' frameborder=0>",
+						closable : true
+					});
+>>>>>>> branch 'master' of https://github.com/KoYoung/superStar.git
 		}
 	});
 });

@@ -16,7 +16,7 @@ public interface GuarantorDao {
 	 * 
 	 * @return 担保人集合
 	 */
-	List<Guarantor> findGuarantor();
+	List<Guarantor> findGuarantor(String loaninfoId);
 
 	/**
 	 * 添加担保人信息
@@ -24,16 +24,4 @@ public interface GuarantorDao {
 	 * @author Administrator 马利肖
 	 */
 	int addGuarantor(Guarantor guarantor);
-	/**
-	 * 手机号唯一性校验
-	 * 
-	 * @author Administrator 马利肖
-	 */
-	/* List<Guarantor> findguaPhone(String guaPhone); */
-	/**
-	 * 证件号唯一性校验
-	 * 
-	 * @author Administrator 马利肖
-	 */
-	/* List<Guarantor> findguaCardNumber(String guaCardNumber); */
 }

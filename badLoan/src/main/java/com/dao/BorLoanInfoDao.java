@@ -56,6 +56,27 @@ public interface BorLoanInfoDao {
 	List<Map<String, String>> findGuaDetailsById(int guaId);
 
 	/**
+	 * 根据id查询抵质押物详情
+	 * 
+	 * @return
+	 */
+	List<Map<String, String>> findPledge(int borloaninfoId);
+
+	/**
+	 * 根据id查询还款信息详情
+	 * 
+	 * @return
+	 */
+	List<Map<String, String>> findRepayRecord(int borloaninfoId);
+
+	/**
+	 * 根据id查询催收详情
+	 * 
+	 * @return
+	 */
+	List<Map<String, String>> findLMR(int borloaninfoId);
+	List<Map<String, String>> findContect(int borId);
+	/**
 	 * 根据贷款类型，贷款编号查询贷款信息
 	 */
 	List<BorLoanInfo> findBorLoanInfo2(String borloaninfoId);
@@ -81,17 +102,29 @@ public interface BorLoanInfoDao {
 	 */
 	void modifyLoanStateMap(Map<String, String> datamap);
 
-	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
-
 	/**
-	 * test
+	 * 模糊查询
 	 * 
-	 * @return
+	 * @param datamap
 	 */
-	List<Map<String, String>> findTestDemo();
+	List<Map<String, String>> findBorSearch(Map<String, String> datamap);
 
 	/**
 	 * 合同编号唯一性验证
 	 */
 	List<BorLoanInfo> findcontractId(String contractId);
+
+	/**
+	 * 修改未还金额
+	 * 
+	 * @param datamap
+	 */
+	void modifyUnrepayNumber(Map<String, String> datamap);
+
+	/**
+	 * 添加贷款回收信息
+	 * 
+	 * @param datamap
+	 */
+	void addRepaymentinfo(Map<String, String> datamap);
 }

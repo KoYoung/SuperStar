@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.BorLoanInfoDao;
 import com.dao.ComloanInfoDao;
 import com.dao.ReplaceDao;
 import com.entity.Replace;
+import com.util.Paging;
+import com.util.PagingResult;
 @Service
 public class ReplaceServiceImp implements ReplaceService{
 	@Autowired
@@ -20,15 +23,14 @@ public class ReplaceServiceImp implements ReplaceService{
 	@Autowired
 	private ComloanInfoDao ComloanInfoDao;
 	/**
-	 * 业务移交记录
+	 * 添加业务移交记录
 	 */
 	@Override
-	public int addReplace(Replace replace) {
+	@Transactional
+	public String addReplace(Replace replace) {
 		int loaninfoType = replace.getLoaninfoType();
-		System.out.println("loaninfoType"+" "+loaninfoType);
 		String borloaninfoId=replace.getLoaninfoId();
 		String empId=replace.getNewEmpId();
-		System.out.println("newempId-----"+" "+empId);
 		String[] oldEmpName = replace.getOldEmpId().split(" ");
 		String oldEmpName2= oldEmpName[1];
 		replace.setOldEmpId(oldEmpName2);
@@ -40,14 +42,24 @@ public class ReplaceServiceImp implements ReplaceService{
 			ComloanInfoDao.modifyComloanInfo(empId, borloaninfoId);
 		}
 		System.out.println("业务移交记录"+replace.toString());
-		return ReplaceDao.addReplace(replace);
+		int flag = ReplaceDao.addReplace(replace);
+		if(flag>0){
+			return "add success";
+		}else{
+			return "add error";
+		}
 	}
 	/**
 	 * 查询所有的业务移交记录
 	 */
 	@Override
-	public List<Replace> findReplace() {
-		
-		return ReplaceDao.findReplace();
+	public PagingResult<Replace> findReplace(Integer page,Integer rows){
+		List<Replace> reList= ReplaceDao.findReplace();
+		Paging<Replace> paging = new Paging<Replace>();
+		List<Replace> pList = paging.paging(reList, rows, page);
+		PagingResult<Replace> pr = new PagingResult<Replace>();
+		pr.setRows(pList);
+		pr.setTotal(reList.size());
+		return pr;
 	}
 }

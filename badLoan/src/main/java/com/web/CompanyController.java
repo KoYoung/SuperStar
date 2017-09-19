@@ -51,7 +51,6 @@ public class CompanyController {
 	@RequestMapping("/mohu")
 	@ResponseBody
 	public PagingResult findcompanymohu(@RequestParam(value = "va") String va, HttpServletRequest request) {
-		System.out.println(va);
 		try {
 			va = new String(va.getBytes("iso-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -82,37 +81,13 @@ public class CompanyController {
 			return "error";
 		}
 	}
-
-	/*
-	 * @RequestMapping("/addcompany")
-	 * 
-	 * @ResponseBody public String addCompany(@RequestBody String str ){ Company
-	 * company=JSON.parseObject(str, Company.class); Legal
-	 * legal=JSON.parseObject(str, Legal.class); ConpanyLegal
-	 * conpanyLegal=JSON.parseObject(str, ConpanyLegal.class); int
-	 * flag=companyService.addCompany(company,legal,conpanyLegal);
-	 * System.out.println("ss"+flag); if(flag>0){ return "success"; }else {
-	 * return "Error"; } }
+	/**
+	 * 查询所有企业用户编号
 	 */
-	/*
-	 * @Controller
-	 * 
-	 * @RequestMapping("/company") public class CompanyController {
-	 * 
-	 * @Autowired private CompanyService companyService;
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/findcompany") public List findCompany(){
-	 * List<Company>lCompanies=companyService.findCompany();
-	 * System.out.println("--------------------"); return lCompanies; }
-	 * 
-	 * @RequestMapping("/addcompany") public void addCompany(Company
-	 * company,HttpServletResponse response){ int
-	 * flag=companyService.addCompany(company); try { if (flag>0) {
-	 * response.getWriter().write("success"); }else{
-	 * response.getWriter().write("error"); } response.getWriter().flush();
-	 * response.getWriter().close(); } catch (Exception e) { // TODO: handle
-	 * exception e.printStackTrace(); } }
-	 */
+	@RequestMapping("/findCompanyId")
+	@ResponseBody
+	public List<Company> findCompanyId(){
+		List<Company> cList = companyService.findCompanyId();
+		return cList;
+	}
 }

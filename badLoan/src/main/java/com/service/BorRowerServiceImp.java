@@ -29,42 +29,29 @@ public class BorRowerServiceImp implements BorRowerService {
 	public List<BorRower> findBorRowers() {
 		return BorrowerDao.findBorRowers();
 	}
-
-/*	@Override
-	public int addBorrowers(BorRower bor, Contect contect, ContectUser contectUser) {
-		// TODO Auto-generated method stub
-		System.out.println("________3----------------------");
-		int flag= BorrowerDao.addBorRowers(bor)+ContectDao.addContecct(contect)+ContectUserDao.addContectUser(contectUser);
-		System.out.println(flag);
-		System.out.println("________3----------------------");
-		return flag;
-	}*/
-	
-	
-	
-
 	@Override
 	public int modifyBorRower(BorRower borRower, ContectUser contectUser, Contect contect) {
-		// TODO Auto-generated method stub
 		int flag= BorrowerDao.addBorRowers(borRower)+ContectDao.addContecct(contect)+ContectUserDao.addContectUser(contectUser);
 		return flag;
 	}
 
 	@Override
 	public List<BorRower> findBorRowersMohu(String str) {
-		// TODO Auto-generated method stub
 		return BorrowerDao.findBorRowersMohu(str);
 	}
 
 	@Override
 	public int addBorrowers(BorRower bor, Contect contect,ContectUser contectUser) {
-		// TODO Auto-generated method stub
 		BorrowerDao.addBorRowers(bor);
 		ContectDao.addContecct(contect);
 		ContectUserDao.addContectUser(contectUser);
 		return 0;
 	}
-
+	/**
+	 * 查询所有个人用户编号
+	 */
+	public List<BorRower> findBorId() {
+		return BorrowerDao.findBorId();
+	}
 	
-
 }

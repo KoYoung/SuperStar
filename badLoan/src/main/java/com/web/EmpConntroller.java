@@ -7,42 +7,37 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.entity.Emp;
 import com.service.EmpService;
 
+/**
+ * 
+ *
+ */
 @Controller
 @RequestMapping("/Emp")
 public class EmpConntroller {
 	@Autowired
 	private EmpService es;
+
 	@RequestMapping("/findEmp")
-	private void findDept(HttpServletResponse resp){
-		System.out.println("-----------------------------------");
-		List<Emp> DeptList = es.findEmp();
-		String listJSON = JSON.toJSONString(DeptList);
-		try {
-			resp.getWriter().write(listJSON);
-			resp.getWriter().flush();
-			resp.getWriter().close();
-		} catch (Exception e) {
-		}
+	@ResponseBody
+	public List<Emp> findDept() {
+		List<Emp> deptList = es.findEmp();
+		return deptList;
 	}
+
 	@RequestMapping("/addEmp")
-	private void addEmp(Emp emp,HttpServletResponse resp){
+	@ResponseBody
+	public String addEmp(Emp emp) {
 		System.out.println(emp);
 		int flag = es.addEmp(emp);
-		try {
-			if(flag>0){
-				resp.getWriter().print("success");
-			}
-			else{
-				resp.getWriter().print("error");
-			}
-			resp.getWriter().flush();
-			resp.getWriter().close();
-		} catch (Exception e) {
-		}
+		if (flag > 0)
+			return "success";
+		else
+			return "error";
 	}
 }

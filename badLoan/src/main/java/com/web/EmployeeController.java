@@ -25,9 +25,7 @@ public class EmployeeController {
 	@RequestMapping("/findAllEmployee")
 	@ResponseBody
 	public List<Employee> findAllEmployee(@RequestParam String bankInfoId){
-		
 		List<Employee> eList = eService.findAllEmployee(bankInfoId);
-		
 		return eList;
 	}
 }

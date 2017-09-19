@@ -39,7 +39,7 @@
 				url:"/badLoan/borrower/findborr",
 				 	pagination:true,//开启分页功能
 					pageNumber:1,
-					pageSize:5,
+					pageSize:10,
 					pageList:[5,10,15,20,25,30],
 					sortName:'empno',//定义哪些列可以进行排序
 					sortOrder:'desc',//定义列的排序顺序,默认正序asc
