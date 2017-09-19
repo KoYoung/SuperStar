@@ -58,12 +58,12 @@ tr td{
 				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
 					name="loanStateId"></td>
 				<td>&nbsp;&nbsp;银&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行&nbsp;&nbsp;
-				<input type="text" id="bankSearch" name="bankId"></td>
+					<input type="text" id="bankSearch" name="bankId"></td>
 				<td>&nbsp;&nbsp;负&nbsp;&nbsp;责&nbsp;&nbsp;人&nbsp;&nbsp;<input type="text"
 					class="easyui-textbox" data-options=" prompt:'输入负责人查询'"
-					name="empName" id="empNameSearch"></td>
-				<td><a class="easyui-linkbutton"
-					data-options="iconCls:'icon-search'" onclick="searchFormSubmit()">查询</a></td>
+					name="empName" id="empNameSearch"><a class="easyui-linkbutton"
+					data-options="iconCls:'icon-search'" onclick="searchFormSubmit()" style="margin-left:140px">查询</a>
+				</td>
 			</tr>
 		</table>
 	</form>
