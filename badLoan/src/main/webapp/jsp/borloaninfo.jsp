@@ -101,7 +101,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
-									<td><input type="text" id="loanAccount" name="loanAccount" value="6378003699632259896"></input></td>
+									<td><input type="text" id="loanAccount" name="loanAccount" data-options="validType:'loanAccount'"  value="6378003699632259896"></input></td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -621,6 +621,13 @@ $('#dd')
 		 			 },
 		 			message : "只能包括英文字母、数字"
 		   },
+		   loanAccount:{
+			   validator: function(value,param){
+				   return  /^(\d{18}|\d{21})$/.test(value);
+			   },
+			   message : "银行卡号应为18-21位"
+		   },
+		  
 		});
 		/* //先禁止验证，失焦时提示验证
 		$('.validatebox-text').bind('blur', function(){
