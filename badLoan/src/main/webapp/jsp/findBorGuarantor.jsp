@@ -10,8 +10,9 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+
 <link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
-	type="text/css"></link>
+type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 
@@ -22,6 +23,7 @@
 </body>
 <script type="text/javascript">
 	//document.getElementById("one").value = location.href;
+
 	$(function(){
 		var a = $("#one").val();
 		$.ajax({
@@ -30,11 +32,7 @@
 			data : {borloaninfoId : a},
 			success : function(data){
 				$("#dg").datagrid({
-					url : data,
-					pagination:true,//开启分页功能
-					pageNumber:1,
-					pageSize:10,
-					pageList:[5,10,15,20,25,30],
+					data : data,
 					singleSelect:true,
 					rownumbers:true,
 				    fitColumns:true,

@@ -44,9 +44,7 @@ public class LegalServiceImpl implements LegalService {
 	 */
 	public Legal findLegalCom(String comId){
 		List<Legal> lList = null;
-		System.out.println("comId-->"+comId);
 		lList = legalDao.findLegalCom(comId);
-		System.out.println("---11111-----"+lList.toString());
 		if(lList.size()>0){
 			return lList.get(0);
 		}

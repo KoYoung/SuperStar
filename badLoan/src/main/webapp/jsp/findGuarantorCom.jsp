@@ -18,6 +18,7 @@
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
+
 $(function(){
 	var a = $("#one").val();
 	$.ajax({
@@ -26,11 +27,7 @@ $(function(){
 		data : {guaId : a},
 		success : function(data){
 			$("#dg").datagrid({
-				url : data,
-				pagination:true,//开启分页功能
-				pageNumber:1,
-				pageSize:10,
-				pageList:[5,10,15,20,25,30],
+				data : data,
 				singleSelect:true,
 				rownumbers:true,
 			    fitColumns:true,
@@ -43,7 +40,6 @@ $(function(){
 					{field:'legalName',title:'法人代表',width:100},
 					{field:'bankinfoName',title:'银行',width:100},
 					{field:'loanNumber',title:'贷款金额',width:100},
-					{field:'contectName',title:'紧急联系人',width:100},
 					{field:'loanDate',title:'贷款时间',width:100},
 					{field:'loanRepaymentdate',title:'还款时间',width:100},
 					{field:'loanstateName',title:'贷款状态',width:100}

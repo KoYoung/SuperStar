@@ -3,32 +3,16 @@ Highcharts.chart('container1', {
         type: 'column'
     },
     title: {
-        text: 'Monthly Average Rainfall'
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: '2014年各银行不良贷款记录统计图'
     },
     xAxis: {
-        categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-        ],
+        type : "category",
         crosshair: true
     },
     yAxis: {
         min: 0,
         title: {
-            text: 'Rainfall (mm)'
+            text: '不良贷款金额 (元)'
         }
     },
     tooltip: {
@@ -45,7 +29,7 @@ Highcharts.chart('container1', {
             borderWidth: 0
         }
     },
-    series: [{
+    series: /*[{
         name: 'Tokyo',
         data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
 
@@ -61,5 +45,5 @@ Highcharts.chart('container1', {
         name: 'Berlin',
         data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
 
-    }]
+    }]*/data
 });

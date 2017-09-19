@@ -100,7 +100,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
-									<td><input type="text" id="loanAccount" name="loanAccount" value="6378003699632259896"></input></td>
+									<td><input type="text" id="loanAccount" name="loanAccount" data-options="validType:'loanAccount'" value="6378003699632259896"></input></td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -622,6 +622,12 @@ tr td {
             		
             	}
 		 	 }, 
+		 	loanAccount:{
+				   validator: function(value,param){
+					   return  /^(\d{18}|\d{21})$/.test(value);
+				   },
+				   message : "银行卡号应为18-21位"
+			   },
 		});
 		$('#dg').datagrid({
 			url : '/badLoan/ComloanInfo/findComloanInfo',
@@ -663,7 +669,7 @@ tr td {
 			}, {
 				field : 'loanAccount',
 				title : '贷款账号',
-				width : 100
+				width : 150
 			}, {
 				field : 'loanDate',
 				title : '贷款日期',
@@ -674,8 +680,8 @@ tr td {
 				width : 150
 			}, {
 				field : 'loanRate',
-				title : '贷款利率',
-				width : 70
+				title : '贷款利率(%)',
+				width : 80
 			},/* {
 				field : 'pledgeType',
 				title : '抵押物类型',

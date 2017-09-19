@@ -13,7 +13,7 @@
 	type="text/css"></link>
 <style>
 	.ti1{
-	font-size: 15px;
+	font-size: 20px;
 	font-family: 新宋体;
 	color: #386FD2;
 	line-height: 40px;
@@ -33,6 +33,9 @@
 .img{
 	width: 293px;
 	height: 150px;
+}
+tr td{
+	font-size:14px;
 }
 </style>
 </head>
@@ -55,12 +58,12 @@
 				<td>贷款状态&nbsp;&nbsp;<input type="text" id="loanStateSearch"
 					name="loanStateId"></td>
 				<td>&nbsp;&nbsp;银&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行&nbsp;&nbsp;
-				<input type="text" id="bankSearch" name="bankId"></td>
+					<input type="text" id="bankSearch" name="bankId"></td>
 				<td>&nbsp;&nbsp;负&nbsp;&nbsp;责&nbsp;&nbsp;人&nbsp;&nbsp;<input type="text"
 					class="easyui-textbox" data-options=" prompt:'输入负责人查询'"
-					name="empName" id="empNameSearch"></td>
-				<td><a class="easyui-linkbutton"
-					data-options="iconCls:'icon-search'" onclick="searchFormSubmit()">查询</a></td>
+					name="empName" id="empNameSearch"><a class="easyui-linkbutton"
+					data-options="iconCls:'icon-search'" onclick="searchFormSubmit()" style="margin-left:140px">查询</a>
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -165,7 +168,7 @@
 							</td>
 						</tr>
 					</table>
-					资料照片：<div id="legalInfo"></div>
+					<span style="font-size:14px;margin-left:6px">资料照片：</span><div id="legalInfo"></div>
 				</div>
 				<div class="ti1">担保人信息</div>
 				<div id="gua">
@@ -184,7 +187,7 @@
 							<td id="ple2"></td>
 						</tr>
 					</table>
-					抵押物照片：<div id="pledgePhoto"></div>
+					<span style="font-size:14px;margin-left:6px">抵押物照片：</span><div id="pledgePhoto"></div>
 				</div>
 				<div class="ti1">贷款处理记录</div>
 				<table id="chuli"></table>

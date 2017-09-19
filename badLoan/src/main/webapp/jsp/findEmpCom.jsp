@@ -18,6 +18,7 @@
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
+
 $(function(){
 	var a = $("#one").val();
 	$.ajax({
@@ -26,11 +27,7 @@ $(function(){
 		data : {empId : a},
 		success : function(data){
 			$("#dg").datagrid({
-				url : data,
-				pagination:true,//开启分页功能
-				pageNumber:1,
-				pageSize:10,
-				pageList:[5,10,15,20,25,30],
+				data : data,
 				singleSelect:true,
 				rownumbers:true,
 			    fitColumns:true,
