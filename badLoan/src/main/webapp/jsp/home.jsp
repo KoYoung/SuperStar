@@ -30,13 +30,6 @@
 	background-size : cover;
 }
 </style>
-<<<<<<< HEAD
-=======
-<script type="text/javascript">
-	
-</script>
->>>>>>> branch 'master' of https://github.com/KoYoung/superStar.git
-
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',title:'',split:false"
@@ -450,31 +443,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-<<<<<<< HEAD
 
-function showData() {
-	var date = new Date();
-	var str = "" + date.getFullYear() + "年";
-	str += (date.getMonth() + 1) + "月";
-	str += date.getDate() + "日";
-	str += date.getHours() + "时";
-	str += date.getMinutes() + "分";
-	str += date.getSeconds() + "秒";
-	$("#date").html(str);
-}
-setInterval("showData()", 1000);
-
-$(function() {
-	$("#homeTree").tree({
-		url : "../json/tree_data.json",
-		animate : true,
-		lines : true,
-		onClick : function(node) {
-			var children = $("#homeTree").tree("getChildren", node.target);
-			if (children.length == 0) {
-				addTab(node.text, node.attributes.url);
-			}
-=======
 	var flag = 0;
 	$("#openBtn").click(function() {
 		//console.log($("#homeTree").tree("expandAll"));
@@ -558,10 +527,8 @@ $(function() {
 								+ " width='99%' height='99%' frameborder=0>",
 						closable : true
 					});
->>>>>>> branch 'master' of https://github.com/KoYoung/superStar.git
 		}
-	});
-});
+	}
 
 function addTab(title, url) {
 	var tab = $("#tabsInfo").tabs("getTab", title);
