@@ -58,7 +58,7 @@ $("#find").click(function(){
 		type : "post",
 		data : data,
 		success : function(data){
-			alert(data);
+			//alert(data);
 			$("#dg").datagrid({
 				url : "",
 				data : data
