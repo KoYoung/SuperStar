@@ -27,4 +27,5 @@ public class BankInfoController {
 		List<BankInfo> bList = bService.findBankInfo();
 		return bList;
 	}
+	
 }

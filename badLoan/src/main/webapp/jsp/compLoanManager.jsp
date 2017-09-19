@@ -775,8 +775,8 @@
 	/* 详情弹框 */
 	$("#detailDialog").dialog({
 		title : '贷款详情',
-		width : '40%',
-		height : 750,
+		width : 750,
+		height : 450,
 		top : '0%',
 		closed : true,
 		cache : false,
