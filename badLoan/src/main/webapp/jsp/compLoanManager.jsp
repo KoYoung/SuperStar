@@ -782,9 +782,9 @@ tr td{
 	/* 详情弹框 */
 	$("#detailDialog").dialog({
 		title : '贷款详情',
-		width : '40%',
-		height : 740,
-		top : '0.5%',
+		width : 750,
+		height : 450,
+		top : '0%',
 		closed : true,
 		cache : false,
 		modal : true

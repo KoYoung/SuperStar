@@ -9,7 +9,6 @@ public class Dept {
 	String deptId;
 	String deptName;
 	String deptPhone;
-	String bankinfoId;
 
 	public String getDeptId() {
 		return deptId;
@@ -35,18 +34,10 @@ public class Dept {
 		this.deptPhone = deptPhone;
 	}
 
-	public String getBankinfoId() {
-		return bankinfoId;
-	}
-
-	public void setBankinfoId(String bankinfoId) {
-		this.bankinfoId = bankinfoId;
-	}
 
 	@Override
 	public String toString() {
-		return "department [deptId=" + deptId + ", deptName=" + deptName + ", deptPhone=" + deptPhone + ", bankinfoId="
-				+ bankinfoId + "]";
+		return "department [deptId=" + deptId + ", deptName=" + deptName + ", deptPhone=" + deptPhone + "]";
 	}
 
 }

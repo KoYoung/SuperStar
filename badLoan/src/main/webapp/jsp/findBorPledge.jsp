@@ -9,8 +9,8 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
-	type="text/css"></link>
+<link rel="stylesheet" href="../easyui/themes/pepperGrinder/easyui.css"></link>
+<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 </head>
@@ -19,6 +19,7 @@
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
+
 $(function(){
 	var a = $("#one").val();
 	$.ajax({
@@ -27,11 +28,7 @@ $(function(){
 		data : {borloaninfoId : a},
 		success : function(data){
 			$("#dg").datagrid({
-				url : data,
-				pagination:true,//开启分页功能
-				pageNumber:1,
-				pageSize:10,
-				pageList:[5,10,15,20,25,30],
+				data : data,
 				singleSelect:true,
 				rownumbers:true,
 			    fitColumns:true,
@@ -40,7 +37,7 @@ $(function(){
 				columns : [[
 					{field:'borloaninfoId',title:'编号',width:100},
 					{field:'borName',title:'贷款人',width:100},
-					{field:'pledgeGenre',title:'抵押或质押',width:100},
+					{field:'pledgeType',title:'抵押类型',width:100},
 					{field:'pledgeName',title:'抵押物品',width:100},
 					{field:'pledgeValue',title:'价值',width:100},
 					{field:'pledgePhoto',title:'照片',width:100}

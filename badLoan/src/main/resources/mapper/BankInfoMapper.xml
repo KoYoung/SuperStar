@@ -4,7 +4,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.BankInfoDao">	
 	<!-- 查询所有银行信息-->
-	<select id="findBankInfo" resultType="com.entity.BankInfo" >
+	<select id="findBankInfo" resultMap="bankinfoMap" >
 		select * from bankinfo
 	</select>
+	<resultMap type="com.entity.BankInfo" id="bankinfoMap" >
+		<id property="bankInfoId" column="bankInfoId"/>
+		<result property="bankInfoName" column="bankInfoName"/>
+		<result property="bankInfoTelePhone" column="bankInfoTelePhone"/>
+		<result property="bankinfoAddress" column="bankinfoAddress"/>
+		<collection property="depts" ofType="com.entity.Dept">
+			<id property="deptId" column="deptId"/>
+			<result property="deptName" column="deptName" />
+			<result property="deptPhone" column="deptPhone" />
+			<result property="deptName" column="deptName" />
+		</collection>
+	</resultMap>
 </mapper>

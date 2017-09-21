@@ -14,89 +14,92 @@
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 </head>
 <body>
-	<a id="btn1" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search'"> 查询个人贷款 </a>
-	<a id="btn2" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search'"> 查询企业贷款 </a>
+	<form id="search" method="post">
+		<table>
+			<tr>
+				<td>
+					&nbsp;&nbsp;担保人&nbsp;&nbsp;<input name="guaName" type="text" 
+					class="easyui-textbox" data-options="prompt:'请输入关键字'">
+				</td>
+				<td>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton" 
+					data-options="iconCls:'icon-search'" id="find">查询</a>	
+				</td>
+			</tr>
+		</table>
+	</form>
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-	$("#dg").datagrid({
-		url : "/badLoan/find/findGuarantor",
-		pagination : true,//开启分页功能
-		pageNumber : 1,
-		pageSize : 10,
-		pageList : [ 5, 10, 15, 20, 25, 30 ],
-		singleSelect : true,
-		rownumbers : true,
-		fitColumns : true,
-		striped : true,
-		loadMsg : "努力加载中......",
-		columns : [ [ {
-			field : 'guaId',
-			title : '编号',
-			width : 100
-		}, {
-			field : 'guaName',
-			title : '担保人',
-			width : 100
-		}, {
-			field : 'guaGender',
-			title : '性别',
-			width : 100
-		}, {
-			field : 'guaNation',
-			title : '民族',
-			width : 100
-		}, {
-			field : 'guaPhone',
-			title : '联系方式',
-			width : 100
-		}, {
-			field : 'guaCardtype',
-			title : '证件类型',
-			width : 100
-		}, {
-			field : 'guaCardnumber',
-			title : '证件号码',
-			width : 100
-		}, {
-			field : 'guaRegister',
-			title : '户籍地址',
-			width : 100
-		}, {
-			field : 'guaAddress',
-			title : '居住地址',
-			width : 100
-		}, {
-			field : 'guaUnit',
-			title : '工作单位',
-			width : 100
-		}, {
-			field : 'guaPosition',
-			title : '职位',
-			width : 100
-		}, {
-			field : 'guaEducation',
-			title : '学历',
-			width : 100
-		}, {
-			field : 'guaIncome',
-			title : '收入',
-			width : 100
-		} ] ]
+$("#find").click(function(){
+	var data = $("#search").serialize();
+	//alert(data);
+	$.ajax({
+		url : "/badLoan/find/searchGuarantor",
+		type : "post",
+		data : data,
+		success : function(data){
+			$("#dg").datagrid({
+				url : "",
+				data : data
+			});
+			//$('#dg').datagrid("reload");
+		},
+		error : function(){
+			alert("error!");
+		}
 	});
+});
 
-	$("#btn1").click(function() {
-		var rows = $("#dg").datagrid("getSelections");
-		var a = rows[0]["guaId"];
-		window.location.href = "findGuarantorBor.jsp?id=" + a + "";
-	});
-
-	$("#btn2").click(function() {
-		var rows = $("#dg").datagrid("getSelections");
-		var a = rows[0]["guaId"];
-		window.location.href = "findGuarantorCom.jsp?id=" + a + "";
-	});
+$("#dg").datagrid({
+	url : "/badLoan/find/findGuarantor",
+	pagination:true,//开启分页功能
+	pageNumber:1,
+	pageSize:5,
+	pageList:[5,10,15,20,25,30],
+	singleSelect:true,
+	rownumbers:true,
+    fitColumns:true,
+	striped:true,
+	loadMsg:"努力加载中......",
+	columns : [[
+		{field:'guaId',title:'编号',width:50},
+		{field:'guaName',title:'担保人',width:50},
+		{field:'guaGender',title:'性别',width:40},
+		{field:'guaNation',title:'民族',width:50},
+		{field:'guaPhone',title:'联系方式',width:100},
+		{field:'guaCardtype',title:'证件类型',width:70},
+		{field:'guaCardnumber',title:'证件号码',width:120},
+		{field:'guaUnit',title:'工作单位',width:150},
+		{field:'guaPosition',title:'职位',width:100},
+		{field:'guaEducation',title:'学历',width:70},
+		{field:'guaIncome',title:'收入',width:70}
+	]],
+	toolbar : [{
+		text : '查看个人贷款',
+		iconCls : 'icon-search',
+		handler : function() {
+			var row = $('#dg').datagrid("getSelected");
+			if(row == null){
+				alert("请先选择一行数据!");
+			}else{
+				var a = row.guaId;
+				window.location.href = "findGuarantorBor.jsp?id="+a+"";
+			}
+		}
+	}, {
+		text : '查看企业贷款',
+		iconCls : 'icon-search',
+		handler : function() {
+			var row = $('#dg').datagrid("getSelected");
+			if(row == null){
+				alert("请先选择一行数据!");
+			}else{
+				var a = row.guaId;
+				window.location.href = "findGuarantorCom.jsp?id="+a+"";
+			}
+		}
+	} ]
+});
 </script>
 </html>

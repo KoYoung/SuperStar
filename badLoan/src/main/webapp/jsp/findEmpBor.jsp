@@ -18,62 +18,34 @@
 	<table id="dg"></table>
 </body>
 <script type="text/javascript">
-	$(function() {
-		var a = $("#one").val();
-		$.ajax({
-			url : "/badLoan/find/findEmpBor",
-			type : "post",
-			data : {
-				empId : a
-			},
-			success : function(data) {
-				$("#dg").datagrid({
-					url : data,
-					pagination : true,//开启分页功能
-					pageNumber : 1,
-					pageSize : 10,
-					pageList : [ 5, 10, 15, 20, 25, 30 ],
-					singleSelect : true,
-					rownumbers : true,
-					fitColumns : true,
-					striped : true,
-					loadMsg : "努力加载中......",
-					columns : [ [ {
-						field : 'empId',
-						title : '编号',
-						width : 100
-					}, {
-						field : 'empName',
-						title : '经手人',
-						width : 100
-					}, {
-						field : 'deptName',
-						title : '所属部门',
-						width : 100
-					}, {
-						field : 'borName',
-						title : '贷款人',
-						width : 100
-					}, {
-						field : 'bankinfoName',
-						title : '银行',
-						width : 100
-					}, {
-						field : 'guaName',
-						title : '担保人',
-						width : 100
-					}, {
-						field : 'loanNumber',
-						title : '贷款金额',
-						width : 100
-					}, {
-						field : 'loanstateName',
-						title : '贷款状态',
-						width : 100
-					} ] ]
-				});
-			}
-		});
+
+$(function(){
+	var a = $("#one").val();
+	$.ajax({
+		url : "/badLoan/find/findEmpBor",
+		type : "post",
+		data : {empId : a},
+		success : function(data){
+			$("#dg").datagrid({
+				data : data,
+				singleSelect:true,
+				rownumbers:true,
+			    fitColumns:true,
+				striped:true,
+				loadMsg:"努力加载中......",
+				columns : [[
+					{field:'empId',title:'编号',width:100},
+					{field:'empName',title:'经手人',width:100},
+					{field:'deptName',title:'所属部门',width:100},
+					{field:'borName',title:'贷款人',width:100},
+					{field:'bankinfoName',title:'银行',width:100},
+					{field:'guaName',title:'担保人',width:100},
+					{field:'loanNumber',title:'贷款金额',width:100},
+					{field:'loanstateName',title:'贷款状态',width:100}
+				]]
+			});
+		}		
 	});
+});
 </script>
 </html>
