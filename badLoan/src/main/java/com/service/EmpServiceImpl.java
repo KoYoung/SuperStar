@@ -24,8 +24,14 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public int modifyEmp(Emp emp) {
-		return ed.modifyEmp(emp);
+	public int modifyEmp(Emp empId) {
+		return ed.modifyEmp(empId);
 	}
 
+	@Override
+	public List<Emp> findIdEmp(Emp empId) {
+		// TODO Auto-generated method stub
+		return ed.findIdEmp(empId);
+	}
+	
 }

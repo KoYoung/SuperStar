@@ -96,11 +96,11 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款金额:</td>
-									<td><input type="text" id="loanNumber" name="loanNumber"></input>万元</td>
+									<td><input type="text" id="loanNumber" name="loanNumber"></input>元</td>
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
-									<td><input type="text" id="loanAccount" name="loanAccount" data-options="validType:'loanAccount'" value="6378003699632259896"></input></td>
+									<td><input type="text" id="loanAccount" name="loanAccount" data-options="validType:'loanAccount'" value="637800369963225989"></input></td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -292,8 +292,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>担保人民族:</td>
-									<td><input class="easyui-textbox" id="guaNation" name="guaNation"
-										data-options="required:true" value="汉族"></input></td>
+									<td><input class="easyui-textbox" id="guaNation" name="guaNation"></input></td>
 								</tr>
 								<tr>
 									<td>担保人学历:</td>
@@ -437,6 +436,22 @@ tr td {
 				var data = $("#loantypeId").combobox('getData');
 				if (data.length > 0) {
 					$("#loantypeId").combobox('setValue', data[0].loantypeId);
+				}
+			},
+		});
+		//民族
+		$('#guaNation').combobox({
+			url : '/badLoan/json/nation.json',
+			valueField : 'name',
+			textField : 'name',
+			width : 200,
+			panelHeight : 120, 
+			required : true,
+			editable : false,
+			onLoadSuccess : function() {
+				var data = $("#guaNation").combobox('getData');
+				if (data.length > 0) {
+					$("#guaNation").combobox('setValue', data[0].name);
 				}
 			},
 		});
@@ -625,7 +640,7 @@ tr td {
 		 	 }, 
 		 	loanAccount:{
 				   validator: function(value,param){
-					   return  /^(\d{18}|\d{21})$/.test(value);
+					   return /^[^0][0-9]{17,20}$/.test(value);
 				   },
 				   message : "银行卡号应为18-21位"
 			   },
@@ -665,7 +680,7 @@ tr td {
 				width : 100
 			}, {
 				field : 'loanNumber',
-				title : '贷款金额(万元)',
+				title : '贷款金额(元)',
 				width : 100
 			}, {
 				field : 'loanAccount',

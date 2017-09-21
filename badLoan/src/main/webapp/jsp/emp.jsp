@@ -17,17 +17,17 @@
 		<form id="empForm" method="post">
 			<table>
 				<tr>
-					<th>员工编号</th>
-					<td><input type="text" name="empId" class="easyui-validatebox"
-						data-options="validType:'minLength[4]'" required="required"></input></td>
 					<th>员工姓名</th>
-					<td><input type="text" name="empName"></td>
+					<td><input type="text" name="empName"><input type="hidden" name="empId"></td>
+					<th>员工性别</th>
+					<td><input type="radio" name="empGender" value="男" checked>男&nbsp;<input type="radio" name="empGender" value="女" >女</td>
 				</tr>
 				<tr>
-					<th>员工性别</th>
-					<td><input type="text" name="empGender"></td>
+					
 					<th>电话</th>
 					<td><input type="text" name="empTelphone"></td>
+					<th>邮箱</th>
+					<td><input type="text" name="empEmail"></td>
 				</tr>
 				<tr>
 					<th>身份证号</th>
@@ -38,16 +38,25 @@
 				</tr>
 				<tr>
 					<th>学历</th>
-					<td><input type="text" name="empEducation"></td>
-					<th>部门</th>
-					<td><input type="text" name="empDepartment"></td>
+					<td><select class="easyui-combobox" id="empEducation" required ="required" name="empEducation">
+										<option value="初中">初中</option>
+										<option value="高中">高中</option>
+										<option value="专科">专科</option>
+										<option value="本科">本科</option>
+										<option value="研究生">研究生</option>
+										<option value="博士">博士</option>
+									</select></td>
+					<th>民族</th>
+					<td><input type="text" id="empNation"name="empNation"></td>
 				</tr>
 				<tr>
-					<th>邮箱</th>
-					<td><input type="text" name="empEmail"></td>
-					<th>民族</th>
-					<td><input type="text" name="empNation"></td>
+					<th>所属银行:</th>
+					<td><input id="empBank" data-options="required:true" name="empBank" onChange="asd()"/></td>
+					<th>部门</th>
+					<td><input id="empDept" data-options="required:true" name="empDept" /></td>
 				</tr>
+				
+					
 			</table>
 		</form>
 	</div>
@@ -61,9 +70,10 @@
 		pageSize : 10, //默认显示多少行
 		pageList : [ 5, 10, 15, 20 ],//行号下拉列表
 		sortName : 'empId',//默认员工编号
-		sortOrder : 'asc',//默认升序
-		remoteSort : false,//不去服务器排序
+
 		fitColumns : true,
+		striped : true,
+		singleSelect : true,
 		columns : [ [ {
 			field : 'empId',
 			title : '员工编号',
@@ -87,13 +97,7 @@
 			handler : function() {
 				add();
 			}
-		}, {
-			text : '删除',
-			iconCls : 'icon-remove',
-			handler : function() {
-				remove();
-			}
-		}, {
+		},{
 			text : '修改',
 			iconCls : 'icon-edit',
 			handler : function() {
@@ -127,6 +131,7 @@
 					var f = $("#empForm").serialize();
 					$.ajax({
 						url : '/badLoan/Emp/addEmp',
+						type:"post",
 						data : f,
 						success : function(data) {
 							datagrid.datagrid("reload");
@@ -138,16 +143,79 @@
 			} ],
 
 		})
-	}
-
+	};
+	$(function(){
+		$('#empEducation').combobox({
+			panelHeight : "auto",
+			width : 174,
+			height :"auto",
+			editable:false
+		});
+	});
+	$(function(){
+		$('#empFlag').combobox({
+			panelHeight : "auto",
+			width : 174,
+			height :"auto",
+			editable:false
+		});
+	});
+	$('#empFlag').combobox({    
+	    url:'../json/flag.json',    
+	    valueField:'id',    
+	    textField:'name' ,
+	    width : 174,
+	}); 
+	/*
+	* 银行下拉框 
+	*/
+	$("#empBank").combobox({
+		url : '../BankInfo/findBankInfo',
+		valueField : 'bankInfoId',
+		textField : 'bankInfoName',
+		width : 174,
+		panelHeight : "auto",
+		editable : false,
+		onLoadSuccess : function() {
+			var data = $("#empBank").combobox('getData');
+			if (data.length > 0) {
+				$("#empBank").combobox('setValue', data[0].bankInfoId);
+			}
+		},
+		onChange:function(){
+			var bankId = $("#empBank").combobox('getValue');
+			$("#empDept").combobox({
+				url : '../deptController/findDept',
+				valueField : 'DEPT_ID',
+				textField : 'DEPT_NAME',
+				width : 174,
+				panelHeight : "auto",
+				editable : false,
+				queryParams:{
+					bankId:bankId
+				},
+				onLoadSuccess : function() {
+					var data = $("#empDept").combobox('getData');
+					if (data.length > 0) {
+						$("#empDept").combobox('setValue', data[0].DEPT_ID);
+					}
+				}
+			});
+		}
+	});
+	
+	$("#empNation").combobox({
+		url : '../json/nation.json',
+		valueField : 'name',
+		textField : 'name',
+		width : 174,
+		panelHeight : "80"
+	});	
 	//修改用户
 	function edit() {
 		var rows = datagrid.datagrid("getChecked");
 		if (rows.length == 1) {
-			var p = $("#empDialog")
-					.show()
-					.dialog(
-							{
+			var p = $("#empDialog").show().dialog({
 								title : '修改员工',
 								width : 600,
 								height : 300,
@@ -155,65 +223,51 @@
 									text : '修改',
 									handler : function() {
 										var f = $("#empForm");
-										f
-												.form(
-														'submit',
-														{
-															url : 'EmpServlet?chenjian=updateEmp',
-															success : function(
-																	data) {
-																var json = $
-																		.parseJSON(data);//如果使用的是easyui自带ajax，则需要将返回数据转换成json对象
-																if (json.success) {
-																	datagrid
-																			.datagrid("reload");
-																	p
-																			.dialog("close");
-																}
-																$.messager
-																		.show({
-																			msg : json.msg,
-																			timeout : 3000,
-																			title : "提示"
-																		}
-
-																		);
-															}
-
-														})
+										f.form('submit',{
+											url : '../Emp/modifyEmp',
+											success : function(data) {
+												//var json = $.parseJSON(data);//如果使用的是easyui自带ajax，则需要将返回数据转换成json对象
+												if (data=="success") {
+													datagrid.datagrid("reload");
+													p.dialog("close");
+												}
+												$.messager.show({
+													msg : "修改成功",
+													timeout : 2000,
+													title : "提示"
+												});
+											}
+										});
 									}
-
-								} ],
+								}],
 								onOpen : function() {//在修改对话框打开的时候初始化表单数据
 									var f = $("#empForm");
-									var deptno = f.find('input[id=deptno]');
-									var deptNoCombobox = deptno
-											.combobox({
-												url : '${pageContext.request.contextPath}/EmpServlet?chenjian=findAllDept',
-												valueField : 'deptno',
-												textField : 'dname',
+									/* var deptno = f.find('input[id=empId]');
+									var deptNoCombobox = deptno.combobox({
+												url : '../Emp/findIdEmp',
+												valueField : 'empId',
+												textField : 'empName',
 												multiple : false,
 												editable : false,
 												panelHeight : 'auto'
-											});
+											}); */
 									f.form('load', {
-										empno : rows[0].empno,
-										ename : rows[0].ename,
-										job : rows[0].job,
-										mgr : rows[0].mgr,
-										hiredate : rows[0].hiredate,
-										sal : rows[0].sal,
-										comm : rows[0].comm,
-										deptno : rows[0].deptno,
-
+										empId : rows[0].empId,
+										empName : rows[0].empName,
+										empGender : rows[0].empGender,
+										empTelphone :rows[0].empTelphone,
+										empEmail : rows[0].empEmail,
+										empCardnumber :rows[0].empCardnumber,
+										empAddress :rows[0].empAddress,
+										empEducation :rows[0].empEducation,
+										empNation : rows[0].empNation,
+										empBankinfo : rows[0].empBankinfo,
+										empDepartment :rows[0].empDepartment,
 									})
-
 								}
-
-							})
+							});
 
 		} else if (rows.length > 1) {
-
 			$.messager.alert("提示", "一次只能修改一条记录", "error");
 		} else {
 			$.messager.alert("提示", "请选择你要修改的记录", "error");
@@ -222,7 +276,6 @@
 
 	}
 	function remove() {
-
 		//获取选中行(多行)
 		var rows = datagrid.datagrid("getChecked");
 		var empnos = [];

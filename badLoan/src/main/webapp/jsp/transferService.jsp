@@ -53,7 +53,7 @@ tr td {
 					<tr><td style="font-size:18px;font-family:微软雅黑;color:red">移交贷款经手人</td></tr>
 					<tr>
 						<td>贷款银行：<input id="bankInfoId" name="bankInfoId" /></td>
-						<td>经手人：<input id="empId"  name="newEmpId" data-options="required:true,validType:'newEmpId'"/></td>
+						<td>经手人：<input id="empId"  name="newEmpId"/></td>
 					</tr>
 				</table>
 				<div style="margin-left:30px">说明：&nbsp;<input class="easyui-textbox" name="replaceComment" data-options="required:true" style="height:70px;width:240px"/></div>

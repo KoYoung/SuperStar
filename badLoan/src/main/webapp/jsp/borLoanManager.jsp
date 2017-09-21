@@ -70,9 +70,9 @@
 					<td>还款日期：<span id="DiaLOANREPAYMENTDATE"></span></td>
 				</tr>
 				<tr>
-					<td>贷款金额：&nbsp;<span id="DiaLOAN_NUMBER"></span>&nbsp;万元
+					<td>贷款金额：&nbsp;<span id="DiaLOAN_NUMBER"></span>&nbsp;元
 					</td>
-					<td>未还金额：&nbsp;<span id="DiaunUNREPAY_NUMBER"></span>&nbsp;万元
+					<td>未还金额：&nbsp;<span id="DiaunUNREPAY_NUMBER"></span>&nbsp;元
 					</td>
 				</tr>
 				<tr>
@@ -394,11 +394,11 @@
 				width : 80
 			}, {
 				field : 'LOAN_NUMBER',
-				title : '贷款金额/(万元)',
+				title : '贷款金额/(元)',
 				width : 100
 			}, {
 				field : 'UNREPAY_NUMBER',
-				title : '已还金额/(万元)',
+				title : '已还金额/(元)',
 				width : 100
 			}, {
 				field : 'LOAN_ACCOUNT',

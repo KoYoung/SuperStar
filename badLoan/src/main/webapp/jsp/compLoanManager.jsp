@@ -31,8 +31,12 @@
 	margin-top: 10px;
 }
 .img{
-	width: 293px;
-	height: 150px;
+	width: 200px;
+	height: 250px;
+}
+.img2{
+    width: 293px;
+    height: 150px;
 }
 tr td{
 	font-size:14px;
@@ -107,7 +111,7 @@ tr td{
 								</tr>
 								<tr>
 									<td>贷款金额:</td>
-									<td><span id="loanNumber"></span>万元</td>
+									<td><span id="loanNumber"></span>元</td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -168,7 +172,7 @@ tr td{
 							</td>
 						</tr>
 					</table>
-					<span style="font-size:14px;margin-left:6px">资料照片：</span><div id="legalInfo"></div>
+					<span style="font-size:14px;margin-left:6px">法人照片：</span><div id="legalInfo"></div>
 				</div>
 				<div class="ti1">担保人信息</div>
 				<div id="gua">
@@ -388,11 +392,11 @@ tr td{
 								width : 80
 							}, {
 								field : 'LOAN_NUMBER',
-								title : '贷款金额/(万元)',
+								title : '贷款金额/(元)',
 								width : 100
 							}, {
 								field : 'UNREPAY_NUMBER',
-								title : '已还金额/(万元)',
+								title : '已还金额/(元)',
 								width : 100
 							}, {
 								field : 'LOAN_ACCOUNT',
@@ -526,7 +530,7 @@ tr td{
 													            var rows=$("#ple2").children().children().length;
 													           if(rows<5){
 													        	   for (var i = 0; i < arr.length-1; i++) {
-													               	var t= "<img class='img' src='"+arr[i]+"'/>";
+													               	var t= "<img class='img2' src='"+arr[i]+"'/>";
 													                  $("#pledgePhoto").append("<td colspan='2'>"+t+"</td>");
 													   			}
 													        	   
@@ -595,7 +599,7 @@ tr td{
 																		width : 100
 																	},{
 																		field : 'repayNumber',
-																		title : '回收金额(万元)',
+																		title : '回收金额(元)',
 																		width : 100
 																	},{
 																		field : 'repayComment',
