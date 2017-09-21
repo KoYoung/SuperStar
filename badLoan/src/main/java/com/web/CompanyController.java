@@ -68,19 +68,47 @@ public class CompanyController {
 		return prResult;
 	}
 
-	@RequestMapping("/addcompany")
+	/*@RequestMapping("/addcompany")
 	@ResponseBody
 	public String addCompany(Company company, Legal legal, ConpanyLegal conpanyLegal, MultipartFile legalphone,
 			HttpServletRequest request) throws IOException {
 		String filePash = FileUpload.uploadFile(legalphone, request);
 		company.setConPhoto(filePash);
+		company.setComCard(filePash);
+		legal.setLegalInfo(filePash);
 		int flag = companyService.addCompany(company, legal, conpanyLegal);
 		if (flag > 0) {
 			return "success";
 		} else {
 			return "error";
 		}
+	}*/
+	@RequestMapping("/addcompany")
+	@ResponseBody
+	public String addCompany(Company company, Legal legal,ConpanyLegal conpanyLegal,@RequestParam(value="tupian", required=true) MultipartFile[] tupian,HttpServletRequest request) throws IOException{
+		System.out.println("================"+company+"------------------");
+		List  filePash= FileUpload.uploadFile1(tupian, request);
+		String str1=filePash.get(0).toString();
+		String str2=filePash.get(1).toString();
+		String str3=filePash.get(2).toString();
+		System.out.println("-------------------"+str1);
+		System.out.println("-------------------"+str2);
+		System.out.println("-------------------"+str3);
+		company.setComCard(str3);
+		company.setConPhoto(str2);
+		legal.setLegalInfo(str1);
+		//company.setConPhoto(str1);
+		System.out.println(company.getComCard());
+		System.out.println(company.getConPhoto());
+		System.out.println(legal.getLegalInfo());
+		int flag= companyService.addCompany(company, legal,conpanyLegal);
+		if (flag>0) {
+			return "success";
+		}else{
+			return "error";
+		}
 	}
+	
 	/**
 	 * 查询所有企业用户编号
 	 */
