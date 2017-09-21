@@ -14,6 +14,23 @@ public class Emp {
 	String empDepartment;
 	String empEmail;
 	String empNation;
+	String empBankinfo;
+	String empFlag;
+	public String getEmpFlag() {
+		return empFlag;
+	}
+
+	public void setEmpFlag(String empFlag) {
+		this.empFlag = empFlag;
+	}
+
+	public String getEmpBankinfo() {
+		return empBankinfo;
+	}
+
+	public void setEmpBankinfo(String empBankinfo) {
+		this.empBankinfo = empBankinfo;
+	}
 
 	public String getEmpId() {
 		return empId;
@@ -100,6 +117,6 @@ public class Emp {
 		return "Emp [empId=" + empId + ", empName=" + empName + ", empGender=" + empGender + ", empTelphone="
 				+ empTelphone + ", empCardnumber=" + empCardnumber + ", empAddress=" + empAddress + ", empEducation="
 				+ empEducation + ", empDepartment=" + empDepartment + ", empEmail=" + empEmail + ", empNation="
-				+ empNation + "]";
+				+ empNation + ", empBankinfo=" + empBankinfo + ", empFlag=" + empFlag + "]";
 	}
 }

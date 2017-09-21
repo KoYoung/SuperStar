@@ -25,6 +25,7 @@ public class BankInfoController {
 	@ResponseBody
 	public List<BankInfo> findBankInfo(){
 		List<BankInfo> bList = bService.findBankInfo();
+		System.out.println(bList);
 		return bList;
 	}
 	

@@ -144,177 +144,180 @@ td {
 	</div>
 </body>
 <script type="text/javascript">
-$(function(){
-	$('#dg').datagrid({
-		url : '/badLoan/WriteoffManage/findWriteoffManage',
-		striped : true, //斑马线 
-		nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
-		pagination : true, //底部分页
-		singleSelect : true,
-		pageSize : 10,
-		pageNumber : 1,
-		pageList : [ 5, 10, 15, 20 ],
-		rownumbers : true, //如果为true，则显示一个行号列
-		/* onLoadSuccess : function(data) {
-			$("a[name='yes']").linkbutton({
-				text : '同意核销',
-				plain : true,
-				iconCls : 'icon-ok'
-			});
-			$("a[name='no']").linkbutton({
-				text : '驳回核销',
-				plain : true,
-				iconCls : 'icon-cancel'
-			});
-			$(".noBtn").click(function() {
-				$("#ff").dialog("open");
-			});
-			$(".yesBtn").click(function() {
-				$("#ff").dialog("open");
-			});
-		}, */
-		columns : [ [ {
-			field : 'loaninfoId',
-			title : '贷款编号',
-			width : 100
-		}, {
-			field : 'borId',
-			title : '贷款人编号',
-			width : 100,
-			hidden : true
-		}, {
-			field : 'borName',
-			title : '贷款人姓名',
-			width : 100
-		}, {
-			field : 'bankinfoName',
-			title : '贷款银行',
-			width : 100
-		}, {
-			field : 'empId',
-			title : '经手人编号',
-			width : 100,
-			hidden : true
-		}, {
-			field : 'empName',
-			title : '经手人',
-			width : 100
-		}, {
-			field : 'loantypeName',
-			title : '贷款种类',
-			width : 100
-		}, {
-			field : 'loanNumber',
-			title : '贷款金额(元)',
-			width : 100
-		}, {
-			field : 'unrepayNumber',
-			title : '未还贷款金额(元)',
-			width : 100
-		}/* , {
-					field : 'loanDate',
-					title : '贷款日期',
-					width : 150
-				}, {
-					field : 'loanRepaymentDate',
-					title : '还款日期',
-					width : 150
-				} */, {
-			field : 'loanstateName',
-			title : '贷款状态',
-			width : 100
-		}, {
-			field : 'loaninfoType',
-			title : '贷款类型',
-			width : 100,
-			formatter : function(value) {
-				if (value == 0) {
-					return "个人贷款";
-				} else {
-					return "企业贷款";
+	$(function() {
+		$('#dg').datagrid({
+			url : '/badLoan/WriteoffManage/findWriteoffManage',
+			striped : true, //斑马线 
+			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+			pagination : true, //底部分页
+			singleSelect : true,
+			pageSize : 10,
+			pageNumber : 1,
+			pageList : [ 5, 10, 15, 20 ],
+			rownumbers : true, //如果为true，则显示一个行号列
+			/* onLoadSuccess : function(data) {
+				$("a[name='yes']").linkbutton({
+					text : '同意核销',
+					plain : true,
+					iconCls : 'icon-ok'
+				});
+				$("a[name='no']").linkbutton({
+					text : '驳回核销',
+					plain : true,
+					iconCls : 'icon-cancel'
+				});
+				$(".noBtn").click(function() {
+					$("#ff").dialog("open");
+				});
+				$(".yesBtn").click(function() {
+					$("#ff").dialog("open");
+				});
+			}, */
+			columns : [ [ {
+				field : 'loaninfoId',
+				title : '贷款编号',
+				width : 100
+			}, {
+				field : 'borId',
+				title : '贷款人编号',
+				width : 100,
+				hidden : true
+			}, {
+				field : 'borName',
+				title : '贷款人姓名',
+				width : 100
+			}, {
+				field : 'bankinfoName',
+				title : '贷款银行',
+				width : 100
+			}, {
+				field : 'empId',
+				title : '经手人编号',
+				width : 100,
+				hidden : true
+			}, {
+				field : 'empName',
+				title : '经手人',
+				width : 100
+			}, {
+				field : 'loantypeName',
+				title : '贷款种类',
+				width : 100
+			}, {
+				field : 'loanNumber',
+				title : '贷款金额(元)',
+				width : 100
+			}, {
+				field : 'unrepayNumber',
+				title : '未还贷款金额(元)',
+				width : 100
+			}/* , {
+								field : 'loanDate',
+								title : '贷款日期',
+								width : 150
+							}, {
+								field : 'loanRepaymentDate',
+								title : '还款日期',
+								width : 150
+							} */, {
+				field : 'loanstateName',
+				title : '贷款状态',
+				width : 100
+			}, {
+				field : 'loaninfoType',
+				title : '贷款类型',
+				width : 100,
+				formatter : function(value) {
+					if (value == 0) {
+						return "个人贷款";
+					} else {
+						return "企业贷款";
+					}
 				}
 			}
-		}
-		/* {
-			field : 'operate1',
-			title : '操作',
-			align : 'center',
-			width : $(this).width() * 0.1,
-			formatter : function(value, row, index) {
-				var str = '<a href="#" name="yes" class="easyui-linkbutton yesBtn"></a>';
-				return str;
-			}
-		},
-		{
-			field : 'operate2',
-			title : '操作',
-			align : 'center',
-			width : $(this).width() * 0.1,
-			formatter : function(value, row, index) {
-				var str = '<a href="#" name="no" class="easyui-linkbutton noBtn"></a>';
-				return str;
-			}
-		} */] ]
+			/* {
+				field : 'operate1',
+				title : '操作',
+				align : 'center',
+				width : $(this).width() * 0.1,
+				formatter : function(value, row, index) {
+					var str = '<a href="#" name="yes" class="easyui-linkbutton yesBtn"></a>';
+					return str;
+				}
+			},
+			{
+				field : 'operate2',
+				title : '操作',
+				align : 'center',
+				width : $(this).width() * 0.1,
+				formatter : function(value, row, index) {
+					var str = '<a href="#" name="no" class="easyui-linkbutton noBtn"></a>';
+					return str;
+				}
+			} */] ]
 
-	});
-	//点击详情按钮弹出模态框
-	$('#aa')
-			.dialog(
-					{
-						title : '贷款详情',
-						closed : true,
-						buttons : [
-								{
-									iconCls : 'icon-ok',
-									text : '通过',
-									handler : function() {
-										var row = $('#dg').datagrid(
-												'getSelected');
-										var data = {};
-										data["loaninfoId"] = row.loaninfoId;
-										data["borId"] = row.borId;
-										data["empId"] = row.empId;
-										data["witeoffMoney"] = row.unrepayNumber;
-										data["opinion"] = $("#opinion").val();
-										$
-												.ajax({
-													url : '/badLoan/WriteoffManage/addWriteoffManage',
-													type : 'post',
-													contentType : "application/json;charset=utf-8",
-													data : JSON.stringify(data),
-													success : function(data) {
-														alert(data);
-														window.location.href = "/badLoan/jsp/writeOffManage.jsp";
-													}
-												});
-									}
-								},
-								{
-									iconCls : 'icon-cancel',
-									text : '驳回',
-									handler : function() {
-										var row = $('#dg').datagrid(
-												'getSelected');
-										var data = {};
-										data["loaninfoId"] = row.loaninfoId;
-										data["empId"] = row.empId;
-										data["lmrComment"] = $("#opinion")
-												.val();
-										$
-												.ajax({
-													url : '/badLoan/lmrController/addLoanMRBo',
-													type : 'post',
-													contentType : "application/json;charset=utf-8",
-													data : JSON.stringify(data),
-													success : function(data) {
-														alert(data);
-														window.location.href = "/badLoan/jsp/writeOffManage.jsp";
-													}
-												});
-										$('#aa').dialog('close');
-									}
-								} ]
-					});
+		});
+		//点击详情按钮弹出模态框
+		$('#aa')
+				.dialog(
+						{
+							title : '贷款详情',
+							closed : true,
+							buttons : [
+									{
+										iconCls : 'icon-ok',
+										text : '通过',
+										handler : function() {
+											var row = $('#dg').datagrid(
+													'getSelected');
+											var data = {};
+											data["loaninfoId"] = row.loaninfoId;
+											data["borId"] = row.borId;
+											data["empId"] = row.empId;
+											data["witeoffMoney"] = row.unrepayNumber;
+											data["opinion"] = $("#opinion")
+													.val();
+											$
+													.ajax({
+														url : '/badLoan/WriteoffManage/addWriteoffManage',
+														type : 'post',
+														contentType : "application/json;charset=utf-8",
+														data : JSON
+																.stringify(data),
+														success : function(data) {
+															alert(data);
+															window.location.href = "/badLoan/jsp/writeOffManage.jsp";
+														}
+													});
+										}
+									},
+									{
+										iconCls : 'icon-cancel',
+										text : '驳回',
+										handler : function() {
+											var row = $('#dg').datagrid(
+													'getSelected');
+											var data = {};
+											data["loaninfoId"] = row.loaninfoId;
+											data["empId"] = row.empId;
+											data["lmrComment"] = $("#opinion")
+													.val();
+											$
+													.ajax({
+														url : '/badLoan/lmrController/addLoanMRBo',
+														type : 'post',
+														contentType : "application/json;charset=utf-8",
+														data : JSON
+																.stringify(data),
+														success : function(data) {
+															alert(data);
+															window.location.href = "/badLoan/jsp/writeOffManage.jsp";
+														}
+													});
+											$('#aa').dialog('close');
+										}
+									} ]
+						});
 	});
 	$("#xiangBtn")
 			.click(
@@ -322,7 +325,7 @@ $(function(){
 						var row = $('#dg').datagrid('getSelected');
 						if (row != null) {
 							$('#aa').dialog({
-								height:"600",
+								height : "400",
 								title : '贷款详情',
 								top : '4%',
 								closed : false,
@@ -339,70 +342,75 @@ $(function(){
 							$("#loanRepaymentDate").html(row.loanRepaymentDate);
 							$("#lmrComment").html(row.lmrComment);
 							$("#unrepayNumber").html(row.unrepayNumber);
-							$(function(){
-							$('#chuli')
-									.datagrid(
-											{
-												url : '/badLoan/lmrController/findlmr?loaninfoId='
-														+ row.loaninfoId,
-												striped : true, //斑马线 
-												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
-												rownumbers : true, //如果为true，则显示一个行号列
-												columns : [ [ {
-													field : 'loaninfoId',
-													title : '贷款编号',
-													width : 100
-												}, {
-													field : 'empName',
-													title : '经手人',
-													width : 100
-												}, {
-													field : 'lmrDate',
-													title : '处理日期',
-													width : 100
-												}, {
-													field : 'lmrComment',
-													title : '处理说明',
-													width : 200
-												}, {
-													field : 'loanstateName',
-													title : '贷款状态',
-													width : 100
-												} ] ],
-											});
-							$("#huishou")
-									.datagrid(
-											{
-												url : '/badLoan/WriteoffManage/findReayment?loaninfoId='
-														+ row.loaninfoId,
-												striped : true, //斑马线 
-												nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
-												//resizeHandle : 'right',
-												rownumbers : true, //如果为true，则显示一个行号列
-												columns : [ [ {
-													field : 'empName',
-													title : '经手人',
-													width : 80
-												}, {
-													field : 'repayDate',
-													title : '回收日期',
-													width : 100
-												}, {
-													field : 'repayType',
-													title : '回收类型',
-													align : 'center',
-													width : 100
-												}, {
-													field : 'repayComment',
-													title : '回收说明',
-													width : 200
+							$(function() {
+								$('#chuli')
+										.datagrid(
+												{
+													url : '/badLoan/lmrController/findlmr?loaninfoId='
+															+ row.loaninfoId,
+													striped : true, //斑马线 
+													nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+													rownumbers : true, //如果为true，则显示一个行号列
+													columns : [ [
+															{
+																field : 'loaninfoId',
+																title : '贷款编号',
+																width : 100
+															},
+															{
+																field : 'empName',
+																title : '经手人',
+																width : 100
+															},
+															{
+																field : 'lmrDate',
+																title : '处理日期',
+																width : 100
+															},
+															{
+																field : 'lmrComment',
+																title : '处理说明',
+																width : 200
+															},
+															{
+																field : 'loanstateName',
+																title : '贷款状态',
+																width : 100
+															} ] ],
+												});
+								$("#huishou")
+										.datagrid(
+												{
+													url : '/badLoan/WriteoffManage/findReayment?loaninfoId='
+															+ row.loaninfoId,
+													striped : true, //斑马线 
+													nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能
+													//resizeHandle : 'right',
+													rownumbers : true, //如果为true，则显示一个行号列
+													columns : [ [ {
+														field : 'empName',
+														title : '经手人',
+														width : 80
+													}, {
+														field : 'repayDate',
+														title : '回收日期',
+														width : 100
+													}, {
+														field : 'repayType',
+														title : '回收类型',
+														align : 'center',
+														width : 100
+													}, {
+														field : 'repayComment',
+														title : '回收说明',
+														width : 200
 
-												}, {
-													field : 'repayNumber',
-													title : '回收金额(元)',
-													width : 100
-												} ] ],
-											});
+													}, {
+														field : 'repayNumber',
+														title : '回收金额(元)',
+														width : 100
+													} ] ],
+												});
 							});
 							$('#ff').dialog({
 								title : '审核意见',
@@ -431,7 +439,6 @@ $(function(){
 	$("#btn").click(function() {
 		var value = $("#select").val();
 		$('#dg').datagrid({
-
 			url : '/badLoan/WriteoffManage/findWriteM?loaninfoId=' + value,
 			striped : true, //斑马线 
 			nowrap : true, //如果为true，则在同一行中显示数据。设置为true可以提高加载性能

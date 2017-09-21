@@ -18,5 +18,9 @@ public interface EmpDao {
 	/**
 	 * 修改员工
 	 */
-	int modifyEmp(Emp emp);
+	int modifyEmp(Emp empId);
+	/**
+	 * 員工詳情中的查看
+	 */
+	List<Emp> findIdEmp(Emp empId);
 }
