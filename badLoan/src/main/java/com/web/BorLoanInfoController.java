@@ -24,7 +24,6 @@ import com.entity.Loanmanage;
 import com.entity.Pledge;
 import com.service.BorLoanInfoService;
 import com.service.ComloanInfoService;
-import com.util.FileUpload;
 import com.util.Paging;
 import com.util.PagingResult;
 import com.util.UrlUtil;
