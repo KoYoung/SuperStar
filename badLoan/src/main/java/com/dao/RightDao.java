@@ -21,7 +21,7 @@ public interface RightDao {
 	public List<Right> findAllRight();
 
 	/**
-	 * 查询父权限
+	 * 查询父权-+限
 	 */
 	List<Right> findParentRight();
 
@@ -76,7 +76,7 @@ public interface RightDao {
 	 * 根据用户ID查询用户对应的父权限
 	 * 
 	 * @param String
-	 *            userId 用户ID
+	 * userId 用户ID
 	 */
 	List<Right> findRightP(String userId);
 
@@ -84,7 +84,7 @@ public interface RightDao {
 	 * 根据用户ID查询用户对应查询子权限
 	 * 
 	 * @param String
-	 *            userId 用户ID
+	 * userId 用户ID
 	 */
 	List<Right> findRightS(String userId);
 }
