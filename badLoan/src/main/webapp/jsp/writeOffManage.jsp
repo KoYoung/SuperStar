@@ -107,7 +107,7 @@ td {
 							<table cellpadding="5" id="tab2">
 								<tr>
 									<td>贷款金额:</td>
-									<td><span id="loanNumber"></span>万元</td>
+									<td><span id="loanNumber"></span>元</td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -119,7 +119,7 @@ td {
 								</tr>
 								<tr>
 									<td>核销金额:</td>
-									<td><span id="unrepayNumber"></span>万元</td>
+									<td><span id="unrepayNumber"></span>元</td>
 								</tr>
 								<tr>
 									<td>申请核销原因:</td>
@@ -205,11 +205,11 @@ $(function(){
 			width : 100
 		}, {
 			field : 'loanNumber',
-			title : '贷款金额(万元)',
+			title : '贷款金额(元)',
 			width : 100
 		}, {
 			field : 'unrepayNumber',
-			title : '未还贷款金额(万元)',
+			title : '未还贷款金额(元)',
 			width : 100
 		}/* , {
 					field : 'loanDate',
@@ -339,6 +339,7 @@ $(function(){
 							$("#loanRepaymentDate").html(row.loanRepaymentDate);
 							$("#lmrComment").html(row.lmrComment);
 							$("#unrepayNumber").html(row.unrepayNumber);
+							$(function(){
 							$('#chuli')
 									.datagrid(
 											{
@@ -362,7 +363,7 @@ $(function(){
 												}, {
 													field : 'lmrComment',
 													title : '处理说明',
-													width : 150
+													width : 200
 												}, {
 													field : 'loanstateName',
 													title : '贷款状态',
@@ -394,14 +395,15 @@ $(function(){
 												}, {
 													field : 'repayComment',
 													title : '回收说明',
-													width : 150
+													width : 200
 
 												}, {
 													field : 'repayNumber',
-													title : '回收金额(万元)',
+													title : '回收金额(元)',
 													width : 100
 												} ] ],
 											});
+							});
 							$('#ff').dialog({
 								title : '审核意见',
 								closed : true,
@@ -471,11 +473,11 @@ $(function(){
 				width : 100
 			}, {
 				field : 'loanNumber',
-				title : '贷款金额(万元)',
+				title : '贷款金额(元)',
 				width : 100
 			}, {
 				field : 'unrepayNumber',
-				title : '未还贷款金额(万元)',
+				title : '未还贷款金额(元)',
 				width : 100
 			}, {
 				field : 'loanDate',

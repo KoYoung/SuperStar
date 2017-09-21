@@ -111,7 +111,7 @@ tr td{
 								</tr>
 								<tr>
 									<td>贷款金额:</td>
-									<td><span id="loanNumber"></span>万元</td>
+									<td><span id="loanNumber"></span>元</td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -392,11 +392,11 @@ tr td{
 								width : 100
 							}, {
 								field : 'LOAN_NUMBER',
-								title : '贷款金额/(万元)',
+								title : '贷款金额/(元)',
 								width : 100
 							}, {
 								field : 'UNREPAY_NUMBER',
-								title : '已还金额/(万元)',
+								title : '已还金额/(元)',
 								width : 100
 							}, {
 								field : 'LOAN_ACCOUNT',
@@ -599,7 +599,7 @@ tr td{
 																		width : 100
 																	},{
 																		field : 'repayNumber',
-																		title : '回收金额(万元)',
+																		title : '回收金额(元)',
 																		width : 100
 																	},{
 																		field : 'repayComment',

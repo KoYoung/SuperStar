@@ -96,7 +96,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款金额:</td>
-									<td><input type="text" id="loanNumber" name="loanNumber"></input>万元</td>
+									<td><input type="text" id="loanNumber" name="loanNumber"></input>元</td>
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
@@ -679,7 +679,7 @@ tr td {
 				width : 100
 			}, {
 				field : 'loanNumber',
-				title : '贷款金额(万元)',
+				title : '贷款金额(元)',
 				width : 100
 			}, {
 				field : 'loanAccount',
