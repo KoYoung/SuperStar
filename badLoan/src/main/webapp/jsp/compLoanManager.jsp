@@ -172,7 +172,7 @@ tr td{
 							</td>
 						</tr>
 					</table>
-					<span style="font-size:14px;margin-left:6px">资料照片：</span><div id="legalInfo"></div>
+					<span style="font-size:14px;margin-left:6px">法人照片：</span><div id="legalInfo"></div>
 				</div>
 				<div class="ti1">担保人信息</div>
 				<div id="gua">

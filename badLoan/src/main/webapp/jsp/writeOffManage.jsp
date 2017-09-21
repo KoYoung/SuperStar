@@ -322,7 +322,7 @@ $(function(){
 						var row = $('#dg').datagrid('getSelected');
 						if (row != null) {
 							$('#aa').dialog({
-								height:"700",
+								height:"600",
 								title : '贷款详情',
 								top : '4%',
 								closed : false,
