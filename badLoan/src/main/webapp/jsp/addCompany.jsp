@@ -464,7 +464,7 @@ td {
 							},
 							success : function() {
 								$.messager.progress('close'); // 如果提交成功则隐藏进度条
-								window.location.href = "/badLoan/jsp/1.jsp"
+								window.location.href = "/badLoan/jsp/addCompany.jsp"
 							}
 						});
 					}

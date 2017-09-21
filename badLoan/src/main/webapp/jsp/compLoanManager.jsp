@@ -31,8 +31,12 @@
 	margin-top: 10px;
 }
 .img{
-	width: 293px;
-	height: 150px;
+	width: 200px;
+	height: 250px;
+}
+.img2{
+    width: 293px;
+    height: 150px;
 }
 tr td{
 	font-size:14px;
@@ -526,7 +530,7 @@ tr td{
 													            var rows=$("#ple2").children().children().length;
 													           if(rows<5){
 													        	   for (var i = 0; i < arr.length-1; i++) {
-													               	var t= "<img class='img' src='"+arr[i]+"'/>";
+													               	var t= "<img class='img2' src='"+arr[i]+"'/>";
 													                  $("#pledgePhoto").append("<td colspan='2'>"+t+"</td>");
 													   			}
 													        	   
