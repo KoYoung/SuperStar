@@ -13,15 +13,6 @@ public class BankInfo {
 	private String bankInfoName;
 	private String bankInfoTelePhone;
 	private String bankinfoAddress;
-	private List<Dept> depts;
-
-	public List<Dept> getDepts() {
-		return depts;
-	}
-
-	public void setDepts(List<Dept> depts) {
-		this.depts = depts;
-	}
 
 	public String getBankInfoId() {
 		return bankInfoId;
@@ -57,7 +48,7 @@ public class BankInfo {
 
 	public String toString() {
 		return "BankInfo [bankInfoId=" + bankInfoId + ", bankInfoName=" + bankInfoName + ", bankInfoTelePhone="
-				+ bankInfoTelePhone + ", bankinfoAddress=" + bankinfoAddress + ", depts=" + depts + "]";
+				+ bankInfoTelePhone + ", bankinfoAddress=" + bankinfoAddress  + "]";
 	}
 
 }

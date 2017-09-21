@@ -79,17 +79,20 @@
 			data : JSON.stringify(data),
 			success : function(data) {
 				if (data == 0) {
-					$.messager.alert("系统提示","该用户不存在！","");
+					$.messager.alert("系统提示", "该用户不存在！", "");
 					//window.location.href = "/badLoan/jsp/login.jsp";
 					$("#passWord").val("");
 				}
 				if (data == 1) {
-					$.messager.alert("系统提示","登录成功！");
+					$.messager.show({
+						msg : "登陆成功",
+						timeout : 10000,
+						title : "系统提示"
+					});
 					window.location.href = "/badLoan/jsp/home.jsp";
 				}
 				if (data == 2) {
-					$.messager.alert("系统提示","密码错误，请重新输入！");
-					//window.location.href = "/badLoan/jsp/login.jsp";
+					$.messager.alert("系统提示", "密码错误，请重新输入！");
 					$("#passWord").val("");
 				}
 			}

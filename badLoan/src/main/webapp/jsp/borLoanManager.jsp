@@ -333,7 +333,7 @@
 		modal : true
 	});
 	$("#loanStateSearch").combobox({
-		url : '/badLoan/loanStateController/findLoanState',
+		url : '/badLoan/loanStateController/findAllLoanState',
 		valueField : 'LOANSTATEID',
 		textField : 'LOANSTATENAME',
 		panelHeight : 'height',
@@ -349,7 +349,8 @@
 	$("#loanState").combobox({
 		url : '/badLoan/loanStateController/findLoanState',
 		valueField : 'LOANSTATEID',
-		textField : 'LOANSTATENAME'
+		textField : 'LOANSTATENAME',
+		panelHeight : 'auto'
 	});
 	function myFormSubmit() {
 		var data = {
@@ -364,7 +365,7 @@
 			contentType : "application/json;charset:UTF-8",
 			data : data,
 			success : function(data1) {
-				$.message.alert(data1);
+				$.messager.alert("提示",data1);
 			}
 		});
 	}
@@ -378,13 +379,11 @@
 			singleSelect : true,
 			pageSize : 10, //默认显示多少行
 			pageList : [ 5, 10, 15, 20 ],//行号下拉列表
-			sortOrder : 'asc',//默认升序
-			remoteSort : false,//不去服务器排序
 			fitColumns : true,
 			columns : [ [ {
 				field : 'BORLOANINFO_ID',
 				title : '贷款编号',
-				width : 100
+				width : 60
 			}, {
 				field : 'LOANTYPE_NAME',
 				title : '贷款类型',
@@ -392,7 +391,7 @@
 			}, {
 				field : 'BOR_NAME',
 				title : '贷款人姓名',
-				width : 100
+				width : 80
 			}, {
 				field : 'LOAN_NUMBER',
 				title : '贷款金额/(万元)',
@@ -404,7 +403,7 @@
 			}, {
 				field : 'LOAN_ACCOUNT',
 				title : '贷款账户',
-				width : 100
+				width : 150
 			}, {
 				field : 'LOANDATE',
 				title : '贷款日期',
@@ -714,9 +713,9 @@
 						handler : function() {
 							var row = $('#lmrDataGrid').datagrid("getSelected");
 							if (row == null) {
-								$.message.alert("请选择需要修改的信息");
+								$.messager.alert("提示","请选择需要修改的信息");
 							} else if (row.LOANSTATE_NAME == '已核销') {
-								$.message.alert("该贷款项已被核销");
+								$.messager.alert("提示","该贷款项已被核销");
 							} else {
 								$('#updateLoanDirlog').dialog("open");
 								$("#borLoanId").html(row.BORLOANINFO_ID);
@@ -735,9 +734,9 @@
 						handler : function() {
 							var row = $('#lmrDataGrid').datagrid("getSelected");
 							if (row == null) {
-								$.message.alert("请选择需要回收的信息");
+								$.messager.alert("提示","请选择需要回收的信息");
 							} else if (row.LOANSTATE_NAME == '已核销') {
-								$.message.alert("该贷款项已被核销");
+								$.messager.alert("提示","该贷款项已被核销");
 							} else {
 								$('#addLMR').dialog("open");
 								$("#borLoanIdLMR").html(row.BORLOANINFO_ID);
@@ -756,12 +755,12 @@
 						handler : function() {
 							var row = $('#lmrDataGrid').datagrid("getSelected");
 							if (row == null) {
-								$.message.alert("请选择需要核销的信息");
+								$.messager.alert("提示","请选择需要核销的信息");
 							} else {
 								if (row.LOANSTATE_NAME == '核销中') {
-									$.message.alert("该贷款项正在核销中");
+									$.messager.alert("提示","该贷款项正在核销中");
 								} else if (row.LOANSTATE_NAME == '已核销') {
-									$.message.alert("该贷款项已被核销");
+									$.messager.alert("提示","该贷款项已被核销");
 								} else {
 									$('#applyWriteOff').dialog("open");
 									$("#borLoanIdAWO").html(row.BORLOANINFO_ID);
@@ -801,11 +800,11 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							$.message.alert(data);
+							$.messager.alert("提示",data);
 							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {
-							$.message.alert("error");
+							$.messager.alert("提示","系统开了个小差，请刷新重试");
 						}
 					});
 					$('#updateLoanDirlog').dialog("close");
@@ -847,11 +846,11 @@
 												data : JSON.stringify(data),
 												contentType : 'application/json;charset=UTF-8',
 												success : function(data) {
-													$.message.alert(data);
+													$.messager.alert("提示",data);
 													$('#lmrDataGrid').datagrid();
 												},
 												error : function() {
-													$.message.alert("error");
+													$.messager.alert("提示","系统开了个小差，请刷新重试");
 												}
 											});
 											$('#addLMR').dialog("close");
@@ -888,11 +887,11 @@
 						data : JSON.stringify(data),
 						contentType : 'application/json;charset=UTF-8',
 						success : function(data) {
-							$.message.alert(data);
+							$.messager.alert("提示",data);
 							$('#lmrDataGrid').datagrid();
 						},
 						error : function() {
-							$.message.alert("error");
+							$.messager.alert("提示","系统开了个小差，请刷新重试");
 						}
 					});
 					$('#applyWriteOff').dialog("close");

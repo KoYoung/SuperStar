@@ -16,6 +16,13 @@ public class LoanStateController {
 	@Autowired
 	private LoanStateService loanStateService;
 
+	@RequestMapping("/findAllLoanState")
+	@ResponseBody
+	public List<Map<String, String>> findAllLoanState() {
+		List<Map<String, String>> findLoanState = loanStateService.findAllLoanState();
+		System.out.println(findLoanState);
+		return findLoanState;
+	}
 	@RequestMapping("/findLoanState")
 	@ResponseBody
 	public List<Map<String, String>> findLoanState() {

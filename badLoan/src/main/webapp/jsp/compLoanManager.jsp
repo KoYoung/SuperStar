@@ -377,15 +377,15 @@ tr td{
 							columns : [ [ {
 								field : 'COMLOANINFO_ID',
 								title : '贷款编号',
-								width : 100
+								width : 60
 							}, {
 								field : 'LOANTYPE_NAME',
 								title : '贷款种类',
-								width : 100
+								width : 60
 							}, {
 								field : 'COM_NAME',
 								title : '贷款企业',
-								width : 100
+								width : 80
 							}, {
 								field : 'LOAN_NUMBER',
 								title : '贷款金额/(万元)',
@@ -397,7 +397,7 @@ tr td{
 							}, {
 								field : 'LOAN_ACCOUNT',
 								title : '贷款账户',
-								width : 100
+								width : 150
 							}, {
 								field : 'LOAN_DATE',
 								title : '贷款日期',
@@ -429,7 +429,7 @@ tr td{
 													.datagrid("getSelected");
 											//console.log(row);
 											if (row == null) {
-												$.message.alert("请选中一行！");
+												$.messager.alert("提示","请选中一行！");
 											} else{
 												//企业贷款信息
 												$("#detailDialog").dialog("open");
@@ -467,7 +467,7 @@ tr td{
 															$("#legalInfo").append("<img class='img' src='"+data.legalInfo+"'/>");
 														} 
 													},error:function(){
-														$.message.alert(error);
+														$.messager.alert("提示","系统开了个小差，请刷新重试");
 													}	
 												});
 												//企业贷款担保人信息
@@ -500,7 +500,7 @@ tr td{
 															});
 														}
 													},error:function(){
-														$.message.alert("error");
+														$.messager.alert("提示","系统开了个小差，请刷新重试");
 													}	
 												});
 												//企业贷款抵押物信息
@@ -534,7 +534,7 @@ tr td{
 															});
 														}
 													},error:function(){
-														$.message.alert("error");
+														$.messager.alert("提示","系统开了个小差，请刷新重试");
 													}	
 												});
 												//单笔贷款处理记录
@@ -615,9 +615,9 @@ tr td{
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												$.message.alert("请选择需要修改的信息");
+												$.messager.alert("提示","请选择需要修改的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												$.message.alert("该贷款项已被核销");
+												$.messager.alert("提示","该贷款项已被核销");
 											} else {
 												$('#updateLoanDirlog').dialog(
 														"open");
@@ -649,9 +649,9 @@ tr td{
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												$.message.alert("请选择需要回收的信息");
+												$.messager.alert("提示","请选择需要回收的信息");
 											} else if (row.LOANSTATE_NAME == '已核销') {
-												$.message.alert("该贷款项已被核销");
+												$.messager.alert("提示","该贷款项已被核销");
 											} else {
 												$('#addLMR').dialog("open");
 												$("#comLoanIdLMR").html(
@@ -681,12 +681,12 @@ tr td{
 											var row = $('#comDataGrid')
 													.datagrid("getSelected");
 											if (row == null) {
-												$.message.alert("请选择需要核销的信息");
+												$.messager.alert("提示","请选择需要核销的信息");
 											} else {
 												if (row.LOANSTATE_NAME == '核销中') {
-													$.message.alert("该贷款项正在核销中");
+													$.messager.alert("提示","该贷款项正在核销中");
 												} else if (row.LOANSTATE_NAME == '已核销') {
-													$.message.alert("该贷款项已被核销");
+													$.messager.alert("提示","该贷款项已被核销");
 												} else {
 													$('#applyWriteOff').dialog(
 															"open");
@@ -757,12 +757,12 @@ tr td{
 													data : JSON.stringify(data),
 													contentType : 'application/json;charset=UTF-8',
 													success : function(data) {
-														$.message.alert(data);
+														$.messager.alert("提示",data);
 														$('#comDataGrid')
 																.datagrid();
 													},
 													error : function() {
-														$.message.alert("error");
+														$.messager.alert("提示","系统开了个小差，请刷新重试");
 													}
 												});
 										$('#addLMR').dialog("close");
@@ -811,11 +811,11 @@ tr td{
 					data : JSON.stringify(data),
 					contentType : 'application/json;charset=UTF-8',
 					success : function(data) {
-						$.message.alert(data);
+						$.messager.alert("提示",data);
 						$('#comDataGrid').datagrid();
 					},
 					error : function() {
-						$.message.alert("error");
+						$.messager.alert("提示","系统开了个小差，请刷新重试");
 					}
 				});
 				$('#applyWriteOff').dialog("close");
@@ -852,11 +852,11 @@ tr td{
 					data : JSON.stringify(data),
 					contentType : 'application/json;charset=UTF-8',
 					success : function(data) {
-						$.message.alert(data);
+						$.messager.alert("提示",data);
 						$('#comDataGrid').datagrid();
 					},
 					error : function() {
-						$.message.alert("error");
+						$.messager.alert("提示","系统开了个小差，请刷新重试");
 					}
 				});
 				$('#updateLoanDirlog').dialog("close");

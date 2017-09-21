@@ -324,7 +324,8 @@ tr td {
 				.dialog(
 						{
 							title : '不良贷款信息录入',
-							height : 750,
+							width:750,
+							height : 450,
 							closed : true,
 							cache : false,
 							modal : true,

@@ -400,8 +400,8 @@ td {
 			if (row != null) {
 				$('#search').dialog({
 					title : '个人客户详情',
-					width : '60%',
-					height : 'auto',
+					width:750,
+					height : 450,
 					closed : false,
 					cache : false,
 					modal : true
