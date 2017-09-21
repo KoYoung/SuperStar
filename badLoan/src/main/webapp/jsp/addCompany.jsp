@@ -31,24 +31,24 @@
 <!-- 传图 -->
 
 <style type="text/css">
-tr {
+ tr {
 	line-height: 40px;
 }
 
 td {
 	line-height: 20px;
-	`
 }
-
+ 
 .img-container {
 	width: 293px;
 	height: 150px;
 	background: #F2F2F2;
-	margin-bottom: 35px;
 	overflow: hidden;
 	border: 1px solid #000;
 }
-
+tr{
+	margin: 2px;
+}
 .img-container>img {
 	width: 293px;
 	height: 150px;
@@ -62,6 +62,14 @@ td {
 #tablr, #xiangqing {
 	margin-left: 20px
 }
+ #tabsearch{
+    	margin-left: 10px;
+    } 
+   
+     .image{
+    	width:293px;
+    	height: 150px;
+    } 
 </style>
 </head>
 <body>
@@ -80,15 +88,11 @@ td {
 			<form id="compfrom" enctype="multipart/form-data" method="post">
 				<table cellpadding="5" id="tab1">
 					<tr>
-						<td><input type="hidden" id="comId" name="comId" /></td>
-					</tr>
-					<tr>
 						<th>公司名字</th>
 						<td><input type="text" id="comName" name="comName"
-							onblur="checkNull('comName','公司名');" /></td>
+							 /></td>
 						<th>组织机构代码</th>
-						<td><input class="easyui-numberbox" id="comCode"
-							name="comCode" /></td>
+						<td><input class="easyui-numberbox" id="comCode" name="comCode"/></td>
 					</tr>
 					<tr>
 						<th>工商登记执照号码</th>
@@ -110,6 +114,8 @@ td {
 						</select></td>
 					</tr>
 					<tr>
+						<th>隶属关系</th>
+						<td><input type="text" id="comParent" name="comParent" /></td>
 						<th>公司地址</th>
 						<td>
 							<div class="form-inline">
@@ -132,12 +138,14 @@ td {
 								</div>
 							</div>
 						</td>
-						<th>隶属关系</th>
-						<td><input type="text" id="comParent" name="comParent" /></td>
+						
 					</tr>
 					<tr>
-						<th></th>
-						<td><input type="hidden" id="comLegalId" name="comLegalId" /></td>
+						
+						<th>企业信誉度</th>
+						<td><input type="text" id="comCredit" name="comCredit" /></td>
+						<!-- <th></th>
+						<td><input type="hidden" id="comLegalId" name="comLegalId" /></td> -->
 						<th>经济性质</th>
 						<td><input type="text" id="comProperty" name="comProperty" /></td>
 					</tr>
@@ -156,13 +164,10 @@ td {
 						<td><input type="text" onblur="checkcomFund('comFund')"
 							id="comFund" name="comFund" /></td>
 					</tr>
+					
 					<tr>
-						<th>企业信誉度</th>
-						<td><input type="text" id="comCredit" name="comCredit" /></td>
-					</tr>
-					<tr>
-						<th>法人姓名</th>
-						<td><input type="text" id="legalName" name="legalName" /></td>
+					 	<th>法人姓名</th>
+						<td><input type="text" id="legalName" name="legalName" /></td> 
 						<th>法人性别</th>
 						<td><input type="radio" id="legalGender" checked="checked"
 							name="legalGender" value="男" />男 <input type="radio"
@@ -199,6 +204,15 @@ td {
 							name="legalCardnumber" /></td>
 					</tr>
 					<tr>
+						<th>法人婚姻状况</th>
+						<td><select id="legalMarry" class="easyui-combobox"
+							name="legalMarry" style="width: 200px;"
+							data-options="editable:false,panelHeight:'auto'">
+								<option value="未婚">未婚</option>
+								<option value="已婚">已婚</option>
+								<option value="离异">离异</option>
+								<option value="丧偶">丧偶</option>
+						</select></td>
 						<th>法人地址</th>
 						<td>
 							<div class="form-inline">
@@ -221,35 +235,26 @@ td {
 								</div>
 							</div>
 						</td>
-						<th>法人婚姻状况</th>
-						<td><select id="legalMarry" class="easyui-combobox"
-							name="legalMarry" style="width: 200px;"
-							data-options="editable:false,panelHeight:'auto'">
-								<option value="未婚">未婚</option>
-								<option value="已婚">已婚</option>
-								<option value="离异">离异</option>
-								<option value="丧偶">丧偶</option>
-						</select></td>
 					</tr>
 					<tr>
 						<th>法人资料</th>
-						<td><input type="text" id="legalInfo" name="legalInfo"></td>
-					</tr>
-					<tr>
+							<td>
+						            <div class="img-container"></div>
+						            <input class="img-btn" type="file" id="legalInfo" name="tupian">
+					        	
+							</td>
 						<th>企业资料照片</th>
 						<td>
 							<div id="box">
-								<div>
-									<div class="img-container"></div>
-									<input class="img-btn" type="file" id="drivingLicence"
-										name="legalphone">
-								</div>
+						            <div class="img-container"></div>
+						            <input class="img-btn" type="file" id="conPhoto" name="tupian">
 							</div>
 						</td>
 						<th>税务登记证</th>
 						<td>
 							<div id="box">
-								<div id="comCard" name="comCard"></div>
+								<div class="img-container"></div>
+						        <input class="img-btn" type="file" id="comCard" name="tupian">
 							</div>
 						</td>
 					</tr>
@@ -259,6 +264,11 @@ td {
 	</div>
 	<div id="search">
 		<table id="xiangqing">
+			<tr>
+				<th>法人资料</th><td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th><td><div id="conPhoto0" class="limage"></div></td>
+				<th>税务登记证</th><td><div id="comCard0" class="limage"></div></td>
+			</tr>
 			<tr>
 				<th>企业名称</th>
 				<td><span id="comName0"></span></td>
@@ -319,13 +329,7 @@ td {
 				<th>法人电话</th>
 				<td><span id="legalPhone0"></span></td>
 			</tr>
-			<tr>
-				<th>法人资料</th>
-				<td><span id="legalInfo0"></span></td>
-				<th>企业资料照片</th>
-				<td><span id="conPhoto0"></span></td>
-			</tr>
-
+			
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -411,7 +415,6 @@ td {
 				$("#comType0").html(row.comType);
 				$("#comLicense0").html(row.comLicense);
 				$("#comAddress0").html(row.comAddress);
-				$("#comCard0").html(row.comCard);
 				$("#comParent0").html(row.comParent);
 				$("#comLegalId0").html(row.comLegalId);
 				$("#comProperty0").html(row.comProperty);
@@ -429,7 +432,9 @@ td {
 				$("#legalMarry0").html(row.legalMarry);
 				$("#legalAddress0").html(row.legalAddress);
 				$("#legalPhone0").html(row.legalPhone);
-				$("#legalInfo0").html(row.legalInfo);
+				$("#comCard0").html("<img class='image' src="+row.comCard+"\>");
+		        $("#conPhoto0").html("<img class='image' src="+row.conPhoto+"\>");
+		        $("#legalInfo0").html("<img class='image' src="+row.legalInfo+"\>"); 
 			}
 		});
 
@@ -446,6 +451,7 @@ td {
 			$('#comp').dialog({
 				title : '添加企业信息',
 				width : '80%',
+				height:500,
 				closed : true,
 				cache : false,
 				modal : true,
@@ -530,7 +536,8 @@ td {
 				}, {
 					field : 'comLegalId',
 					title : '法定代表人',
-					width : 100
+					width : 100,
+					hidden : 'true'
 				}, {
 					field : 'comProperty',
 					title : '经济性质',
@@ -556,11 +563,13 @@ td {
 				}, {
 					field : 'comCredit',
 					title : '企业信誉度',
-					width : 100
+					width : 100,
+					hidden : 'true'
 				}, {
 					field : 'conPhoto',
 					title : '企业资料照片',
-					width : 100
+					width : 100,
+					hidden : 'true'
 				}, {
 					field : 'legalName',
 					title : '法人姓名',
@@ -568,7 +577,8 @@ td {
 				}, {
 					field : 'legalCardtype',
 					title : '法人证件类型',
-					width : 100
+					width : 100,
+					hidden : 'true'
 				}, {
 					field : 'legalCardnumber',
 					title : '法人证件号码',
@@ -577,6 +587,7 @@ td {
 					field : 'legalNation',
 					title : '法人民族',
 					width : 100,
+					hidden : 'true',
 					hidden : 'true'
 				}, {
 					field : 'legalGender',

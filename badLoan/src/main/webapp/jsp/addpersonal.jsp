@@ -13,10 +13,6 @@
 	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
-<script src="../easyui/jquery.validate.min.js""></script>
-<script src="../easyui/jquery.validator.js""></script>
-<script src="../easyui/jquery.validate.js""></script>
-
 <!--级联  -->
 <!-- <script src="../bootstrap-3.3.7-distjs/jquery-3.2.1.min.js"></script> -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -24,21 +20,21 @@
 <script src="../bootstrap-3.3.7-dist/js/distpicker.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/main.js"></script>
 <!--级联  -->
-<script src="https://cdn.hcharts.cn/highcharts/5.0.10/highcharts.js"></script>
+<!-- <script src="https://cdn.hcharts.cn/highcharts/5.0.10/highcharts.js"></script>
 <script
 	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/exporting.js"></script>
 <script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/data.js"></script>
 <script
-	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script>
+	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script> -->
 <style type="text/css">
-tr {
+ tr {
 	line-height: 40px;
 }
 
 td {
 	line-height: 20px;
-	`
 }
+ 
 
 #box {
 	margin: 10px;
@@ -51,7 +47,6 @@ td {
 	width: 293px;
 	height: 150px;
 	background: #F2F2F2;
-	margin-bottom: 35px;
 	overflow: hidden;
 }
 
@@ -73,6 +68,11 @@ td {
 #tableAddper, #xiangqing {
 	margin-left: 20px
 }
+.image{
+    	width:293px;
+    	height: 150px;
+    } 
+  
 </style>
 </head>
 <body>
@@ -98,9 +98,7 @@ td {
 			<table class="formtable" id="tableAddper">
 				<tr>
 					<th>姓名</th>
-					<td><input class="easyui-textbox"
-						data-options="validType:'CHS'" type="text" id="borName"
-						name="borName"></td>
+					<td><input  id="borName" name="borName"/></td>
 					<th>性别</th>
 					<td><input type="radio" checked="checked" id="borGender"
 						name="borGender" value="男" />男 <input type="radio" id="borGender"
@@ -167,8 +165,6 @@ td {
 				<tr>
 					<th>住址</th>
 					<td>
-
-
 						<div class="form-inline">
 							<div data-toggle="distpicker">
 								<div class="form-group">
@@ -191,9 +187,6 @@ td {
 					</td>
 				</tr>
 				<tr>
-					<th>单位名称</th>
-					<td><input class="easyui-textbox" id="borUnit" required="true"
-						name="borUnit"></td>
 					<th>单位地址</th>
 					<td>
 						<div class="form-inline">
@@ -216,6 +209,9 @@ td {
 							</div>
 						</div>
 					</td>
+					<th>单位名称</th>
+					<td><input class="easyui-textbox" id="borUnit" required="true"
+						name="borUnit"></td>
 				</tr>
 				<tr>
 					<th>单位电话</th>
@@ -249,9 +245,6 @@ td {
 							<option value="初中或以下">初中或以下</option>
 					</select></td>
 				</tr>
-				<!-- <tr>
-						<td><input type="hidden" id="contectId" name="contectId" value="borId"></td>
-					</tr> -->
 				<tr>
 					<th>紧急联系人名</th>
 					<td><input class="easyui-textbox" required="true"
@@ -278,9 +271,7 @@ td {
 						id="contectCardnumber" name="contectCardnumber"></td>
 				</tr>
 				<tr>
-					<th>紧急联系人生日</th>
-					<td><input id="contectBirthday" name="contectBirthday"
-						required="true" editable="false" class="easyui-datebox" /></td>
+					
 					<th>紧急联系人地址</th>
 					<td>
 						<div class="form-inline">
@@ -303,6 +294,9 @@ td {
 							</div>
 						</div>
 					</td>
+					<th>紧急联系人生日</th>
+					<td><input id="contectBirthday" name="contectBirthday"
+						required="true" editable="false" class="easyui-datebox" /></td>
 				</tr>
 				<tr>
 					<th>紧急联系人电话</th>
@@ -407,20 +401,15 @@ td {
 	</div>
 
 	<script type="text/javascript">
-		$.extend($.fn.validatebox.defaults.rules, {
-			//验证汉子  
-			CHS : {
-				validator : function(value) {
-					return /^[\u0391-\uFFE5]+$/.test(value);
-				},
-				message : '只能输入汉字'
-			},
-
-		});
-
+	$('#borName').textbox({
+		prompt : '输入姓名',
+		
+	});
+	
 		/* 客户详情  */
 		$("#searchpersonal").click(function() {
 			var row = $('#personal').datagrid('getSelected');
+			alert(row.borCredit)
 			if (row != null) {
 				$('#add').dialog({
 					title : '个人客户详情',
@@ -455,11 +444,11 @@ td {
 				$("#contectCardnumber0").html(row.contectCardnumber);
 				$("#contectAddress0").html(row.contectAddress);
 				$("#borCredit0").html(row.borCredit);
-
-				var img = "<img class='img' src="+row.borPhoto+"\>";
+				$("#drivingLicence0").html("<img class='image' src="+row.borPhoto+"\>");
+				/* var img = "<img class='img' src="+row.borPhoto+"\>";
 				$("#drivingLicence0").empty();
 				$("#drivingLicence0").append(img);
-
+ */
 			} else {
 				alert("请选中一行！");
 			}
@@ -533,7 +522,8 @@ td {
 				}, {
 					field : 'borUnitAddress',
 					title : '单位地址',
-					width : 100
+					width : 100,
+					hidden : 'true'
 				}, {
 					field : 'borUnitPhone',
 					title : '单位电话',
@@ -570,6 +560,7 @@ td {
 					field : 'borPhoto',
 					title : '照片',
 					width : 100,
+					hidden : 'true'
 				},
 
 				{
@@ -598,7 +589,8 @@ td {
 				}, {
 					field : 'contectAddress',
 					title : '紧急联系人地址',
-					width : 180
+					width : 180,
+					hidden : 'true'
 				}, {
 					field : 'contectTelphone',
 					title : '紧急联系人电话',
@@ -612,7 +604,8 @@ td {
 							{
 								title : '添加客户信息',
 								iconCls : 'icon-save',
-								width : '70%',
+								width : '50%',
+								height:'50%',
 								top : 100,
 								closed : true,
 								cache : false,

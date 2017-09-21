@@ -6,7 +6,7 @@
 <mapper namespace="com.dao.CompanyDao">
 	<select id="findCompany" resultType="com.entity.Company">
 		select c.*,l.* from conpanyLegal cl join company c on
-		c.com_id=cl.company_id join legal l on l.legal_id=cl.legal_id
+		c.com_id=cl.company_id join legal l on l.legal_id=cl.legal_id order by c.com_id desc
 
 		<!-- select com_id,com_name,com_code,com_type,com_license,com_address,com_card,com_parent,com_legal_id,com_property,com_postcode,com_linkman,com_linphone,com_fund,com_credit,con_photo 
 			from company -->
