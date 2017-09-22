@@ -98,13 +98,13 @@
 			guaEducation : $("#guaEducation").val(),
 			guaIncome : $("#guaIncome").val()
 		};
-		alert(data.guaId + " " + data.guaName + " " + data.guaGender + " "
+		/* alert(data.guaId + " " + data.guaName + " " + data.guaGender + " "
 				+ data.guaPhone + " " + data.guaBirthday + " "
 				+ data.guaCardType + " " + data.guaCardNumber + " "
 				+ data.guaRegister + " " + data.guaAddress + " " + data.guaUnit
 				+ " " + data.guaPosition + " " + data.guaMarry + " "
 				+ data.guaNation + " " + data.guaEducation + " "
-				+ data.guaIncome + " ");
+				+ data.guaIncome + " "); */
 		$.ajax({
 			url : '/badLoan/guaController/addGua',
 			contentType : "application/json;charset:UTF-8",

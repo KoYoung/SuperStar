@@ -348,7 +348,7 @@ tr td{
 		panelHeight : 'auto'
 	});
 	$("#loanStateSearch").combobox({
-		url : '/badLoan/loanStateController/findLoanState',
+		url : '/badLoan/loanStateController/findAllLoanState',
 		valueField : 'LOANSTATEID',
 		textField : 'LOANSTATENAME',
 		panelHeight : 'auto',

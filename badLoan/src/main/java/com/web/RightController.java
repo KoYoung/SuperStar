@@ -62,7 +62,6 @@ public class RightController {
 
 	/**
 	 * 查询所有jsp页面
-	 * 
 	 * @param req
 	 * @return
 	 */
