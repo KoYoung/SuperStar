@@ -269,14 +269,7 @@ tr {
 	</div>
 	<div id="search">
 		<table id="xiangqing">
-			<tr>
-				<th>法人资料</th>
-				<td><div id="legalInfo0" class="limage"></div></td>
-				<th>企业资料照片</th>
-				<td><div id="conPhoto0" class="limage"></div></td>
-				<th>税务登记证</th>
-				<td><div id="comCard0" class="limage"></div></td>
-			</tr>
+			
 			<tr>
 				<th>企业名称</th>
 				<td><span id="comName0"></span></td>
@@ -359,6 +352,7 @@ tr {
 				<th>税务登记证</th>
 				<td><div id="comCard0" class="limage"></div></td>
 			</tr>
+			
 		</table>
 	</div>
 
