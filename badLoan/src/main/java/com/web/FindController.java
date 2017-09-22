@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.entity.Find;
 import com.service.FindService;
 import com.util.PagingResult;
-import com.util.UrlUtil;
+import com.util.FormUtil;
 
 /**
  * @author 蒙奇·D·路飞
@@ -249,7 +249,7 @@ public class FindController {
 	@RequestMapping("/findBankBor")
 	@ResponseBody
 	public List<Map<String, Object>> findBankBor(@RequestBody String name){
-		name = UrlUtil.getURLDecoderString(name);
+		name = FormUtil.getURLDecoderString(name);
 		name = name.substring(0, name.length()-1);
 		List<Map<String, Object>> list = fs.findBankBor(name);
 		return list;
@@ -260,7 +260,7 @@ public class FindController {
 	@RequestMapping("/findBankCom")
 	@ResponseBody
 	public List<Map<String, Object>> findBankCom(@RequestBody String name){
-		name = UrlUtil.getURLDecoderString(name);
+		name = FormUtil.getURLDecoderString(name);
 		name = name.substring(0, name.length()-1);
 		System.out.println(name+"************************------------------");
 		List<Map<String, Object>> list = fs.findBankCom(name);

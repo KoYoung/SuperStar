@@ -60,4 +60,9 @@ public class RoleServiceImpl implements RoleService {
 		rd.addRoleByAJAX(datamap);
 	}
 
+	@Override
+	public List<Map<String, String>> querySonRightByRoleId(String roleId) {
+		return rd.querySonRightByRoleId(roleId);
+	}
+
 }

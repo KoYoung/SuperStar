@@ -91,30 +91,40 @@
 			field : 'empEmail',
 			title : '员工邮箱',
 			width : 100
+		},{
+			field : 'empFlag',
+			title : '员工状态',
+			width : 100,
+			formatter: function (index,row) {
+                if(row.empFlag==1)
+                	return "<span onclick='disableEmp()'>已启用</span>";
+                else
+                	return "<span style='color:red' onclick='enableEmp()'>已禁用</span>";
+            }
 		} ] ],
-		toolbar : [ {
+		toolbar : [ '-',{
 			text : '添加',
 			iconCls : 'icon-add',
 			handler : function() {
 				add();
 			}
-		}, {
+		},'-', {
 			text : '修改',
 			iconCls : 'icon-edit',
 			handler : function() {
 				edit();
 			}
-		}, {
-			text : '启用',
-			iconCls : 'icon-edit',
-			handler : function() {
-				enableEmp();
-			}
-		}, {
+		},'-', {
 			text : '禁用',
-			iconCls : 'icon-edit',
+			iconCls : 'icon-no',
 			handler : function() {
 				disableEmp();
+			}
+		},'-', {
+			text : '启用',
+			iconCls : 'icon-ok',
+			handler : function() {
+				enableEmp();
 			}
 		} ]
 	});
@@ -271,51 +281,59 @@
 	}
 
 	function enableEmp() {
-		var rows = datagrid.datagrid("getChecked");
+		var rows = datagrid.datagrid("getSelected");
 		if (rows == null) {
 			$.messager.alert("提示", "请选择你要修改的记录", "error");
-		} else if (rows[0].empFlag == 1) {
+		} else if (rows.empFlag == 1) {
 			$.messager.alert("提示", "已经是启用状态", "error");
 		} else {
-			$.ajax({
-				url : "../Emp/enableEmp",
-				type : "post",
-				data : {
-					empId : rows[0].empId,
-					empFlag : 1
-				},
-				success : function(data1) {
-					$.messager.alert("提示", "禁用成功", "");
-					datagrid.datagrid({});
-				},
-				error : function() {
-					$.messager.alert("提示", "服务器开了个小差，请刷新重试", "error");
+			$.messager.confirm('提示',"是否确定要启用该员工？",function(r){
+				if (r){
+					$.ajax({
+						url : "../Emp/enableEmp",
+						type : "post",
+						data : {
+							empId : rows.empId,
+							empFlag : 1
+						},
+						success : function(data1) {
+							$.messager.alert("提示", "启用成功", "");
+							datagrid.datagrid({});
+						},
+						error : function() {
+							$.messager.alert("提示", "服务器开了个小差，请刷新重试", "error");
+						}
+					});
 				}
 			});
 		}
 	}
 	function disableEmp() {
-		var rows = datagrid.datagrid("getChecked");
+		var rows = datagrid.datagrid("getSelected");
 		if (rows == null) {
 			$.messager.alert("提示", "请选择你要修改的记录", "error");
-		} else if (rows[0].empFlag == 0) {
+		} else if (rows.empFlag == 0) {
 			$.messager.alert("提示", "已经是禁用状态", "error");
 		} else {
-			$.ajax({
-				url : "../Emp/enableEmp",
-				type : "post",
-				data : {
-					empId : rows[0].empId,
-					empFlag : 0
-				},
-				success : function(data1) {
-					$.messager.alert("提示", "禁用成功", "");
-					datagrid.datagrid({});
-				},
-				error : function() {
-					$.messager.alert("提示", "服务器开了个小差，请刷新重试", "error");
-				}
-			});
+			 $.messager.confirm('提示',"是否确定要禁用该员工？",function(r){
+				    if (r){   
+				    	$.ajax({
+							url : "../Emp/enableEmp",
+							type : "post",
+							data : {
+								empId : rows.empId,
+								empFlag : 0
+							},
+							success : function(data1) {
+								$.messager.alert("提示", "禁用成功", "");
+								datagrid.datagrid({});
+							},
+							error : function() {
+								$.messager.alert("提示", "服务器开了个小差，请刷新重试", "error");
+							}
+						});
+				 	}
+				 });
 		}
 	}
 </script>
