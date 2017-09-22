@@ -743,38 +743,11 @@ tr td {
 				field : 'loanRate',
 				title : '贷款利率(%)',
 				width : 80
-			},/* {
-							field : 'pledgeType',
-							title : '抵押物类型',
-							width : 100
-						},{
-							field : 'pledgeName',
-							title : '抵押物名称',
-							width : 100
-						},{
-							field : 'pledgeValue',
-							title : '抵押物价值（万元）',
-							width : 100
-						},{
-							field : 'pledgeOwner',
-							title : '抵押物所有人',
-							width : 100
-						},{
-							field : 'guaName',
-							title : '担保人姓名',
-							width : 100
-						}, */{
-				field : 'lmrName',
+			},{
+				field : 'loanstateName',
 				title : '贷款状态',
 				width : 100,
-				formatter : function(value, row, index) {
-					if (value == 0) {
-						return "待处理";
-					} else {
-						return "处理中";
-					}
-				}
-			} ] ]
+			}]]
 		});
 	</script>
 </body>

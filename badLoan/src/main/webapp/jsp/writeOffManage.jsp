@@ -237,10 +237,8 @@ td {
 											data["borId"] = row.borId;
 											data["empId"] = row.empId;
 											data["witeoffMoney"] = row.unrepayNumber;
-											data["opinion"] = $("#opinion")
-													.val();
-											$
-													.ajax({
+											data["opinion"] = $("#opinion").val();
+											$.ajax({
 														url : '/badLoan/WriteoffManage/addWriteoffManage',
 														type : 'post',
 														contentType : "application/json;charset=utf-8",

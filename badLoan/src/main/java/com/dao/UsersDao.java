@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.entity.Emp;
+import com.entity.Employee;
 import com.entity.Role;
 import com.entity.Users;
 
@@ -48,5 +49,4 @@ public interface UsersDao {
 	 * @return
 	 */
 	String getUsersKey();
-
 }

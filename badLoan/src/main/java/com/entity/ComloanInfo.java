@@ -29,7 +29,7 @@ public class ComloanInfo {
 	private String pledgeValue;
 	private String pledgeOwner;
 	private String guaName;
-	private String lmrName;
+	private String loanstateName;
 	private Integer unrepayNumber;
 
 	public Integer getUnrepayNumber() {
@@ -215,13 +215,12 @@ public class ComloanInfo {
 	public void setGuaName(String guaName) {
 		this.guaName = guaName;
 	}
-
-	public String getLmrName() {
-		return lmrName;
+	public String getLoanstateName() {
+		return loanstateName;
 	}
 
-	public void setLmrName(String lmrName) {
-		this.lmrName = lmrName;
+	public void setLoanstateName(String loanstateName) {
+		this.loanstateName = loanstateName;
 	}
 
 	@Override
@@ -233,7 +232,7 @@ public class ComloanInfo {
 				+ ", loanDate=" + loanDate + ", loanRepaymentDate=" + loanRepaymentDate + ", loanRate=" + loanRate
 				+ ", pledgeGenre=" + pledgeGenre + ", pledgeType=" + pledgeType + ", pledgeName=" + pledgeName
 				+ ", pledgeValue=" + pledgeValue + ", pledgeOwner=" + pledgeOwner + ", guaName=" + guaName
-				+ ", lmrName=" + lmrName + "]";
+				+ ", loanstateName=" + loanstateName + "]";
 	}
 
 }

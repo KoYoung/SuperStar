@@ -662,10 +662,6 @@ $('#dd')
 			pageNumber:1,
 			pageList:[5,10,15,20],
 			rownumbers : true, //如果为true，则显示一个行号列
-			onLoadSuccess:function(data){    
-	            $("a[name='opera']").linkbutton({text:'下订单',plain:true,iconCls:'icon-add'}); 
-	            
-	   	 	},
 			columns : [ [ {
 				field : 'borloaninfoId',
 				title : '贷款编号',
@@ -711,21 +707,10 @@ $('#dd')
 				title : '贷款利率(%)',
 				width : 70
 			},{
-				field : 'lmrName',
+				field : 'loanstateName',
 				title : '贷款状态',
 				width : 100,
-				formatter:function(value){
-				    if(value=='0'){
-				        return "待处理";
-				    }else{
-				        return "处理中";
-				    }
-				}
-			},    /* {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,  
-		        formatter:function(value, row, index){  
-		            var str = '<a href="#" name="opera" class="easyui-linkbutton" >同意</a>';  
-		            return str;  
-		    }}*/ ]]
+			}]]
 		});
 	    
 	</script>

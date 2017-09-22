@@ -9,15 +9,17 @@
 		bor.bor_name,bori.borloaninfo_id,bi.bankinfo_name,bori.contract_id,
 		e.emp_name,lt.loantype_name,bori.loan_number,bori.loan_account,
 		bori.loan_date,bori.loan_repayment_date,bori.loan_rate,
-		lg.lmr_name
+		ls.loanstate_name
 		from borrower bor,bankinfo bi,employee e,loantype lt,
 		borloaninfo
-		bori,loanmanagerecord lg
-		where bor.bor_id=bori.bor_id and
+		bori,loanmanage l,loanstate ls
+		where bor.bor_id=bori.bor_id
+		and
 		bi.bankinfo_id=bori.bankinfo_id
 		and bori.emp_id=e.emp_id and
 		bori.loan_type=lt.loantype_id
-		and lg.loaninfo_id=bori.borloaninfo_id
+		and bori.borloaninfo_id=l.loaninfo_id
+		and l.loanstate_id=ls.loanstate_id
 		and bori.loaninfo_type=0
 	</select>
 

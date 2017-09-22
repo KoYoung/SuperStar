@@ -62,7 +62,6 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		List<BorLoanInfo> comList = borLoanInfoDao.findBorLoanInfo();
 		Paging<BorLoanInfo> paging = new Paging<BorLoanInfo>();
 		List<BorLoanInfo> borList = paging.paging(comList, rows, page);
-		System.out.println("page2-->"+page+" "+"rows2-->"+rows);
 		PagingResult<BorLoanInfo> pr = new PagingResult<BorLoanInfo>();
 		pr.setRows(borList);
 		pr.setTotal(comList.size());
