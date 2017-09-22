@@ -7,4 +7,7 @@
 	<select id="findBankInfo" resultType="com.entity.BankInfo" >
 		select * from bankinfo
 	</select>
+	<insert id="addBankInfo" parameterType="com.entity.BankInfo">
+		insert into bankinfo values(bankinfo_seq.nextval,#{bankInfoName},#{bankInfoTelePhone},#{bankinfoAddress})
+	</insert>
 </mapper>

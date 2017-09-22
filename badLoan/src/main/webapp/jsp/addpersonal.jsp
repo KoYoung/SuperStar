@@ -95,7 +95,7 @@ td {
 				</tr>
 				<tr>
 					<th>出生年月</th>
-					<td><input id="borBirthday" name="borBirthday"
+					<td><input id="borBirthday" name="borBirthday" required="true"
 						editable="false" class="easyui-datebox" /></td>
 					<th>民族</th>
 					<td><input type="text" class="" id="borNation"
@@ -202,24 +202,24 @@ td {
 				</tr>
 				<tr>
 					<th>单位电话</th>
-					<td><input class="easyui-numberbox"
-						data-options="min:10000000000,max:99999999999" required="true"
+					<td><input class="easyui-numberbox" 
+						 required="true"
 						id="borUnitPhone" name="borUnitPhone"></td>
 					<th>职务</th>
-					<td><input class="easyui-textbox" id="borPosition"
+					<td><input class="easyui-textbox" id="borPosition" value="经理"
 						required="true" name="borPosition"></td>
 				</tr>
 				<tr>
 					<th>收入</th>
-					<td><input class="easyui-numberbox" id="borIncome"
+					<td><input class="easyui-numberbox" id="borIncome" 
 						required="true" data-options="min:0,precision:2" name="borIncome"></td>
 					<th>电话</th>
-					<td><input type="text" class="easyui-numberbox" id="borPhone"
+					<td><input type="text" class="easyui-numberbox" id="borPhone" 
 						required="true" name="borPhone"></td>
 				</tr>
 				<tr>
 					<th>邮编</th>
-					<td><input class="easyui-numberbox" required="true"
+					<td><input class="easyui-numberbox" required="true" 
 						id="borPostcode" name="borPostcode"></td>
 					<th>学历</th>
 					<td><select id="borEducation" class="easyui-combobox"
@@ -251,8 +251,8 @@ td {
 							<option value="护照">护照</option>
 							<option value="其他">其他</option>
 					</select></td>
-					<th>身份证号</th>
-					<td><input class="easyui-numberbox" required="true"
+					<th>联系人身份证号</th>
+					<td><input class="easyui-numberbox" required="true" 
 						id="contectCardnumber" name="contectCardnumber"></td>
 				</tr>
 				<tr>
@@ -285,10 +285,10 @@ td {
 				</tr>
 				<tr>
 					<th>紧急联系人电话</th>
-					<td><input class="easyui-numberbox" required="true"
+					<td><input class="easyui-numberbox" required="true" 
 						id="contectTelphone" name="contectTelphone" /></td>
 					<th>信用</th>
-					<td><input class="easyui-textbox" id="borCredit"
+					<td><input class="easyui-textbox" id="borCredit" value="20"
 						required="true" name="borCredit" /></td>
 				</tr>
 				<tr>
@@ -459,7 +459,7 @@ td {
 				pageNumber : 1,
 				pageSize : 10,
 				singleSelect : true,
-				pageList : [ 5, 10, 15, 20, 25, 30 ],
+				pageList : [ 5, 10, 15, 20, 24 ],
 				sortOrder : 'asc',//定义列的排序顺序,默认正序asc
 				fitColumns : true,
 				striped : true,
@@ -664,14 +664,86 @@ td {
 				editable : false,
 			});
 		});
-
+		
+		$("#borCredit").numberbox({
+			panelHeight : "auto",
+			prompt : '最大为100',
+			required:"true",
+			max:100,
+			min:1
+		});
+		$("#contectCardnumber").numberbox({
+			panelHeight : "auto",
+			prompt : '紧急联系的正确身份证号',
+			required:"true",
+			validType : 'chs'
+		});
+		$("#borCardnumber").numberbox({
+			panelHeight : "auto",
+			prompt : '客户的正确身份证号',
+			required:"true",
+			validType : 'chs'
+		});
+		$.extend($.fn.validatebox.defaults.rules, {
+			chs : {
+				validator : function(value) {
+					var reg = /^\d{18}$/;
+					return reg.test(value);
+				},
+				message : '输入身份证号格式不准确.'
+			}
+		});
+		$("#borPostcode").numberbox({
+			panelHeight : "auto",
+			prompt : '邮政编码',
+			required:"true",
+			validType : 'you'
+		}); 
+		$.extend($.fn.validatebox.defaults.rules, {
+			you : {
+				validator : function(value) {
+					var reg = /^\d{6}$/;
+					return reg.test(value);
+				},
+				message : '输入邮政编码格式不准确.'
+			}
+		});
+		$("#borUnitPhone").numberbox({
+			panelHeight : "auto",
+			prompt : '单位的正确电话',
+			required:"true",
+			validType : 'mobile'
+		}); 
+		$("#borPhone").numberbox({
+			panelHeight : "auto",
+			prompt : '客户的正确电话',
+			required:"true",
+			validType : 'mobile'
+		});
+		$("#contectTelphone").numberbox({
+			panelHeight : "auto",
+			prompt : '紧急联系的正确电话',
+			required:"true",
+			validType : 'mobile'
+		});
+		$.extend($.fn.validatebox.defaults.rules, {
+			mobile : {
+				validator : function(value) {
+					var reg = /^1[3|4|5|8|9]\d{9}$/;
+					return reg.test(value);
+				},
+				message : '输入手机号码格式不准确.'
+			}
+		});
+		
 		$('#borName').textbox({
 			prompt : '输入姓名',
 			width : 172,
 			panelHeight : "auto",
 			required : "true"
 		});
-
+		
+		
 		$("#borMarry").combobox({
 			width : 173,
 			panelHeight : "auto",

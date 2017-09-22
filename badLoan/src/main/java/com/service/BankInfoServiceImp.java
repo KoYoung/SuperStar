@@ -21,4 +21,9 @@ public class BankInfoServiceImp implements BankInfoService{
 	public List<BankInfo> findBankInfo(){
 		return bDao.findBankInfo();
 	}
+	@Override
+	public int addBankInfo(BankInfo bankInfo) {
+		// TODO Auto-generated method stub
+		return bDao.addBankInfo(bankInfo);
+	}
 }

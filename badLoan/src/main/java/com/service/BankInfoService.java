@@ -11,4 +11,5 @@ public interface BankInfoService {
 	 * @return 银行信息集合
 	 */
 	List<BankInfo> findBankInfo();
+	public int addBankInfo(BankInfo bankInfo);
 }
