@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.EmpDao;
 import com.entity.Emp;
@@ -13,25 +14,25 @@ public class EmpServiceImpl implements EmpService {
 	@Autowired
 	private EmpDao ed;
 
-	@Override
 	public List<Emp> findEmp() {
 		return ed.findEmp();
 	}
 
-	@Override
 	public int addEmp(Emp emp) {
 		return ed.addEmp(emp);
 	}
 
-	@Override
 	public int modifyEmp(Emp empId) {
 		return ed.modifyEmp(empId);
 	}
 
-	@Override
 	public List<Emp> findIdEmp(Emp empId) {
-		// TODO Auto-generated method stub
 		return ed.findIdEmp(empId);
 	}
-	
+
+	public void enableEmp(String data) {
+		String empFlag = "";
+		String empId = "";
+		ed.enableEmp(empFlag,empId);
+	}
 }

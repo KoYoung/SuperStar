@@ -2,19 +2,33 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.dao.EmpDao">
 	<select id="findEmp" resultType="com.entity.Emp">
-		select * from employee order by to_number(emp_id)
+		select * from employee order by
+		to_number(emp_id)
 	</select>
-	<select id="findIdEmp"  resultType="com.entity.Emp">
-		select * from employee where emp_id=#{empId,jdbcType=VARCHAR}
+	<select id="findIdEmp" resultType="com.entity.Emp">
+		select * from employee where
+		emp_id=#{empId,jdbcType=VARCHAR}
 	</select>
 	<insert id="addEmp" useGeneratedKeys="false" parameterType="com.entity.Emp">
-		insert into employee (emp_id,emp_name,emp_gender,emp_telphone,emp_cardnumber,emp_email,emp_address,emp_education,emp_nation,emp_bankinfo,emp_department) values (emp_sequence.nextval,#{empName,jdbcType=VARCHAR},#{empGender,jdbcType=VARCHAR},#{empTelphone,jdbcType=VARCHAR},#{empCardnumber,jdbcType=VARCHAR},#{empAddress,jdbcType=VARCHAR},#{empEducation,jdbcType=VARCHAR},#{empDepartment,jdbcType=VARCHAR},#{empEmail,jdbcType=VARCHAR},#{empNation,jdbcType=VARCHAR},#{empBankinfo,jdbcType=VARCHAR})
+		insert into employee
+		(emp_id,emp_name,emp_gender,emp_telphone,emp_cardnumber,emp_email,emp_address,emp_education,emp_nation,emp_bankinfo,emp_department)
+		values
+		(emp_sequence.nextval,#{empName,jdbcType=VARCHAR},#{empGender,jdbcType=VARCHAR},#{empTelphone,jdbcType=VARCHAR},#{empCardnumber,jdbcType=VARCHAR},#{empAddress,jdbcType=VARCHAR},#{empEducation,jdbcType=VARCHAR},#{empDepartment,jdbcType=VARCHAR},#{empEmail,jdbcType=VARCHAR},#{empNation,jdbcType=VARCHAR},#{empBankinfo,jdbcType=VARCHAR})
 	</insert>
 	<update id="modifyEmp" parameterType="com.entity.Emp">
-		update employee set emp_name=#{empName,jdbcType=VARCHAR},emp_gender=#{empGender,jdbcType=VARCHAR},emp_telphone=#{empTelphone,jdbcType=VARCHAR},emp_cardnumber=#{empCardnumber,jdbcType=VARCHAR},emp_address=#{empAddress,jdbcType=VARCHAR},emp_education=#{empEducation,jdbcType=VARCHAR},
-		emp_department=#{empDepartment,jdbcType=VARCHAR},emp_email=#{empEmail,jdbcType=VARCHAR},emp_nation=#{empNation,jdbcType=VARCHAR},emp_bankinfo=#{empBankinfo,jdbcType=VARCHAR} where emp_id = #{empId,jdbcType=VARCHAR}
+		update employee set
+		emp_name=#{empName,jdbcType=VARCHAR},emp_gender=#{empGender,jdbcType=VARCHAR},emp_telphone=#{empTelphone,jdbcType=VARCHAR},emp_cardnumber=#{empCardnumber,jdbcType=VARCHAR},emp_address=#{empAddress,jdbcType=VARCHAR},emp_education=#{empEducation,jdbcType=VARCHAR},
+		emp_department=#{empDepartment,jdbcType=VARCHAR},emp_email=#{empEmail,jdbcType=VARCHAR},emp_nation=#{empNation,jdbcType=VARCHAR},emp_bankinfo=#{empBankinfo,jdbcType=VARCHAR}
+		where emp_id = #{empId,jdbcType=VARCHAR}
 	</update>
+
+	<update id="enableEmp" parameterType="String">
+		update employee set
+		emp_flag = #{param1,jdbcType=VARCHAR} where emp_id =
+		#{param2,jdbcType=VARCHAR}
+	</update>
+
 </mapper>
