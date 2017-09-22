@@ -17,14 +17,13 @@
 <!--级联  -->
 
 <style type="text/css">
- tr {
+tr {
 	line-height: 40px;
 }
 
 td {
 	line-height: 20px;
 }
- 
 
 #box {
 	margin: 10px;
@@ -58,11 +57,11 @@ td {
 #tableAddper, #xiangqing {
 	margin-left: 20px
 }
-.image{
-    	width:293px;
-    	height: 150px;
-    } 
-  
+
+.image {
+	width: 293px;
+	height: 150px;
+}
 </style>
 </head>
 <body>
@@ -88,7 +87,7 @@ td {
 			<table class="formtable" id="tableAddper">
 				<tr>
 					<th>姓名</th>
-					<td><input class="easyui-textbox" id="borName" name="borName"/></td>
+					<td><input class="easyui-textbox" id="borName" name="borName" /></td>
 					<th>性别</th>
 					<td><input type="radio" checked="checked" id="borGender"
 						name="borGender" value="男" />男 <input type="radio" id="borGender"
@@ -104,14 +103,16 @@ td {
 				</tr>
 				<tr>
 					<th>婚姻状况</th>
-					<td><select id="borMarry" class="easyui-combobox"name="borMarry">
+					<td><select id="borMarry" class="easyui-combobox"
+						name="borMarry">
 							<option value="未婚">未婚</option>
 							<option value="已婚">已婚</option>
 							<option value="离异">离异</option>
 							<option value="丧偶">丧偶</option>
 					</select></td>
 					<th>证件类型</th>
-					<td><select id="borCardtype" class="easyui-combobox"  name="borCardtype" 	>
+					<td><select id="borCardtype" class="easyui-combobox"
+						name="borCardtype">
 							<option value="身份证">身份证</option>
 							<option value="士兵证">士兵证</option>
 							<option value="军官证">军官证</option>
@@ -221,7 +222,8 @@ td {
 					<td><input class="easyui-numberbox" required="true"
 						id="borPostcode" name="borPostcode"></td>
 					<th>学历</th>
-					<td><select id="borEducation" class="easyui-combobox" required="true" name="borEducation" >
+					<td><select id="borEducation" class="easyui-combobox"
+						required="true" name="borEducation">
 							<option value="硕士以上">硕士以上</option>
 							<option value="大学本科">大学本科</option>
 							<option value="大专">大专</option>
@@ -240,7 +242,8 @@ td {
 				</tr>
 				<tr>
 					<th>证件类型</th>
-					<td><select id="contectCardtype" class="easyui-combobox" name="contectCardtype">
+					<td><select id="contectCardtype" class="easyui-combobox"
+						name="contectCardtype">
 							<option value="身份证">身份证</option>
 							<option value="士兵证">士兵证</option>
 							<option value="军官证">军官证</option>
@@ -253,7 +256,7 @@ td {
 						id="contectCardnumber" name="contectCardnumber"></td>
 				</tr>
 				<tr>
-					
+
 					<th>紧急联系人地址</th>
 					<td>
 						<div class="form-inline">
@@ -294,7 +297,8 @@ td {
 						<div id="box">
 							<div>
 								<div class="img-container"></div>
-								<input class="img-btn" type="file" required="true" id="borPhoto" name="borP">
+								<input class="img-btn" type="file" required="true" id="borPhoto"
+									name="borP">
 							</div>
 						</div>
 					</td>
@@ -382,51 +386,50 @@ td {
 	</div>
 
 	<script type="text/javascript">
-	
-	
 		/* 客户详情  */
-		$("#searchpersonal").click(function() {
-			var row = $('#personal').datagrid('getSelected');
-			alert(row.borCredit)
-			if (row != null) {
-				$('#add').dialog({
-					title : '个人客户详情',
-					width : '60%',
-					height : 'auto',
-					closed : false,
-					cache : false,
-					modal : true
+		$("#searchpersonal").click(
+				function() {
+					var row = $('#personal').datagrid('getSelected');
+					if (row != null) {
+						$('#add').dialog({
+							title : '个人客户详情',
+							width : '95%',
+							height : '95%',
+							closed : false,
+							cache : false,
+							modal : true
+						});
+						$("#borName0").html(row.borName);
+						$("#borGender0").html(row.borGender);
+						$("#borNation0").html(row.borNation);
+						$("#borBirthday0").html(row.borBirthday);
+						$("#borPhone0").html(row.borPhone);
+						$("#borPostcode0").html(row.borPostcode);
+						$("#borAddress0").html(row.borAddress);
+						$("#borCardtype0").html(row.borCardtype);
+						$("#borCardnumber0").html(row.borCardnumber);
+						$("#borMarry0").html(row.borMarry);
+						$("#borRegister0").html(row.borRegister);
+						$("#borUnit0").html(row.borUnit);
+						$("#borUnitPhone0").html(row.borUnitPhone);
+						$("#borPosition0").html(row.borPosition);
+						$("#borIncome0").html(row.borIncome);
+						$("#borEducation0").html(row.borEducation);
+						$("#borUnitAddress0").html(row.borUnitAddress);
+						$("#contectName0").html(row.contectName);
+						$("#contectTelphone0").html(row.contectTelphone);
+						$("#contectGender0").html(row.contectGender);
+						$("#contectBirthday0").html(row.contectBirthday);
+						$("#contectCardtype0").html(row.contectCardtype);
+						$("#contectCardnumber0").html(row.contectCardnumber);
+						$("#contectAddress0").html(row.contectAddress);
+						$("#borCredit0").html(row.borCredit);
+						$("#drivingLicence0").html(
+								"<img class='image' src="+row.borPhoto+"\>");
+					} else {
+						$.messager.alert(" 提示","请选中一行！");
+					}
 				});
-				$("#borName0").html(row.borName);
-				$("#borGender0").html(row.borGender);
-				$("#borNation0").html(row.borNation);
-				$("#borBirthday0").html(row.borBirthday);
-				$("#borPhone0").html(row.borPhone);
-				$("#borPostcode0").html(row.borPostcode);
-				$("#borAddress0").html(row.borAddress);
-				$("#borCardtype0").html(row.borCardtype);
-				$("#borCardnumber0").html(row.borCardnumber);
-				$("#borMarry0").html(row.borMarry);
-				$("#borRegister0").html(row.borRegister);
-				$("#borUnit0").html(row.borUnit);
-				$("#borUnitPhone0").html(row.borUnitPhone);
-				$("#borPosition0").html(row.borPosition);
-				$("#borIncome0").html(row.borIncome);
-				$("#borEducation0").html(row.borEducation);
-				$("#borUnitAddress0").html(row.borUnitAddress);
-				$("#contectName0").html(row.contectName);
-				$("#contectTelphone0").html(row.contectTelphone);
-				$("#contectGender0").html(row.contectGender);
-				$("#contectBirthday0").html(row.contectBirthday);
-				$("#contectCardtype0").html(row.contectCardtype);
-				$("#contectCardnumber0").html(row.contectCardnumber);
-				$("#contectAddress0").html(row.contectAddress);
-				$("#borCredit0").html(row.borCredit);
-				$("#drivingLicence0").html("<img class='image' src="+row.borPhoto+"\>");
-			} else {
-				alert("请选中一行！");
-			}
-		});
 
 		$(function() {
 			/*   查询函数       */
@@ -535,9 +538,7 @@ td {
 					title : '照片',
 					width : 100,
 					hidden : 'true'
-				},
-
-				{
+				}, {
 					field : 'contectName',
 					title : '紧急联系人姓名',
 					width : 180
@@ -578,9 +579,8 @@ td {
 							{
 								title : '添加客户信息',
 								iconCls : 'icon-save',
-								width : '60%',
-								height:'50%',
-								top : 100,
+								width : '90%',
+								height : '80%',
 								closed : true,
 								cache : false,
 								modal : true,
@@ -646,37 +646,37 @@ td {
 				editable : false,
 			});
 		});
-		
-			$('#borName').textbox({
-				prompt : '输入姓名',
-				width:172,
-				panelHeight : "auto",
-				required:"true"
-			});
-			
-			$("#borMarry").combobox({
-				width:173,
-				panelHeight : "auto",
-				editable : false,
-			});
-			
-			$("#borCardtype").combobox({
-				width:173,
-				panelHeight : "auto",
-				editable : false,
-			});
-			
-			$("#borEducation").combobox({
-				width:173,
-				panelHeight : "auto",
-				editable : false,
-			});
-			
-			$("#contectCardtype").combobox({
-				width:173,
-				panelHeight : "auto",
-				editable : false,
-			});
+
+		$('#borName').textbox({
+			prompt : '输入姓名',
+			width : 172,
+			panelHeight : "auto",
+			required : "true"
+		});
+
+		$("#borMarry").combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
+		$("#borCardtype").combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
+		$("#borEducation").combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
+		$("#contectCardtype").combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
 		function ad(value) {
 			$("#personal").datagrid({
 				url : "/badLoan/borrower/findbormohu?va=" + value,

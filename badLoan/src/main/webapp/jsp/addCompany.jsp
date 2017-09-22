@@ -84,11 +84,11 @@ tr{
 					<tr>
 						<th>公司名字</th>
 						<td><input class="easyui-textbox" id="comName" name="comName"/></td>
-						<th>组织机构代码</th>
+						<th>组织机构号</th>
 						<td><input class="easyui-numberbox" id="comCode" name="comCode"/></td>
 					</tr>
 					<tr>
-						<th>工商登记执照号码</th>
+						<th>工商登记号码</th>
 						<td><input class="easyui-numberbox"
 							 id="comLicense"
 							name="comLicense" /></td>
@@ -369,7 +369,7 @@ tr{
 		required:"true"
 	});
 	
-	$("#legalName").numberbox({
+	$("#legalName").textbox({
 		panelHeight : "auto",
 		prompt : '输入法人姓名',
 		required:"true"
@@ -496,8 +496,8 @@ tr{
 			if (row != null) {
 				$('#search').dialog({
 					title : '个人客户详情',
-					width:750,
-					height : 450,
+					width : '95%',
+					height:'95%',
 					closed : false,
 					cache : false,
 					modal : true
@@ -542,8 +542,8 @@ tr{
 
 			$('#comp').dialog({
 				title : '添加企业信息',
-				width : '80%',
-				height:500,
+				width : '95%',
+				height:'95%',
 				closed : true,
 				cache : false,
 				modal : true,
@@ -583,7 +583,6 @@ tr{
 				pageNumber : 1,
 				pageSize : 10,
 				pageList : [ 5, 10, 15, 20, 25, 30 ],
-				sortOrder : 'desc',//定义列的排序顺序,默认正序asc
 				fitColumns : true,
 				striped : true,
 				loadMsg : "努力加载中......",
@@ -610,11 +609,11 @@ tr{
 				}, {
 					field : 'comLicense',
 					title : '工商登记执照号码',
-					width : 100
+					width : 120
 				}, {
 					field : 'comAddress',
 					title : '单位地址',
-					width : 100
+					width : 120
 				}, {
 					field : 'comCard',
 					title : '税务登记证',
@@ -643,7 +642,7 @@ tr{
 				}, {
 					field : 'comLinkman',
 					title : '联系人',
-					width : 100
+					width : 60
 				}, {
 					field : 'comLinphone',
 					title : '联系电话',
@@ -665,7 +664,7 @@ tr{
 				}, {
 					field : 'legalName',
 					title : '法人姓名',
-					width : 100
+					width : 60
 				}, {
 					field : 'legalCardtype',
 					title : '法人证件类型',
@@ -694,7 +693,7 @@ tr{
 				}, {
 					field : 'legalAddress',
 					title : '法人地址',
-					width : 100
+					width : 120
 				}, {
 					field : 'legalPhone',
 					title : '法人电话',
