@@ -2,19 +2,13 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<jsp:include page="head.jsp"></jsp:include>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
-	type="text/css"></link>
+
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
-<script src="easyui1.2.4/validator.js" type="text/javascript"></script>
-<!--级联  -->
-<!-- <script src="../bootstrap-3.3.7-distjs/jquery-3.2.1.min.js"></script> -->
+
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/distpicker.data.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/distpicker.js"></script>
@@ -75,9 +69,9 @@ tr{
 <body>
 	<div id="toobar">
 		<a id="addcompany" href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-add'">添加企业信息1</a> <input
+			data-options="iconCls:'icon-add'">添加企业信息</a> <input
 			class="easyui-searchbox" id="mohu"
-			data-options="searcher:ad,prompt:'请输入客户名搜索'" style="width: 150px" />
+			data-options="searcher:ad,prompt:'请输入企业名字搜索'" style="width: 150px" />
 		<a id="searchpersonal" class="easyui-linkbutton"
 			href="javascript:void(0)" data-options="iconCls:'icon-search'">查看</a>
 	</div>
@@ -89,20 +83,18 @@ tr{
 				<table cellpadding="5" id="tab1">
 					<tr>
 						<th>公司名字</th>
-						<td><input type="text" id="comName" name="comName"
-							 /></td>
+						<td><input class="easyui-textbox" id="comName" name="comName"/></td>
 						<th>组织机构代码</th>
 						<td><input class="easyui-numberbox" id="comCode" name="comCode"/></td>
 					</tr>
 					<tr>
 						<th>工商登记执照号码</th>
 						<td><input class="easyui-numberbox"
-							data-options="invalidMessage:'有效长度15'" id="comLicense"
+							 id="comLicense"
 							name="comLicense" /></td>
 						<th>公司类型</th>
 						<td><select id="comType" class="easyui-combobox"
-							name="comType" style="width: 200px;"
-							data-options="editable:false,panelHeight:'auto'">
+							name="comType" >
 								<option value="国有企业">国有企业</option>
 								<option value="集体所有制企业">集体所有制企业</option>
 								<option value="私营企业">私营企业</option>
@@ -115,7 +107,17 @@ tr{
 					</tr>
 					<tr>
 						<th>隶属关系</th>
-						<td><input type="text" id="comParent" name="comParent" /></td>
+						<td>
+							<select id="comParent" class="easyui-combobox"
+							name="comParent" >
+								<option value="中央">中央</option>
+								<option value="省级">省级</option>
+								<option value="市级">市级</option>
+								<option value="县级">县级</option>
+								<option value="乡镇">乡镇</option>
+								
+						</select>
+						</td>
 						<th>公司地址</th>
 						<td>
 							<div class="form-inline">
@@ -143,31 +145,38 @@ tr{
 					<tr>
 						
 						<th>企业信誉度</th>
-						<td><input type="text" id="comCredit" name="comCredit" /></td>
-						<!-- <th></th>
-						<td><input type="hidden" id="comLegalId" name="comLegalId" /></td> -->
+						<td><input class="easyui-numberbox" id="comCredit" name="comCredit" /></td>
 						<th>经济性质</th>
-						<td><input type="text" id="comProperty" name="comProperty" /></td>
+						<td>
+							<select id="comProperty" class="easyui-combobox" name="comProperty" >
+								<option value="有限责任公司">有限责任公司</option>
+								<option value="股份有限责任公司">股份有限责任公司</option>
+								<option value="个体工商户">个体工商户</option>
+								<option value="私营独资企业">私营独资企业</option>
+								<option value="私营合伙企业">私营合伙企业</option>
+								
+						</select>
+						</td>
 					</tr>
 					<tr>
 						<th>邮政编码</th>
-						<td><input type="text" id="comPostcode"
+						<td><input class="easyui-numberbox" id="comPostcode"
 							onblur="checkcomPostcode('comPostcode');" name="comPostcode" /></td>
 						<th>联系人</th>
-						<td><input type="text" id="comLinkman" name="comLinkman" /></td>
+						<td><input class="esayui-textbox" id="comLinkman" name="comLinkman" /></td>
 					</tr>
 					<tr>
 						<th>联系电话</th>
-						<td><input type="text" id="comLinphone"
+						<td><input class="easyui-numberbox" id="comLinphone"
 							onblur="checkMobile('comLinphone');" name="comLinphone" /></td>
 						<th>注册资金</th>
-						<td><input type="text" onblur="checkcomFund('comFund')"
+						<td><input class="easyui-numberbox" 
 							id="comFund" name="comFund" /></td>
 					</tr>
 					
 					<tr>
 					 	<th>法人姓名</th>
-						<td><input type="text" id="legalName" name="legalName" /></td> 
+						<td><input class="esayui-textbox" id="legalName" name="legalName" /></td> 
 						<th>法人性别</th>
 						<td><input type="radio" id="legalGender" checked="checked"
 							name="legalGender" value="男" />男 <input type="radio"
@@ -175,12 +184,11 @@ tr{
 					</tr>
 					<tr>
 						<th>法人联系方式</th>
-						<td><input type="text" id="legalPhone"
+						<td><input class="easyui-numberbox" id="legalPhone"
 							onblur="checklegalPhone('legalPhone');" name="legalPhone" /></td>
 						<th>法人民族</th>
 						<td>
-							<!-- <input id="legalNation" name="legalNation" type="text" class="easyui-datebox" /> -->
-							<input type="text" id="legalNation" name="legalNation" />
+							<input class="easyui-combobox" id="legalNation" name="legalNation" />
 						</td>
 					</tr>
 					<tr>
@@ -188,8 +196,7 @@ tr{
 						<td>
 							<!-- <input type="text" id="guaPhone" name="guaPhone"/> --> <select
 							id="legalCardtype" class="easyui-combobox" name="legalCardtype"
-							style="width: 200px;"
-							data-options="editable:false,panelHeight:'auto'">
+							>
 								<option value="身份证">身份证</option>
 								<option value="士兵证">士兵证</option>
 								<option value="军官证">军官证</option>
@@ -199,15 +206,12 @@ tr{
 						</select>
 						</td>
 						<th>法人证件号码</th>
-						<td><input type="text" id="legalCardnumber"
-							onblur="checklegalCardnumber('legalCardnumber');"
-							name="legalCardnumber" /></td>
+						<td><input  id="legalCardnumber" class="easyui-numberbox" name="legalCardnumber" /></td>
 					</tr>
 					<tr>
 						<th>法人婚姻状况</th>
 						<td><select id="legalMarry" class="easyui-combobox"
-							name="legalMarry" style="width: 200px;"
-							data-options="editable:false,panelHeight:'auto'">
+							name="legalMarry" >
 								<option value="未婚">未婚</option>
 								<option value="已婚">已婚</option>
 								<option value="离异">离异</option>
@@ -250,6 +254,9 @@ tr{
 						            <input class="img-btn" type="file" id="conPhoto" name="tupian">
 							</div>
 						</td>
+						
+					</tr>
+					<tr>
 						<th>税务登记证</th>
 						<td>
 							<div id="box">
@@ -332,7 +339,92 @@ tr{
 			
 		</table>
 	</div>
+	
 	<script type="text/javascript">
+	$("#comFund").numberbox({
+		panelHeight : "auto",
+		prompt : '公司注册资金',
+		required:"true"
+	});
+	
+	$("#comLinkman").textbox({
+		panelHeight : "auto",
+		prompt : '输入公司的联系人',
+		required:"true"
+	});
+	$("#legalCardnumber").numberbox({
+		panelHeight : "auto",
+		prompt : '法人证件号码',
+		required:"true"
+	});
+	$("#comLinphone").numberbox({
+		panelHeight : "auto",
+		prompt : '联系人的正确电话',
+		required:"true"
+	});
+	
+	$("#legalPhone").numberbox({
+		panelHeight : "auto",
+		prompt : '法人的正确电话',
+		required:"true"
+	});
+	
+	$("#legalName").numberbox({
+		panelHeight : "auto",
+		prompt : '输入法人姓名',
+		required:"true"
+	});
+	
+	$("#comLicense").numberbox({
+		panelHeight : "auto",
+		prompt : '输入正确的组织代码',
+		required:"true"
+	});
+	
+	$("#comCode").numberbox({
+		panelHeight : "auto",
+		prompt : '输入15位的数字',
+		required:"true"
+	});
+	$("#comName").textbox({
+		panelHeight : "auto",
+		prompt : '输入公司名字',
+		required:"true"
+	});
+	$('#comParent').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	$('#comType').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	$('#legalNation').textbox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	
+	$('#comProperty').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	
+	$('#legalCardtype').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});	
+	$('#legalMarry').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});	
+	
+	
 		//检查对象是否为空，obj-对象，vMc-提示信息
 		function checkNull(obj, vline) {
 			//判断输入框是否为空，为空时弹出提示框
