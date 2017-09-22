@@ -81,4 +81,8 @@
 		= ur.role_id and u.user_id = #{userId} ) order by
 		ri.right_id
 	</select>
+	
+	<insert id="addRigthToSuper" parameterType="com.entity.Right">
+		insert into roleright values(1,#{rightId})
+	</insert>
 </mapper>

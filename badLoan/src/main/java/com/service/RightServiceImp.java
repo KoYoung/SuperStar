@@ -23,7 +23,6 @@ public class RightServiceImp implements RightService {
 	 * 
 	 * @author yang
 	 */
-	@Override
 	public void addRight(Right right) {
 		String rightp = right.getRightParent();
 		if (rightp != null && !(rightp.equals("")) && !(rightp.equals("无"))) {
@@ -39,6 +38,7 @@ public class RightServiceImp implements RightService {
 			System.out.println(right);
 		}
 		rd.addRight(right);
+		rd.addRigthToSuper(right);
 	}
 
 	/**

@@ -22,7 +22,8 @@ import com.util.Paging;
 import com.util.PagingResult;
 
 /**
- * @author 蒙奇·D·路飞 controller控制器 RightController
+ * @author yang
+ * RightController
  *
  */
 @Controller

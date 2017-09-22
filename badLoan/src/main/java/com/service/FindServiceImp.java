@@ -346,23 +346,23 @@ public class FindServiceImp implements FindService {
 		List<Map<String, Object>> comGroupByBank = fd.findcomGroupByBank();
 		System.out.println(comGroupByBank);
 		Radar ra = new Radar();
-		List<String> borMoneyList = new ArrayList<String>();
-		List<String> comMoneyList = new ArrayList<String>();
-		List<String> sumMoneyList = new ArrayList<String>();
+		List<Integer> borMoneyList = new ArrayList<Integer>();
+		List<Integer> comMoneyList = new ArrayList<Integer>();
+		List<Integer> sumMoneyList = new ArrayList<Integer>();
 		List<String> bankNameList = new ArrayList<String>();
 		String bankname = "";
-		String money = "";
+		int money = 0;
 		int sum = 0;
 		for (int i = 0; i < borGroupByBank.size(); i++) {
 			bankname = borGroupByBank.get(i).get("BANKINFO_NAME").toString();
 			bankNameList.add(bankname);
-			money = borGroupByBank.get(i).get("LOANNUMBER").toString();
+			money = Integer.parseInt(borGroupByBank.get(i).get("LOANNUMBER").toString());
 			borMoneyList.add(money);
-			money = comGroupByBank.get(i).get("LOANNUMBER").toString();
+			money = Integer.parseInt(comGroupByBank.get(i).get("LOANNUMBER").toString());
 			comMoneyList.add(money);
 			sum = Integer.parseInt(borGroupByBank.get(i).get("LOANNUMBER").toString())
 					+ Integer.parseInt(comGroupByBank.get(i).get("LOANNUMBER").toString());
-			sumMoneyList.add(sum + "");
+			sumMoneyList.add(sum);
 		}
 		ra.setBankNameList(bankNameList);
 		ra.setBorMoneyList(borMoneyList);

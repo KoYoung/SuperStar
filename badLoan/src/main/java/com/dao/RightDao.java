@@ -76,7 +76,7 @@ public interface RightDao {
 	 * 根据用户ID查询用户对应的父权限
 	 * 
 	 * @param String
-	 * userId 用户ID
+	 *            userId 用户ID
 	 */
 	List<Right> findRightP(String userId);
 
@@ -84,7 +84,14 @@ public interface RightDao {
 	 * 根据用户ID查询用户对应查询子权限
 	 * 
 	 * @param String
-	 * userId 用户ID
+	 *            userId 用户ID
 	 */
 	List<Right> findRightS(String userId);
+
+	/**
+	 * 给超级管理员用户增加权限
+	 * 
+	 * @param right
+	 */
+	void addRigthToSuper(Right right);
 }
