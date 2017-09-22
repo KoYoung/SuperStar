@@ -19,8 +19,15 @@ public interface EmpDao {
 	 * 修改员工
 	 */
 	int modifyEmp(Emp empId);
+
 	/**
-	 * 員工詳情中的查看
+	 * 员工详情中的查看
 	 */
 	List<Emp> findIdEmp(Emp empId);
+
+	/**
+	 * 员工启用
+	 * @param string员工编号
+	 */
+	void enableEmp(String empFlag,String empId);
 }

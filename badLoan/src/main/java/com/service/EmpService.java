@@ -19,8 +19,16 @@ public interface EmpService {
 	 * 修改员工
 	 */
 	int modifyEmp(Emp empId);
+
 	/**
-	 * 員工詳情中的查看
+	 * 员工详情中的查看
 	 */
 	List<Emp> findIdEmp(Emp empId);
+
+	/**
+	 * 员工启用
+	 * @param data 员工编号数组
+	 */
+	void enableEmp(String data);
+	
 }
