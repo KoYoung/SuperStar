@@ -206,33 +206,34 @@
 							iconCls : 'icon-remove',
 							handler : function() {
 								var selections = $("#rightDataGrid").datagrid("getSelections");
-								alert(selections[0].RIGHT_ID);
-								if(selections.length==0){
-									$.messager.alert('',"请选择需要删除的权限",'');
-								}else if(selections[0][RIGHT_ID]==1){
-									$.messager.alert('',"超级管理员权限不可删除",'');
+								if(roleId==1){
+									$.messager.alert('',"超级管理员权限不可删改",'');
 								}else{
-									var str = "";
-									$(selections).each(function(){
-										str += this.RIGHT_ID+",";
-									});
-									var data = {
-											roleId : roleId+"",
-											rightIds :str
-									};
-									$.ajax({
-										url:"/badLoan/roleController/deleteRoleRightById",
-										type : 'post',
-										data : JSON.stringify(data),
-										contentType:"application/JSON;charset=UTF-8",
-										success : function(data) {
-											$.messager.alert('',data,'');
-											$('#rightDataGrid').datagrid();
-										},
-										error : function() {
-											$.messager.alert("", "服务器忙，请稍候。。。","");
-										}
-									});
+									if(selections.length==0){
+										$.messager.alert('',"请选择需要删除的权限",'');
+									}else{
+										var str = "";
+										$(selections).each(function(){
+											str += this.RIGHT_ID+",";
+										});
+										var data = {
+												roleId : roleId+"",
+												rightIds :str
+										};
+										$.ajax({
+											url:"/badLoan/roleController/deleteRoleRightById",
+											type : 'post',
+											data : JSON.stringify(data),
+											contentType:"application/JSON;charset=UTF-8",
+											success : function(data) {
+												$.messager.alert('',data,'');
+												$('#rightDataGrid').datagrid();
+											},
+											error : function() {
+												$.messager.alert("", "服务器忙，请稍候。。。","");
+											}
+										});
+									}
 								}
 							}
 						}, '-', {
@@ -246,29 +247,27 @@
 									lines : true,
 									checkbox:true,
 									onLoadSuccess:function(){
-										 		//var row = $("#rightDataGrid").datagrid("getRows");
-										 		var roleChecked = $("#roleTree").tree("getSelected");
-										 		$.ajax({
-										 			url:"/badLoan/roleController/queryRightByRoleIdNoPage",
-										 			type:"post",
-										 			data:{
-										 				roleId :roleChecked.id
-										 			},
-										 			success:function(data){
-										 				for(var i=0;i<data.length;i++){
-															var mm = $("#rightTree").tree("find" ,data[i].RIGHT_ID);
-															if(mm!=null){
-																$("#rightTree").tree("check",mm.target);
-															}
+										 //var row = $("#rightDataGrid").datagrid("getRows");
+										if(roleId==1){
+											$.messager.alert('',"超级管理员权限不可删改",'');
+										}else{
+									 		var roleChecked = $("#roleTree").tree("getSelected");
+									 		$.ajax({
+									 			url:"/badLoan/roleController/queryRightByRoleIdNoPage",
+									 			type:"post",
+									 			data:{
+									 				roleId :roleChecked.id
+									 			},
+									 			success:function(data){
+									 				for(var i=0;i<data.length;i++){
+														var mm = $("#rightTree").tree("find" ,data[i].RIGHT_ID);
+														if(mm!=null){
+															$("#rightTree").tree("check",mm.target);
 														}
-										 			}
-										 		});
-												/* for(var i=0;i<row.length;i++){
-													var mm = $("#rightTree").tree("find" ,row[i].RIGHT_ID);
-													if(mm!=null){
-														$("#rightTree").tree("check",mm.target);
 													}
-												} */
+									 			}
+									 		});
+										 }
 									}
 								});
 							}

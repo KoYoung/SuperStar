@@ -16,12 +16,8 @@ tr td {
 }
 
 #tab2 {
-	margin-left: 50px;
+	margin-left: 70px;
 	
-}
-
-#tab3 {
-	margin-left: 50px;
 }
 .form-control{
 	width:200px;
@@ -101,7 +97,7 @@ tr td {
 								</tr>
 								<tr>
 									<td>贷款账号:</td>
-									<td><input type="text" id="loanAccount" name="loanAccount" data-options="validType:'loanAccount'"  value="637800369963225989"></input></td>
+									<td><input type="text" id="loanAccount" name="loanAccount" data-options="required:true,validType:'loanAccount'"  value="637800369963225989"></input></td>
 								</tr>
 								<tr>
 									<td>贷款日期:</td>
@@ -137,42 +133,12 @@ tr td {
 								</tr>
 								<tr>
 									<td>抵（质）押物品价值:</td>
-									<td><input type="text" id="pledgeValue" name="pledgeValue">万元</input></td>
+									<td><input type="text" id="pledgeValue" name="pledgeValue">元</input></td>
 								</tr>
 								<tr>
 									<td>抵（质）押物所属人:</td>
 									<td><input class="easyui-textbox" id="pledgeOwner" name="pledgeOwner"
 										data-options="required:true"></input></td>
-								</tr>
-							</table>
-						</td>
-						<td>
-							<table cellpadding="5" id="tab2">
-								<!-- <tr>
-									<td>抵（质）押物品起始日期:</td>
-									<td><input class="easyui-datebox"
-										data-options="required:true,validType:'pledgeStartdate'" 
-										id="pledgeStartdate" name="pledgeStartdate" style="width:200px"/></td>
-								</tr>
-								<tr>
-									<td>抵（质）押物品到期日:</td>
-									<td><input class="easyui-datebox"
-										data-options="required:true,validType:'pledgeEnddate'" 
-										id="pledgeEnddate" name="pledgeEnddate" style="width:200px"/></td>
-								</tr> -->
-								<tr>
-									<td>抵（质）押物品照片:</td>
-									<td>
-							            <div class="img-container">
-							         	</div>
-							            <input class="img-btn" type="file" id="drivingLicence" name="borPhoto"/>
-								</tr>
-								<tr>
-									<td>抵（质）押物品照片:</td>
-									<td>
-							            <div class="img-container">
-							         	</div>
-							            <input class="img-btn" type="file" id="drivingLicence" name="borPhoto"/>
 								</tr>
 								<tr>
 									<td>担保人姓名:</td>
@@ -215,7 +181,19 @@ tr td {
 							</table>
 						</td>
 						<td>
-							<table id="tab3">
+							<table cellpadding="5" id="tab2">
+								<!-- <tr>
+									<td>抵（质）押物品起始日期:</td>
+									<td><input class="easyui-datebox"
+										data-options="required:true,validType:'pledgeStartdate'" 
+										id="pledgeStartdate" name="pledgeStartdate" style="width:200px"/></td>
+								</tr>
+								<tr>
+									<td>抵（质）押物品到期日:</td>
+									<td><input class="easyui-datebox"
+										data-options="required:true,validType:'pledgeEnddate'" 
+										id="pledgeEnddate" name="pledgeEnddate" style="width:200px"/></td>
+								</tr> -->
 								<tr>
 									<td>担保人户籍地址:</td>
 									<td>
@@ -238,15 +216,14 @@ tr td {
 														class="form-control" data-district="中原区" id="district"
 														name="guaRegister">
 													</select>
+												<br> <input class="easyui-textbox tb" name="guaRegister"
+												id="guaRegister" />
 												</div>
 											</div>
-											<br> <input class="easyui-textbox tb" name="guaRegister"
-												id="guaRegister" />
 										</div>
 
 									</td>
 								</tr>
-
 								<tr>
 									<td>担保人现居住地址:</td>
 									<td>
@@ -269,10 +246,10 @@ tr td {
 														class="form-control" data-district="中原区" id="district"
 														name="guaAddress">
 													</select>
+													<br> <input class="easyui-textbox tb" name="guaAddress"
+													id="guaAddress" />
 												</div>
 											</div>
-											<br> <input class="easyui-textbox tb" name="guaAddress"
-												id="guaAddress" />
 										</div>
 
 									</td>
@@ -311,6 +288,20 @@ tr td {
 									<td>担保人月收入:</td>
 									<td><input type="text" id="guaIncome" name="guaIncome"/>元</td>
 								</tr>
+								<tr>
+									<td>抵（质）押物品照片:</td>
+									<td>
+							            <div class="img-container">
+							         	</div>
+							            <input class="img-btn" type="file" id="drivingLicence" name="borPhoto"/>
+								</tr>
+								<tr>
+									<td>抵（质）押物品照片:</td>
+									<td>
+							            <div class="img-container">
+							         	</div>
+							            <input class="img-btn" type="file" id="drivingLicence" name="borPhoto"/>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -325,8 +316,8 @@ $('#dd')
 		.dialog(
 				{
 					title : '不良贷款信息录入',
-					width : '95%',
-					height : '95%',
+					width : '80%',
+					height : 450,
 					closed : true,
 					cache : false,
 					modal : true,

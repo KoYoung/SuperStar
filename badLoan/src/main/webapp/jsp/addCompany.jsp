@@ -273,6 +273,14 @@ tr {
 	<div id="search">
 		<table id="xiangqing">
 			<tr>
+				<th>法人资料</th>
+				<td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th>
+				<td><div id="conPhoto0" class="limage"></div></td>
+				<th>税务登记证</th>
+				<td><div id="comCard0" class="limage"></div></td>
+			</tr>
+			<tr>
 				<th>企业名称</th>
 				<td><span id="comName0"></span></td>
 				<th>组织代码</th>
@@ -547,8 +555,8 @@ tr {
 								"<img class='image' src="+row.conPhoto+"\>");
 						$("#legalInfo0").html(
 								"<img class='image' src="+row.legalInfo+"\>");
-					}else{
-						$.messager.alert("","请选择想要查询的信息","");
+					} else {
+						$.messager.alert("", "请选择想要查询的信息", "");
 					}
 				});
 
@@ -567,7 +575,7 @@ tr {
 							{
 								title : '添加企业信息',
 								width : '90%',
-								height:'80%',
+								height : '80%',
 								closed : true,
 								cache : false,
 								modal : true,
