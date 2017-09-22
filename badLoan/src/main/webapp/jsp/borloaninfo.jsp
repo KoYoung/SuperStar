@@ -133,7 +133,8 @@ tr td {
 								</tr>
 								<tr>
 									<td>抵（质）押物品价值:</td>
-									<td><input type="text" id="pledgeValue" name="pledgeValue">元</input></td>
+									<td><input type="text" id="pledgeValue" name="pledgeValue"
+									data-options="validType:'pledgeValue'">元</input></td>
 								</tr>
 								<tr>
 									<td>抵（质）押物所属人:</td>
@@ -634,7 +635,16 @@ $('#dd')
 			   },
 			   message : "银行卡号应为18-21位"
 		   },
-		  
+		   pledgeValue:{
+				validator : function(value, param){
+					var loanNumber=$("#loanNumber").val();
+					if(loanNumber>=value){
+						return false;
+					}
+					return true;
+				},
+				message : "抵押物价值必须大于贷款金额"
+			}
 		});
 		/* //先禁止验证，失焦时提示验证
 		$('.validatebox-text').bind('blur', function(){
