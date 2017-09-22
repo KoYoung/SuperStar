@@ -1,11 +1,13 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.dao.EmpDao;
 import com.entity.Emp;
 
@@ -31,8 +33,10 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	public void enableEmp(String data) {
-		String empFlag = "";
-		String empId = "";
+		System.out.println(data);
+		Map<String, String> datamap = JSON.parseObject(data,Map.class);
+		String empFlag = datamap.get("empFlag");
+		String empId = datamap.get("empId");
 		ed.enableEmp(empFlag,empId);
 	}
 }

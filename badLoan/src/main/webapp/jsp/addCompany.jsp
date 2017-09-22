@@ -25,14 +25,14 @@
 <!-- 传图 -->
 
 <style type="text/css">
- tr {
+tr {
 	line-height: 40px;
 }
 
 td {
 	line-height: 20px;
 }
- 
+
 .img-container {
 	width: 293px;
 	height: 150px;
@@ -40,9 +40,11 @@ td {
 	overflow: hidden;
 	border: 1px solid #000;
 }
-tr{
+
+tr {
 	margin: 2px;
 }
+
 .img-container>img {
 	width: 293px;
 	height: 150px;
@@ -56,14 +58,15 @@ tr{
 #tablr, #xiangqing {
 	margin-left: 20px
 }
- #tabsearch{
-    	margin-left: 10px;
-    } 
-   
-     .image{
-    	width:293px;
-    	height: 150px;
-    } 
+
+#tabsearch {
+	margin-left: 10px;
+}
+
+.image {
+	width: 293px;
+	height: 150px;
+}
 </style>
 </head>
 <body>
@@ -77,8 +80,7 @@ tr{
 	</div>
 	<table id="company"></table>
 	<div id="comp">
-		<div style="padding: 0 60px 20px 60px">
-			<h2>企业基本信息录入</h2>
+		<div>
 			<form id="compfrom" enctype="multipart/form-data" method="post">
 				<table cellpadding="5" id="tab1">
 					<tr>
@@ -92,7 +94,7 @@ tr{
 						<td><input class="easyui-numberbox"id="comLicense"name="comLicense" /></td>
 						<th>公司类型</th>
 						<td><select id="comType" class="easyui-combobox"
-							name="comType" >
+							name="comType">
 								<option value="国有企业">国有企业</option>
 								<option value="集体所有制企业">集体所有制企业</option>
 								<option value="私营企业">私营企业</option>
@@ -105,17 +107,15 @@ tr{
 					</tr>
 					<tr>
 						<th>隶属关系</th>
-						<td>
-							<select id="comParent" class="easyui-combobox"
-							name="comParent" >
+						<td><select id="comParent" class="easyui-combobox"
+							name="comParent">
 								<option value="中央">中央</option>
 								<option value="省级">省级</option>
 								<option value="市级">市级</option>
 								<option value="县级">县级</option>
 								<option value="乡镇">乡镇</option>
-								
-						</select>
-						</td>
+
+						</select></td>
 						<th>公司地址</th>
 						<td>
 							<div class="form-inline">
@@ -138,30 +138,31 @@ tr{
 								</div>
 							</div>
 						</td>
-						
+
 					</tr>
 					<tr>
-						
+
 						<th>企业信誉度</th>
-						<td><input class="easyui-numberbox" id="comCredit" name="comCredit" /></td>
+						<td><input class="easyui-numberbox" id="comCredit"
+							name="comCredit" /></td>
 						<th>经济性质</th>
-						<td>
-							<select id="comProperty" class="easyui-combobox" name="comProperty" >
+						<td><select id="comProperty" class="easyui-combobox"
+							name="comProperty">
 								<option value="有限责任公司">有限责任公司</option>
 								<option value="股份有限责任公司">股份有限责任公司</option>
 								<option value="个体工商户">个体工商户</option>
 								<option value="私营独资企业">私营独资企业</option>
 								<option value="私营合伙企业">私营合伙企业</option>
-								
-						</select>
-						</td>
+
+						</select></td>
 					</tr>
 					<tr>
 						<th>邮政编码</th>
 						<td><input class="easyui-numberbox" id="comPostcode"
 							onblur="checkcomPostcode('comPostcode');" name="comPostcode" /></td>
 						<th>联系人</th>
-						<td><input class="esayui-textbox" id="comLinkman" name="comLinkman" /></td>
+						<td><input class="esayui-textbox" id="comLinkman"
+							name="comLinkman" /></td>
 					</tr>
 					<tr>
 						<th>联系电话</th>
@@ -170,10 +171,11 @@ tr{
 						<th>注册资金</th>
 						<td><input class="easyui-numberbox" id="comFund" name="comFund" /></td>
 					</tr>
-					
+
 					<tr>
-					 	<th>法人姓名</th>
-						<td><input class="esayui-textbox" id="legalName" name="legalName" /></td> 
+						<th>法人姓名</th>
+						<td><input class="esayui-textbox" id="legalName"
+							name="legalName" /></td>
 						<th>法人性别</th>
 						<td><input type="radio" id="legalGender" checked="checked"
 							name="legalGender" value="男" />男 <input type="radio"
@@ -184,16 +186,14 @@ tr{
 						<td><input class="easyui-numberbox" id="legalPhone" 
 							onblur="checklegalPhone('legalPhone');" name="legalPhone" /></td>
 						<th>法人民族</th>
-						<td>
-							<input class="easyui-combobox" id="legalNation" name="legalNation" />
-						</td>
+						<td><input class="easyui-combobox" id="legalNation"
+							name="legalNation" /></td>
 					</tr>
 					<tr>
 						<th>法人证件类型</th>
 						<td>
 							<!-- <input type="text" id="guaPhone" name="guaPhone"/> --> <select
-							id="legalCardtype" class="easyui-combobox" name="legalCardtype"
-							>
+							id="legalCardtype" class="easyui-combobox" name="legalCardtype">
 								<option value="身份证">身份证</option>
 								<option value="士兵证">士兵证</option>
 								<option value="军官证">军官证</option>
@@ -203,12 +203,13 @@ tr{
 						</select>
 						</td>
 						<th>法人证件号码</th>
-						<td><input  id="legalCardnumber" class="easyui-numberbox" name="legalCardnumber" /></td>
+						<td><input id="legalCardnumber" class="easyui-numberbox"
+							name="legalCardnumber" /></td>
 					</tr>
 					<tr>
 						<th>法人婚姻状况</th>
 						<td><select id="legalMarry" class="easyui-combobox"
-							name="legalMarry" >
+							name="legalMarry">
 								<option value="未婚">未婚</option>
 								<option value="已婚">已婚</option>
 								<option value="离异">离异</option>
@@ -251,7 +252,7 @@ tr{
 						            <input class="img-btn" type="file"  required="true" id="conPhoto" name="tupian">
 							</div>
 						</td>
-						
+
 					</tr>
 					<tr>
 						<th>税务登记证</th>
@@ -268,13 +269,20 @@ tr{
 	</div>
 	<div id="search">
 		<table id="xiangqing">
-			
+			<tr>
+				<th>法人资料</th>
+				<td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th>
+				<td><div id="conPhoto0" class="limage"></div></td>
+				<th>税务登记证</th>
+				<td><div id="comCard0" class="limage"></div></td>
+			</tr>
 			<tr>
 				<th>企业名称</th>
 				<td><span id="comName0"></span></td>
 				<th>组织代码</th>
 				<td><span id="comCode0"></span></td>
-				
+
 			</tr>
 			<tr>
 				<th>工商执照号</th>
@@ -283,17 +291,17 @@ tr{
 				<td><span id="comType0"></span></td>
 			</tr>
 			<tr>
-				
+
 				<th>单位地址</th>
 				<td><span id="comAddress0"></span></td>
-				
+
 			</tr>
 			<tr>
 				<th>隶属关系</th>
 				<td><span id="comParent0"></span></td>
 				<th>法定代表人</th>
 				<td><span id="comLegalId0"></span></td>
-				
+
 			</tr>
 			<tr>
 				<th>经济性质</th>
@@ -318,7 +326,7 @@ tr{
 				<td><span id="legalName0"></span></td>
 				<th>法人证件类型</th>
 				<td><span id="legalCardtype0"></span></td>
-				
+
 			</tr>
 			<tr>
 				<th>法人证件号码</th>
@@ -339,18 +347,21 @@ tr{
 				<td><span id="legalPhone0"></span></td>
 			</tr>
 			<tr>
-				<th>法人资料</th><td><div id="legalInfo0" class="limage"></div></td>
-				<th>企业资料照片</th><td><div id="conPhoto0" class="limage"></div></td>
-				
+				<th>法人资料</th>
+				<td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th>
+				<td><div id="conPhoto0" class="limage"></div></td>
+
 			</tr>
 			<tr>
 				<!-- <th>税务登记证号</th>
 				<td><span id="comCard0"></span></td> -->
-				<th>税务登记证</th><td><div id="comCard0" class="limage"></div></td>
+				<th>税务登记证</th>
+				<td><div id="comCard0" class="limage"></div></td>
 			</tr>
 		</table>
 	</div>
-	
+
 	<script type="text/javascript">
 	$("#comFund").numberbox({
 		panelHeight : "auto",
@@ -446,45 +457,50 @@ tr{
 		panelHeight : "auto",
 		editable : false,
 	});	
-
-		$("#searchpersonal").click(function() {
-			var row = $("#company").datagrid('getSelected');
-			if (row != null) {
-				$('#search').dialog({
-					title : '个人客户详情',
-					width : '95%',
-					height:'95%',
-					closed : false,
-					cache : false,
-					modal : true
+		$("#searchpersonal").click(
+				function() {
+					var row = $("#company").datagrid('getSelected');
+					if (row != null) {
+						$('#search').dialog({
+							title : '个人客户详情',
+							width : '80%',
+							height : '95%',
+							closed : false,
+							cache : false,
+							modal : true
+						});
+						$("#comName0").html(row.comName);
+						$("#comCode0").html(row.comCode);
+						$("#comType0").html(row.comType);
+						$("#comLicense0").html(row.comLicense);
+						$("#comAddress0").html(row.comAddress);
+						$("#comParent0").html(row.comParent);
+						$("#comLegalId0").html(row.comLegalId);
+						$("#comProperty0").html(row.comProperty);
+						$("#comPostcode0").html(row.comPostcode);
+						$("#comLinkman0").html(row.comLinkman);
+						$("#comLinphone0").html(row.comLinphone);
+						$("#comFund0").html(row.comFund);
+						$("#comCredit0").html(row.comCredit);
+						$("#conPhoto0").html(row.conPhoto);
+						$("#legalName0").html(row.legalName);
+						$("#legalCardtype0").html(row.legalCardtype);
+						$("#legalCardnumber0").html(row.legalCardnumber);
+						$("#legalNation0").html(row.legalNation);
+						$("#legalGender0").html(row.legalGender);
+						$("#legalMarry0").html(row.legalMarry);
+						$("#legalAddress0").html(row.legalAddress);
+						$("#legalPhone0").html(row.legalPhone);
+						$("#comCard0").html(
+								"<img class='image' src="+row.comCard+"\>");
+						$("#conPhoto0").html(
+								"<img class='image' src="+row.conPhoto+"\>");
+						$("#legalInfo0").html(
+								"<img class='image' src="+row.legalInfo+"\>");
+					} else {
+						$.messager.alert("", "请选择想要查询的信息", "");
+					}
 				});
-				$("#comName0").html(row.comName);
-				$("#comCode0").html(row.comCode);
-				$("#comType0").html(row.comType);
-				$("#comLicense0").html(row.comLicense);
-				$("#comAddress0").html(row.comAddress);
-				$("#comParent0").html(row.comParent);
-				$("#comLegalId0").html(row.comLegalId);
-				$("#comProperty0").html(row.comProperty);
-				$("#comPostcode0").html(row.comPostcode);
-				$("#comLinkman0").html(row.comLinkman);
-				$("#comLinphone0").html(row.comLinphone);
-				$("#comFund0").html(row.comFund);
-				$("#comCredit0").html(row.comCredit);
-				$("#conPhoto0").html(row.conPhoto);
-				$("#legalName0").html(row.legalName);
-				$("#legalCardtype0").html(row.legalCardtype);
-				$("#legalCardnumber0").html(row.legalCardnumber);
-				$("#legalNation0").html(row.legalNation);
-				$("#legalGender0").html(row.legalGender);
-				$("#legalMarry0").html(row.legalMarry);
-				$("#legalAddress0").html(row.legalAddress);
-				$("#legalPhone0").html(row.legalPhone);
-				$("#comCard0").html("<img class='image' src="+row.comCard+"\>");
-		        $("#conPhoto0").html("<img class='image' src="+row.conPhoto+"\>");
-		        $("#legalInfo0").html("<img class='image' src="+row.legalInfo+"\>"); 
-			}
-		});
 
 		$(function() {
 			$('input[type=text]').validatebox();
@@ -496,39 +512,50 @@ tr{
 				$('#comp').dialog("open");
 			});
 
-			$('#comp').dialog({
-				title : '添加企业信息',
-				width : '95%',
-				height:'95%',
-				closed : true,
-				cache : false,
-				modal : true,
-				buttons : [ {
-					text : '保存',
-					handler : function() {
-						$.messager.progress(); // 显示进度条
-						$('#compfrom').form('submit', {
-							url : '/badLoan/company/addcompany',
-							onSubmit : function() {
-								var isValid = $(this).form('validate');
-								if (!isValid) {
-									$.messager.progress('close'); // 如果表单是无效的则隐藏进度条
-								}
-								return isValid; // 返回false终止表单提交
-							},
-							success : function() {
-								$.messager.progress('close'); // 如果提交成功则隐藏进度条
-								window.location.href = "/badLoan/jsp/addCompany.jsp"
-							}
-						});
-					}
-				}, {
-					text : '关闭',
-					handler : function() {
-						$('#comp').dialog('close');
-					}
-				} ]
-			});
+			$('#comp')
+					.dialog(
+							{
+								title : '添加企业信息',
+								width : '90%',
+								height : '80%',
+								closed : true,
+								cache : false,
+								modal : true,
+								buttons : [
+										{
+											text : '保存',
+											handler : function() {
+												$.messager.progress(); // 显示进度条
+												$('#compfrom')
+														.form(
+																'submit',
+																{
+																	url : '/badLoan/company/addcompany',
+																	onSubmit : function() {
+																		var isValid = $(
+																				this)
+																				.form(
+																						'validate');
+																		if (!isValid) {
+																			$.messager
+																					.progress('close'); // 如果表单是无效的则隐藏进度条
+																		}
+																		return isValid; // 返回false终止表单提交
+																	},
+																	success : function() {
+																		$.messager
+																				.progress('close'); // 如果提交成功则隐藏进度条
+																		window.location.href = "/badLoan/jsp/addCompany.jsp"
+																	}
+																});
+											}
+										}, {
+											text : '关闭',
+											handler : function() {
+												$('#comp').dialog('close');
+											}
+										} ]
+							});
 			$('#company').datagrid({
 				url : '/badLoan/company/findcompany',
 				method : 'post',

@@ -155,24 +155,6 @@ td {
 			pageNumber : 1,
 			pageList : [ 5, 10, 15, 20 ],
 			rownumbers : true, //如果为true，则显示一个行号列
-			/* onLoadSuccess : function(data) {
-				$("a[name='yes']").linkbutton({
-					text : '同意核销',
-					plain : true,
-					iconCls : 'icon-ok'
-				});
-				$("a[name='no']").linkbutton({
-					text : '驳回核销',
-					plain : true,
-					iconCls : 'icon-cancel'
-				});
-				$(".noBtn").click(function() {
-					$("#ff").dialog("open");
-				});
-				$(".yesBtn").click(function() {
-					$("#ff").dialog("open");
-				});
-			}, */
 			columns : [ [ {
 				field : 'loaninfoId',
 				title : '贷款编号',
@@ -211,15 +193,15 @@ td {
 				field : 'unrepayNumber',
 				title : '未还贷款金额(元)',
 				width : 100
-			}/* , {
-								field : 'loanDate',
-								title : '贷款日期',
-								width : 150
-							}, {
-								field : 'loanRepaymentDate',
-								title : '还款日期',
-								width : 150
-							} */, {
+			}, {
+				field : 'loanDate',
+				title : '贷款日期',
+				width : 150
+			}, {
+				field : 'loanRepaymentDate',
+				title : '还款日期',
+				width : 150
+			}, {
 				field : 'loanstateName',
 				title : '贷款状态',
 				width : 100
@@ -234,27 +216,7 @@ td {
 						return "企业贷款";
 					}
 				}
-			}
-			/* {
-				field : 'operate1',
-				title : '操作',
-				align : 'center',
-				width : $(this).width() * 0.1,
-				formatter : function(value, row, index) {
-					var str = '<a href="#" name="yes" class="easyui-linkbutton yesBtn"></a>';
-					return str;
-				}
-			},
-			{
-				field : 'operate2',
-				title : '操作',
-				align : 'center',
-				width : $(this).width() * 0.1,
-				formatter : function(value, row, index) {
-					var str = '<a href="#" name="no" class="easyui-linkbutton noBtn"></a>';
-					return str;
-				}
-			} */] ]
+			} ] ]
 
 		});
 		//点击详情按钮弹出模态框
@@ -509,7 +471,7 @@ td {
 						return "企业贷款";
 					}
 				}
-			} ] ],
+			} ] ]
 		})
 	});
 </script>

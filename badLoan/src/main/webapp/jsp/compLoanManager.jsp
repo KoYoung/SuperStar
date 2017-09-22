@@ -722,9 +722,8 @@ tr td{
 			.dialog(
 					{
 						title : '回收信息登记',
-						top : '10%',
-						width : 500,
-						height : 300,
+						width : '95%',
+						height : '95%',
 						closed : true,
 						cache : false,
 						modal : true,

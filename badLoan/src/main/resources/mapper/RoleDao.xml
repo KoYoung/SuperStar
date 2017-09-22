@@ -23,6 +23,14 @@
 		rr.role_id
 	</select>
 
+	<select id="querySonRightByRoleId" parameterType="String"
+		resultType="java.util.HashMap">
+		select * from
+		right ri , role ro,roleright rr where
+		ro.role_id = #{roleId} and ri.right_id = rr.right_id and ro.role_id =
+		rr.role_id and ri.right_parent !=0
+	</select>
+
 	<delete id="deleteRoleRightById" parameterType="String">
 		delete from
 		roleright where role_id = #{param1} and right_id = (#{param2})
@@ -31,11 +39,12 @@
 		delete from
 		roleright where role_id = #{roleId}
 	</delete>
+	
 	<insert id="addRoleRight" parameterType="String">
 		insert into roleright
 		(role_id,right_id)values(#{param1},#{param2})
 	</insert>
-	
+
 	<insert id="addRoleByAJAX" parameterType="java.util.HashMap">
 		insert into role
 		(role_id,role_name,role_comment)

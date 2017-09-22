@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
  * @author lifq
  * @date 2015-3-17 下午04:09:35
  */
-public class UrlUtil {
+public class FormUtil {
 	private final static String ENCODE = "UTF-8";
 
 	/**
@@ -64,4 +64,13 @@ public class UrlUtil {
 
 	}
 
+	/**
+	 * 表单序列化Serialize转JSON
+	 * 
+	 * @param data
+	 * @return JSONString
+	 */
+	public static String serializeToJson(String data) {
+		return data = "{" + data.replace("&", "\",").replace("=", ":\"") + "\"}";
+	}
 }

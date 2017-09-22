@@ -114,14 +114,14 @@
 		ci.bankinfo_id=bk.bankinfo_id
 		and lg.loanstate_id=ls.loanstate_id
 		and
-		lg.loanstate_id=7) where
-		<if test="_parameter!=null and _parameter!='' ">
-			borName like '%' || #{_parameter} || '%'
-		</if>
-		<if test="_parameter!=null and _parameter!='' ">
-			or loaninfoId like '%' || #{_parameter} || '%'
-		</if>
-
+		lg.loanstate_id=7)
+		<where>
+			<if test="_parameter!=null and _parameter!='' ">
+				borName like '%' || #{_parameter} || '%'
+			</if>
+			<if test="_parameter!=null and _parameter!='' ">
+				or loaninfoId like '%' || #{_parameter} || '%'
+			</if>
+		</where>
 	</select>
-
 </mapper>

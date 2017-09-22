@@ -411,8 +411,8 @@ td {
 					if (row != null) {
 						$('#add').dialog({
 							title : '个人客户详情',
-							width : '95%',
-							height : '95%',
+							width : '70%',
+							height : '90%',
 							closed : false,
 							cache : false,
 							modal : true
@@ -445,7 +445,7 @@ td {
 						$("#drivingLicence0").html(
 								"<img class='image' src="+row.borPhoto+"\>");
 					} else {
-						$.messager.alert(" 提示","请选中一行！");
+						$.messager.alert(" 提示", "请选中一行！");
 					}
 				});
 
@@ -597,8 +597,8 @@ td {
 							{
 								title : '添加客户信息',
 								iconCls : 'icon-save',
-								width : '90%',
-								height : '80%',
+								width : '95%',
+								height : '95%',
 								closed : true,
 								cache : false,
 								modal : true,

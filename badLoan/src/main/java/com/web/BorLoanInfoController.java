@@ -26,7 +26,7 @@ import com.service.BorLoanInfoService;
 import com.service.ComloanInfoService;
 import com.util.Paging;
 import com.util.PagingResult;
-import com.util.UrlUtil;
+import com.util.FormUtil;
 
 @Controller
 @RequestMapping("/BorLoanInfo")
@@ -183,9 +183,8 @@ public class BorLoanInfoController {
 	@RequestMapping(value = "/findBorSearch")
 	@ResponseBody
 	public PagingResult<Map<String, String>> findBorSearch(@RequestBody String data) {
-		data = UrlUtil.getURLDecoderString(data);
+		data = FormUtil.getURLDecoderString(data);
 		data = data.substring(5);
-		// 将获取到的表单序列化数据拼装成JSON字符串，并转为MAP
 		data = "{" + data.replace("&", "\",").replace("=", ":\"") + "\"}";
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
 		System.out.println(datamap);
