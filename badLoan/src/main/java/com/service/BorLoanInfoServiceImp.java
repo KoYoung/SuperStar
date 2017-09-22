@@ -62,7 +62,6 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		List<BorLoanInfo> comList = borLoanInfoDao.findBorLoanInfo();
 		Paging<BorLoanInfo> paging = new Paging<BorLoanInfo>();
 		List<BorLoanInfo> borList = paging.paging(comList, rows, page);
-		System.out.println("page2-->"+page+" "+"rows2-->"+rows);
 		PagingResult<BorLoanInfo> pr = new PagingResult<BorLoanInfo>();
 		pr.setRows(borList);
 		pr.setTotal(comList.size());
@@ -109,7 +108,7 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 	 * 添加个人用户贷款信息 马利肖 requestParam要写才知道是前台的那个数组
 	 */
 	@Transactional
-	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhoto, HttpServletRequest request,
+	public String addBorLoanInfo(@RequestParam("borPhoto") MultipartFile[] borPhotos, HttpServletRequest request,
 			BorLoanInfo borLoanInfo, Pledge pledge, CustomerGoods customerGoods, Guarantor guarantor, Borgua borgua,
 			LoanManageRecord lmr, Loanmanage lonm) {
 		String pledgeGenre = borLoanInfo.getLoanType();
@@ -123,12 +122,14 @@ public class BorLoanInfoServiceImp implements BorLoanInfoService {
 		int loaninfoType = borLoanInfo.getLoaninfoType();
 		lonm.setLoaninfoType(loaninfoType);
 		// 获取页面传过来的图片路径
-		List filepath = FileUpload.uploadFile1(borPhoto, request);
-		String path = "";
-		for (int i = 0; i < borPhoto.length; i++) {
-			path = path + filepath.get(i).toString() + ",";
+		List files = FileUpload.uploadFile1(borPhotos, request);
+		String photoPath = "";
+		for (int i = 0; i < files.size(); i++) {
+
+			photoPath = photoPath + files.get(i).toString() + ",";
+			// 保存文件
 		}
-		pledge.setPledgePhoto(path);
+		pledge.setPledgePhoto(photoPath);
 		try {
 			int flag = borLoanInfoDao.addBorLoanInfo(borLoanInfo);
 			pledgeDao.addPledge(pledge);

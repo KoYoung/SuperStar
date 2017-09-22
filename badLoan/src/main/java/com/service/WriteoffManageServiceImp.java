@@ -3,6 +3,7 @@ package com.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,8 +61,7 @@ public class WriteoffManageServiceImp implements WriteoffManageService {
 		String lmrComment = write.getOpinion();
 		LoanManageRecord loanMR = new LoanManageRecord();
 		loanMR.setLoaninfoId(loaninfoId);
-		String empId = (String) session.getAttribute("username");
-		System.out.println("empID----" + empId);
+		String empId = ((Map<String, String>)session.getAttribute("user")).get("EMP_ID");
 		loanMR.setEmpId(empId);
 		write.setEmpId(empId);
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");

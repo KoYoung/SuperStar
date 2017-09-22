@@ -9,20 +9,17 @@
 		ci.comloaninfo_id,cp.com_name,bi.bankinfo_name,ci.contract_id,
 		e.emp_name,lt.loantype_name,ci.loan_number,ci.loan_account,
 		ci.loan_date,ci.loan_repayment_date,ci.loan_rate,
-		<!-- p.pledge_genre,p.pledge_type,p.pledge_name,p.pledge_value,p.pledge_owner,gua.gua_name, -->
-		lg.lmr_name
+		ls.loanstate_name
 		from comloaninfo ci,company cp,bankinfo bi,
 		employee
 		e,loantype lt,
-		<!-- customergoods cg,pledge p,guarantor gua,borgua bg, -->
-		loanmanagerecord lg
+		loanmanage l,loanstate ls
 		where ci.com_id=cp.com_id and
 		ci.bankinfo_id=bi.bankinfo_id
 		and ci.emp_id=e.emp_id and
 		ci.loan_type=lt.loantype_id
-		<!-- and cg.loaninfo_id=ci.comloaninfo_id and cg.goods_id=p.pledge_id and 
-			bg.loaninfo_id=ci.comloaninfo_id and bg.gua_id=gua.gua_id -->
-		and lg.loaninfo_id=ci.comloaninfo_id
+		and ci.comloaninfo_id=l.loaninfo_id
+		and l.loanstate_id=ls.loanstate_id
 		and ci.loaninfo_type=1
 	</select>
 	<!-- 添加企业贷款信息 -->
@@ -39,9 +36,12 @@
 	<!-- 根据贷款编号查询贷款详情 -->
 	<select id="findComloanInfo2" resultType="com.entity.BorLoanInfo">
 		select e.emp_id,
-		cp.com_id,cp.com_name borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
-		from comloaninfo ci,company cp,bankinfo bk,employee e
-		where ci.com_id=cp.com_id
+		cp.com_id,cp.com_name
+		borName,bk.bankinfo_id,bk.bankinfo_name,e.emp_id,e.emp_name
+		from
+		comloaninfo ci,company cp,bankinfo bk,employee e
+		where
+		ci.com_id=cp.com_id
 		and
 		ci.emp_id=e.emp_id
 		and loaninfo_type=1 and
@@ -131,7 +131,7 @@
 		comloaninfo set unrepay_number = #{unrepayNumber,jdbcType=NUMERIC}
 		where comloaninfo_id = #{comloaninfoId,jdbcType=VARCHAR}
 	</update>
-	
+
 	<insert id="addRepaymentinfo" parameterType="java.util.HashMap">
 		insert into
 		repaymentinfo

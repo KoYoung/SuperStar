@@ -29,7 +29,7 @@ public class BorLoanInfo {
 	private String pledgeValue;
 	private String pledgeOwner;
 	private String guaName;
-	private String lmrName;
+	private String loanstateName;
 	private Integer unrepayNumber;
 	
 	public Integer getUnrepayNumber() {
@@ -216,12 +216,13 @@ public class BorLoanInfo {
 		this.guaName = guaName;
 	}
 
-	public String getLmrName() {
-		return lmrName;
+	public String getLoanstateName() {
+		return loanstateName;
 	}
 
-	public void setLmrName(String lmrName) {
-		this.lmrName = lmrName;
+	public void setLoanstateName(String loanstateName) {
+		this.loanstateName = loanstateName;
 	}
+	
 
 }

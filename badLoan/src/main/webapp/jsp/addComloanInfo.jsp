@@ -141,12 +141,18 @@ tr td {
 								</tr>
 								<tr>
 									<td>抵（质）押物品价值:</td>
-									<td><input type="text" id="pledgeValue" name="pledgeValue">元</input></td>
+									<td><input type="text" id="pledgeValue" name="pledgeValue"
+									data-options="validType:'pledgeValue'">元</input></td>
 								</tr>
 								<tr>
 									<td>抵（质）押物所属人:</td>
 									<td><input class="easyui-textbox" id="pledgeOwner"
 										name="pledgeOwner" data-options="required:true"></input></td>
+								</tr>
+								<tr>
+									<td>担保人姓名:</td>
+									<td><input class="easyui-textbox" id="guaName"
+										name="guaName" data-options="required:true"></input></td>
 								</tr>
 								<tr>
 									<td>担保人性别:</td>
@@ -184,11 +190,6 @@ tr td {
 										name="guaCardNumber"
 										data-options="required:true,validType:'guaCardNumber'"
 										value="410223198711222586"></input></td>
-								</tr>
-								<tr>
-									<td>担保人姓名:</td>
-									<td><input class="easyui-textbox" id="guaName"
-										name="guaName" data-options="required:true"></input></td>
 								</tr>
 							</table>
 						</td>
@@ -576,8 +577,7 @@ tr td {
 				message : '请输入数字'
 			},
 		});
-		$
-				.extend(
+		$.extend(
 						$.fn.validatebox.defaults.rules,
 						{
 							mobile : {
@@ -679,6 +679,16 @@ tr td {
 								},
 								message : "银行卡号应为18-21位"
 							},
+							pledgeValue:{
+								validator : function(value, param){
+									var loanNumber=$("#loanNumber").val();
+									if(loanNumber>=value){
+										return false;
+									}
+									return true;
+								},
+								message : "抵押物价值必须大于贷款金额"
+							}
 						});
 		$('#dg').datagrid({
 			url : '/badLoan/ComloanInfo/findComloanInfo',
@@ -733,38 +743,11 @@ tr td {
 				field : 'loanRate',
 				title : '贷款利率(%)',
 				width : 80
-			},/* {
-							field : 'pledgeType',
-							title : '抵押物类型',
-							width : 100
-						},{
-							field : 'pledgeName',
-							title : '抵押物名称',
-							width : 100
-						},{
-							field : 'pledgeValue',
-							title : '抵押物价值（万元）',
-							width : 100
-						},{
-							field : 'pledgeOwner',
-							title : '抵押物所有人',
-							width : 100
-						},{
-							field : 'guaName',
-							title : '担保人姓名',
-							width : 100
-						}, */{
-				field : 'lmrName',
+			},{
+				field : 'loanstateName',
 				title : '贷款状态',
 				width : 100,
-				formatter : function(value, row, index) {
-					if (value == 0) {
-						return "待处理";
-					} else {
-						return "处理中";
-					}
-				}
-			} ] ]
+			}]]
 		});
 	</script>
 </body>

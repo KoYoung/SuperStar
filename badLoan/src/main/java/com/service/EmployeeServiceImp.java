@@ -14,21 +14,11 @@ public class EmployeeServiceImp implements EmployeeService {
 	private EmployeeDao eDao;
 
 	/**
-	 * 查询银行所有员工 马利肖
+	 * 根据银行编号查询银行所有员工 马利肖
 	 * 
 	 * @return
 	 */
 	public List<Employee> findAllEmployee(String empBankinfo) {
 		return eDao.findAllEmployee(empBankinfo);
 	}
-
-	/**
-	 * 查询银行所有员工 马利肖
-	 * 
-	 * @return
-	 */
-	public List<Employee> findAllEmployee() {
-		return eDao.findAllEmployee();
-	}
-
 }
