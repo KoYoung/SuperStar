@@ -66,8 +66,9 @@ tr td {
 		$('#dd').dialog(
 						{
 							title : '不良贷款信息录入',
+							width : '95%',
+							height : '95%',
 							closed : true,
-							top : '5%',
 							cache : false,
 							modal : true,
 							buttons : [{

@@ -326,8 +326,8 @@
 	}
 	$("#detailDialog").dialog({
 		title : '贷款详情',
-		width : 800,
-		height : 450,
+		width : '95%',
+		height : '95%',
 		closed : true,
 		cache : false,
 		modal : true

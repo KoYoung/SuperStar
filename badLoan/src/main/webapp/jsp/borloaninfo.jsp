@@ -325,7 +325,8 @@ $('#dd')
 		.dialog(
 				{
 					title : '不良贷款信息录入',
-					height: 750,
+					width : '95%',
+					height : '95%',
 					closed : true,
 					cache : false,
 					modal : true,
