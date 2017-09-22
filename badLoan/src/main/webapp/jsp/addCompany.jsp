@@ -25,14 +25,14 @@
 <!-- 传图 -->
 
 <style type="text/css">
- tr {
+tr {
 	line-height: 40px;
 }
 
 td {
 	line-height: 20px;
 }
- 
+
 .img-container {
 	width: 293px;
 	height: 150px;
@@ -40,9 +40,11 @@ td {
 	overflow: hidden;
 	border: 1px solid #000;
 }
-tr{
+
+tr {
 	margin: 2px;
 }
+
 .img-container>img {
 	width: 293px;
 	height: 150px;
@@ -56,14 +58,15 @@ tr{
 #tablr, #xiangqing {
 	margin-left: 20px
 }
- #tabsearch{
-    	margin-left: 10px;
-    } 
-   
-     .image{
-    	width:293px;
-    	height: 150px;
-    } 
+
+#tabsearch {
+	margin-left: 10px;
+}
+
+.image {
+	width: 293px;
+	height: 150px;
+}
 </style>
 </head>
 <body>
@@ -83,18 +86,18 @@ tr{
 				<table cellpadding="5" id="tab1">
 					<tr>
 						<th>公司名字</th>
-						<td><input class="easyui-textbox" id="comName" name="comName"/></td>
+						<td><input class="easyui-textbox" id="comName" name="comName" /></td>
 						<th>组织机构号</th>
-						<td><input class="easyui-numberbox" id="comCode" name="comCode"/></td>
+						<td><input class="easyui-numberbox" id="comCode"
+							name="comCode" /></td>
 					</tr>
 					<tr>
 						<th>工商登记号码</th>
-						<td><input class="easyui-numberbox"
-							 id="comLicense"
+						<td><input class="easyui-numberbox" id="comLicense"
 							name="comLicense" /></td>
 						<th>公司类型</th>
 						<td><select id="comType" class="easyui-combobox"
-							name="comType" >
+							name="comType">
 								<option value="国有企业">国有企业</option>
 								<option value="集体所有制企业">集体所有制企业</option>
 								<option value="私营企业">私营企业</option>
@@ -107,17 +110,15 @@ tr{
 					</tr>
 					<tr>
 						<th>隶属关系</th>
-						<td>
-							<select id="comParent" class="easyui-combobox"
-							name="comParent" >
+						<td><select id="comParent" class="easyui-combobox"
+							name="comParent">
 								<option value="中央">中央</option>
 								<option value="省级">省级</option>
 								<option value="市级">市级</option>
 								<option value="县级">县级</option>
 								<option value="乡镇">乡镇</option>
-								
-						</select>
-						</td>
+
+						</select></td>
 						<th>公司地址</th>
 						<td>
 							<div class="form-inline">
@@ -140,43 +141,45 @@ tr{
 								</div>
 							</div>
 						</td>
-						
+
 					</tr>
 					<tr>
-						
+
 						<th>企业信誉度</th>
-						<td><input class="easyui-numberbox" id="comCredit" name="comCredit" /></td>
+						<td><input class="easyui-numberbox" id="comCredit"
+							name="comCredit" /></td>
 						<th>经济性质</th>
-						<td>
-							<select id="comProperty" class="easyui-combobox" name="comProperty" >
+						<td><select id="comProperty" class="easyui-combobox"
+							name="comProperty">
 								<option value="有限责任公司">有限责任公司</option>
 								<option value="股份有限责任公司">股份有限责任公司</option>
 								<option value="个体工商户">个体工商户</option>
 								<option value="私营独资企业">私营独资企业</option>
 								<option value="私营合伙企业">私营合伙企业</option>
-								
-						</select>
-						</td>
+
+						</select></td>
 					</tr>
 					<tr>
 						<th>邮政编码</th>
 						<td><input class="easyui-numberbox" id="comPostcode"
 							onblur="checkcomPostcode('comPostcode');" name="comPostcode" /></td>
 						<th>联系人</th>
-						<td><input class="esayui-textbox" id="comLinkman" name="comLinkman" /></td>
+						<td><input class="esayui-textbox" id="comLinkman"
+							name="comLinkman" /></td>
 					</tr>
 					<tr>
 						<th>联系电话</th>
 						<td><input class="easyui-numberbox" id="comLinphone"
 							onblur="checkMobile('comLinphone');" name="comLinphone" /></td>
 						<th>注册资金</th>
-						<td><input class="easyui-numberbox" 
-							id="comFund" name="comFund" /></td>
+						<td><input class="easyui-numberbox" id="comFund"
+							name="comFund" /></td>
 					</tr>
-					
+
 					<tr>
-					 	<th>法人姓名</th>
-						<td><input class="esayui-textbox" id="legalName" name="legalName" /></td> 
+						<th>法人姓名</th>
+						<td><input class="esayui-textbox" id="legalName"
+							name="legalName" /></td>
 						<th>法人性别</th>
 						<td><input type="radio" id="legalGender" checked="checked"
 							name="legalGender" value="男" />男 <input type="radio"
@@ -187,16 +190,14 @@ tr{
 						<td><input class="easyui-numberbox" id="legalPhone"
 							onblur="checklegalPhone('legalPhone');" name="legalPhone" /></td>
 						<th>法人民族</th>
-						<td>
-							<input class="easyui-combobox" id="legalNation" name="legalNation" />
-						</td>
+						<td><input class="easyui-combobox" id="legalNation"
+							name="legalNation" /></td>
 					</tr>
 					<tr>
 						<th>法人证件类型</th>
 						<td>
 							<!-- <input type="text" id="guaPhone" name="guaPhone"/> --> <select
-							id="legalCardtype" class="easyui-combobox" name="legalCardtype"
-							>
+							id="legalCardtype" class="easyui-combobox" name="legalCardtype">
 								<option value="身份证">身份证</option>
 								<option value="士兵证">士兵证</option>
 								<option value="军官证">军官证</option>
@@ -206,12 +207,13 @@ tr{
 						</select>
 						</td>
 						<th>法人证件号码</th>
-						<td><input  id="legalCardnumber" class="easyui-numberbox" name="legalCardnumber" /></td>
+						<td><input id="legalCardnumber" class="easyui-numberbox"
+							name="legalCardnumber" /></td>
 					</tr>
 					<tr>
 						<th>法人婚姻状况</th>
 						<td><select id="legalMarry" class="easyui-combobox"
-							name="legalMarry" >
+							name="legalMarry">
 								<option value="未婚">未婚</option>
 								<option value="已婚">已婚</option>
 								<option value="离异">离异</option>
@@ -242,26 +244,26 @@ tr{
 					</tr>
 					<tr>
 						<th>法人资料</th>
-							<td>
-						            <div class="img-container"></div>
-						            <input class="img-btn" type="file" id="legalInfo" name="tupian">
-					        	
-							</td>
+						<td>
+							<div class="img-container"></div> <input class="img-btn"
+							type="file" id="legalInfo" name="tupian">
+
+						</td>
 						<th>企业资料照片</th>
 						<td>
 							<div id="box">
-						            <div class="img-container"></div>
-						            <input class="img-btn" type="file" id="conPhoto" name="tupian">
+								<div class="img-container"></div>
+								<input class="img-btn" type="file" id="conPhoto" name="tupian">
 							</div>
 						</td>
-						
+
 					</tr>
 					<tr>
 						<th>税务登记证</th>
 						<td>
 							<div id="box">
 								<div class="img-container"></div>
-						        <input class="img-btn" type="file" id="comCard" name="tupian">
+								<input class="img-btn" type="file" id="comCard" name="tupian">
 							</div>
 						</td>
 					</tr>
@@ -272,9 +274,12 @@ tr{
 	<div id="search">
 		<table id="xiangqing">
 			<tr>
-				<th>法人资料</th><td><div id="legalInfo0" class="limage"></div></td>
-				<th>企业资料照片</th><td><div id="conPhoto0" class="limage"></div></td>
-				<th>税务登记证</th><td><div id="comCard0" class="limage"></div></td>
+				<th>法人资料</th>
+				<td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th>
+				<td><div id="conPhoto0" class="limage"></div></td>
+				<th>税务登记证</th>
+				<td><div id="comCard0" class="limage"></div></td>
 			</tr>
 			<tr>
 				<th>企业名称</th>
@@ -336,95 +341,94 @@ tr{
 				<th>法人电话</th>
 				<td><span id="legalPhone0"></span></td>
 			</tr>
-			
+
 		</table>
 	</div>
-	
+
 	<script type="text/javascript">
-	$("#comFund").numberbox({
-		panelHeight : "auto",
-		prompt : '公司注册资金',
-		required:"true"
-	});
-	
-	$("#comLinkman").textbox({
-		panelHeight : "auto",
-		prompt : '输入公司的联系人',
-		required:"true"
-	});
-	$("#legalCardnumber").numberbox({
-		panelHeight : "auto",
-		prompt : '法人证件号码',
-		required:"true"
-	});
-	$("#comLinphone").numberbox({
-		panelHeight : "auto",
-		prompt : '联系人的正确电话',
-		required:"true"
-	});
-	
-	$("#legalPhone").numberbox({
-		panelHeight : "auto",
-		prompt : '法人的正确电话',
-		required:"true"
-	});
-	
-	$("#legalName").textbox({
-		panelHeight : "auto",
-		prompt : '输入法人姓名',
-		required:"true"
-	});
-	
-	$("#comLicense").numberbox({
-		panelHeight : "auto",
-		prompt : '输入正确的组织代码',
-		required:"true"
-	});
-	
-	$("#comCode").numberbox({
-		panelHeight : "auto",
-		prompt : '输入15位的数字',
-		required:"true"
-	});
-	$("#comName").textbox({
-		panelHeight : "auto",
-		prompt : '输入公司名字',
-		required:"true"
-	});
-	$('#comParent').combobox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});
-	$('#comType').combobox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});
-	$('#legalNation').textbox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});
-	
-	$('#comProperty').combobox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});
-	
-	$('#legalCardtype').combobox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});	
-	$('#legalMarry').combobox({
-		width:173,
-		panelHeight : "auto",
-		editable : false,
-	});	
-	
-	
+		$("#comFund").numberbox({
+			panelHeight : "auto",
+			prompt : '公司注册资金',
+			required : "true"
+		});
+
+		$("#comLinkman").textbox({
+			panelHeight : "auto",
+			prompt : '输入公司的联系人',
+			required : "true"
+		});
+		$("#legalCardnumber").numberbox({
+			panelHeight : "auto",
+			prompt : '法人证件号码',
+			required : "true"
+		});
+		$("#comLinphone").numberbox({
+			panelHeight : "auto",
+			prompt : '联系人的正确电话',
+			required : "true"
+		});
+
+		$("#legalPhone").numberbox({
+			panelHeight : "auto",
+			prompt : '法人的正确电话',
+			required : "true"
+		});
+
+		$("#legalName").textbox({
+			panelHeight : "auto",
+			prompt : '输入法人姓名',
+			required : "true"
+		});
+
+		$("#comLicense").numberbox({
+			panelHeight : "auto",
+			prompt : '输入正确的组织代码',
+			required : "true"
+		});
+
+		$("#comCode").numberbox({
+			panelHeight : "auto",
+			prompt : '输入15位的数字',
+			required : "true"
+		});
+		$("#comName").textbox({
+			panelHeight : "auto",
+			prompt : '输入公司名字',
+			required : "true"
+		});
+		$('#comParent').combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+		$('#comType').combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+		$('#legalNation').textbox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
+		$('#comProperty').combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
+		$('#legalCardtype').combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+		$('#legalMarry').combobox({
+			width : 173,
+			panelHeight : "auto",
+			editable : false,
+		});
+
 		//检查对象是否为空，obj-对象，vMc-提示信息
 		function checkNull(obj, vline) {
 			//判断输入框是否为空，为空时弹出提示框
@@ -491,44 +495,48 @@ tr{
 			}
 		}
 
-		$("#searchpersonal").click(function() {
-			var row = $("#company").datagrid('getSelected');
-			if (row != null) {
-				$('#search').dialog({
-					title : '个人客户详情',
-					width : '95%',
-					height:'95%',
-					closed : false,
-					cache : false,
-					modal : true
+		$("#searchpersonal").click(
+				function() {
+					var row = $("#company").datagrid('getSelected');
+					if (row != null) {
+						$('#search').dialog({
+							title : '个人客户详情',
+							width : '95%',
+							height : '95%',
+							closed : false,
+							cache : false,
+							modal : true
+						});
+						$("#comName0").html(row.comName);
+						$("#comCode0").html(row.comCode);
+						$("#comType0").html(row.comType);
+						$("#comLicense0").html(row.comLicense);
+						$("#comAddress0").html(row.comAddress);
+						$("#comParent0").html(row.comParent);
+						$("#comLegalId0").html(row.comLegalId);
+						$("#comProperty0").html(row.comProperty);
+						$("#comPostcode0").html(row.comPostcode);
+						$("#comLinkman0").html(row.comLinkman);
+						$("#comLinphone0").html(row.comLinphone);
+						$("#comFund0").html(row.comFund);
+						$("#comCredit0").html(row.comCredit);
+						$("#conPhoto0").html(row.conPhoto);
+						$("#legalName0").html(row.legalName);
+						$("#legalCardtype0").html(row.legalCardtype);
+						$("#legalCardnumber0").html(row.legalCardnumber);
+						$("#legalNation0").html(row.legalNation);
+						$("#legalGender0").html(row.legalGender);
+						$("#legalMarry0").html(row.legalMarry);
+						$("#legalAddress0").html(row.legalAddress);
+						$("#legalPhone0").html(row.legalPhone);
+						$("#comCard0").html(
+								"<img class='image' src="+row.comCard+"\>");
+						$("#conPhoto0").html(
+								"<img class='image' src="+row.conPhoto+"\>");
+						$("#legalInfo0").html(
+								"<img class='image' src="+row.legalInfo+"\>");
+					}
 				});
-				$("#comName0").html(row.comName);
-				$("#comCode0").html(row.comCode);
-				$("#comType0").html(row.comType);
-				$("#comLicense0").html(row.comLicense);
-				$("#comAddress0").html(row.comAddress);
-				$("#comParent0").html(row.comParent);
-				$("#comLegalId0").html(row.comLegalId);
-				$("#comProperty0").html(row.comProperty);
-				$("#comPostcode0").html(row.comPostcode);
-				$("#comLinkman0").html(row.comLinkman);
-				$("#comLinphone0").html(row.comLinphone);
-				$("#comFund0").html(row.comFund);
-				$("#comCredit0").html(row.comCredit);
-				$("#conPhoto0").html(row.conPhoto);
-				$("#legalName0").html(row.legalName);
-				$("#legalCardtype0").html(row.legalCardtype);
-				$("#legalCardnumber0").html(row.legalCardnumber);
-				$("#legalNation0").html(row.legalNation);
-				$("#legalGender0").html(row.legalGender);
-				$("#legalMarry0").html(row.legalMarry);
-				$("#legalAddress0").html(row.legalAddress);
-				$("#legalPhone0").html(row.legalPhone);
-				$("#comCard0").html("<img class='image' src="+row.comCard+"\>");
-		        $("#conPhoto0").html("<img class='image' src="+row.conPhoto+"\>");
-		        $("#legalInfo0").html("<img class='image' src="+row.legalInfo+"\>"); 
-			}
-		});
 
 		$(function() {
 			$('input[type=text]').validatebox();
@@ -540,39 +548,50 @@ tr{
 				$('#comp').dialog("open");
 			});
 
-			$('#comp').dialog({
-				title : '添加企业信息',
-				width : '95%',
-				height:'95%',
-				closed : true,
-				cache : false,
-				modal : true,
-				buttons : [ {
-					text : '保存',
-					handler : function() {
-						$.messager.progress(); // 显示进度条
-						$('#compfrom').form('submit', {
-							url : '/badLoan/company/addcompany',
-							onSubmit : function() {
-								var isValid = $(this).form('validate');
-								if (!isValid) {
-									$.messager.progress('close'); // 如果表单是无效的则隐藏进度条
-								}
-								return isValid; // 返回false终止表单提交
-							},
-							success : function() {
-								$.messager.progress('close'); // 如果提交成功则隐藏进度条
-								window.location.href = "/badLoan/jsp/addCompany.jsp"
-							}
-						});
-					}
-				}, {
-					text : '关闭',
-					handler : function() {
-						$('#comp').dialog('close');
-					}
-				} ]
-			});
+			$('#comp')
+					.dialog(
+							{
+								title : '添加企业信息',
+								width : '95%',
+								height : '95%',
+								closed : true,
+								cache : false,
+								modal : true,
+								buttons : [
+										{
+											text : '保存',
+											handler : function() {
+												$.messager.progress(); // 显示进度条
+												$('#compfrom')
+														.form(
+																'submit',
+																{
+																	url : '/badLoan/company/addcompany',
+																	onSubmit : function() {
+																		var isValid = $(
+																				this)
+																				.form(
+																						'validate');
+																		if (!isValid) {
+																			$.messager
+																					.progress('close'); // 如果表单是无效的则隐藏进度条
+																		}
+																		return isValid; // 返回false终止表单提交
+																	},
+																	success : function() {
+																		$.messager
+																				.progress('close'); // 如果提交成功则隐藏进度条
+																		window.location.href = "/badLoan/jsp/addCompany.jsp"
+																	}
+																});
+											}
+										}, {
+											text : '关闭',
+											handler : function() {
+												$('#comp').dialog('close');
+											}
+										} ]
+							});
 			$('#company').datagrid({
 				url : '/badLoan/company/findcompany',
 				method : 'post',
