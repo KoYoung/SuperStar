@@ -206,8 +206,11 @@
 							iconCls : 'icon-remove',
 							handler : function() {
 								var selections = $("#rightDataGrid").datagrid("getSelections");
+								alert(selections[0].RIGHT_ID);
 								if(selections.length==0){
 									$.messager.alert('',"请选择需要删除的权限",'');
+								}else if(selections[0][RIGHT_ID]==1){
+									$.messager.alert('',"超级管理员权限不可删除",'');
 								}else{
 									var str = "";
 									$(selections).each(function(){
