@@ -2,30 +2,20 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<jsp:include page="head.jsp"></jsp:include>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
-<link rel="stylesheet" href="../easyui/themes/metro-gray/easyui.css"
-	type="text/css"></link>
 <link rel="stylesheet"
 	href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"></link>
 <!--级联  -->
-<!-- <script src="../bootstrap-3.3.7-distjs/jquery-3.2.1.min.js"></script> -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/distpicker.data.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/distpicker.js"></script>
 <script src="../bootstrap-3.3.7-dist/js/main.js"></script>
 <!--级联  -->
-<!-- <script src="https://cdn.hcharts.cn/highcharts/5.0.10/highcharts.js"></script>
-<script
-	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/exporting.js"></script>
-<script src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/data.js"></script>
-<script
-	src="https://cdn.hcharts.cn/highcharts/5.0.10/modules/drilldown.js"></script> -->
+
 <style type="text/css">
  tr {
 	line-height: 40px;
@@ -98,7 +88,7 @@ td {
 			<table class="formtable" id="tableAddper">
 				<tr>
 					<th>姓名</th>
-					<td><input  id="borName" name="borName"/></td>
+					<td><input class="easyui-textbox" id="borName" name="borName"/></td>
 					<th>性别</th>
 					<td><input type="radio" checked="checked" id="borGender"
 						name="borGender" value="男" />男 <input type="radio" id="borGender"
@@ -114,18 +104,14 @@ td {
 				</tr>
 				<tr>
 					<th>婚姻状况</th>
-					<td><select id="borMarry" class="easyui-combobox"
-						name="borMarry" style="width: 200px;"
-						data-options="editable:false,panelHeight:'auto'">
+					<td><select id="borMarry" class="easyui-combobox"name="borMarry">
 							<option value="未婚">未婚</option>
 							<option value="已婚">已婚</option>
 							<option value="离异">离异</option>
 							<option value="丧偶">丧偶</option>
 					</select></td>
 					<th>证件类型</th>
-					<td><select id="borCardtype" class="easyui-combobox"
-						name="borCardtype" style="width: 200px;"
-						data-options="editable:false,panelHeight:'auto'">
+					<td><select id="borCardtype" class="easyui-combobox"  name="borCardtype" 	>
 							<option value="身份证">身份证</option>
 							<option value="士兵证">士兵证</option>
 							<option value="军官证">军官证</option>
@@ -235,9 +221,7 @@ td {
 					<td><input class="easyui-numberbox" required="true"
 						id="borPostcode" name="borPostcode"></td>
 					<th>学历</th>
-					<td><select id="borEducation" class="easyui-combobox"
-						required="true" name="borEducation" style="width: 200px;"
-						data-options="editable:false,panelHeight:'auto'">
+					<td><select id="borEducation" class="easyui-combobox" required="true" name="borEducation" >
 							<option value="硕士以上">硕士以上</option>
 							<option value="大学本科">大学本科</option>
 							<option value="大专">大专</option>
@@ -256,9 +240,7 @@ td {
 				</tr>
 				<tr>
 					<th>证件类型</th>
-					<td><select id="contectCardtype" class="easyui-combobox"
-						name="contectCardtype" style="width: 200px;"
-						data-options="editable:false,panelHeight:'auto'">
+					<td><select id="contectCardtype" class="easyui-combobox" name="contectCardtype">
 							<option value="身份证">身份证</option>
 							<option value="士兵证">士兵证</option>
 							<option value="军官证">军官证</option>
@@ -312,8 +294,7 @@ td {
 						<div id="box">
 							<div>
 								<div class="img-container"></div>
-								<input class="img-btn" type="file" required="true" id="borPhoto"
-									name="borP">
+								<input class="img-btn" type="file" required="true" id="borPhoto" name="borP">
 							</div>
 						</div>
 					</td>
@@ -401,10 +382,7 @@ td {
 	</div>
 
 	<script type="text/javascript">
-	$('#borName').textbox({
-		prompt : '输入姓名',
-		
-	});
+	
 	
 		/* 客户详情  */
 		$("#searchpersonal").click(function() {
@@ -445,10 +423,6 @@ td {
 				$("#contectAddress0").html(row.contectAddress);
 				$("#borCredit0").html(row.borCredit);
 				$("#drivingLicence0").html("<img class='image' src="+row.borPhoto+"\>");
-				/* var img = "<img class='img' src="+row.borPhoto+"\>";
-				$("#drivingLicence0").empty();
-				$("#drivingLicence0").append(img);
- */
 			} else {
 				alert("请选中一行！");
 			}
@@ -604,7 +578,7 @@ td {
 							{
 								title : '添加客户信息',
 								iconCls : 'icon-save',
-								width : '50%',
+								width : '60%',
 								height:'50%',
 								top : 100,
 								closed : true,
@@ -672,7 +646,37 @@ td {
 				editable : false,
 			});
 		});
-
+		
+			$('#borName').textbox({
+				prompt : '输入姓名',
+				width:172,
+				panelHeight : "auto",
+				required:"true"
+			});
+			
+			$("#borMarry").combobox({
+				width:173,
+				panelHeight : "auto",
+				editable : false,
+			});
+			
+			$("#borCardtype").combobox({
+				width:173,
+				panelHeight : "auto",
+				editable : false,
+			});
+			
+			$("#borEducation").combobox({
+				width:173,
+				panelHeight : "auto",
+				editable : false,
+			});
+			
+			$("#contectCardtype").combobox({
+				width:173,
+				panelHeight : "auto",
+				editable : false,
+			});
 		function ad(value) {
 			$("#personal").datagrid({
 				url : "/badLoan/borrower/findbormohu?va=" + value,
