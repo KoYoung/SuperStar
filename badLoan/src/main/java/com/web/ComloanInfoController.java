@@ -26,7 +26,7 @@ import com.service.ComloanInfoService;
 import com.util.FileUpload;
 import com.util.Paging;
 import com.util.PagingResult;
-import com.util.UrlUtil;
+import com.util.FormUtil;
 
 @Controller
 @RequestMapping("/ComloanInfo")
@@ -74,7 +74,7 @@ public class ComloanInfoController {
 	@ResponseBody
 	public PagingResult<Map<String, String>> findComLoan(@RequestBody String data, @RequestParam Integer page,
 			Integer rows) {
-		data = UrlUtil.getURLDecoderString(data);
+		data = FormUtil.getURLDecoderString(data);
 		System.out.println(data);
 		// 将获取到的表单序列化数据拼装成JSON字符串，并转为MAP
 		data = "{" + data.replace("&", "\",").replace("=", ":\"") + "\"}";

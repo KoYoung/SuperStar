@@ -15,7 +15,7 @@ import com.entity.Role;
 import com.service.RoleService;
 import com.util.Paging;
 import com.util.PagingResult;
-import com.util.UrlUtil;
+import com.util.FormUtil;
 
 /**
  * @author DaYaFeng 角色 Service实现类 RoleServiceImp
@@ -90,11 +90,21 @@ public class RoleConteroller {
 		System.out.println(queryRightByRoleId);
 		return queryRightByRoleId;
 	}
-
+	
+	@RequestMapping(value = "/querySonRightByRoleId")
+	@ResponseBody
+	public List<Map<String, String>> querySonRightByRoleId(@RequestBody String data) {
+		System.out.println(data);
+		String role_id = data.substring(data.indexOf("=") + 1, data.length());
+		System.out.println(role_id);
+		List<Map<String, String>> queryRightByRoleId = rs.querySonRightByRoleId(role_id);
+		System.out.println(queryRightByRoleId);
+		return queryRightByRoleId;
+	}
 	@RequestMapping("/deleteRoleRightById")
 	@ResponseBody
 	public String deleteRoleRightById(@RequestBody String data) {
-		data = UrlUtil.getURLDecoderString(data);
+		data = FormUtil.getURLDecoderString(data);
 		System.out.println(data);
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
 		String roleId = datamap.get("roleId");
@@ -108,7 +118,7 @@ public class RoleConteroller {
 	@RequestMapping("/updateRoleRightById")
 	@ResponseBody
 	public String updateRoleRightById(@RequestBody String data) {
-		data = UrlUtil.getURLDecoderString(data);
+		data = FormUtil.getURLDecoderString(data);
 		System.out.println(data);
 		Map<String, String> datamap = JSON.parseObject(data, Map.class);
 		String roleId = datamap.get("roleId");

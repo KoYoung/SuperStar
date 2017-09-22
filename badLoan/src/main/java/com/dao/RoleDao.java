@@ -33,6 +33,13 @@ public interface RoleDao {
 	List<Map<String, String>> queryRightByRoleId(String roleId);
 
 	/**
+	 * 根据角色id查询角色对应的子权限
+	 * 
+	 * @param roleId
+	 * @return
+	 */
+	List<Map<String, String>> querySonRightByRoleId(String roleId);
+	/**
 	 * 根据角色ID 删除相应的角色权限
 	 * 
 	 * @param roleId

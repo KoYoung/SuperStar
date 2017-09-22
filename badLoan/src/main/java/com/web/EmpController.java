@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Emp;
 import com.service.EmpService;
+import com.util.FormUtil;
 import com.util.Paging;
 import com.util.PagingResult;
 
@@ -66,10 +68,14 @@ public class EmpController {
 
 	/**
 	 * 员工启用、禁用
+	 * @return 
 	 */
 	@RequestMapping("/enableEmp")
-	public void enableEmp(String data) {
+	@ResponseBody
+	public String enableEmp(@RequestBody String data) {
 		System.out.println(data);
-		//es.enableEmp(data);
+		data = FormUtil.serializeToJson(data);
+		es.enableEmp(data);
+		return "hello";
 	}
 }

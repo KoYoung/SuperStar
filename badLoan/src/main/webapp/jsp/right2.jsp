@@ -17,9 +17,9 @@
 		<a id="addBtn" href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add'">添加权限</a> <a id="stopBtn"
 			href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-no'">禁用权限</a> <a id="startBtn"
+			data-options="iconCls:'icon-no'">禁用</a> <a id="startBtn"
 			href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-ok'">启用权限</a>
+			data-options="iconCls:'icon-ok'">启用</a>
 	</div>
 	<div id="handlerDialog">
 		<form id="myForm" method="post">

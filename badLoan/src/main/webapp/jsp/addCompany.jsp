@@ -87,13 +87,11 @@ tr {
 						<th>公司名字</th>
 						<td><input class="easyui-textbox" id="comName" name="comName" /></td>
 						<th>组织机构号</th>
-						<td><input class="easyui-numberbox" id="comCode"
-							name="comCode" /></td>
+						<td><input class="easyui-numberbox" id="comCode" name="comCode" /></td>
 					</tr>
 					<tr>
 						<th>工商登记号码</th>
-						<td><input class="easyui-numberbox" id="comLicense"
-							name="comLicense" /></td>
+						<td><input class="easyui-numberbox"id="comLicense"name="comLicense" /></td>
 						<th>公司类型</th>
 						<td><select id="comType" class="easyui-combobox"
 							name="comType">
@@ -168,11 +166,10 @@ tr {
 					</tr>
 					<tr>
 						<th>联系电话</th>
-						<td><input class="easyui-numberbox" id="comLinphone"
+						<td><input class="easyui-numberbox" id="comLinphone" 
 							onblur="checkMobile('comLinphone');" name="comLinphone" /></td>
 						<th>注册资金</th>
-						<td><input class="easyui-numberbox" id="comFund"
-							name="comFund" /></td>
+						<td><input class="easyui-numberbox" id="comFund" name="comFund" /></td>
 					</tr>
 
 					<tr>
@@ -186,7 +183,7 @@ tr {
 					</tr>
 					<tr>
 						<th>法人联系方式</th>
-						<td><input class="easyui-numberbox" id="legalPhone"
+						<td><input class="easyui-numberbox" id="legalPhone" 
 							onblur="checklegalPhone('legalPhone');" name="legalPhone" /></td>
 						<th>法人民族</th>
 						<td><input class="easyui-combobox" id="legalNation"
@@ -243,16 +240,16 @@ tr {
 					</tr>
 					<tr>
 						<th>法人资料</th>
-						<td>
-							<div class="img-container"></div> <input class="img-btn"
-							type="file" id="legalInfo" name="tupian">
-
-						</td>
+							<td>
+						            <div class="img-container"></div>
+						            <input class="img-btn" type="file"  required="true" id="legalInfo" name="tupian">
+					        	
+							</td>
 						<th>企业资料照片</th>
 						<td>
 							<div id="box">
-								<div class="img-container"></div>
-								<input class="img-btn" type="file" id="conPhoto" name="tupian">
+						            <div class="img-container"></div>
+						            <input class="img-btn" type="file"  required="true" id="conPhoto" name="tupian">
 							</div>
 						</td>
 
@@ -262,7 +259,7 @@ tr {
 						<td>
 							<div id="box">
 								<div class="img-container"></div>
-								<input class="img-btn" type="file" id="comCard" name="tupian">
+						        <input class="img-btn" type="file"   required="true" id="comCard" name="tupian">
 							</div>
 						</td>
 					</tr>
@@ -366,155 +363,100 @@ tr {
 	</div>
 
 	<script type="text/javascript">
-		$("#comFund").numberbox({
-			panelHeight : "auto",
-			prompt : '公司注册资金',
-			required : "true"
-		});
-
-		$("#comLinkman").textbox({
-			panelHeight : "auto",
-			prompt : '输入公司的联系人',
-			required : "true"
-		});
-		$("#legalCardnumber").numberbox({
-			panelHeight : "auto",
-			prompt : '法人证件号码',
-			required : "true"
-		});
-		$("#comLinphone").numberbox({
-			panelHeight : "auto",
-			prompt : '联系人的正确电话',
-			required : "true"
-		});
-
-		$("#legalPhone").numberbox({
-			panelHeight : "auto",
-			prompt : '法人的正确电话',
-			required : "true"
-		});
-
-		$("#legalName").textbox({
-			panelHeight : "auto",
-			prompt : '输入法人姓名',
-			required : "true"
-		});
-
-		$("#comLicense").numberbox({
-			panelHeight : "auto",
-			prompt : '输入正确的组织代码',
-			required : "true"
-		});
-
-		$("#comCode").numberbox({
-			panelHeight : "auto",
-			prompt : '输入15位的数字',
-			required : "true"
-		});
-		$("#comName").textbox({
-			panelHeight : "auto",
-			prompt : '输入公司名字',
-			required : "true"
-		});
-		$('#comParent').combobox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-		$('#comType').combobox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-		$('#legalNation').textbox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-
-		$('#comProperty').combobox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-
-		$('#legalCardtype').combobox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-		$('#legalMarry').combobox({
-			width : 173,
-			panelHeight : "auto",
-			editable : false,
-		});
-
-		//检查对象是否为空，obj-对象，vMc-提示信息
-		function checkNull(obj, vline) {
-			//判断输入框是否为空，为空时弹出提示框
-			var v = document.getElementById(obj).value;
-			v = v.replace(/(^\s*)|(\s*$)/g, "");///去除空格的方法
-			if (v.length == 0) {
-				alert(vline + " 公司名输入值不能为空！");
-				return false;
-			}
-			return true;
+	$("#comFund").numberbox({
+		panelHeight : "auto",
+		prompt : '公司注册资金',
+		required:"true"
+	});
+	
+	$("#comLinkman").textbox({
+		panelHeight : "auto",
+		prompt : '输入公司的联系人',
+		required:"true"
+	});
+	
+	$("#legalCardnumber").numberbox({
+		panelHeight : "auto",
+		prompt : '法人证件号码',
+		required:"true"
+	});
+	$("#comLinphone").numberbox({
+		panelHeight : "auto",
+		prompt : '联系人的正确电话',
+		required:"true",
+		validType : 'mobile'
+	});
+	
+	$.extend($.fn.validatebox.defaults.rules, {
+		mobile : {
+			validator : function(value) {
+				var reg = /^1[3|4|5|8|9]\d{9}$/;
+				return reg.test(value);
+			},
+			message : '输入手机号码格式不准确.'
 		}
-		/* 注册资金  checkcomFund('comFund');"*/
-		function checkcomFund(str) {
-			var Str = document.getElementById(str).value;
-			if (Str < 500000) {
-				alert("注册资金不能小于50万");
-				return false;
-			}
-			return true;
-		}
-
-		// 法人联系方式码校验，长度为11位数字。
-		function checklegalPhone(str) {
-			var Str = document.getElementById(str).value;
-			RegularExp = /^[0-9]{11}$/
-			if (RegularExp.test(Str)) {
-				return true;
-			} else {
-				alert("法人联系方式 格式不正确！应该为11位长度的数字！");
-				return false;
-			}
-		}
-		//  客户电话代码校验，长度为11位数字。
-		function checkMobile(str) {
-			var Str = document.getElementById(str).value;
-			RegularExp = /^[0-9]{11}$/
-			if (RegularExp.test(Str)) {
-				return true;
-			} else {
-				alert("电话号码码格式不正确！应该为11位长度的数字！");
-				return false;
-			}
-		}
-		//  法人证件号校验，长度为18位数字。
-		function checklegalCardnumber(str) {
-			var Str = document.getElementById(str).value;
-			RegularExp = /^[0-9]{17}[0-9A-Za-z]{1}$|^[0-9]{14}[0-9A-Za-z]{1}$/
-			if (RegularExp.test(Str)) {
-				return true;
-			} else {
-				alert("身份证号格式不对！要18位");
-				return false;
-			}
-		}
-		//  邮政编码校验，长度为6位数字。
-		function checkcomPostcode(str) {
-			var Str = document.getElementById(str).value;
-			RegularExp = /^[0-9]{6}$/
-			if (RegularExp.test(Str)) {
-				return true;
-			} else {
-				alert(" 邮政编码格式不正确！应该为6位长度的数字！");
-				return false;
-			}
-		}
-
+	});
+	$("#legalPhone").numberbox({
+		panelHeight : "auto",
+		prompt : '法人的正确电话',
+		required:"true",
+		validType : 'mobile'
+	});
+	
+	$("#legalName").textbox({
+		panelHeight : "auto",
+		prompt : '输入法人姓名',
+		required:"true"
+	});
+	
+	$("#comLicense").numberbox({
+		panelHeight : "auto",
+		prompt : '输入正确的组织代码',
+		required:"true"
+	});
+	
+	$("#comCode").numberbox({
+		panelHeight : "auto",
+		prompt : '输入15位的数字',
+		required:"true"
+	});
+	$("#comName").textbox({
+		panelHeight : "auto",
+		prompt : '输入公司名字',
+		required:"true"
+	});
+	$('#comParent').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	$('#comType').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	$('#legalNation').textbox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	
+	$('#comProperty').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});
+	
+	$('#legalCardtype').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});	
+	$('#legalMarry').combobox({
+		width:173,
+		panelHeight : "auto",
+		editable : false,
+	});	
 		$("#searchpersonal").click(
 				function() {
 					var row = $("#company").datagrid('getSelected');
@@ -623,7 +565,7 @@ tr {
 				fit : true,
 				pageNumber : 1,
 				pageSize : 10,
-				pageList : [ 5, 10, 15, 20, 25, 30 ],
+				pageList : [ 5, 10, 15, 20, 24],
 				fitColumns : true,
 				striped : true,
 				loadMsg : "努力加载中......",

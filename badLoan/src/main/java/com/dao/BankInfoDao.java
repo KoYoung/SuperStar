@@ -11,4 +11,5 @@ public interface BankInfoDao {
 	 * @return
 	 */
 	List<BankInfo> findBankInfo();
+	public int addBankInfo(BankInfo bankInfo);
 }

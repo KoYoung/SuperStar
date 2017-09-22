@@ -207,7 +207,7 @@
 							handler : function() {
 								var selections = $("#rightDataGrid").datagrid("getSelections");
 								if(roleId==1){
-									$.messager.alert('',"超级管理员权限不可删改",'');
+									$.messager.alert('',"超级管理员权限不可删除",'');
 								}else{
 									if(selections.length==0){
 										$.messager.alert('',"请选择需要删除的权限",'');
@@ -240,20 +240,20 @@
 							text : '修改权限',
 							iconCls : 'icon-add',
 							handler : function() {
-								$("#addRightDialog").dialog("open");
-								$("#rightTree").tree({
-									url : '/badLoan/right/queryRight',
-									animate : true,
-									lines : true,
-									checkbox:true,
-									onLoadSuccess:function(){
-										 //var row = $("#rightDataGrid").datagrid("getRows");
-										if(roleId==1){
-											$.messager.alert('',"超级管理员权限不可删改",'');
-										}else{
+								if(roleId==1){
+									$.messager.alert('',"超级管理员权限不可删改",'');
+								}else{
+									$("#addRightDialog").dialog("open");
+									$("#rightTree").tree({
+										url : '/badLoan/right/queryRight',
+										animate : true,
+										lines : true,
+										checkbox:true,
+										onLoadSuccess:function(){
+											//var row = $("#rightDataGrid").datagrid("getRows");
 									 		var roleChecked = $("#roleTree").tree("getSelected");
 									 		$.ajax({
-									 			url:"/badLoan/roleController/queryRightByRoleIdNoPage",
+									 			url:"/badLoan/roleController/querySonRightByRoleId",
 									 			type:"post",
 									 			data:{
 									 				roleId :roleChecked.id
@@ -267,9 +267,9 @@
 													}
 									 			}
 									 		});
-										 }
-									}
-								});
+										}
+									});
+								}
 							}
 						},"-" ]
 					});
