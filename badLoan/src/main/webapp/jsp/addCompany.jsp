@@ -80,8 +80,7 @@ tr {
 	</div>
 	<table id="company"></table>
 	<div id="comp">
-		<div style="padding: 0 60px 20px 60px">
-			<h2>企业基本信息录入</h2>
+		<div>
 			<form id="compfrom" enctype="multipart/form-data" method="post">
 				<table cellpadding="5" id="tab1">
 					<tr>
@@ -274,40 +273,38 @@ tr {
 	<div id="search">
 		<table id="xiangqing">
 			<tr>
-				<th>法人资料</th>
-				<td><div id="legalInfo0" class="limage"></div></td>
-				<th>企业资料照片</th>
-				<td><div id="conPhoto0" class="limage"></div></td>
-				<th>税务登记证</th>
-				<td><div id="comCard0" class="limage"></div></td>
-			</tr>
-			<tr>
 				<th>企业名称</th>
 				<td><span id="comName0"></span></td>
 				<th>组织代码</th>
 				<td><span id="comCode0"></span></td>
-				<th>工商执照号</th>
-				<td><span id="comLicense0"></span></td>
+
 			</tr>
 			<tr>
+				<th>工商执照号</th>
+				<td><span id="comLicense0"></span></td>
 				<th>单位类型</th>
 				<td><span id="comType0"></span></td>
+			</tr>
+			<tr>
+
 				<th>单位地址</th>
 				<td><span id="comAddress0"></span></td>
-				<th>税务登记证号</th>
-				<td><span id="comCard0"></span></td>
+
 			</tr>
 			<tr>
 				<th>隶属关系</th>
 				<td><span id="comParent0"></span></td>
 				<th>法定代表人</th>
 				<td><span id="comLegalId0"></span></td>
-				<th>经济性质</th>
-				<td><span id="comProperty0"></span></td>
+
 			</tr>
 			<tr>
+				<th>经济性质</th>
+				<td><span id="comProperty0"></span></td>
 				<th>邮政编码</th>
 				<td><span id="comPostcode0"></span></td>
+			</tr>
+			<tr>
 				<th>联系人</th>
 				<td><span id="comLinkman0"></span></td>
 				<th>注册资金</th>
@@ -324,12 +321,15 @@ tr {
 				<td><span id="legalName0"></span></td>
 				<th>法人证件类型</th>
 				<td><span id="legalCardtype0"></span></td>
-				<th>法人证件号码</th>
-				<td><span id="legalCardnumber0"></span></td>
+
 			</tr>
 			<tr>
+				<th>法人证件号码</th>
+				<td><span id="legalCardnumber0"></span></td>
 				<th>法人民族</th>
 				<td><span id="legalNation0"></span></td>
+			</tr>
+			<tr>
 				<th>法人性别</th>
 				<td><span id="legalGender0"></span></td>
 				<th>法人婚姻状况</th>
@@ -341,7 +341,19 @@ tr {
 				<th>法人电话</th>
 				<td><span id="legalPhone0"></span></td>
 			</tr>
+			<tr>
+				<th>法人资料</th>
+				<td><div id="legalInfo0" class="limage"></div></td>
+				<th>企业资料照片</th>
+				<td><div id="conPhoto0" class="limage"></div></td>
 
+			</tr>
+			<tr>
+				<!-- <th>税务登记证号</th>
+				<td><span id="comCard0"></span></td> -->
+				<th>税务登记证</th>
+				<td><div id="comCard0" class="limage"></div></td>
+			</tr>
 		</table>
 	</div>
 
@@ -501,7 +513,7 @@ tr {
 					if (row != null) {
 						$('#search').dialog({
 							title : '个人客户详情',
-							width : '95%',
+							width : '80%',
 							height : '95%',
 							closed : false,
 							cache : false,
@@ -535,6 +547,8 @@ tr {
 								"<img class='image' src="+row.conPhoto+"\>");
 						$("#legalInfo0").html(
 								"<img class='image' src="+row.legalInfo+"\>");
+					}else{
+						$.messager.alert("","请选择想要查询的信息","");
 					}
 				});
 
@@ -552,8 +566,8 @@ tr {
 					.dialog(
 							{
 								title : '添加企业信息',
-								width : '95%',
-								height : '95%',
+								width : '90%',
+								height:'80%',
 								closed : true,
 								cache : false,
 								modal : true,

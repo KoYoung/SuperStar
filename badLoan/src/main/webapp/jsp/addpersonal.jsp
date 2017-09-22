@@ -71,9 +71,9 @@ td {
 	<div id="toobar">
 		<a id="addpersonal" class="easyui-linkbutton"
 			href="javascript:void(0)" data-options="iconCls:'icon-add'">添加个人客户信息</a>
-		<a id="updatepersonal" class="easyui-linkbutton"
+		<!-- <a id="updatepersonal" class="easyui-linkbutton"
 			data-options=" iconCls:'icon-edit'" href="javascript:void(0)"
-			onclick="edituser()">修改</a> <input class="easyui-searchbox" id="mohu"
+			onclick="edituser()">修改</a> --> <input class="easyui-searchbox" id="mohu"
 			data-options="searcher:ad,prompt:'请输入客户名搜索'" style="width: 150px" />
 
 		<a id="searchpersonal" class="easyui-linkbutton"
@@ -314,12 +314,15 @@ td {
 				<td><span id="borName0"></span></td>
 				<th>性别</th>
 				<td><span id="borGender0"></span></td>
-				<th>出生年月</th>
-				<td><span id="borBirthday0"></span></td>
+				
 			</tr>
 			<tr>
+				<th>出生年月</th>
+				<td><span id="borBirthday0"></span></td>
 				<th>民族</th>
 				<td><span id="borNation0"></span></td>
+			</tr>
+			<tr>
 				<th>婚姻状况</th>
 				<td><span id="borMarry0"></span></td>
 				<th>住址</th>
@@ -330,12 +333,15 @@ td {
 				<td><span id="borCardtype0"></span></td>
 				<th>证件号码</th>
 				<td><span id="borCardnumber0"></span></td>
-				<th>户籍</th>
-				<td><span id="borRegister0"></span></td>
+				
 			</tr>
 			<tr>
+				<th>户籍</th>
+				<td><span id="borRegister0"></span></td>
 				<th>客户电话</th>
 				<td><span id="borPhone0"></span></td>
+			</tr>
+			<tr>
 				<th>单位名称</th>
 				<td><span id="borUnit0"></span></td>
 				<th>单位电话</th>
@@ -347,12 +353,16 @@ td {
 				<td><span id="borUnitAddress0"></span></td>
 				<th>单位职务</th>
 				<td><span id="borPosition0"></span></td>
-				<th>单位收入</th>
-				<td><span id="borIncome0"></span></td>
+				
 			</tr>
 			<tr>
+				<th>单位收入</th>
+				<td><span id="borIncome0"></span></td>
 				<th>邮编</th>
 				<td><span id="borPostcode0"></span></td>
+			</tr>
+			<tr>
+				
 				<th>学历</th>
 				<td><span id="borEducation0"></span></td>
 				<th>紧急联系人</th>
@@ -363,12 +373,17 @@ td {
 				<td><span id="contectGender0"></span></td>
 				<th>紧急联系人证件类型</th>
 				<td><span id="contectCardtype0"></span></td>
-				<th>紧急联系人证件号</th>
-				<td><span id="contectCardnumber0"></span></td>
+				
 			</tr>
 			<tr>
+				<th>紧急联系人证件号</th>
+				<td><span id="contectCardnumber0"></span></td>
 				<th>紧急联系人生日</th>
 				<td><span id="contectBirthday0"></span></td>
+			</tr>
+			
+			<tr>
+				
 				<th>紧急联系人地址</th>
 				<td><span id="contectAddress0"></span></td>
 				<th>紧急联系人电话</th>
@@ -377,6 +392,9 @@ td {
 			<tr>
 				<th>信用</th>
 				<td><span id="borCredit0"></span></td>
+				
+			</tr>
+			<tr>
 				<th>客户照片</th>
 				<td id="drivingLicence0"></td>
 			</tr>
@@ -393,8 +411,8 @@ td {
 					if (row != null) {
 						$('#add').dialog({
 							title : '个人客户详情',
-							width : '95%',
-							height : '95%',
+							width : '70%',
+							height : '90%',
 							closed : false,
 							cache : false,
 							modal : true
